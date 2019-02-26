@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 import user.Patient;
 import user.Personnel;
+import display.ConfirmationMessages;
+import display.ErrorMessages;
+import display.MenuDisplay;
 
 public class Hospital_Management_System 
 {
@@ -14,6 +17,9 @@ public class Hospital_Management_System
 	String currentPage;
 	boolean systemOn;
 	String selection;
+	MenuDisplay menu = new MenuDisplay();
+	ErrorMessages error = new ErrorMessages();
+	ConfirmationMessages confirm = new ConfirmationMessages();
 	
 	public Hospital_Management_System()
 	{
@@ -37,7 +43,7 @@ public class Hospital_Management_System
 			//main menu 
 			if (currentPage == "Main Menu")
 			{
-				displayMainMenu();
+				menu.displayMainMenu();
 				//let user select options
 				switch(askForInput())
 				{
@@ -58,7 +64,7 @@ public class Hospital_Management_System
 			//admin portal
 			else if (currentPage == "Admin Portal")
 			{
-				displayAdminPortal();
+				menu.displayAdminPortal();
 				
 				switch(askForInput())
 				{
@@ -76,18 +82,25 @@ public class Hospital_Management_System
 			//patient portal
 			else if (currentPage == "Patient Portal")
 			{
-				displayPatientPortal();
-
-				System.out.println("Enter your ID: ");
+				System.out.println("Enter your ID to view your appointment(s): ");
 				int id = Integer.parseInt(askForInput());
-
-				System.out.println("Your next appointment is on " + patientRecord.get(id).appointmentDate + " at " + patientRecord.get(id).appointmentTime);
+				
+				try {
+					if(patientRecord.get(id-1).hasAppointment() == true) {
+						System.out.println("\nYour next appointment is on " + patientRecord.get(id-1).getAppointment());
+					}else {
+						error.displayNoAppointment();
+					}
+					
+				}catch(IndexOutOfBoundsException e){
+					error.displayInvalidID();
+				}	
 				returnToMainMenu();
 			}
 			
 			else if (currentPage == "Employee Portal")
 			{
-				displayEmployeePortal();
+				menu.displayEmployeePortal();
 				
 				switch(askForInput())
 				{
@@ -104,7 +117,7 @@ public class Hospital_Management_System
 			}
 			else if (currentPage == "Patient Records")
 			{
-				displayPatientManagementMenu();
+				menu.displayPatientManagementMenu();
 				
 				switch(askForInput())
 				{
@@ -117,12 +130,15 @@ public class Hospital_Management_System
 					case "3":
 						editPatient();
 						break;
+					case "0":
+						returnToAdminPortal();
+						break;
 				}
 		
 			}
 			else if (currentPage == "Employee Records")
 			{
-				displayEmployeeManagementMenu();
+				menu.displayEmployeeManagementMenu();
 				
 				switch(askForInput())
 				{
@@ -134,6 +150,9 @@ public class Hospital_Management_System
 						break;
 					case "3":
 						editPatient();
+						break;
+					case "0":
+						returnToAdminPortal();
 						break;
 				}
 				
@@ -150,60 +169,21 @@ public class Hospital_Management_System
 		}
 		
 	}
-
+/*
+ * Cancellation Options
+ */
+	
 	private void returnToMainMenu() 
 	{
 		currentPage = "Main Menu";
 	}
-
-	private void displayPatientManagementMenu() 
-	{
-		System.out.println("Select Command:");
-		System.out.println("1. Add New Patient");
-		System.out.println("2. View Patient");
-		System.out.println("3. Edit Patient");
-		System.out.println("0. Exit");
+	
+	private void returnToAdminPortal() {
+		currentPage = "Admin Portal";
 	}
 	
-	private void displayEmployeeManagementMenu() 
-	{
-		System.out.println("Select Command:");
-		System.out.println("1. Add New Employee");
-		System.out.println("2. View Employee");
-		System.out.println("3. Edit Employee");
-		System.out.println("0. Exit");
-	}
-
-	private void displayEmployeePortal() 
-	{
-		System.out.println("Select Command:");
-		System.out.println("1. View Schedule");
-		System.out.println("0. Exit");
-	}
-
-	private void displayPatientPortal() 
-	{
-		System.out.println("Select Command:");
-		System.out.println("1. View Appointments");
-		System.out.println("2. Cancel An Appointment");
-		System.out.println("0. Exit");
-	}
-
-	private void displayAdminPortal() 
-	{
-		System.out.println("Select Command:");
-		System.out.println("1. Manage Patient Records");
-		System.out.println("2. Manage Employee Records");
-		System.out.println("0. Exit");
-	}
-
-	private void displayMainMenu() 
-	{
-		System.out.println("Select user module:");
-		System.out.println("1. Admin");
-		System.out.println("2. Patient");
-		System.out.println("3. Employee");
-		System.out.println("0. Exit");
+	private void returnToPatientPortal() {
+		currentPage = "Patient Portal";
 	}
 
 	private String askForInput() 
@@ -223,10 +203,7 @@ public class Hospital_Management_System
 
 	private void goToAdminPortal() 
 	{
-		System.out.println("Select Command:");
-		System.out.println("1. Patient Details");
-		System.out.println("2. Employee Details");
-		System.out.println("0. Exit");
+		menu.displayDetailSelections();
 
 		selection = sc.nextLine();
 		
@@ -243,11 +220,7 @@ public class Hospital_Management_System
 
 	private void accessEmployeeRecords() 
 	{
-		System.out.println("Select Command:");
-		System.out.println("1. Add New Employee");
-		System.out.println("2. View Employee");
-		System.out.println("3. Edit Employee");
-		System.out.println("0. Exit");
+		menu.displayEmployeeManagementMenu();
 		
 		selection = sc.nextLine();
 		
@@ -264,7 +237,9 @@ public class Hospital_Management_System
 			break;		
 		}
 	}
-
+/*
+ * Record Settings
+ */
 	private void addEmployee() 
 	{
 		
@@ -282,11 +257,7 @@ public class Hospital_Management_System
 
 	private void accessPatientRecords() 
 	{
-		System.out.println("Select Command:");
-		System.out.println("1. Add New Patient");
-		System.out.println("2. View Patient");
-		System.out.println("3. Edit Patient");
-		System.out.println("0. Exit");
+		menu.displayPatientManagementMenu();
 		
 		selection = sc.nextLine();
 		
@@ -306,11 +277,7 @@ public class Hospital_Management_System
 
 	private void editPatient() 
 	{
-		System.out.println("Select Command:");
-		System.out.println("1. Add New Appointment");
-		System.out.println("2. Cancel Appointment");
-		System.out.println("0. Exit");
-		
+		menu.displayPatientAppointmentSetting();
 		
 		switch(askForInput())
 		{
@@ -318,18 +285,30 @@ public class Hospital_Management_System
 				System.out.println("Enter Patient ID: ");
 				int id = Integer.parseInt(askForInput()) - 1;
 				
-				System.out.println("Enter Appointment Date");
+				System.out.println("Enter Appointment Date (Format: MM/dd/yyyy)");
 				String date = askForInput();
 				
-				System.out.println("Enter Appointment Time");
+				
+				
+				System.out.println("Enter Appointment Time (Format[24hour]: HH:mm)");
 				String time = askForInput();
 				
+			
+			//Displays an error message if ID entered was invalid.
+			try {
 				patientRecord.get(id).setAppointment(date, time);
-				
+				confirm.addedPatientAppointments();
+			}catch(IndexOutOfBoundsException e){
+					error.displayInvalidID();
+			}
+			
 				currentPage = "Patient Records";
 				break;
 				
 			case "2":
+				System.out.println("Enter Patient ID: ");
+				id = Integer.parseInt(askForInput()) - 1;
+				
 				currentPage = "Employee Records";
 		}	
 		
@@ -337,12 +316,19 @@ public class Hospital_Management_System
 
 	private void viewPatient() 
 	{
-		System.out.println("ID#\tFirst\tLast");
+		System.out.println("ID#\tFirst Name\tLast Name");
+		System.out.println("==================================");
 		
-		for (Patient p : patientRecord)
-		{
-			System.out.println(p.id + "\t" + p.firstName + "\t" + p.lastName + "\n");
+		if (patientRecord.size() == 0) {
+			//Displays an error message for when there's no patient record.
+			error.displayNoPatient();
+		}else {
+			for (Patient p : patientRecord)
+			{
+				System.out.println(p.getID() + "\t" + p.firstName + "\t" + p.lastName);
+			}
 		}
+		
 		
 	}
 
@@ -355,7 +341,7 @@ public class Hospital_Management_System
 		int id = patientRecord.size() + 1;
 		
 		Patient newPatient = new Patient(firstName, lastName, id);
-		
 		patientRecord.add(newPatient);
+		confirm.addedPatient();
 	}
 }
