@@ -3,6 +3,10 @@ package system;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+import user.Patient;
+import user.Personnel;
+import display.AddPatientGUI;
 import display.ConfirmationMessages;
 import display.ErrorMessages;
 import display.MenuDisplay;
@@ -20,6 +24,8 @@ public class Hospital_Management_System
 	MenuDisplay menu = new MenuDisplay();
 	ErrorMessages error = new ErrorMessages();
 	ConfirmationMessages confirm = new ConfirmationMessages();
+	
+	AddPatientGUI apg = new AddPatientGUI();
 	
 	public Hospital_Management_System()
 	{
@@ -124,7 +130,7 @@ public class Hospital_Management_System
 				switch(askForInput())
 				{
 					case "1":
-						addPatient();
+						addPatientGUI();
 						break;
 					case "2":
 						viewPatient();
@@ -266,7 +272,8 @@ public class Hospital_Management_System
 		switch(selection)
 		{
 		case "1":
-			addPatient();
+			addPatientGUI();
+			
 			break;
 		case "2":
 			viewPatient();
@@ -334,17 +341,26 @@ public class Hospital_Management_System
 		
 	}
 
-	private void addPatient()
+	private void addPatientGUI()
 	{
-		System.out.println("Enter Patient's First Name: ");
-		String firstName = sc.nextLine(); 
-		System.out.println("Enter Patient's Last Name: ");
-		String lastName = sc.nextLine();
+		apg.addPatient(this);
+//		System.out.println("Enter Patient's First Name: ");
+//		String firstName = sc.nextLine(); 
+//		System.out.println("Enter Patient's Last Name: ");
+//		String lastName = sc.nextLine();
+//		int id = patientRecord.size() + 1;
+//		//Debug
+//		int age = 18;
+//		String phoneNum = "403-111-1111";
+//		Patient newPatient = new Patient(firstName, lastName, age, phoneNum, id);
+//		patientRecord.add(newPatient);
+//		confirm.addedPatient();
+	}
+	
+	public void appPatientToRecord(String firstName, String lastName, int age, String phoneNum) {
 		int id = patientRecord.size() + 1;
-		
-		Patient newPatient = new Patient(firstName, lastName, id);
+		Patient newPatient = new Patient(firstName, lastName, age, phoneNum, id);
 		patientRecord.add(newPatient);
-		confirm.addedPatient();
 	}
 	
 	public void setCurrentPage(String s) {
