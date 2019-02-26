@@ -175,7 +175,7 @@ public class AddPatientGUI extends JFrame {
 		firstNameTextField = new JTextField();
 		firstNameTextField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				firstName = firstNameTextField.getText();	s
+		//		firstName = firstNameTextField.getText();	
 			}
 		});
 		firstNameTextField.setBounds(197, 10, 86, 20);
