@@ -1,5 +1,6 @@
 package launcher;
 
+import display.LogIn;
 import system.Hospital_Management_System;
 
 /**
@@ -16,6 +17,8 @@ public class Main
 	public static void main(String[] args)
 	{
 		Hospital_Management_System hms = new Hospital_Management_System();
-		hms.start();
+		LogIn l = new LogIn(hms);
+		l.start(hms);
+		//hms.start();
 	}
 }
