@@ -3,15 +3,11 @@ package system;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 import user.Patient;
 import user.Personnel;
-import display.AddPatientGUI;
 import display.ConfirmationMessages;
 import display.ErrorMessages;
 import display.MenuDisplay;
-import user.Patient;
-import user.Personnel;
 
 public class Hospital_Management_System 
 {
@@ -24,8 +20,6 @@ public class Hospital_Management_System
 	MenuDisplay menu = new MenuDisplay();
 	ErrorMessages error = new ErrorMessages();
 	ConfirmationMessages confirm = new ConfirmationMessages();
-	
-	AddPatientGUI apg = new AddPatientGUI();
 	
 	public Hospital_Management_System()
 	{
@@ -40,8 +34,6 @@ public class Hospital_Management_System
 		//set system to start on main page
 		currentPage = "Main Menu";
 	}
-	
-	
 	
 	public void start()
 	{
@@ -130,7 +122,7 @@ public class Hospital_Management_System
 				switch(askForInput())
 				{
 					case "1":
-						addPatientGUI();
+						addPatient();
 						break;
 					case "2":
 						viewPatient();
@@ -272,8 +264,7 @@ public class Hospital_Management_System
 		switch(selection)
 		{
 		case "1":
-			addPatientGUI();
-			
+			addPatient();
 			break;
 		case "2":
 			viewPatient();
@@ -341,29 +332,16 @@ public class Hospital_Management_System
 		
 	}
 
-	private void addPatientGUI()
+	private void addPatient()
 	{
-		apg.addPatient(this);
-//		System.out.println("Enter Patient's First Name: ");
-//		String firstName = sc.nextLine(); 
-//		System.out.println("Enter Patient's Last Name: ");
-//		String lastName = sc.nextLine();
-//		int id = patientRecord.size() + 1;
-//		//Debug
-//		int age = 18;
-//		String phoneNum = "403-111-1111";
-//		Patient newPatient = new Patient(firstName, lastName, age, phoneNum, id);
-//		patientRecord.add(newPatient);
-//		confirm.addedPatient();
-	}
-	
-	public void appPatientToRecord(String firstName, String lastName, int age, String phoneNum) {
+		System.out.println("Enter Patient's First Name: ");
+		String firstName = sc.nextLine(); 
+		System.out.println("Enter Patient's Last Name: ");
+		String lastName = sc.nextLine();
 		int id = patientRecord.size() + 1;
-		Patient newPatient = new Patient(firstName, lastName, age, phoneNum, id);
+		
+		Patient newPatient = new Patient(firstName, lastName, id);
 		patientRecord.add(newPatient);
-	}
-	
-	public void setCurrentPage(String s) {
-		this.currentPage = s;
+		confirm.addedPatient();
 	}
 }

@@ -1,8 +1,5 @@
 package launcher;
 
-import javax.swing.JPanel;
-
-import display.LogIn;
 import system.Hospital_Management_System;
 
 /**
@@ -18,14 +15,7 @@ public class Main
      */
 	public static void main(String[] args)
 	{
-		//Hospital_Management_System hms = new Hospital_Management_System();
-		//LogIn l = new LogIn(hms);
-		//l.start(hms);
-		//hms.start();
-		
-		AddPatientPanel addPatientPanel = new AddPatientPanel();
-		JPanel a = addPatientPanel.createPanel();
-		
-		Gui gui = new Gui(a);
+		Hospital_Management_System hms = new Hospital_Management_System();
+		hms.start();
 	}
 }

@@ -17,9 +17,9 @@ public class Patient extends Person
 	ErrorMessages error = new ErrorMessages();
 	
 	
-	public Patient(String firstName, String lastName, int age, String phoneNum, int id) 
+	public Patient(String firstName, String lastName, int id) 
 	{
-		super(firstName, lastName, age, phoneNum);
+		super(firstName, lastName);
 		this.id = id;
 		hasAppointment = false;
 	}
