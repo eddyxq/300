@@ -28,8 +28,11 @@ public class Gui extends JFrame
        
         //set visibility
         panel1.setVisible(true);
-       
-            
+     
+         //For if want to start Fullscreen
+//        window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+//        window.setUndecorated(true);    
+        
         window.setVisible(true);
         
     }
