@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 import user.Patient;
 import user.Personnel;
-import display.AddPatientGUI;
 import display.ConfirmationMessages;
 import display.ErrorMessages;
 import display.MenuDisplay;
@@ -24,8 +23,6 @@ public class Hospital_Management_System
 	MenuDisplay menu = new MenuDisplay();
 	ErrorMessages error = new ErrorMessages();
 	ConfirmationMessages confirm = new ConfirmationMessages();
-	
-	AddPatientGUI apg = new AddPatientGUI();
 	
 	public Hospital_Management_System()
 	{
@@ -343,7 +340,6 @@ public class Hospital_Management_System
 
 	private void addPatientGUI()
 	{
-		apg.addPatient(this);
 //		System.out.println("Enter Patient's First Name: ");
 //		String firstName = sc.nextLine(); 
 //		System.out.println("Enter Patient's Last Name: ");
