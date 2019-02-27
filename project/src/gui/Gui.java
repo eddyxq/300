@@ -12,7 +12,7 @@ public class Gui extends JFrame
      * This constructor accepts as arguments the other panels and 
      * initializes the frame
      */
-    public Gui(JPanel panel1)
+    public Gui(JPanel panel1, JPanel panel2)
     {
     	JFrame window = new JFrame();
         window.setTitle("HMS");

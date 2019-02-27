@@ -25,14 +25,18 @@ public class LoginPanel {
 		JButton btnAdmin = new JButton("Admin");
 		btnAdmin.setFont(bArial);
 		btnAdmin.setBounds(500, 847, 211, 111);
-		loginPanel.add(btnAdmin);
+		
 		
 		JButton btnPatient = new JButton("Patient");
 		btnPatient.setFont(bArial);
 		btnPatient.setBounds(1137, 847, 211, 111);
-		loginPanel.add(btnPatient);
 		
+		
+		//Adding Components 
+		loginPanel.add(btnAdmin);
+		loginPanel.add(btnPatient);
 		loginPanel.add(getBackground());
+		
 		return loginPanel;
 	}
 	
