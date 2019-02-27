@@ -27,14 +27,16 @@ public class Hospital_Management_System
 	ErrorMessages error = new ErrorMessages();
 	ConfirmationMessages confirm = new ConfirmationMessages();
 	
+	//initialize GUI
+	private	LoginPanel loginPanel = new LoginPanel();
+	private	AddPatientPanel addPatientPanel = new AddPatientPanel();
+	
+	private	JPanel loginP = loginPanel.createPanel();
+	private	JPanel addPP = addPatientPanel.createPanel();
+	
 	public Hospital_Management_System()
 	{
-		//initialize GUI
-		LoginPanel loginPanel = new LoginPanel();
-		AddPatientPanel addPatientPanel = new AddPatientPanel();
 		
-		JPanel loginP = loginPanel.createPanel();
-		JPanel addPP = addPatientPanel.createPanel();
 		
 		Gui gui = new Gui(addPP, loginP);
 		
@@ -60,7 +62,6 @@ public class Hospital_Management_System
 			//main menu 
 			if (currentPage == "Main Menu")
 			{
-				menu.displayMainMenu();
 				//let user select options
 				switch(askForInput())
 				{
