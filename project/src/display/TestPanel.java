@@ -13,6 +13,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class TestPanel extends JPanel {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
@@ -107,6 +109,16 @@ public class TestPanel extends JPanel {
 		add(lbDOB);
 		
 		txDay = new JTextField();
+		txDay.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				txDay.setText("");
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				txDay.setText("Day");
+			}
+		});
 		txDay.setText("Day");
 		txDay.setBounds(640, 445, 70, 20);
 		add(txDay);

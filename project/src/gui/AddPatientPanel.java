@@ -3,6 +3,8 @@ package gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -101,8 +103,15 @@ public class AddPatientPanel
 		lbDOB.setBounds(78, 428, 300, 50);
 		
 		txDay = new JTextField();
+		txDay.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				txDay.setText("");
+			}
+		});
 		txDay.setText("Day");
 		txDay.setBounds(640, 445, 70, 20);
+		
 		
 		txDay.setColumns(10);
 		
@@ -111,10 +120,24 @@ public class AddPatientPanel
 		tfMonth.setColumns(10);
 		tfMonth.setBounds(754, 445, 70, 20);
 		
+		tfMonth.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				tfMonth.setText("");
+			}
+		});
+		
 		tfYear = new JTextField();
 		tfYear.setText("Year");
 		tfYear.setColumns(10);
 		tfYear.setBounds(856, 445, 70, 20);
+		
+		tfYear.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				tfYear.setText("");
+			}
+		});
 		
 		JLabel lblPhoneNumber = new JLabel("Phone Number: ");
 		lblPhoneNumber.setFont(new Font("Tahoma", Font.PLAIN, 16));
