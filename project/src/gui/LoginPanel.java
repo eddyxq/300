@@ -18,7 +18,7 @@ public class LoginPanel{
 		loginPanel.setBounds(0, 0, 1920, 1080);
 		
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(AddPatientPanel.class.getResource("/graphics/login_Background.png")));
+		lblBackground.setIcon(new ImageIcon(AddPatientPanel.class.getResource("/graphics/login_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		
 		JButton btnAdmin = new JButton("Admin");
