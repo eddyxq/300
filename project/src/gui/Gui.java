@@ -1,5 +1,8 @@
 package gui;
 
+import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
+
 //import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,7 +26,7 @@ public class Gui extends JFrame
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //add panels
-        window.getContentPane().add(panel1);
+        window.getContentPane().add(panel1, BorderLayout.CENTER);
        
        
         //set visibility

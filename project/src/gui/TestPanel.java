@@ -2,8 +2,14 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -12,25 +18,46 @@ import javax.swing.JPanel;
  */
 public class TestPanel 
 {
-	private JLabel testlabel = new JLabel();
+	//private JLabel testlabel = new JLabel();
 	/**
 	 * This method creates and returns a JPanel
 	 */
 	public JPanel createPanel()
 	{
-		JPanel battlePanel = new JPanel();
-		battlePanel.setLayout(null);
-		battlePanel.setBackground(Color.BLACK);
-		battlePanel.setBounds(0, 0, 1920, 1080);
-
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.GRAY);
+		panel.setBounds(12, 5, 720, 480);
 		
-		testlabel.setBounds(400,350,300,100);
-		testlabel.setFont(new Font("info", Font.PLAIN, 18));
-		testlabel.setForeground(Color.RED);
+		//add(panel);
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridwidth = GridBagConstraints.REMAINDER;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		
+		JButton btnNewButton = new JButton("Add a New Employee");
+		btnNewButton.setBounds(125, 21, 200, 50);
+		panel.add(btnNewButton, gbc);
 		
-		battlePanel.add(testlabel);
+		JButton btnNewButton_1 = new JButton("View Employee");
+		btnNewButton_1.setBounds(125, 58, 200, 50);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		panel.add(btnNewButton_1, gbc);
 		
-		return battlePanel;
+		JButton button = new JButton("Edit Employee");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button.setBounds(125, 95, 200, 50);
+		panel.add(button, gbc);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		return panel;
 	}
 }

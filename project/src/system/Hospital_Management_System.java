@@ -33,7 +33,9 @@ public class Hospital_Management_System
 		JPanel addPP = addPatientPanel.createPanel();
 		Gui gui = new Gui(addPP);
 		
-		
+		TestPanel tPanel = new TestPanel();
+		JPanel a = tPanel.createPanel();
+		Gui gui1 = new Gui(a);
 		
 		//start the system
 		systemOn = true;
