@@ -11,6 +11,7 @@ import display.ConfirmationMessages;
 import display.ErrorMessages;
 import display.MenuDisplay;
 import gui.TestPanel;
+import gui.AddPatientPanel;
 import gui.Gui;
 
 public class Hospital_Management_System 
@@ -28,9 +29,9 @@ public class Hospital_Management_System
 	public Hospital_Management_System()
 	{
 		//initialize GUI
-		TestPanel addPatientPanel = new TestPanel();
-		JPanel a = addPatientPanel.createPanel();
-		Gui gui = new Gui(a);
+		AddPatientPanel addPatientPanel = new AddPatientPanel();
+		JPanel addPP = addPatientPanel.createPanel();
+		Gui gui = new Gui(addPP);
 		
 		
 		
