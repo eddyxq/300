@@ -31,8 +31,12 @@ public class Hospital_Management_System
 	{
 		//initialize GUI
 		LoginPanel loginPanel = new LoginPanel();
+		AddPatientPanel addPatientPanel = new AddPatientPanel();
+		
 		JPanel loginP = loginPanel.createPanel();
-		Gui gui = new Gui(loginP);
+		JPanel addPP = addPatientPanel.createPanel();
+		
+		Gui gui = new Gui(addPP, loginP);
 		
 		
 		
