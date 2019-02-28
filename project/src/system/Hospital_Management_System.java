@@ -14,6 +14,7 @@ import gui.TestPanel;
 import gui.AddPatientPanel;
 import gui.Gui;
 import gui.LoginPanel;
+import gui.PatientManagePanel;
 
 public class Hospital_Management_System 
 {
@@ -30,15 +31,17 @@ public class Hospital_Management_System
 	//initialize GUI
 	private	LoginPanel loginPanel = new LoginPanel();
 	private	AddPatientPanel addPatientPanel = new AddPatientPanel();
+	private PatientManagePanel patientManagementPanel = new PatientManagePanel();
 	
 	private	JPanel loginP = loginPanel.createPanel();
 	private	JPanel addPP = addPatientPanel.createPanel();
+	private JPanel pmP = patientManagementPanel.createPanel();
 	
 	public Hospital_Management_System()
 	{
 		
 		
-		Gui gui = new Gui(addPP, loginP);
+		Gui gui = new Gui(pmP);
 		
 		
 		

@@ -46,19 +46,19 @@ public class PatientManagePanel
 		
 		JButton btnAddP = new JButton("Add a Patient");
 		btnAddP.setFont(new Font("Arial", Font.BOLD, 16));
-		btnAddP.setBounds(350, 360, 200, 59);
+		btnAddP.setBounds(725, 360, 500, 59);
 			
 		JButton btnView = new JButton("View Patient List");
 		btnView.setFont(new Font("Arial", Font.BOLD, 16));
-		btnView.setBounds(350, 560, 200, 59);
+		btnView.setBounds(725, 560, 500, 59);
 		
 		JButton btnEdit = new JButton("Edit Patient");
 		btnEdit.setFont(new Font("Arial", Font.BOLD, 16));
-		btnEdit.setBounds(350, 760, 200, 59);
+		btnEdit.setBounds(725, 760, 500, 59);
 		
 		
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(TestPanel.class.getResource("/graphics/AddPatientBackground.png")));
+		lblBackground.setIcon(new ImageIcon(TestPanel.class.getResource("/graphics/PatientManagement_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		
 		//Adding Components 
