@@ -16,6 +16,7 @@ import gui.AdminMainPanel;
 import gui.Gui;
 import gui.LoginPanel;
 import gui.PatientManagePanel;
+import gui.PatientViewAppointmentPanel;
 
 public class Hospital_Management_System 
 {
@@ -34,17 +35,19 @@ public class Hospital_Management_System
 	private	AddPatientPanel addPatientPanel = new AddPatientPanel();
 	private PatientManagePanel patientManagementPanel = new PatientManagePanel();
 	private AdminMainPanel adminMainPanel = new AdminMainPanel();
+	private PatientViewAppointmentPanel patientViewAppointmentPanel = new PatientViewAppointmentPanel();
 	
 	private	JPanel loginP = loginPanel.createPanel();
 	private	JPanel addPP = addPatientPanel.createPanel();
 	private JPanel pmP = patientManagementPanel.createPanel();
 	private JPanel amP = adminMainPanel.createPanel();
+	private JPanel avaP = patientViewAppointmentPanel.createPanel();
 	
 	public Hospital_Management_System()
 	{
 		
 		
-		Gui gui = new Gui(amP);
+		Gui gui = new Gui(avaP);
 		
 		
 		
