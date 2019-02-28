@@ -59,4 +59,8 @@ public class Patient extends Person
 	public boolean hasAppointment() {
 		return hasAppointment;
 	}
+	
+	public String getName() {
+		return firstName + " " + lastName;
+	}
 }
