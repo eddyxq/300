@@ -12,6 +12,7 @@ import display.ErrorMessages;
 import display.MenuDisplay;
 import gui.TestPanel;
 import gui.AddPatientPanel;
+import gui.AdminMainPanel;
 import gui.Gui;
 import gui.LoginPanel;
 import gui.PatientManagePanel;
@@ -32,16 +33,18 @@ public class Hospital_Management_System
 	private	LoginPanel loginPanel = new LoginPanel();
 	private	AddPatientPanel addPatientPanel = new AddPatientPanel();
 	private PatientManagePanel patientManagementPanel = new PatientManagePanel();
+	private AdminMainPanel adminMainPanel = new AdminMainPanel();
 	
 	private	JPanel loginP = loginPanel.createPanel();
 	private	JPanel addPP = addPatientPanel.createPanel();
 	private JPanel pmP = patientManagementPanel.createPanel();
+	private JPanel amP = adminMainPanel.createPanel();
 	
 	public Hospital_Management_System()
 	{
 		
 		
-		Gui gui = new Gui(pmP);
+		Gui gui = new Gui(amP);
 		
 		
 		

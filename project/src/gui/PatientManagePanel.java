@@ -30,9 +30,9 @@ public class PatientManagePanel
 	
 	public JPanel createPanel()
 	{
-		JPanel addPatients = new JPanel();
-		addPatients.setLayout(null);
-		addPatients.setBounds(0, 0, 1920, 1080);
+		JPanel patientManagement = new JPanel();
+		patientManagement.setLayout(null);
+		patientManagement.setBounds(0, 0, 1920, 1080);
 
 		JLabel lblWelcomeBackAdministrator = new JLabel("Welcome Back Administrator!");
 		lblWelcomeBackAdministrator.setFont(bArial);
@@ -62,14 +62,14 @@ public class PatientManagePanel
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		
 		//Adding Components 
-		addPatients.add(btnAddP);
-		addPatients.add(btnView);
-		addPatients.add(btnEdit);
-		addPatients.add(lblWelcomeBackAdministrator);
-		addPatients.add(date);
-		addPatients.add(lblBackground);
+		patientManagement.add(btnAddP);
+		patientManagement.add(btnView);
+		patientManagement.add(btnEdit);
+		patientManagement.add(lblWelcomeBackAdministrator);
+		patientManagement.add(date);
+		patientManagement.add(lblBackground);
 		
-		return addPatients;
+		return patientManagement;
 	}
 }
 
