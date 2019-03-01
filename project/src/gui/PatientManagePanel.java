@@ -1,9 +1,7 @@
 package gui;
 
-import java.awt.Color;
+
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -15,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import display.TestPanel;
+import system.Hospital_Management_System;
 
 /*
  * This class is a panel which allows administrator to select how to interact with a patient
@@ -28,7 +27,7 @@ public class PatientManagePanel
 	
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	
-	public JPanel createPanel()
+	public JPanel createPanel(Hospital_Management_System hms)
 	{
 		JPanel patientManagement = new JPanel();
 		patientManagement.setLayout(null);
@@ -45,6 +44,11 @@ public class PatientManagePanel
 		date.setBounds(166, 87, 560, 26);
 		
 		JButton btnAddP = new JButton("Add a Patient");
+		btnAddP.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				hms.addPatientPage();
+			}
+		});
 		btnAddP.setFont(new Font("Arial", Font.BOLD, 16));
 		btnAddP.setBounds(725, 360, 500, 59);
 			
