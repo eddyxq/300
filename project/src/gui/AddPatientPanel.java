@@ -3,6 +3,8 @@ package gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.text.DateFormat;
@@ -17,6 +19,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import display.TestPanel;
+import system.Hospital_Management_System;
 
 /*
  * This class is a test panel
@@ -35,7 +38,7 @@ public class AddPatientPanel
 	/**
 	 * This method creates and returns a JPanel
 	 */
-	public JPanel createPanel()
+	public JPanel createPanel(Hospital_Management_System hms)
 	{
 		JPanel addPatients = new JPanel();
 		addPatients.setLayout(null);
@@ -56,6 +59,11 @@ public class AddPatientPanel
 		btnSubmit.setBounds(370, 960, 169, 59);
 			
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				hms.patientManagementPage();
+			}
+		});
 		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));
 		btnCancel.setBounds(1400, 960, 169, 59);
 		

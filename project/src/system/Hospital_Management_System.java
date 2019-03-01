@@ -37,8 +37,8 @@ public class Hospital_Management_System
 	private PatientViewAppointmentPanel patientViewAppointmentPanel = new PatientViewAppointmentPanel();
 	
 	private	JPanel loginP = loginPanel.createPanel(this);
-	private	JPanel addPP = addPatientPanel.createPanel();
-	private JPanel pmP = patientManagementPanel.createPanel();
+	private	JPanel addPP = addPatientPanel.createPanel(this);
+	private JPanel pmP = patientManagementPanel.createPanel(this);
 	private JPanel amP = adminMainPanel.createPanel(this);
 	private JPanel avaP = patientViewAppointmentPanel.createPanel(this);
 	
@@ -48,7 +48,7 @@ public class Hospital_Management_System
 	
 	public Hospital_Management_System()
 	{
-		new Gui(loginP, amP, avaP);
+		new Gui(loginP, amP, avaP, pmP, addPP);
 		//start the system
 		systemOn = true;
 		//initialize scanner for input
@@ -61,7 +61,8 @@ public class Hospital_Management_System
 		currentPage = "Main Menu";
 	}
 	//Panel Swaps
-	public void loginPage() {
+	public void loginPage() 
+	{
 		loginP.setVisible(true);
 		amP.setVisible(false);
 		avaP.setVisible(false);
@@ -70,14 +71,28 @@ public class Hospital_Management_System
 	
 	public void adminMainPage() 
 	{
-		loginP.setVisible(false);
 		amP.setVisible(true);
+		loginP.setVisible(false);
+		pmP.setVisible(false);
+	}
+	
+	public void patientManagementPage() 
+	{
+		pmP.setVisible(true);
+		amP.setVisible(false);
+		addPP.setVisible(false);
+	}
+	
+	public void addPatientPage() 
+	{
+		addPP.setVisible(true);
+		pmP.setVisible(false);
 	}
 	
 	public void patientMainPage() 
 	{
-		loginP.setVisible(false);
 		avaP.setVisible(true);
+		loginP.setVisible(false);
 	}
 		
 	/**

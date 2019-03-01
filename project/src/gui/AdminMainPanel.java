@@ -47,6 +47,11 @@ public class AdminMainPanel
 		date.setBounds(166, 87, 560, 26);
 		
 		JButton btnManagePatient = new JButton("Manage Patient Records");
+		btnManagePatient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				hms.patientManagementPage();
+			}
+		});
 		btnManagePatient.setFont(new Font("Arial", Font.BOLD, 16));
 		btnManagePatient.setBounds(725, 360, 500, 59);
 			
