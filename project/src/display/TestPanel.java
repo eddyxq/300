@@ -16,6 +16,8 @@ import javax.swing.JRadioButton;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TestPanel extends JPanel {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
@@ -51,10 +53,14 @@ public class TestPanel extends JPanel {
 //		lblAppointment.setBounds(574, 533, 476, 82);
 //		add(lblAppointment);
 		
-//		JButton btnSubmit = new JButton("Submit");
-//		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
-//		btnSubmit.setBounds(375, 960, 169, 59);
-//		add(btnSubmit);
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
+		btnSubmit.setBounds(375, 960, 169, 59);
+		add(btnSubmit);
 //		
 //		JButton btnCancel = new JButton("Cancel");
 //		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));

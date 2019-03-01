@@ -10,7 +10,6 @@ import user.Personnel;
 import display.ConfirmationMessages;
 import display.ErrorMessages;
 import display.MenuDisplay;
-import gui.TestPanel;
 import gui.AddPatientPanel;
 import gui.AdminMainPanel;
 import gui.Gui;
@@ -37,20 +36,19 @@ public class Hospital_Management_System
 	private AdminMainPanel adminMainPanel = new AdminMainPanel();
 	private PatientViewAppointmentPanel patientViewAppointmentPanel = new PatientViewAppointmentPanel();
 	
-	private	JPanel loginP = loginPanel.createPanel();
+	private	JPanel loginP = loginPanel.createPanel(this);
 	private	JPanel addPP = addPatientPanel.createPanel();
 	private JPanel pmP = patientManagementPanel.createPanel();
-	private JPanel amP = adminMainPanel.createPanel();
-	private JPanel avaP = patientViewAppointmentPanel.createPanel();
+	private JPanel amP = adminMainPanel.createPanel(this);
+	private JPanel avaP = patientViewAppointmentPanel.createPanel(this);
+	
+	private boolean inLoginMenu = true;
+	private boolean inAdminMenu = false;
+	private boolean inPatientMenu = false;
 	
 	public Hospital_Management_System()
 	{
-		
-		
-		Gui gui = new Gui(avaP);
-		
-		
-		
+		new Gui(loginP, amP, avaP);
 		//start the system
 		systemOn = true;
 		//initialize scanner for input
@@ -62,313 +60,342 @@ public class Hospital_Management_System
 		//set system to start on main page
 		currentPage = "Main Menu";
 	}
-	
-	public void start()
-	{
-		//main loop that keeps the system on
-		while (systemOn)
-		{
-			//main menu 
-			if (currentPage == "Main Menu")
-			{
-				//let user select options
-				switch(askForInput())
-				{
-					case "1":
-						currentPage = "Admin Portal";
-						break;
-					case "2":
-						currentPage = "Patient Portal";
-						break;
-					case "3":
-						currentPage = "Employee Portal";
-						break;
-					case "0":
-						returnToMainMenu();
-						break;
-				}
-			}
-			//admin portal
-			else if (currentPage == "Admin Portal")
-			{
-				menu.displayAdminPortal();
-				
-				switch(askForInput())
-				{
-					case "1":
-						currentPage = "Patient Records";
-						break;
-					case "2":
-						currentPage = "Employee Records";
-						break;
-					case "0":
-						returnToMainMenu();
-						break;
-				}
-			}
-			//patient portal
-			else if (currentPage == "Patient Portal")
-			{
-				System.out.println("Enter your ID to view your appointment(s): ");
-				int id = Integer.parseInt(askForInput());
-				
-				try {
-					if(patientRecord.get(id-1).hasAppointment() == true) {
-						System.out.println("\nYour next appointment is on " + patientRecord.get(id-1).getAppointment());
-					}else {
-						error.displayNoAppointment();
-					}
-					
-				}catch(IndexOutOfBoundsException e){
-					error.displayInvalidID();
-				}	
-				returnToMainMenu();
-			}
-			
-			else if (currentPage == "Employee Portal")
-			{
-				menu.displayEmployeePortal();
-				
-				switch(askForInput())
-				{
-					case "1":
-						System.out.println("Enter employee ID: ");
-						break;
-					case "2":
-						currentPage = "Employee Records";
-						break;
-					case "0":
-						returnToMainMenu();
-						break;
-				}
-			}
-			else if (currentPage == "Patient Records")
-			{
-				menu.displayPatientManagementMenu();
-				
-				switch(askForInput())
-				{
-					case "1":
-						addPatient();
-						break;
-					case "2":
-						viewPatient();
-						break;
-					case "3":
-						editPatient();
-						break;
-					case "0":
-						returnToAdminPortal();
-						break;
-				}
+	//Panel Swaps
+	public void loginPage() {
+		loginP.setVisible(true);
+		amP.setVisible(false);
+		avaP.setVisible(false);
 		
-			}
-			else if (currentPage == "Employee Records")
-			{
-				menu.displayEmployeeManagementMenu();
-				
-				switch(askForInput())
-				{
-					case "1":
-						addEmployee();
-						break;
-					case "2":
-						viewPatient();
-						break;
-					case "3":
-						editPatient();
-						break;
-					case "0":
-						returnToAdminPortal();
-						break;
-				}
-				
-			}
-			else if (currentPage == "View Appointment")
-			{
-				
-			}
-			else if (currentPage == "Cancel Appointment")
-			{
-				
-			}
-			
-		}
-		
-	}
-/*
- * Cancellation Options
- */
+	}	
 	
-	private void returnToMainMenu() 
+	public void adminMainPage() 
 	{
-		currentPage = "Main Menu";
+		loginP.setVisible(false);
+		amP.setVisible(true);
 	}
 	
-	private void returnToAdminPortal() {
-		currentPage = "Admin Portal";
+	public void patientMainPage() 
+	{
+		loginP.setVisible(false);
+		avaP.setVisible(true);
+	}
+		
+	/**
+	 * Runs the HMS
+	 */
+	public void startHMS() {
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {public void run() {}});
+		loginPage();
 	}
 	
-	private void returnToPatientPortal() {
-		currentPage = "Patient Portal";
-	}
-
-	private String askForInput() 
-	{
-		return sc.nextLine();
-	}
-
-	private void goToEmployeePortal() 
-	{
-		
-	}
-
-	private void goToPatientPortal() 
-	{
-		
-	}
-
-	private void goToAdminPortal() 
-	{
-		menu.displayDetailSelections();
-
-		selection = sc.nextLine();
-		
-		switch(selection)
-		{
-		case "1":
-			accessPatientRecords();
-			break;
-		case "2":
-			accessEmployeeRecords();
-			break;		
-		}
-	}
-
-	private void accessEmployeeRecords() 
-	{
-		menu.displayEmployeeManagementMenu();
-		
-		selection = sc.nextLine();
-		
-		switch(selection)
-		{
-		case "1":
-			addEmployee();
-			break;
-		case "2":
-			viewEmployee();
-			break;		
-		case "3":
-			editEmployee();
-			break;		
-		}
-	}
-/*
- * Record Settings
- */
-	private void addEmployee() 
-	{
-		
-	}
-
-	private void viewEmployee() 
-	{
-		
-	}
-
-	private void editEmployee() 
-	{
-		
-	}
-
-	private void accessPatientRecords() 
-	{
-		menu.displayPatientManagementMenu();
-		
-		selection = sc.nextLine();
-		
-		switch(selection)
-		{
-		case "1":
-			addPatient();
-			break;
-		case "2":
-			viewPatient();
-			break;		
-		case "3":
-			editPatient();
-			break;		
-		}
-	}
-
-	private void editPatient() 
-	{
-		menu.displayPatientAppointmentSetting();
-		
-		switch(askForInput())
-		{
-			case "1":
-				System.out.println("Enter Patient ID: ");
-				int id = Integer.parseInt(askForInput()) - 1;
-				
-				System.out.println("Enter Appointment Date (Format: MM/dd/yyyy)");
-				String date = askForInput();
-				
-				
-				
-				System.out.println("Enter Appointment Time (Format[24hour]: HH:mm)");
-				String time = askForInput();
-				
-			
-			//Displays an error message if ID entered was invalid.
-			try {
-				patientRecord.get(id).setAppointment(date, time);
-				confirm.addedPatientAppointments();
-			}catch(IndexOutOfBoundsException e){
-					error.displayInvalidID();
-			}
-			
-				currentPage = "Patient Records";
-				break;
-				
-			case "2":
-				System.out.println("Enter Patient ID: ");
-				id = Integer.parseInt(askForInput()) - 1;
-				
-				currentPage = "Employee Records";
-		}	
-		
-	}
-
-	private void viewPatient() 
-	{
-		System.out.println("ID#\tFirst Name\tLast Name");
-		System.out.println("==================================");
-		
-		if (patientRecord.size() == 0) {
-			//Displays an error message for when there's no patient record.
-			error.displayNoPatient();
-		}else {
-			for (Patient p : patientRecord)
-			{
-				System.out.println(p.getID() + "\t" + p.firstName + "\t" + p.lastName);
-			}
-		}
-		
-		
-	}
-
-	private void addPatient()
-	{
-		System.out.println("Enter Patient's First Name: ");
-		String firstName = sc.nextLine(); 
-		System.out.println("Enter Patient's Last Name: ");
-		String lastName = sc.nextLine();
-		int id = patientRecord.size() + 1;
-		
-		Patient newPatient = new Patient(firstName, lastName, id);
-		patientRecord.add(newPatient);
-		confirm.addedPatient();
-	}
+	
+	
+//	public void start()
+//	{
+//		//main loop that keeps the system on
+//		while (systemOn)
+//		{
+//			//main menu 
+//			if (currentPage == "Main Menu")
+//			{
+//				//let user select options
+//				switch(askForInput())
+//				{
+//					case "1":
+//						currentPage = "Admin Portal";
+//						break;
+//					case "2":
+//						currentPage = "Patient Portal";
+//						break;
+//					case "3":
+//						currentPage = "Employee Portal";
+//						break;
+//					case "0":
+//						returnToMainMenu();
+//						break;
+//				}
+//			}
+//			//admin portal
+//			else if (currentPage == "Admin Portal")
+//			{
+//				menu.displayAdminPortal();
+//				
+//				switch(askForInput())
+//				{
+//					case "1":
+//						currentPage = "Patient Records";
+//						break;
+//					case "2":
+//						currentPage = "Employee Records";
+//						break;
+//					case "0":
+//						returnToMainMenu();
+//						break;
+//				}
+//			}
+//			//patient portal
+//			else if (currentPage == "Patient Portal")
+//			{
+//				System.out.println("Enter your ID to view your appointment(s): ");
+//				int id = Integer.parseInt(askForInput());
+//				
+//				try {
+//					if(patientRecord.get(id-1).hasAppointment() == true) {
+//						System.out.println("\nYour next appointment is on " + patientRecord.get(id-1).getAppointment());
+//					}else {
+//						error.displayNoAppointment();
+//					}
+//					
+//				}catch(IndexOutOfBoundsException e){
+//					error.displayInvalidID();
+//				}	
+//				returnToMainMenu();
+//			}
+//			
+//			else if (currentPage == "Employee Portal")
+//			{
+//				menu.displayEmployeePortal();
+//				
+//				switch(askForInput())
+//				{
+//					case "1":
+//						System.out.println("Enter employee ID: ");
+//						break;
+//					case "2":
+//						currentPage = "Employee Records";
+//						break;
+//					case "0":
+//						returnToMainMenu();
+//						break;
+//				}
+//			}
+//			else if (currentPage == "Patient Records")
+//			{
+//				menu.displayPatientManagementMenu();
+//				
+//				switch(askForInput())
+//				{
+//					case "1":
+//						addPatient();
+//						break;
+//					case "2":
+//						viewPatient();
+//						break;
+//					case "3":
+//						editPatient();
+//						break;
+//					case "0":
+//						returnToAdminPortal();
+//						break;
+//				}
+//		
+//			}
+//			else if (currentPage == "Employee Records")
+//			{
+//				menu.displayEmployeeManagementMenu();
+//				
+//				switch(askForInput())
+//				{
+//					case "1":
+//						addEmployee();
+//						break;
+//					case "2":
+//						viewPatient();
+//						break;
+//					case "3":
+//						editPatient();
+//						break;
+//					case "0":
+//						returnToAdminPortal();
+//						break;
+//				}
+//				
+//			}
+//			else if (currentPage == "View Appointment")
+//			{
+//				
+//			}
+//			else if (currentPage == "Cancel Appointment")
+//			{
+//				
+//			}
+//			
+//		}
+//		
+//	}
+///*
+// * Cancellation Options
+// */
+//	
+//	private void returnToMainMenu() 
+//	{
+//		currentPage = "Main Menu";
+//	}
+//	
+//	private void returnToAdminPortal() {
+//		currentPage = "Admin Portal";
+//	}
+//	
+//	private void returnToPatientPortal() {
+//		currentPage = "Patient Portal";
+//	}
+//
+//	private String askForInput() 
+//	{
+//		return sc.nextLine();
+//	}
+//
+//	private void goToEmployeePortal() 
+//	{
+//		
+//	}
+//
+//	private void goToPatientPortal() 
+//	{
+//		
+//	}
+//
+//	private void goToAdminPortal() 
+//	{
+//		menu.displayDetailSelections();
+//
+//		selection = sc.nextLine();
+//		
+//		switch(selection)
+//		{
+//		case "1":
+//			accessPatientRecords();
+//			break;
+//		case "2":
+//			accessEmployeeRecords();
+//			break;		
+//		}
+//	}
+//
+//	private void accessEmployeeRecords() 
+//	{
+//		menu.displayEmployeeManagementMenu();
+//		
+//		selection = sc.nextLine();
+//		
+//		switch(selection)
+//		{
+//		case "1":
+//			addEmployee();
+//			break;
+//		case "2":
+//			viewEmployee();
+//			break;		
+//		case "3":
+//			editEmployee();
+//			break;		
+//		}
+//	}
+///*
+// * Record Settings
+// */
+//	private void addEmployee() 
+//	{
+//		
+//	}
+//
+//	private void viewEmployee() 
+//	{
+//		
+//	}
+//
+//	private void editEmployee() 
+//	{
+//		
+//	}
+//
+//	private void accessPatientRecords() 
+//	{
+//		menu.displayPatientManagementMenu();
+//		
+//		selection = sc.nextLine();
+//		
+//		switch(selection)
+//		{
+//		case "1":
+//			addPatient();
+//			break;
+//		case "2":
+//			viewPatient();
+//			break;		
+//		case "3":
+//			editPatient();
+//			break;		
+//		}
+//	}
+//
+//	private void editPatient() 
+//	{
+//		menu.displayPatientAppointmentSetting();
+//		
+//		switch(askForInput())
+//		{
+//			case "1":
+//				System.out.println("Enter Patient ID: ");
+//				int id = Integer.parseInt(askForInput()) - 1;
+//				
+//				System.out.println("Enter Appointment Date (Format: MM/dd/yyyy)");
+//				String date = askForInput();
+//				
+//				
+//				
+//				System.out.println("Enter Appointment Time (Format[24hour]: HH:mm)");
+//				String time = askForInput();
+//				
+//			
+//			//Displays an error message if ID entered was invalid.
+//			try {
+//				patientRecord.get(id).setAppointment(date, time);
+//				confirm.addedPatientAppointments();
+//			}catch(IndexOutOfBoundsException e){
+//					error.displayInvalidID();
+//			}
+//			
+//				currentPage = "Patient Records";
+//				break;
+//				
+//			case "2":
+//				System.out.println("Enter Patient ID: ");
+//				id = Integer.parseInt(askForInput()) - 1;
+//				
+//				currentPage = "Employee Records";
+//		}	
+//		
+//	}
+//
+//	private void viewPatient() 
+//	{
+//		System.out.println("ID#\tFirst Name\tLast Name");
+//		System.out.println("==================================");
+//		
+//		if (patientRecord.size() == 0) {
+//			//Displays an error message for when there's no patient record.
+//			error.displayNoPatient();
+//		}else {
+//			for (Patient p : patientRecord)
+//			{
+//				System.out.println(p.getID() + "\t" + p.firstName + "\t" + p.lastName);
+//			}
+//		}
+//		
+//		
+//	}
+//
+//	private void addPatient()
+//	{
+//		System.out.println("Enter Patient's First Name: ");
+//		String firstName = sc.nextLine(); 
+//		System.out.println("Enter Patient's Last Name: ");
+//		String lastName = sc.nextLine();
+//		int id = patientRecord.size() + 1;
+//		
+//		Patient newPatient = new Patient(firstName, lastName, id);
+//		patientRecord.add(newPatient);
+//		confirm.addedPatient();
+//	}
 }

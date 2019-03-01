@@ -1,9 +1,7 @@
 package gui;
 
-import java.awt.Color;
+
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -15,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import display.TestPanel;
-import user.Patient;
+import system.Hospital_Management_System;
 
 /*
  * This class is a panel which allows the patient to view their appointment(s).
@@ -29,7 +27,7 @@ public class PatientViewAppointmentPanel
 	
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	
-	public JPanel createPanel()
+	public JPanel createPanel(Hospital_Management_System hms)
 	{
 		JPanel patientViewAppointment = new JPanel();
 		patientViewAppointment.setLayout(null);
@@ -50,6 +48,11 @@ public class PatientViewAppointmentPanel
 		lblAppointment.setBounds(574, 533, 1000, 82);
 		
 		JButton btnReturn = new JButton("Return");
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				hms.loginPage();
+			}
+		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(725, 760, 500, 59);
 		
