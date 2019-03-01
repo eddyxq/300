@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import display.TestPanel;
+import system.Hospital_Management_System;
 
 /*
  * This class is a panel which allows administrator to select how to interact with patient/
@@ -29,7 +30,7 @@ public class AdminMainPanel
 	
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	
-	public JPanel createPanel()
+	public JPanel createPanel(Hospital_Management_System hms)
 	{
 		JPanel adminMain = new JPanel();
 		adminMain.setLayout(null);
@@ -54,6 +55,11 @@ public class AdminMainPanel
 		btnManageEmployee.setBounds(725, 560, 500, 59);
 		
 		JButton btnReturn = new JButton("Return");
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				hms.loginPage();
+			}
+		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(725, 760, 500, 59);
 		

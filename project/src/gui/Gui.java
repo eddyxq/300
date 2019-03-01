@@ -12,7 +12,7 @@ public class Gui extends JFrame
      * This constructor accepts as arguments the other panels and 
      * initializes the frame
      */
-    public Gui(JPanel panel1)
+    public Gui(JPanel loginP, JPanel amP, JPanel avaP)
     {
     	JFrame window = new JFrame();
         window.setTitle("HMS");
@@ -23,11 +23,14 @@ public class Gui extends JFrame
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //add panels
-        window.getContentPane().add(panel1);
+        window.getContentPane().add(loginP);
+        window.getContentPane().add(amP);
+        window.getContentPane().add(avaP);
        
         //set visibility
-        panel1.setVisible(true);
-     
+        loginP.setVisible(false);
+        amP.setVisible(false);
+        avaP.setVisible(false);
          //For if want to start Full-Screen
 //        window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 //        window.setUndecorated(true);    
