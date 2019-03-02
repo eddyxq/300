@@ -61,6 +61,11 @@ public class TestPanel extends JPanel {
 		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
 		btnSubmit.setBounds(375, 960, 169, 59);
 		add(btnSubmit);
+		
+		JButton btnReturn = new JButton("Return");
+		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
+		btnReturn.setBounds(55, 950, 169, 59);
+		add(btnReturn);
 //		
 //		JButton btnCancel = new JButton("Cancel");
 //		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));
