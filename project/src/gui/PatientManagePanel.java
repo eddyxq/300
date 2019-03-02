@@ -60,12 +60,21 @@ public class PatientManagePanel
 		btnEdit.setFont(new Font("Arial", Font.BOLD, 16));
 		btnEdit.setBounds(725, 760, 500, 59);
 		
+		JButton btnReturn = new JButton("Return");
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				hms.adminMainPage();
+			}
+		});
+		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
+		btnReturn.setBounds(55, 950, 169, 59);
 		
 		JLabel lblBackground = new JLabel();
 		lblBackground.setIcon(new ImageIcon(TestPanel.class.getResource("/graphics/PatientManagement_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		
 		//Adding Components 
+		patientManagement.add(btnReturn);
 		patientManagement.add(btnAddP);
 		patientManagement.add(btnView);
 		patientManagement.add(btnEdit);
