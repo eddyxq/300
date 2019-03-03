@@ -196,6 +196,7 @@ public class AddPatientPanel
 					(rdbtnMale.isSelected() ? "Male" : "Female"), 
 					tfDay.getText()+ "/" + tfMonth.getText() + "/" + tfYear.getText(),
 					tfPhoneNum.getText(), tfEmail.getText()));
+					hms.patientManagementPage();
 				}
 				//display warning message if any fields are empty 
 				else

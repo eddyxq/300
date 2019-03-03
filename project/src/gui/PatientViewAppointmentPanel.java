@@ -54,7 +54,7 @@ public class PatientViewAppointmentPanel
 		btnReturn.setBounds(725, 760, 500, 59);
 		
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(TestPanel.class.getResource("/graphics/PatientAppointment_background.png")));
+		lblBackground.setIcon(new ImageIcon(PatientViewAppointmentPanel.class.getResource("/graphics/PatientAppointment_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		
 		//Adding Components 

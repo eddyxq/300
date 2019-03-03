@@ -8,6 +8,7 @@ import gui.AddPatientPanel;
 import gui.AdminMainPanel;
 import gui.Gui;
 import gui.LoginPanel;
+import gui.PatientInfoPanel;
 import gui.PatientManagePanel;
 import gui.PatientViewAppointmentPanel;
 
@@ -21,19 +22,21 @@ public class Hospital_Management_System
 	String currentPage;
 	boolean systemOn;
 	String selection;
-	
+	private int id;
 	//initialize GUI
 	private	LoginPanel loginPanel = new LoginPanel();
 	private	AddPatientPanel addPatientPanel = new AddPatientPanel();
 	private PatientManagePanel patientManagementPanel = new PatientManagePanel();
 	private AdminMainPanel adminMainPanel = new AdminMainPanel();
 	private PatientViewAppointmentPanel patientViewAppointmentPanel = new PatientViewAppointmentPanel();
+	private PatientInfoPanel patientInfoPanel = new PatientInfoPanel();
 	
 	private	JPanel loginP = loginPanel.createPanel(this);
 	private	JPanel addPP = addPatientPanel.createPanel(this);
 	private JPanel pmP = patientManagementPanel.createPanel(this);
 	private JPanel amP = adminMainPanel.createPanel(this);
 	private JPanel avaP = patientViewAppointmentPanel.createPanel(this);
+	private JPanel piP = patientInfoPanel.createPanel(this);
 	
 //	private boolean inLoginMenu = true;
 //	private boolean inAdminMenu = false;
@@ -41,7 +44,7 @@ public class Hospital_Management_System
 	
 	public Hospital_Management_System()
 	{
-		new Gui(loginP, amP, avaP, pmP, addPP);
+		new Gui(loginP, amP, avaP, pmP, addPP, piP);
 		//start the system
 		systemOn = true;
 		//initialize scanner for input
@@ -71,6 +74,7 @@ public class Hospital_Management_System
 		pmP.setVisible(true);
 		amP.setVisible(false);
 		addPP.setVisible(false);
+		piP.setVisible(false);
 	}
 	
 	public void addPatientPage() 
@@ -84,6 +88,12 @@ public class Hospital_Management_System
 		avaP.setVisible(true);
 		loginP.setVisible(false);
 	}
+	
+	public void patientInfoPage()
+	{
+		piP.setVisible(true);
+		pmP.setVisible(false);
+	}
 		
 	/**
 	 * Runs the HMS
@@ -91,7 +101,8 @@ public class Hospital_Management_System
 	public void startHMS() 
 	{
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {public void run() {}});
-		loginPage();
+		//loginPage();
+		patientInfoPage();
 	}
 	
 	public void viewPatient() 
@@ -115,12 +126,19 @@ public class Hospital_Management_System
 	public void addPatient(Patient patient)
 	{
 		//assign the next available id number to patient
-		int id = patientRecord.size() + 1;
+		id = patientRecord.size() + 1;
 		patient.setId(id);
 		//add to records
 		patientRecord.add(patient);
 	}
+	
+	public Patient getPatient(int id) 
+	{
+		return patientRecord.get(id);
+	}
+
 }
+	
 
 /*
  * Previous implementation's command line logic
