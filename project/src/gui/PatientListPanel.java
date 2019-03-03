@@ -30,14 +30,26 @@ public class PatientListPanel
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{"ID", "First Name", "Last Name", "Sex", 
-			"Date of Birth", "Phone Number", "E-mail"}, 0));
+			"Date of Birth", "Phone Number", "E-mail"}, 0)){
+	    /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+		public boolean isCellEditable(int row, int column)
+	    {
+	      return false;//This causes all cells to be not editable
+	    }
+	  };
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
 	/**
 	 * This method creates and returns a JPanel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
-		table.setEnabled(false);
+		table.setColumnSelectionAllowed(false);
+		table.setRowSelectionAllowed(true);
+		table.setEnabled(true);
 		
 		JScrollPane tableContainer = new JScrollPane(table);
 		tableContainer.setLocation(86, 244);

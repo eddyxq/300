@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JPanel;
 import user.Patient;
+import gui.AddAppointmentPanel;
 import gui.AddPatientPanel;
 import gui.AdminMainPanel;
 import gui.Gui;
@@ -32,6 +33,7 @@ public class Hospital_Management_System
 	private PatientViewAppointmentPanel patientViewAppointmentPanel = new PatientViewAppointmentPanel();
 	private PatientInfoPanel patientInfoPanel = new PatientInfoPanel();
 	private PatientListPanel patientListPanel = new PatientListPanel();
+	private AddAppointmentPanel addAppointmentPanel = new AddAppointmentPanel();
 	
 	private	JPanel loginP = loginPanel.createPanel(this);
 	private	JPanel addPP = addPatientPanel.createPanel(this);
@@ -40,6 +42,7 @@ public class Hospital_Management_System
 	private JPanel avaP = patientViewAppointmentPanel.createPanel(this);
 	private JPanel piP = patientInfoPanel.createPanel(this);
 	private JPanel plP = patientListPanel.createPanel(this);
+	private JPanel aaP = addAppointmentPanel.createPanel(this);
 	
 //	private boolean inLoginMenu = true;
 //	private boolean inAdminMenu = false;
@@ -47,7 +50,7 @@ public class Hospital_Management_System
 	
 	public Hospital_Management_System()
 	{
-		new Gui(loginP, amP, avaP, pmP, addPP, piP, plP);
+		new Gui(loginP, amP, avaP, pmP, addPP, piP, plP, aaP);
 		//start the system
 		systemOn = true;
 		//initialize scanner for input
@@ -79,6 +82,7 @@ public class Hospital_Management_System
 		addPP.setVisible(false);
 		piP.setVisible(false);
 		plP.setVisible(false);
+		aaP.setVisible(false);
 	}
 	
 	public void addPatientPage() 
@@ -103,6 +107,13 @@ public class Hospital_Management_System
 	{
 		plP.setVisible(true);
 		pmP.setVisible(false);
+		aaP.setVisible(false);
+	}
+	
+	public void addAppointmnetPage()
+	{
+		aaP.setVisible(true);
+		pmP.setVisible(false);
 	}
 	/**
 	 * Runs the HMS
@@ -112,6 +123,7 @@ public class Hospital_Management_System
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {public void run() {}});
 		loginPage();
 		//patientListPage();
+		//addAppointmnetPage();
 	}
 	
 	public void viewPatient() 
