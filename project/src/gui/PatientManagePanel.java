@@ -72,7 +72,7 @@ public class PatientManagePanel
 		btnReturn.setBounds(55, 950, 169, 59);
 		
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(TestPanel.class.getResource("/graphics/PatientManagement_background.png")));
+		lblBackground.setIcon(new ImageIcon(PatientManagePanel.class.getResource("/graphics/PatientManagement_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		
 		//Adding Components 

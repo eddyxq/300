@@ -65,7 +65,7 @@ public class AdminMainPanel
 		
 		
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(TestPanel.class.getResource("/graphics/Admin_background.png")));
+		lblBackground.setIcon(new ImageIcon(AdminMainPanel.class.getResource("/graphics/Admin_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		
 		//Adding Components 

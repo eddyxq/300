@@ -74,6 +74,31 @@ public class Patient extends Person
 	{
 		return firstName + " " + lastName;
 	}
+	
+	public String getFirstName() 
+	{
+		return firstName;
+	}
+	
+	public String getLastName()
+	{
+		return lastName;
+	}
+	
+	public String getPhoneNum()
+	{
+		return phoneNumber;
+	}
+	
+	public String getEmail() 
+	{
+		return email;
+	}
+	
+	public String getDOB() 
+	{
+		return dob;
+	}
 	/*
 	 * This method returns true if the patient has a appointment booked
 	 */
