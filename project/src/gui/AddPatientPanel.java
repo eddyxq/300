@@ -175,7 +175,7 @@ public class AddPatientPanel
 			public void actionPerformed(ActionEvent e) 
 			{
 				clearTextField();
-				hms.patientManagementPage();
+				hms.displayPatientManagementPage();
 			}
 		});
 		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));
@@ -205,7 +205,7 @@ public class AddPatientPanel
 					null, options, options[0]);
 					//go back to previous menu
 					clearTextField();
-					hms.patientManagementPage();
+					hms.displayPatientManagementPage();
 				}
 				//display warning message if any fields are empty 
 				else
@@ -268,7 +268,7 @@ public class AddPatientPanel
 		return true;
 	}
 	/**
-	 * This method resets all the textfields
+	 * This method resets all the text fields
 	 */
 	private void clearTextField() 
 	{

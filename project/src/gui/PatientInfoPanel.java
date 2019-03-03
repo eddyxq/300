@@ -1,19 +1,16 @@
 package gui;
 
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import system.Hospital_Management_System;
-import user.Patient;
 
 /*
  * This class displays the patient info panel.
@@ -130,7 +127,7 @@ public class PatientInfoPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				hms.patientManagementPage();
+				hms.displayPatientManagementPage();
 			}
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));

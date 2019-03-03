@@ -1,28 +1,17 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
 import system.Hospital_Management_System;
-import user.Patient;
 
 /*
  * This class displays the add patient panel.
@@ -59,7 +48,6 @@ public class AddAppointmentPanel
 		JLabel date = new JLabel("Today is: "+df.format(today));
 		date.setFont(new Font("Calibri Light", Font.PLAIN, 26));
 		date.setBounds(166, 87, 560, 26);
-		
 		/*
 		 * CANCEL BUTTON
 		 */
@@ -69,7 +57,7 @@ public class AddAppointmentPanel
 			public void actionPerformed(ActionEvent e) 
 			{
 				clearTextField();
-				hms.patientListPage();
+				hms.displayPatientListPage();
 			}
 		});
 		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));
@@ -86,7 +74,7 @@ public class AddAppointmentPanel
 			{
 				
 				clearTextField();
-				hms.patientListPage();
+				hms.displayPatientListPage();
 			}
 		});
 		/*
@@ -100,7 +88,6 @@ public class AddAppointmentPanel
 		 */
 		tfDate = new JTextField();
 		tfDate.setBounds(879, 364, 200, 20);
-		
 		tfDate.setColumns(10);
 		/*
 		 * TIME
@@ -127,10 +114,12 @@ public class AddAppointmentPanel
 		
 		return addAppointmentPanel;
 	}
-	
+	/**
+	 * This method resets all the text fields
+	 */
 	private void clearTextField() 
 	{
-		tfDate.setText(" ");
-		tfTime.setText(" ");
+		tfDate.setText("");
+		tfTime.setText("");
 	}
 }

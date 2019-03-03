@@ -23,14 +23,14 @@ import user.Patient;
 public class PatientListPanel 
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
-	private JTable table = new JTable(new DefaultTableModel(new Object[]{"ID", "First Name", "Last Name", "Sex", 
-			"Date of Birth", "Phone Number", "E-mail"}, 0))
+	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
+	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
-
 		public boolean isCellEditable(int row, int column)
-	    {
-			return false;//This causes all cells to be not editable
+		{
+			//this causes all cells to be not editable
+			return false; 
 	    }
 	};
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -39,10 +39,10 @@ public class PatientListPanel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
+		//set table settings
 		table.setColumnSelectionAllowed(false);
 		table.setRowSelectionAllowed(true);
 		table.setEnabled(true);
-		
 		JScrollPane tableContainer = new JScrollPane(table);
 		tableContainer.setLocation(86, 244);
 		tableContainer.setSize(1746, 700);
@@ -68,16 +68,20 @@ public class PatientListPanel
 		JLabel date = new JLabel("Today is: "+df.format(today));
 		date.setFont(new Font("Calibri Light", Font.PLAIN, 26));
 		date.setBounds(166, 87, 560, 26);
-		
+		/*
+		 * RETURN BUTTON
+		 */
 		JButton btnReturn = new JButton("Return");
-		btnReturn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				hms.patientManagementPage();
+		btnReturn.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				hms.displayPatientManagementPage();
 			}
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(725, 955, 500, 59);
-		
+		//add all the components to panel
 		patientListPanel.add(btnReturn);
 		patientListPanel.add(tableContainer, BorderLayout.CENTER);
 		patientListPanel.add(lblWelcomeBackAdministrator);
@@ -86,9 +90,13 @@ public class PatientListPanel
 		
 		return patientListPanel;
 	}
-	
-	public void addPatientToTable(Patient patient) {
+	/**
+	 * This method adds a patient to a row in the table.
+	 * @param patient The patient to be added
+	 */
+	public void addPatientToTable(Patient patient) 
+	{
 		model.addRow(new Object[]{patient.getID(), patient.getFirstName(), patient.getLastName(),
-				patient.getSex(), patient.getDOB(), patient.getPhoneNum(), patient.getEmail()});
+		patient.getSex(), patient.getDOB(), patient.getPhoneNum(), patient.getEmail()});
 	}
 }

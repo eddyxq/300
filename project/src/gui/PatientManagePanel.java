@@ -43,7 +43,7 @@ public class PatientManagePanel
 		JButton btnAddP = new JButton("Add a Patient");
 		btnAddP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				hms.addPatientPage();
+				hms.displayAddPatientPage();
 			}
 		});
 		btnAddP.setFont(new Font("Arial", Font.BOLD, 16));
@@ -54,8 +54,7 @@ public class PatientManagePanel
 		btnView.setBounds(725, 560, 500, 59);
 		btnView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				hms.viewPatient();
-				hms.patientListPage();
+				hms.displayPatientListPage();
 			}
 		});
 		
@@ -66,7 +65,7 @@ public class PatientManagePanel
 		JButton btnReturn = new JButton("Return");
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				hms.adminMainPage();
+				hms.displayAdminMainPage();
 			}
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
