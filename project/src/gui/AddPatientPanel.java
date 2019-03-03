@@ -174,6 +174,7 @@ public class AddPatientPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				clearTextField();
 				hms.patientManagementPage();
 			}
 		});
@@ -196,6 +197,9 @@ public class AddPatientPanel
 					(rdbtnMale.isSelected() ? "Male" : "Female"), 
 					tfDay.getText()+ "/" + tfMonth.getText() + "/" + tfYear.getText(),
 					tfPhoneNum.getText(), tfEmail.getText()));
+					
+					clearTextField();
+					
 					hms.patientManagementPage();
 				}
 				//display warning message if any fields are empty 
@@ -257,5 +261,16 @@ public class AddPatientPanel
 			}
 		}
 		return true;
+	}
+	
+	private void clearTextField() 
+	{
+		tfFirstName.setText(" ");
+		tfLastName.setText(" ");
+		tfDay.setText(" ");
+		tfMonth.setText(" ");
+		tfYear.setText(" ");
+		tfPhoneNum.setText(" ");
+		tfEmail.setText(" ");
 	}
 }

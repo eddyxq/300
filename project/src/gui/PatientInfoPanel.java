@@ -28,9 +28,9 @@ public class PatientInfoPanel
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
 		//initialize the panel layout and size
-		JPanel addPatients = new JPanel();
-		addPatients.setLayout(null);
-		addPatients.setBounds(0, 0, 1920, 1080);
+		JPanel patientInfoPanel = new JPanel();
+		patientInfoPanel.setLayout(null);
+		patientInfoPanel.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
 		lblBackground.setIcon(new ImageIcon(PatientInfoPanel.class.getResource("/graphics/AddPatientBackground.png")));
@@ -137,23 +137,23 @@ public class PatientInfoPanel
 		btnReturn.setBounds(900, 960, 169, 59);
 		
 		//add all the components to panel
-		addPatients.add(lblPhoneNumber);
-		addPatients.add(pPhoneNum);
-		addPatients.add(lbEmail);
-		addPatients.add(pEmail);
-		addPatients.add(lbDOB);
-		addPatients.add(pDob);
-		addPatients.add(lbSex);
-		addPatients.add(pSex);
-		addPatients.add(lbFirstName);
-		addPatients.add(pFirstName);
-		addPatients.add(pLastName);
-		addPatients.add(lbLastName);
-		addPatients.add(btnReturn);
-		addPatients.add(lblWelcomeBackAdministrator);
-		addPatients.add(date);
-		addPatients.add(lblBackground);
+		patientInfoPanel.add(lblPhoneNumber);
+		patientInfoPanel.add(pPhoneNum);
+		patientInfoPanel.add(lbEmail);
+		patientInfoPanel.add(pEmail);
+		patientInfoPanel.add(lbDOB);
+		patientInfoPanel.add(pDob);
+		patientInfoPanel.add(lbSex);
+		patientInfoPanel.add(pSex);
+		patientInfoPanel.add(lbFirstName);
+		patientInfoPanel.add(pFirstName);
+		patientInfoPanel.add(pLastName);
+		patientInfoPanel.add(lbLastName);
+		patientInfoPanel.add(btnReturn);
+		patientInfoPanel.add(lblWelcomeBackAdministrator);
+		patientInfoPanel.add(date);
+		patientInfoPanel.add(lblBackground);
 		
-		return addPatients;
+		return patientInfoPanel;
 	}
 }

@@ -55,6 +55,7 @@ public class PatientManagePanel
 		btnView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				hms.viewPatient();
+				hms.patientListPage();
 			}
 		});
 		

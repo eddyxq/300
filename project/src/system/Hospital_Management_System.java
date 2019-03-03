@@ -9,6 +9,7 @@ import gui.AdminMainPanel;
 import gui.Gui;
 import gui.LoginPanel;
 import gui.PatientInfoPanel;
+import gui.PatientListPanel;
 import gui.PatientManagePanel;
 import gui.PatientViewAppointmentPanel;
 
@@ -30,6 +31,7 @@ public class Hospital_Management_System
 	private AdminMainPanel adminMainPanel = new AdminMainPanel();
 	private PatientViewAppointmentPanel patientViewAppointmentPanel = new PatientViewAppointmentPanel();
 	private PatientInfoPanel patientInfoPanel = new PatientInfoPanel();
+	private PatientListPanel patientListPanel = new PatientListPanel();
 	
 	private	JPanel loginP = loginPanel.createPanel(this);
 	private	JPanel addPP = addPatientPanel.createPanel(this);
@@ -37,6 +39,7 @@ public class Hospital_Management_System
 	private JPanel amP = adminMainPanel.createPanel(this);
 	private JPanel avaP = patientViewAppointmentPanel.createPanel(this);
 	private JPanel piP = patientInfoPanel.createPanel(this);
+	private JPanel plP = patientListPanel.createPanel(this);
 	
 //	private boolean inLoginMenu = true;
 //	private boolean inAdminMenu = false;
@@ -44,7 +47,7 @@ public class Hospital_Management_System
 	
 	public Hospital_Management_System()
 	{
-		new Gui(loginP, amP, avaP, pmP, addPP, piP);
+		new Gui(loginP, amP, avaP, pmP, addPP, piP, plP);
 		//start the system
 		systemOn = true;
 		//initialize scanner for input
@@ -75,6 +78,7 @@ public class Hospital_Management_System
 		amP.setVisible(false);
 		addPP.setVisible(false);
 		piP.setVisible(false);
+		plP.setVisible(false);
 	}
 	
 	public void addPatientPage() 
@@ -94,15 +98,20 @@ public class Hospital_Management_System
 		piP.setVisible(true);
 		pmP.setVisible(false);
 	}
-		
+	
+	public void patientListPage() 
+	{
+		plP.setVisible(true);
+		pmP.setVisible(false);
+	}
 	/**
 	 * Runs the HMS
 	 */
 	public void startHMS() 
 	{
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {public void run() {}});
-		//loginPage();
-		patientInfoPage();
+		loginPage();
+		//patientListPage();
 	}
 	
 	public void viewPatient() 
@@ -130,6 +139,7 @@ public class Hospital_Management_System
 		patient.setId(id);
 		//add to records
 		patientRecord.add(patient);
+		patientListPanel.addPatientToTable(patient);
 	}
 	
 	public Patient getPatient(int id) 
