@@ -49,7 +49,7 @@ public class LoginPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				hms.displayPatientMainPage();
+				hms.displayViewAppointmentPage();
 			}
 		});
 		btnPatient.setFont(bArial);

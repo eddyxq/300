@@ -30,6 +30,8 @@ public class Hospital_Management_System
 	private JPanel addAppointmentPage = new AddAppointmentPanel().createPanel(this);
 	private PatientListPanel plp = new PatientListPanel();
 	private JPanel patientListPage = plp.createPanel(this);
+	
+	public Integer id;
 	/**
 	 * This constructor starts the system.
 	 */
@@ -87,7 +89,7 @@ public class Hospital_Management_System
 	/**
 	 * This method will change the gui to display the patient main page.
 	 */
-	public void displayPatientMainPage() 
+	public void displayViewAppointmentPage() 
 	{
 		patientViewAppointmentPage.setVisible(true);
 		loginPage.setVisible(false);
@@ -115,7 +117,7 @@ public class Hospital_Management_System
 	public void displayAddAppointmnetPage()
 	{
 		addAppointmentPage.setVisible(true);
-		patientManagementPage.setVisible(false);
+		patientListPage.setVisible(false);
 	}
 	/**
 	 * This method will add a new patient to the patient records.
@@ -127,6 +129,57 @@ public class Hospital_Management_System
 		patient.setId(patientRecord.size() + 1);
 		//add to records
 		patientRecord.add(patient);
-		plp.addPatientToTable(patient);
+		plp.addPatientToTable(patient, this);
+	}
+	/**
+	 * This method will add an appointment for a patient
+	 * @param date The date of the appointment
+	 * @param time The time of the appointment
+	 */
+	public void addAppointment(String date, String time)
+	{
+		patientRecord.get(id-1).setAppointment(date, time);
+	}
+	/**
+	 * This method returns the appointment date.
+	 * @param id The patient id
+	 */
+	public String getAppointmentDate(String id)
+	{
+		return patientRecord.get(Integer.parseInt(id)-1).getAppointmentDate();
+	}
+	/**
+	 * This method returns the appointment time.
+	 * @param id The patient id
+	 */
+	public String getAppointmentTime(String id)
+	{
+		return patientRecord.get(Integer.parseInt(id)-1).getAppointmentTime();
+	}
+	/**
+	 * This method returns true when patient id is valid
+	 * @param id The patient id
+	 */
+	public boolean patientIdValid(String id)
+	{
+		return allDigits(id) && (Integer.parseInt(id)) <= patientRecord.size() ? true : false;
+	}
+	/**
+	 * This method checks the inputed string and determines whether it contains only digits
+	 * Returns true when string contains all digits, false otherwise
+	 * @param s This is the string being checked
+	 */
+	public boolean allDigits(String s) 
+	{
+		boolean noDigits = true;
+		for (int index = 0; index < s.length(); index++)
+		{
+			char aChar = s.charAt(index);
+			if (!Character.isDigit(aChar))
+			{
+				noDigits = false;
+			}
+		}
+		return noDigits;
 	}
 }

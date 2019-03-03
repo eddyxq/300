@@ -37,8 +37,8 @@ public class Patient extends Person
 	public void setAppointment(String date, String time)
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm", Locale.ENGLISH);
-		appointmentDate = date;
-		appointmentTime = time;
+		setAppointmentDate(date);
+		setAppointmentTime(time);
 		String dateTime = date+ " " +time;
 		try 
 		{
@@ -110,5 +110,17 @@ public class Patient extends Person
 	public boolean hasAppointment() 
 	{
 		return hasAppointment;
+	}
+	public String getAppointmentDate() {
+		return appointmentDate;
+	}
+	public void setAppointmentDate(String appointmentDate) {
+		this.appointmentDate = appointmentDate;
+	}
+	public String getAppointmentTime() {
+		return appointmentTime;
+	}
+	public void setAppointmentTime(String appointmentTime) {
+		this.appointmentTime = appointmentTime;
 	}
 }

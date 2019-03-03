@@ -1,19 +1,23 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import system.Hospital_Management_System;
 import user.Patient;
 
@@ -24,14 +28,9 @@ public class PatientListPanel
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
-	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail"}, 0))
+	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail", "Option"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
-		public boolean isCellEditable(int row, int column)
-		{
-			//this causes all cells to be not editable
-			return false; 
-	    }
 	};
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
 	/**
@@ -94,9 +93,93 @@ public class PatientListPanel
 	 * This method adds a patient to a row in the table.
 	 * @param patient The patient to be added
 	 */
-	public void addPatientToTable(Patient patient) 
+	public void addPatientToTable(Patient patient, Hospital_Management_System hms) 
 	{
 		model.addRow(new Object[]{patient.getID(), patient.getFirstName(), patient.getLastName(),
-		patient.getSex(), patient.getDOB(), patient.getPhoneNum(), patient.getEmail()});
+		patient.getSex(), patient.getDOB(), patient.getPhoneNum(), patient.getEmail(), "Add/Edit Appointment"});
+		
+		//SET CUSTOM RENDERER TO TEAMS COLUMN
+		table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());;
+		//SET CUSTOM EDITOR TO TEAMS COLUMN
+		table.getColumnModel().getColumn(7).setCellEditor(new ButtonEditor(new JTextField(), hms, patient.getID()));
+	}
+}
+//BUTTON RENDERER CLASS
+class ButtonRenderer extends JButton implements  TableCellRenderer
+{
+	private static final long serialVersionUID = 1L;
+
+	public ButtonRenderer() 
+	{
+		setOpaque(true);
+	}
+	
+	@Override
+	public Component getTableCellRendererComponent(JTable table, Object obj, boolean selected, boolean focused, int row, int col) 
+	{
+		setText((obj == null) ? "" : obj.toString());
+		return this;
+	}
+}
+
+//BUTTON EDITOR CLASS
+class ButtonEditor extends DefaultCellEditor
+{
+	private static final long serialVersionUID = 1L;
+	Integer id;
+	Hospital_Management_System hms;
+	protected JButton btn;
+	private String lbl;
+	private Boolean clicked;
+
+	public ButtonEditor(JTextField txt, Hospital_Management_System hms, Integer id) 
+	{
+		super(txt);
+		this.hms = hms;
+		this.id = id;
+		btn = new JButton();
+		btn.setOpaque(true);
+		btn.addActionListener(new ActionListener() 
+		{
+		    @Override
+		    public void actionPerformed(ActionEvent e) 
+		    {
+			    fireEditingStopped();
+		    }
+		});
+	}
+
+	@Override
+	public Component getTableCellEditorComponent(JTable table, Object obj, boolean selected, int row, int col) 
+	{
+		lbl = (obj == null) ? "" : obj.toString();
+		btn.setText(lbl);
+		clicked = true;
+		return btn;
+	}
+
+	@Override
+	public Object getCellEditorValue() 
+	{
+		if(clicked)
+		{
+			hms.displayAddAppointmnetPage();
+			hms.id = this.id;
+		}
+		clicked = false;
+		return new String(lbl);
+	}
+	
+	@Override
+	public boolean stopCellEditing() 
+	{
+	    clicked = false;
+		return super.stopCellEditing();
+	}
+	
+	@Override
+	protected void fireEditingStopped() 
+	{
+		super.fireEditingStopped();
 	}
 }

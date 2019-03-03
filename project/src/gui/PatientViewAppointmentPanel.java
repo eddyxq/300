@@ -9,7 +9,10 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import system.Hospital_Management_System;
 
 /*
@@ -18,6 +21,7 @@ import system.Hospital_Management_System;
 public class PatientViewAppointmentPanel
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
+	private JTextField tfpatientId;
 	
 	/**
 	 * This method creates and returns a JPanel
@@ -49,9 +53,12 @@ public class PatientViewAppointmentPanel
 		/*
 		 * APPOINTMENT LABEL
 		 */
-		JLabel lblAppointment = new JLabel("Your Appointment is at: PLACEHOLDER APPOINTMENT");
+		JLabel lblAppointment = new JLabel("Enter Your ID");
 		lblAppointment.setFont(bArial);
-		lblAppointment.setBounds(574, 533, 1000, 82);
+		lblAppointment.setBounds(725, 533, 1000, 82);
+		tfpatientId = new JTextField();
+		tfpatientId.setBounds(725, 600, 300, 20);
+		tfpatientId.setColumns(10);
 		/*
 		 * RETURN BUTTON
 		 */
@@ -65,12 +72,43 @@ public class PatientViewAppointmentPanel
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(725, 760, 500, 59);
+		/*
+		 * SUBMIT BUTTON
+		 */
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				if (hms.patientIdValid(tfpatientId.getText()))
+				{
+					//display appointment time
+					Object[] options = {"Ok"};
+					JOptionPane.showOptionDialog(null, "You have an appointment on " + 
+					hms.getAppointmentDate(tfpatientId.getText()) + " at " +
+					hms.getAppointmentTime(tfpatientId.getText()) + ".", "Notice",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+					null, options, options[0]);
+				}
+				else
+				{
+					Object[] options = {"Close"};
+					JOptionPane.showOptionDialog(null, "Invalid ID.", "Warning",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+					null, options, options[0]);
+				}
+			}
+		});
+		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
+		btnSubmit.setBounds(725, 660, 500, 59);
 		//add all the components to panel
 		patientViewAppointment.add(lblAppointment);
 		patientViewAppointment.add(btnReturn);
+		patientViewAppointment.add(btnSubmit);
 		patientViewAppointment.add(lblWelcomeBackAdministrator);
 		patientViewAppointment.add(date);
 		patientViewAppointment.add(lblBackground);
+		patientViewAppointment.add(tfpatientId);
 		
 		return patientViewAppointment;
 	}

@@ -201,7 +201,7 @@ public class AddPatientPanel
 					//display confirmation message
 					Object[] options = {"Ok"};
 					JOptionPane.showOptionDialog(null, "Patient has been added.", "Success",
-					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
 					null, options, options[0]);
 					//go back to previous menu
 					clearTextField();

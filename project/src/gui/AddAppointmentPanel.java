@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import system.Hospital_Management_System;
@@ -49,35 +50,6 @@ public class AddAppointmentPanel
 		date.setFont(new Font("Calibri Light", Font.PLAIN, 26));
 		date.setBounds(166, 87, 560, 26);
 		/*
-		 * CANCEL BUTTON
-		 */
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
-				clearTextField();
-				hms.displayPatientListPage();
-			}
-		});
-		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));
-		btnCancel.setBounds(1400, 950, 169, 59);
-		/*
-		 * SUBMIT BUTTON
-		 */
-		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
-		btnSubmit.setBounds(370, 950, 169, 59);
-		btnSubmit.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
-				
-				clearTextField();
-				hms.displayPatientListPage();
-			}
-		});
-		/*
 		 * DATE
 		 */
 		JLabel lblDate = new JLabel("Date:");
@@ -101,6 +73,42 @@ public class AddAppointmentPanel
 		tfTime = new JTextField();
 		tfTime.setColumns(10);
 		tfTime.setBounds(879, 478, 200, 20);
+		/*
+		 * CANCEL BUTTON
+		 */
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				clearTextField();
+				hms.displayPatientListPage();
+			}
+		});
+		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));
+		btnCancel.setBounds(1400, 950, 169, 59);
+		/*
+		 * SUBMIT BUTTON
+		 */
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
+		btnSubmit.setBounds(370, 950, 169, 59);
+		btnSubmit.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				hms.addAppointment(tfDate.getText(), tfTime.getText());
+				//display confirmation message
+				Object[] options = {"Ok"};
+				JOptionPane.showOptionDialog(null, "Appointment added.", "Success",
+				JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+				null, options, options[0]);
+				//go back to previous menu
+				clearTextField();
+				hms.displayPatientListPage();
+			}
+		});
+		
 		
 		addAppointmentPanel.add(lblDate);
 		addAppointmentPanel.add(tfDate);
