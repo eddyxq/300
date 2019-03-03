@@ -58,7 +58,7 @@ public class PatientInfoPanel
 		/*
 		 * Patient's first name
 		 */
-		JLabel pFirstName = new JLabel();
+		JLabel pFirstName = new JLabel("Place Holder First Name");
 		pFirstName.setBounds(640, 285, 300, 20);
 		pFirstName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		/*
@@ -70,7 +70,7 @@ public class PatientInfoPanel
 		/*
 		 * Patient's last name
 		 */
-		JLabel pLastName = new JLabel();
+		JLabel pLastName = new JLabel("Place Holder Last Name");
 		pLastName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		pLastName.setBounds(640, 337, 300, 20);
 		/*
@@ -82,7 +82,7 @@ public class PatientInfoPanel
 		/*
 		 * Patient's sex
 		 */
-		JLabel pSex = new JLabel();
+		JLabel pSex = new JLabel("Place Holder Sex");
 		pSex.setBounds(640, 387, 100, 23);
 		pSex.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
@@ -95,7 +95,7 @@ public class PatientInfoPanel
 		/*
 		 * Patient's DOB
 		 */
-		JLabel pDob = new JLabel();
+		JLabel pDob = new JLabel("Place Holder DOB");
 		pDob.setBounds(640, 445, 70, 20);
 		pDob.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		/*
@@ -107,7 +107,7 @@ public class PatientInfoPanel
 		/*
 		 * Patient's Phone Number
 		 */
-		JLabel pPhoneNum = new JLabel();
+		JLabel pPhoneNum = new JLabel("Place Holder Phone Number");
 		pPhoneNum.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		pPhoneNum.setBounds(640, 506, 300, 20);
 		/*
@@ -119,7 +119,7 @@ public class PatientInfoPanel
 		/*
 		 * Patient's E-mail
 		 */
-		JLabel pEmail = new JLabel();
+		JLabel pEmail = new JLabel("Place Holder E-mail");
 		pEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		pEmail.setBounds(640, 565, 300, 20);
 		/*
