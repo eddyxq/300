@@ -23,6 +23,9 @@ import java.awt.event.FocusEvent;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ListSelectionModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TestPanel extends JPanel {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
@@ -35,13 +38,15 @@ public class TestPanel extends JPanel {
 	private JTextField tfPhoneNum;
 	private JTextField tfEmail;
 	private JTable table;
+	private JTextField tfDate;
+	private JTextField tfTime;
 	/**
 	 * Create the panel.
 	 */
 	public TestPanel() {
-		Object columns[] = {"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail"};
-		Object rows[][] = {{"1", "John", "Doe"}, {"2", "Jane", "Doe"} };
-		TableModel model = new DefaultTableModel(rows, columns);
+//		Object columns[] = {"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail"};
+//		Object rows[][] = {{"1", "John", "Doe"}, {"2", "Jane", "Doe"} };
+//		TableModel model = new DefaultTableModel(rows, columns);
 		
 		setSize(1920, 1080);
 		setLayout(null);
@@ -58,17 +63,40 @@ public class TestPanel extends JPanel {
 		date.setBounds(166, 87, 560, 26);
 		add(date);
 		
+		JButton btnReturn = new JButton("Return");
+		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
+		btnReturn.setBounds(725, 955, 500, 59);
+		add(btnReturn);
 		
+		JLabel lblDate = new JLabel("Date:");
+		lblDate.setFont(new Font("Arial", Font.BOLD, 16));
+		lblDate.setBounds(959, 339, 46, 14);
+		add(lblDate);
 		
-		table = new JTable();
-		table.setRowSelectionAllowed(false);
-		table.setEnabled(false);
-		table.setModel(model);
+		tfDate = new JTextField();
+		tfDate.setBounds(879, 364, 200, 20);
+		add(tfDate);
+		tfDate.setColumns(10);
 		
-		JScrollPane tableContainer = new JScrollPane(table);
-		tableContainer.setLocation(86, 244);
-		tableContainer.setSize(1746, 750);
-		add(tableContainer, BorderLayout.CENTER);
+		JLabel lbTime = new JLabel("Time:");
+		lbTime.setFont(new Font("Arial", Font.BOLD, 16));
+		lbTime.setBounds(959, 453, 46, 14);
+		add(lbTime);
+		
+		tfTime = new JTextField();
+		tfTime.setColumns(10);
+		tfTime.setBounds(879, 478, 200, 20);
+		add(tfTime);
+		
+//		table = new JTable();
+//		table.setCellSelectionEnabled(true);;
+//		table.setModel(model);
+		
+//		JScrollPane tableContainer = new JScrollPane(table);
+//		tableContainer.setEnabled(false);
+//		tableContainer.setLocation(86, 244);
+//		tableContainer.setSize(1746, 750);
+//		add(tableContainer, BorderLayout.CENTER);
 		
 //		
 //		JButton btnCancel = new JButton("Cancel");
