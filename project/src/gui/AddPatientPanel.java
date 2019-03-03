@@ -21,8 +21,8 @@ import javax.swing.JTextField;
 import system.Hospital_Management_System;
 import user.Patient;
 
-/**
- * This class displays the add patient panel
+/*
+ * This class displays the add patient panel.
  */
 public class AddPatientPanel 
 {

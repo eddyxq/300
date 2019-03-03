@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import system.Hospital_Management_System;
 
 public class LoginPanel{
-	/**
-	 * 
+	/*
+	 * This class is a panel which allows the user to login to the system.
 	 */
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private String btnPressed;

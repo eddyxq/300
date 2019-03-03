@@ -1,10 +1,10 @@
 package gui;
 
-//import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-/**
- * This class is the graphical user interface for the system
+
+/*
+ * This class is the graphical user interface for the system.
  */
 public class Gui extends JFrame 
 {
@@ -12,12 +12,10 @@ public class Gui extends JFrame
      * This constructor accepts as arguments the other panels and 
      * initializes the frame
      */
-    public Gui(JPanel loginP, JPanel amP, JPanel avaP, JPanel pmP
-    		,JPanel addPP)
+    public Gui(JPanel loginP, JPanel amP, JPanel avaP, JPanel pmP, JPanel addPP)
     {
     	JFrame window = new JFrame();
         window.setTitle("HMS");
-        //window.addKeyListener(listener);
         window.setResizable(true);
         window.setSize(1920, 1080);
         window.setLayout(null);
@@ -37,12 +35,11 @@ public class Gui extends JFrame
         pmP.setVisible(false);
         addPP.setVisible(false);
          //For if want to start Full-Screen
-//        window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-//        window.setUndecorated(true);    
+//       window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+//       window.setUndecorated(true);    
         
         window.setVisible(true);
         
     }
 }
      
-    

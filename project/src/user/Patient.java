@@ -5,22 +5,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import display.ErrorMessages;
-
+/*
+ * This class defines the role of the patient. 
+ */
 public class Patient extends Person
 {
 	private int id;
-	private String appointmentDate;
-	private String appointmentTime;
-	private boolean hasAppointment;
-	Date dateNTime = new Date();
-	ErrorMessages error = new ErrorMessages();
-	
 	public String sex;
 	public String dob;
 	public String phoneNumber;
 	public String email;
 	
+	private String appointmentDate;
+	private String appointmentTime;
+	private boolean hasAppointment;
+	
+	Date dateNTime = new Date();
 	
 	public Patient(String firstName, String lastName, String sex, String dob, String phoneNumber, String email) 
 	{
@@ -31,7 +31,6 @@ public class Patient extends Person
 		this.email = email;
 		hasAppointment = false;
 	}
-	
 	/*
 	 * Setters for patient
 	 */
@@ -41,13 +40,14 @@ public class Patient extends Person
 		appointmentDate = date;
 		appointmentTime = time;
 		String dateTime = date+ " " +time;
-		
-		try {
+		try 
+		{
 			dateNTime = sdf.parse(dateTime);
-		} catch (ParseException e) {
-			error.invalidDateFormat();
+		} 
+		catch (ParseException e) 
+		{
+			
 		}
-		
 		hasAppointment = true;
 	}
 	
@@ -55,26 +55,30 @@ public class Patient extends Person
 	{
 		this.id = id;
 	}
+	/*
+	 * Getters for patient
+	 */
+	public int getID() 
+	{
+		return id;
+	}
 	
-	
-	public String getAppointment() {
+	public String getAppointment()
+	{
 		SimpleDateFormat format = new SimpleDateFormat("EEE, MMM, dd, yyyy HH:mm", Locale.ENGLISH);
 		String dateTimeInString = format.format(dateNTime);
 		return dateTimeInString;
 	}
 	
-	/*
-	 * Getters for patient
-	 */
-	public int getID() {
-		return id;
-	}
-	
-	public boolean hasAppointment() {
-		return hasAppointment;
-	}
-	
-	public String getName() {
+	public String getName() 
+	{
 		return firstName + " " + lastName;
+	}
+	/*
+	 * This method returns true if the patient has a appointment booked
+	 */
+	public boolean hasAppointment() 
+	{
+		return hasAppointment;
 	}
 }

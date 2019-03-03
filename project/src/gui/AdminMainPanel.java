@@ -10,12 +10,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import display.TestPanel;
 import system.Hospital_Management_System;
 
 /*
  * This class is a panel which allows administrator to select how to interact with patient/
- * employee records
+ * employee records.
  */
 public class AdminMainPanel
 {

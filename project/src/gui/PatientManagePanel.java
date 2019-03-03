@@ -1,22 +1,19 @@
 package gui;
 
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import display.TestPanel;
 import system.Hospital_Management_System;
 
 /*
- * This class is a panel which allows administrator to select how to interact with a patient
+ * This class is a panel which allows administrator to select how to interact with a patient.
  */
 public class PatientManagePanel
 {
