@@ -98,7 +98,8 @@ public class Hospital_Management_System
 	/**
 	 * Runs the HMS
 	 */
-	public void startHMS() {
+	public void startHMS() 
+	{
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {public void run() {}});
 		loginPage();
 	}
@@ -383,34 +384,30 @@ public class Hospital_Management_System
 //		
 //	}
 //
-//	private void viewPatient() 
-//	{
-//		System.out.println("ID#\tFirst Name\tLast Name");
-//		System.out.println("==================================");
-//		
-//		if (patientRecord.size() == 0) {
-//			//Displays an error message for when there's no patient record.
-//			error.displayNoPatient();
-//		}else {
-//			for (Patient p : patientRecord)
-//			{
-//				System.out.println(p.getID() + "\t" + p.firstName + "\t" + p.lastName);
-//			}
-//		}
-//		
-//		
-//	}
-//
-//	private void addPatient()
-//	{
-//		System.out.println("Enter Patient's First Name: ");
-//		String firstName = sc.nextLine(); 
-//		System.out.println("Enter Patient's Last Name: ");
-//		String lastName = sc.nextLine();
-//		int id = patientRecord.size() + 1;
-//		
-//		Patient newPatient = new Patient(firstName, lastName, id);
-//		patientRecord.add(newPatient);
-//		confirm.addedPatient();
-//	}
+	public void viewPatient() 
+	{
+		System.out.println("ID#\tFirst Name\tLast Name");
+		System.out.println("==================================");
+		
+		if (patientRecord.size() == 0) 
+		{
+			//Displays an error message for when there's no patient record.
+			error.displayNoPatient();
+		}else 
+		{
+			for (Patient p : patientRecord)
+			{
+				System.out.println(p.getID() + "\t" + p.firstName + "\t" + p.lastName);
+			}
+		}
+	}
+	
+	public void addPatient(Patient patient)
+	{
+		//assign the next available id number to patient
+		int id = patientRecord.size() + 1;
+		patient.setId(id);
+		//add to records
+		patientRecord.add(patient);
+	}
 }

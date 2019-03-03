@@ -16,11 +16,19 @@ public class Patient extends Person
 	Date dateNTime = new Date();
 	ErrorMessages error = new ErrorMessages();
 	
+	public String sex;
+	public String dob;
+	public String phoneNumber;
+	public String email;
 	
-	public Patient(String firstName, String lastName, int id) 
+	
+	public Patient(String firstName, String lastName, String sex, String dob, String phoneNumber, String email) 
 	{
 		super(firstName, lastName);
-		this.id = id;
+		this.sex = sex;
+		this.dob = dob;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
 		hasAppointment = false;
 	}
 	
@@ -42,6 +50,12 @@ public class Patient extends Person
 		
 		hasAppointment = true;
 	}
+	
+	public void setId(int id)
+	{
+		this.id = id;
+	}
+	
 	
 	public String getAppointment() {
 		SimpleDateFormat format = new SimpleDateFormat("EEE, MMM, dd, yyyy HH:mm", Locale.ENGLISH);

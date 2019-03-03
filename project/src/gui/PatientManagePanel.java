@@ -55,6 +55,11 @@ public class PatientManagePanel
 		JButton btnView = new JButton("View Patient List");
 		btnView.setFont(new Font("Arial", Font.BOLD, 16));
 		btnView.setBounds(725, 560, 500, 59);
+		btnView.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				hms.viewPatient();
+			}
+		});
 		
 		JButton btnEdit = new JButton("Edit Patient");
 		btnEdit.setFont(new Font("Arial", Font.BOLD, 16));
