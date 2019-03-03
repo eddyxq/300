@@ -99,6 +99,11 @@ public class Patient extends Person
 	{
 		return dob;
 	}
+	
+	public String getSex() 
+	{
+		return sex;
+	}
 	/*
 	 * This method returns true if the patient has a appointment booked
 	 */

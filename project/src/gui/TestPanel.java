@@ -3,6 +3,7 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.text.DateFormat;
@@ -12,7 +13,11 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JTable;
@@ -29,10 +34,15 @@ public class TestPanel extends JPanel {
 	private JTextField tfYear;
 	private JTextField tfPhoneNum;
 	private JTextField tfEmail;
+	private JTable table;
 	/**
 	 * Create the panel.
 	 */
 	public TestPanel() {
+		Object columns[] = {"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail"};
+		Object rows[][] = {{"1", "John", "Doe"}, {"2", "Jane", "Doe"} };
+		TableModel model = new DefaultTableModel(rows, columns);
+		
 		setSize(1920, 1080);
 		setLayout(null);
 		
@@ -48,24 +58,18 @@ public class TestPanel extends JPanel {
 		date.setBounds(166, 87, 560, 26);
 		add(date);
 		
-//		JLabel lblAppointment = new JLabel("Your Appointment is at: " + " " + p.getAppoint());
-//		lblAppointment.setFont(bArial);
-//		lblAppointment.setBounds(574, 533, 476, 82);
-//		add(lblAppointment);
 		
-		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
-		btnSubmit.setBounds(375, 960, 169, 59);
-		add(btnSubmit);
 		
-		JButton btnReturn = new JButton("Return");
-		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
-		btnReturn.setBounds(55, 950, 169, 59);
-		add(btnReturn);
+		table = new JTable();
+		table.setRowSelectionAllowed(false);
+		table.setEnabled(false);
+		table.setModel(model);
+		
+		JScrollPane tableContainer = new JScrollPane(table);
+		tableContainer.setLocation(86, 244);
+		tableContainer.setSize(1746, 750);
+		add(tableContainer, BorderLayout.CENTER);
+		
 //		
 //		JButton btnCancel = new JButton("Cancel");
 //		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));
