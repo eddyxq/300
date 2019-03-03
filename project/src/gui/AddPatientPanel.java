@@ -197,9 +197,14 @@ public class AddPatientPanel
 					(rdbtnMale.isSelected() ? "Male" : "Female"), 
 					tfDay.getText()+ "/" + tfMonth.getText() + "/" + tfYear.getText(),
 					tfPhoneNum.getText(), tfEmail.getText()));
-					
+
+					//display confirmation message
+					Object[] options = {"Ok"};
+					JOptionPane.showOptionDialog(null, "Patient has been added.", "Success",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+					null, options, options[0]);
+					//go back to previous menu
 					clearTextField();
-					
 					hms.patientManagementPage();
 				}
 				//display warning message if any fields are empty 
@@ -262,15 +267,17 @@ public class AddPatientPanel
 		}
 		return true;
 	}
-	
+	/**
+	 * This method resets all the textfields
+	 */
 	private void clearTextField() 
 	{
-		tfFirstName.setText(" ");
-		tfLastName.setText(" ");
-		tfDay.setText(" ");
-		tfMonth.setText(" ");
-		tfYear.setText(" ");
-		tfPhoneNum.setText(" ");
-		tfEmail.setText(" ");
+		tfFirstName.setText("");
+		tfLastName.setText("");
+		tfDay.setText("");
+		tfMonth.setText("");
+		tfYear.setText("");
+		tfPhoneNum.setText("");
+		tfEmail.setText("");
 	}
 }

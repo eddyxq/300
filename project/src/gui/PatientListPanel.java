@@ -4,22 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
 import system.Hospital_Management_System;
 import user.Patient;
 
@@ -30,17 +24,15 @@ public class PatientListPanel
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{"ID", "First Name", "Last Name", "Sex", 
-			"Date of Birth", "Phone Number", "E-mail"}, 0)){
-	    /**
-				 * 
-				 */
-				private static final long serialVersionUID = 1L;
+			"Date of Birth", "Phone Number", "E-mail"}, 0))
+	{
+		private static final long serialVersionUID = 1L;
 
 		public boolean isCellEditable(int row, int column)
 	    {
-	      return false;//This causes all cells to be not editable
+			return false;//This causes all cells to be not editable
 	    }
-	  };
+	};
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
 	/**
 	 * This method creates and returns a JPanel
