@@ -39,7 +39,7 @@ public class PatientViewAppointmentPanel
 		/*
 		 * HEADER MESSAGE
 		 */
-		JLabel lblWelcomeBackAdministrator = new JLabel("Welcome Back PLACEHOLDERNAME!");
+		JLabel lblWelcomeBackAdministrator = new JLabel("Welcome Back!");
 		lblWelcomeBackAdministrator.setFont(bArial);
 		lblWelcomeBackAdministrator.setBounds(166, 29, 1000, 26);
 		/*
