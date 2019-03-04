@@ -107,8 +107,8 @@ public class PatientViewAppointmentPanel
 		patientViewAppointment.add(btnSubmit);
 		patientViewAppointment.add(lblWelcomeBackAdministrator);
 		patientViewAppointment.add(date);
-		patientViewAppointment.add(lblBackground);
 		patientViewAppointment.add(tfpatientId);
+		patientViewAppointment.add(lblBackground);
 		
 		return patientViewAppointment;
 	}
