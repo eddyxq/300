@@ -31,6 +31,9 @@ public class PatientListPanel
 	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail", "Option"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
+		public boolean isCellEditable(int row, int column) {  
+			return column == 7;            
+    };
 	};
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
 	/**
@@ -41,6 +44,7 @@ public class PatientListPanel
 		//set table settings
 		table.setColumnSelectionAllowed(false);
 		table.setRowSelectionAllowed(true);
+		table.setRowHeight(50);
 		table.setEnabled(true);
 		JScrollPane tableContainer = new JScrollPane(table);
 		tableContainer.setLocation(86, 244);
