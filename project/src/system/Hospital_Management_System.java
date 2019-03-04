@@ -1,9 +1,7 @@
 package system;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JPanel;
-
 import database.TextReader;
 import database.TextWriter;
 import user.Patient;
