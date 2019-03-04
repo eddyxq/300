@@ -60,7 +60,7 @@ public class AddPatientPanel
 		 */
 		DateFormat df = new SimpleDateFormat("EEE MMM dd, yyyy");
 		Date today = new Date();
-		JLabel date = new JLabel("Today is: "+df.format(today));
+		JLabel date = new JLabel("Today is: "+ df.format(today));
 		date.setFont(new Font("Calibri Light", Font.PLAIN, 26));
 		date.setBounds(166, 87, 560, 26);
 		/*

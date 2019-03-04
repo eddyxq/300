@@ -1,7 +1,11 @@
 package system;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JPanel;
+
+import database.TextReader;
+import database.TextWriter;
 import user.Patient;
 import gui.AddAppointmentPanel;
 import gui.AddPatientPanel;
@@ -37,8 +41,33 @@ public class Hospital_Management_System
 	 */
 	public Hospital_Management_System()
 	{
+		patientRecord = new TextReader().load();
+		loadData();
 		new GUI(loginPage, addPatientPage, patientManagementPage, adminMainPage, 
 		patientViewAppointmentPage, patientInfoPage, addAppointmentPage, patientListPage);
+		Runtime.getRuntime().addShutdownHook(onExit());
+	}
+	/**
+	 * This method will restore the patient data saved from text file
+	 */
+	private void loadData() 
+	{
+		for(Patient p : patientRecord)
+		{
+			plp.addPatientToTable(p, this);
+		}
+	}
+	/**
+	 * This method creates and returns a thread that is executed
+	 * when the program is closed allowing the system to save
+	 * the patient records to a text file on exit
+	 */
+	private Thread onExit()
+	{
+		return new Thread() {public void run() 
+		{	
+			new TextWriter(patientRecord).save();
+		}};
 	}
 	/**
 	 * This method will run the HMS.
