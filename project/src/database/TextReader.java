@@ -27,6 +27,8 @@ public class TextReader
 				Patient p = new Patient(patientInfo[1], patientInfo[2], patientInfo[3], patientInfo[4], patientInfo[5], patientInfo[6]);
 				p.setId(Integer.parseInt(patientInfo[0]));
 				patientRecord.add(p);
+				p.setAppointmentDate(patientInfo[7]);
+				p.setAppointmentTime(patientInfo[8]);
 			}
 			reader.close();
 		} 

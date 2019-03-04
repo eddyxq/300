@@ -39,7 +39,9 @@ public class TextWriter
 							+ p.sex + " " 
 							+ p.dob + " " 
 							+ p.phoneNumber + " " 
-							+ p.email;
+							+ p.email + " " 
+							+ p.getAppointmentDate() + " " 
+							+ p.getAppointmentTime();
 				writer.println(data);
 				count++;
 			}
