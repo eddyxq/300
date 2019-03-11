@@ -40,7 +40,7 @@ public class LoginPanel
 			}
 		});
 		btnAdmin.setFont(bArial);
-		btnAdmin.setBounds(500, 847, 211, 111);
+		btnAdmin.setBounds(240, 847, 211, 111);
 		/*
 		 * PATIENT BUTTON
 		 */
@@ -53,8 +53,15 @@ public class LoginPanel
 			}
 		});
 		btnPatient.setFont(bArial);
-		btnPatient.setBounds(1137, 847, 211, 111);
+		btnPatient.setBounds(1480, 847, 211, 111);
+		/*
+		 * EMPLOYEE BUTTON 
+		 */
+		JButton btnEmployee = new JButton("Employee");
+		btnEmployee.setFont(bArial);
+		btnEmployee.setBounds(870, 847, 211, 111);
 		//add all the components to panel
+		loginPanel.add(btnEmployee);
 		loginPanel.add(btnAdmin);
 		loginPanel.add(btnPatient);
 		loginPanel.add(lblBackground);

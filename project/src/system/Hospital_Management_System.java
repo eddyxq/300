@@ -7,6 +7,7 @@ import database.TextWriter;
 import user.Patient;
 import gui.AddAppointmentPanel;
 import gui.AddPatientPanel;
+import gui.AddStaffPanel;
 import gui.AdminMainPanel;
 import gui.GUI;
 import gui.LoginPanel;
@@ -14,6 +15,8 @@ import gui.PatientInfoPanel;
 import gui.PatientListPanel;
 import gui.PatientManagePanel;
 import gui.PatientViewAppointmentPanel;
+import gui.StaffListPanel;
+import gui.StaffManagePanel;
 
 /*
  * This class contains the logic for the hospital manage system.
@@ -26,12 +29,17 @@ public class Hospital_Management_System
 	private	JPanel loginPage = new LoginPanel().createPanel(this);
 	private	JPanel addPatientPage = new AddPatientPanel().createPanel(this);
 	private JPanel patientManagementPage = new PatientManagePanel().createPanel(this);
+	private JPanel staffManagementPage = new StaffManagePanel().createPanel(this);
 	private JPanel adminMainPage = new AdminMainPanel().createPanel(this);
 	private JPanel patientViewAppointmentPage = new PatientViewAppointmentPanel().createPanel(this);
 	private JPanel patientInfoPage = new PatientInfoPanel().createPanel(this);
 	private JPanel addAppointmentPage = new AddAppointmentPanel().createPanel(this);
 	private PatientListPanel plp = new PatientListPanel();
 	private JPanel patientListPage = plp.createPanel(this);
+	private StaffListPanel slp = new StaffListPanel();
+	private JPanel staffListPage = slp.createPanel(this);
+	private JPanel addStaffPage = new AddStaffPanel().createPanel(this);
+	
 	
 	public Integer id;
 	/**
@@ -42,7 +50,8 @@ public class Hospital_Management_System
 		patientRecord = new TextReader().load();
 		loadData();
 		new GUI(loginPage, addPatientPage, patientManagementPage, adminMainPage, 
-		patientViewAppointmentPage, patientInfoPage, addAppointmentPage, patientListPage);
+		patientViewAppointmentPage, patientInfoPage, addAppointmentPage, patientListPage,
+		addStaffPage, staffManagementPage, staffListPage);
 		Runtime.getRuntime().addShutdownHook(onExit());
 	}
 	/**
@@ -92,6 +101,7 @@ public class Hospital_Management_System
 		adminMainPage.setVisible(true);
 		loginPage.setVisible(false);
 		patientManagementPage.setVisible(false);
+		staffManagementPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the patient management page.
@@ -104,6 +114,16 @@ public class Hospital_Management_System
 		patientInfoPage.setVisible(false);
 		patientListPage.setVisible(false);
 		addAppointmentPage.setVisible(false);
+	}
+	/**
+	 * This method will change the gui to display the staff management page.
+	 */
+	public void displayStaffManagementPage() 
+	{
+		staffManagementPage.setVisible(true);
+		addStaffPage.setVisible(false);
+		adminMainPage.setVisible(false);
+		staffListPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the add patient page.
@@ -139,12 +159,28 @@ public class Hospital_Management_System
 		addAppointmentPage.setVisible(false);
 	}
 	/**
+	 * This method will change the gui to display the staff list page.
+	 */
+	public void displayStaffListPage()
+	{
+		staffListPage.setVisible(true);
+		staffManagementPage.setVisible(false);
+	}
+	/**
 	 * This method will change the gui to display the add appointment page.
 	 */
 	public void displayAddAppointmnetPage()
 	{
 		addAppointmentPage.setVisible(true);
 		patientListPage.setVisible(false);
+	}
+	/**
+	 * This method will change the gui to display the add staff page.
+	 */
+	public void displayAddStaffPage()
+	{
+		staffManagementPage.setVisible(false);
+		addStaffPage.setVisible(true);
 	}
 	/**
 	 * This method will add a new patient to the patient records.
