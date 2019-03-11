@@ -65,6 +65,13 @@ public class AdminMainPanel
 		 * MANAGE EMPLOYEE RECORDS BUTTON
 		 */
 		JButton btnManageEmployee = new JButton("Manage Employee Records");
+		btnManageEmployee.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				hms.displayStaffManagementPage();
+			}
+		});
 		btnManageEmployee.setFont(new Font("Arial", Font.BOLD, 16));
 		btnManageEmployee.setBounds(725, 560, 500, 59);
 		/*
