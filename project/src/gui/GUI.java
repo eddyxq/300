@@ -16,7 +16,7 @@ public class GUI extends JFrame
      */
     public GUI(JPanel loginP, JPanel amP, JPanel avaP, JPanel pmP, 
     		   JPanel addPP, JPanel piP, JPanel plP, JPanel aaP, JPanel asP,
-    		   JPanel smP, JPanel slP)
+    		   JPanel smP, JPanel slP, JPanel uNpP, JPanel uNpAP)
     {
     	JFrame window = new JFrame();
         window.setTitle("HMS");
@@ -36,6 +36,8 @@ public class GUI extends JFrame
         window.getContentPane().add(asP);
         window.getContentPane().add(smP);
         window.getContentPane().add(slP);
+        window.getContentPane().add(uNpP);
+        window.getContentPane().add(uNpAP);
         //set visibility
         loginP.setVisible(false);
         amP.setVisible(false);
@@ -48,6 +50,8 @@ public class GUI extends JFrame
         asP.setVisible(false);
         smP.setVisible(false);
         slP.setVisible(false);
+        uNpP.setVisible(false);
+        uNpAP.setVisible(false);
         //if want to start Full-Screen uncomment below
 		//window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		//window.setUndecorated(true);    

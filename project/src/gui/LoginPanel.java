@@ -36,7 +36,6 @@ public class LoginPanel
 		JLabel lbStaffIcon = new JLabel(" ");
 		lbStaffIcon.setIcon(new ImageIcon(TestPanel.class.getResource("/graphics/staff_icon.png")));
 		lbStaffIcon.setBounds(1131, 466, 380, 380);
-		
 		/*
 		 * ADMIN BUTTON
 		 */
@@ -45,7 +44,7 @@ public class LoginPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				hms.displayAdminMainPage();
+				hms.displayUsernameNPasswordPageAdmin();
 			}
 		});
 		btnAdmin.setFont(bArial);
@@ -54,9 +53,29 @@ public class LoginPanel
 		 * EMPLOYEE BUTTON 
 		 */
 		JButton btnEmployee = new JButton("Employee");
+		btnEmployee.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				hms.displayUsernameNPasswordPageStaff();
+			}
+		});
 		btnEmployee.setFont(bArial);
 		btnEmployee.setBounds(1230, 885, 211, 111);
+		/*
+		 * RETURN BUTTON
+		 */
+		JButton btnReturn = new JButton("");
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				hms.displayViewAppointmentPage();
+			}
+		});
+		btnReturn.setIcon(new ImageIcon(TestPanel.class.getResource("/graphics/return_icon.png")));
+		btnReturn.setBounds(50, 900, 107, 99);
 		//add all the components to panel
+		loginPanel.add(btnReturn);
 		loginPanel.add(lbStaffIcon);
 		loginPanel.add(lblAdminIcon);
 		loginPanel.add(btnEmployee);
