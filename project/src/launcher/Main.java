@@ -16,6 +16,6 @@ public class Main
 	public static void main(String[] args)
 	{
 		Hospital_Management_System hms = new Hospital_Management_System();
-		hms.start();
+		hms.startHMS();
 	}
 }

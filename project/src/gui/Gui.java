@@ -1,38 +1,58 @@
 package gui;
 
-//import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-/**
- * This class is the graphical user interface for the system
+
+/*
+ * This class is the graphical user interface for the system.
  */
-public class Gui extends JFrame 
+public class GUI extends JFrame 
 {
+	private static final long serialVersionUID = 1L;
+
 	/**
      * This constructor accepts as arguments the other panels and 
      * initializes the frame
      */
-    public Gui(JPanel panel1)
+    public GUI(JPanel loginP, JPanel amP, JPanel avaP, JPanel pmP, 
+    		   JPanel addPP, JPanel piP, JPanel plP, JPanel aaP, JPanel asP,
+    		   JPanel smP, JPanel slP)
     {
     	JFrame window = new JFrame();
         window.setTitle("HMS");
-        //window.addKeyListener(listener);
         window.setResizable(true);
         window.setSize(1920, 1080);
         window.setLayout(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
         //add panels
-        window.getContentPane().add(panel1);
-       
-       
+        window.getContentPane().add(loginP);
+        window.getContentPane().add(amP);
+        window.getContentPane().add(avaP);
+        window.getContentPane().add(pmP);
+        window.getContentPane().add(addPP);
+        window.getContentPane().add(piP);
+        window.getContentPane().add(plP);
+        window.getContentPane().add(aaP);
+        window.getContentPane().add(asP);
+        window.getContentPane().add(smP);
+        window.getContentPane().add(slP);
         //set visibility
-        panel1.setVisible(true);
-       
-            
-        window.setVisible(true);
+        loginP.setVisible(false);
+        amP.setVisible(false);
+        avaP.setVisible(false);
+        pmP.setVisible(false);
+        addPP.setVisible(false);
+        piP.setVisible(false);
+        plP.setVisible(false);
+        aaP.setVisible(false);
+        asP.setVisible(false);
+        smP.setVisible(false);
+        slP.setVisible(false);
+        //if want to start Full-Screen uncomment below
+		//window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		//window.setUndecorated(true);    
         
+        window.setVisible(true);
     }
 }
      
-    
