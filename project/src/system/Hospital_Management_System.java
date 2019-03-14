@@ -16,6 +16,7 @@ import gui.PatientInfoPanel;
 import gui.PatientListPanel;
 import gui.PatientManagePanel;
 import gui.PatientViewAppointmentPanel;
+import gui.StaffAppointmentListPanel;
 import gui.StaffListPanel;
 import gui.StaffManagePanel;
 import gui.UsernameNPasswordPanel;
@@ -46,6 +47,7 @@ public class Hospital_Management_System
 	private JPanel addStaffPage = new AddStaffPanel().createPanel(this);
 	private JPanel usernameNPasswordPage = new UsernameNPasswordPanel().createPanel(this);
 	private JPanel usernameNPasswordPageAdmin = new UsernameNPasswordPanelAdmin().createPanel(this);
+	private JPanel staffAppointmentListPage = new StaffAppointmentListPanel().createPanel(this);
 	
 	public Integer id;
 	/**
@@ -58,7 +60,7 @@ public class Hospital_Management_System
 		new GUI(loginPage, addPatientPage, patientManagementPage, adminMainPage, 
 		patientViewAppointmentPage, patientInfoPage, addAppointmentPage, patientListPage,
 		addStaffPage, staffManagementPage, staffListPage, usernameNPasswordPage, 
-		usernameNPasswordPageAdmin);
+		usernameNPasswordPageAdmin, staffAppointmentListPage);
 		Runtime.getRuntime().addShutdownHook(onExit());
 	}
 	/**
@@ -118,6 +120,8 @@ public class Hospital_Management_System
 	{
 		usernameNPasswordPage.setVisible(true);
 		loginPage.setVisible(false);
+		staffAppointmentListPage.setVisible(false);
+
 	}
 	/**
 	 * This method will change the gui to display the admin main page.
@@ -151,6 +155,14 @@ public class Hospital_Management_System
 		addStaffPage.setVisible(false);
 		adminMainPage.setVisible(false);
 		staffListPage.setVisible(false);
+	}
+	/**
+	 *  This method will change the gui to display the appointment list for staffs
+	 */
+	public void displayStaffAppointmentListPage() 
+	{
+		staffAppointmentListPage.setVisible(true);
+		usernameNPasswordPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the add patient page.
