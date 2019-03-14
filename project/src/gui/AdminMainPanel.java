@@ -77,12 +77,12 @@ public class AdminMainPanel
 		/*
 		 * RETURN BUTTON
 		 */
-		JButton btnReturn = new JButton("Return");
+		JButton btnReturn = new JButton("Logout");
 		btnReturn.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				hms.displayLoginPage();
+				hms.displayUsernameNPasswordPageAdmin();
 			}
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));

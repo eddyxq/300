@@ -17,6 +17,8 @@ import gui.PatientManagePanel;
 import gui.PatientViewAppointmentPanel;
 import gui.StaffListPanel;
 import gui.StaffManagePanel;
+import gui.UsernameNPasswordPanel;
+import gui.UsernameNPasswordPanelAdmin;
 
 /*
  * This class contains the logic for the hospital manage system.
@@ -39,7 +41,8 @@ public class Hospital_Management_System
 	private StaffListPanel slp = new StaffListPanel();
 	private JPanel staffListPage = slp.createPanel(this);
 	private JPanel addStaffPage = new AddStaffPanel().createPanel(this);
-	
+	private JPanel usernameNPasswordPage = new UsernameNPasswordPanel().createPanel(this);
+	private JPanel usernameNPasswordPageAdmin = new UsernameNPasswordPanelAdmin().createPanel(this);
 	
 	public Integer id;
 	/**
@@ -51,7 +54,8 @@ public class Hospital_Management_System
 		loadData();
 		new GUI(loginPage, addPatientPage, patientManagementPage, adminMainPage, 
 		patientViewAppointmentPage, patientInfoPage, addAppointmentPage, patientListPage,
-		addStaffPage, staffManagementPage, staffListPage);
+		addStaffPage, staffManagementPage, staffListPage, usernameNPasswordPage, 
+		usernameNPasswordPageAdmin);
 		Runtime.getRuntime().addShutdownHook(onExit());
 	}
 	/**
@@ -82,7 +86,7 @@ public class Hospital_Management_System
 	public void startHMS() 
 	{
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {public void run() {}});
-		displayLoginPage();
+		displayViewAppointmentPage();
 	}
 	/**
 	 * This method will change the gui to display the login page.
@@ -92,7 +96,26 @@ public class Hospital_Management_System
 		loginPage.setVisible(true);
 		adminMainPage.setVisible(false);
 		patientViewAppointmentPage.setVisible(false);
-	}	
+		usernameNPasswordPage.setVisible(false);
+		usernameNPasswordPageAdmin.setVisible(false);
+	}
+	/**
+	 * This method will change the gui to display the username and password prompt for admin
+	 */
+	public void displayUsernameNPasswordPageAdmin()
+	{
+		usernameNPasswordPageAdmin.setVisible(true);
+		loginPage.setVisible(false);
+		adminMainPage.setVisible(false);
+	}
+	/**
+	 * This method will change the gui to display the username and password prompt for staffs
+	 */
+	public void displayUsernameNPasswordPageStaff()
+	{
+		usernameNPasswordPage.setVisible(true);
+		loginPage.setVisible(false);
+	}
 	/**
 	 * This method will change the gui to display the admin main page.
 	 */
@@ -102,6 +125,7 @@ public class Hospital_Management_System
 		loginPage.setVisible(false);
 		patientManagementPage.setVisible(false);
 		staffManagementPage.setVisible(false);
+		usernameNPasswordPageAdmin.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the patient management page.

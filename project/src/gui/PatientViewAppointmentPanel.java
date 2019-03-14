@@ -34,44 +34,15 @@ public class PatientViewAppointmentPanel
 		patientViewAppointment.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(PatientViewAppointmentPanel.class.getResource("/graphics/PatientAppointment_background.png")));
+		lblBackground.setIcon(new ImageIcon(PatientViewAppointmentPanel.class.getResource("/graphics/patientID_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
-		 * HEADER MESSAGE
+		 * PATIENT ID
 		 */
-		JLabel lblWelcomeBackAdministrator = new JLabel("Welcome Back!");
-		lblWelcomeBackAdministrator.setFont(bArial);
-		lblWelcomeBackAdministrator.setBounds(166, 29, 1000, 26);
-		/*
-		 * DATE DISPLAYED BELOW HEADER
-		 */
-		DateFormat df = new SimpleDateFormat("EEE MMM dd, yyyy");
-		Date today = new Date();
-		JLabel date = new JLabel("Today is: "+df.format(today));
-		date.setFont(new Font("Calibri Light", Font.PLAIN, 26));
-		date.setBounds(166, 87, 560, 26);
-		/*
-		 * APPOINTMENT LABEL
-		 */
-		JLabel lblAppointment = new JLabel("Enter Your ID");
-		lblAppointment.setFont(bArial);
-		lblAppointment.setBounds(725, 533, 1000, 82);
 		tfpatientId = new JTextField();
-		tfpatientId.setBounds(725, 600, 300, 20);
+		tfpatientId.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		tfpatientId.setBounds(711, 466, 500, 50);
 		tfpatientId.setColumns(10);
-		/*
-		 * RETURN BUTTON
-		 */
-		JButton btnReturn = new JButton("Return");
-		btnReturn.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
-				hms.displayLoginPage();
-			}
-		});
-		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
-		btnReturn.setBounds(725, 760, 500, 59);
 		/*
 		 * SUBMIT BUTTON
 		 */
@@ -100,13 +71,23 @@ public class PatientViewAppointmentPanel
 			}
 		});
 		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
-		btnSubmit.setBounds(725, 660, 500, 59);
+		btnSubmit.setBounds(830, 660, 250, 59);
+		/*
+		 * BUTTON TO DIRECT ADMIN/ STAFF TO LOGIN PAGE
+		 */
+		JButton btnAdminStaffLogin = new JButton("Click here to login");
+		btnAdminStaffLogin.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				hms.displayLoginPage();
+			}
+		});
+		btnAdminStaffLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnAdminStaffLogin.setBounds(1010, 927, 225, 71);
 		//add all the components to panel
-		patientViewAppointment.add(lblAppointment);
-		patientViewAppointment.add(btnReturn);
+		patientViewAppointment.add(btnAdminStaffLogin);
 		patientViewAppointment.add(btnSubmit);
-		patientViewAppointment.add(lblWelcomeBackAdministrator);
-		patientViewAppointment.add(date);
 		patientViewAppointment.add(tfpatientId);
 		patientViewAppointment.add(lblBackground);
 		
