@@ -13,13 +13,13 @@ import java.util.Date;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import system.Hospital_Management_System;
+import user.Employee;
 import user.Patient;
 
 /*
@@ -27,12 +27,13 @@ import user.Patient;
  */
 public class AddStaffPanel 
 {
-	private String[] departments = { "General Practitioner", "Nurse", "Operation Staff", "Physician", "Surgeon" };
-	
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private Color bgColor = new Color(215,215,215);
 	private JTextField tfFirstName;
 	private JTextField tfLastName;
+	private JTextField tfDay;
+	private JTextField tfMonth;
+	private JTextField tfYear;
 	private JTextField tfPhoneNum;
 	private JTextField tfEmail;
 
@@ -42,12 +43,12 @@ public class AddStaffPanel
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
 		//initialize the panel layout and size
-		JPanel addStaff = new JPanel();
-		addStaff.setLayout(null);
-		addStaff.setBounds(0, 0, 1920, 1080);
+		JPanel addPatients = new JPanel();
+		addPatients.setLayout(null);
+		addPatients.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(AddStaffPanel.class.getResource("/graphics/AddStaffbackground.png")));
+		lblBackground.setIcon(new ImageIcon(AddPatientPanel.class.getResource("/graphics/AddPatientBackground.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
@@ -100,17 +101,54 @@ public class AddStaffPanel
 		group.add(rdbtnMale);
 		group.add(rdbtnFemale);
 		/*
-		 * DEPARTMENTS
+		 * DOB
 		 */
-		JLabel lbDepartment = new JLabel("Department: ");
-		lbDepartment.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lbDepartment.setBounds(78, 428, 300, 50);
-		
-		JComboBox departmentList = new JComboBox(departments);
-		departmentList.setBounds(640, 445, 250, 20);
-		departmentList.setSize(300, 20);
-		departmentList.setSelectedIndex(0);
-		
+		JLabel slash = new JLabel("/");
+		slash.setBounds(728, 448, 24, 14);
+		JLabel label = new JLabel("/");
+		label.setBounds(834, 448, 24, 14);
+		JLabel lbDOB = new JLabel("Date of birth (dd/mm/yyyy): ");
+		lbDOB.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lbDOB.setBounds(78, 428, 300, 50);
+		//day
+		tfDay = new JTextField();
+		tfDay.addFocusListener(new FocusAdapter() 
+		{
+			@Override
+			public void focusGained(FocusEvent e) 
+			{
+				tfDay.setText("");
+			}
+		});
+		tfDay.setText("Day");
+		tfDay.setBounds(640, 445, 70, 20);
+		tfDay.setColumns(10);
+		//month
+		tfMonth = new JTextField();
+		tfMonth.setText("Month");
+		tfMonth.setColumns(10);
+		tfMonth.setBounds(754, 445, 70, 20);
+		tfMonth.addFocusListener(new FocusAdapter() 
+		{
+			@Override
+			public void focusGained(FocusEvent e) 
+			{
+				tfMonth.setText("");
+			}
+		});
+		//year
+		tfYear = new JTextField();
+		tfYear.setText("Year");
+		tfYear.setColumns(10);
+		tfYear.setBounds(856, 445, 70, 20);
+		tfYear.addFocusListener(new FocusAdapter() 
+		{
+			@Override
+			public void focusGained(FocusEvent e) 
+			{
+				tfYear.setText("");
+			}
+		});
 		/*
 		 * PHONE NUMBER
 		 */
@@ -138,7 +176,7 @@ public class AddStaffPanel
 			public void actionPerformed(ActionEvent e) 
 			{
 				clearTextField();
-				hms.displayStaffManagementPage();
+				hms.displayPatientManagementPage();
 			}
 		});
 		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));
@@ -156,16 +194,19 @@ public class AddStaffPanel
 				//ensure all fields are filled out
 				if(formComplete() && (rdbtnMale.isSelected() || rdbtnFemale.isSelected()))
 				{
-					
+					hms.addEmployee(new Employee(tfFirstName.getText(), tfLastName.getText(), 
+					(rdbtnMale.isSelected() ? "Male" : "Female"), 
+					tfDay.getText()+ "/" + tfMonth.getText() + "/" + tfYear.getText(),
+					tfPhoneNum.getText(), tfEmail.getText()));
 
 					//display confirmation message
 					Object[] options = {"Ok"};
-					JOptionPane.showOptionDialog(null, "Patient has been added.", "Success",
+					JOptionPane.showOptionDialog(null, "Employee has been added.", "Success",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
 					null, options, options[0]);
 					//go back to previous menu
 					clearTextField();
-					hms.displayPatientManagementPage();
+					hms.displayStaffManagementPage();
 				}
 				//display warning message if any fields are empty 
 				else
@@ -178,26 +219,30 @@ public class AddStaffPanel
 			}
 		});
 		//add all the components to panel
-		addStaff.add(lbDepartment);
-		addStaff.add(departmentList);
-		addStaff.add(lblPhoneNumber);
-		addStaff.add(tfPhoneNum);
-		addStaff.add(lbEmail);
-		addStaff.add(tfEmail);
-		addStaff.add(lbSex);
-		addStaff.add(rdbtnMale);
-		addStaff.add(rdbtnFemale);
-		addStaff.add(lbFirstName);
-		addStaff.add(tfFirstName);
-		addStaff.add(tfLastName);
-		addStaff.add(lbLastName);
-		addStaff.add(btnSubmit);
-		addStaff.add(btnCancel);
-		addStaff.add(lblWelcomeBackAdministrator);
-		addStaff.add(date);
-		addStaff.add(lblBackground);
+		addPatients.add(lblPhoneNumber);
+		addPatients.add(tfPhoneNum);
+		addPatients.add(lbEmail);
+		addPatients.add(tfEmail);
+		addPatients.add(slash);
+		addPatients.add(label);
+		addPatients.add(lbDOB);
+		addPatients.add(tfDay);
+		addPatients.add(tfMonth);
+		addPatients.add(tfYear);
+		addPatients.add(lbSex);
+		addPatients.add(rdbtnMale);
+		addPatients.add(rdbtnFemale);
+		addPatients.add(lbFirstName);
+		addPatients.add(tfFirstName);
+		addPatients.add(tfLastName);
+		addPatients.add(lbLastName);
+		addPatients.add(btnSubmit);
+		addPatients.add(btnCancel);
+		addPatients.add(lblWelcomeBackAdministrator);
+		addPatients.add(date);
+		addPatients.add(lblBackground);
 		
-		return addStaff;
+		return addPatients;
 	}
 	/**
 	 * This method returns true if form is completely filled out
@@ -208,6 +253,9 @@ public class AddStaffPanel
 		ArrayList<JTextField> allTextFields = new ArrayList<JTextField>();
 		allTextFields.add(tfFirstName);
 		allTextFields.add(tfLastName);
+		allTextFields.add(tfDay);
+		allTextFields.add(tfMonth);
+		allTextFields.add(tfYear);
 		allTextFields.add(tfPhoneNum);
 		allTextFields.add(tfEmail);
 		//loop through array checking if they are not empty
@@ -227,6 +275,9 @@ public class AddStaffPanel
 	{
 		tfFirstName.setText("");
 		tfLastName.setText("");
+		tfDay.setText("");
+		tfMonth.setText("");
+		tfYear.setText("");
 		tfPhoneNum.setText("");
 		tfEmail.setText("");
 	}

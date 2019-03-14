@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import system.Hospital_Management_System;
-import user.Patient;
+import user.Employee;
 
 /*
  * This class displays the add patient panel.
@@ -28,11 +28,11 @@ public class StaffListPanel
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
-	"ID", "First Name", "Last Name", "Sex", "Department", "Phone Number", "E-mail"}, 0))
+	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail", "Option"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
 		public boolean isCellEditable(int row, int column) {  
-			return false;            
+			return column == 7;            
     };
 	};
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -97,14 +97,14 @@ public class StaffListPanel
 	 * This method adds a patient to a row in the table.
 	 * @param patient The patient to be added
 	 */
-	public void addPatientToTable(Patient patient, Hospital_Management_System hms) 
+	public void addEmployeeToTable(Employee employee, Hospital_Management_System hms) 
 	{
-		model.addRow(new Object[]{patient.getID(), patient.getFirstName(), patient.getLastName(),
-		patient.getSex(), patient.getDOB(), patient.getPhoneNum(), patient.getEmail(), "Add/Edit Appointment"});
+		model.addRow(new Object[]{employee.getID(), employee.getFirstName(), employee.getLastName(),
+		employee.getSex(), employee.getDOB(), employee.getPhoneNum(), employee.getEmail(), "Add/Edit Appointment"});
 		
 		//SET CUSTOM RENDERER TO TEAMS COLUMN
 		table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());;
 		//SET CUSTOM EDITOR TO TEAMS COLUMN
-		table.getColumnModel().getColumn(7).setCellEditor(new ButtonEditor(new JTextField(), hms, patient.getID()));
+		table.getColumnModel().getColumn(7).setCellEditor(new ButtonEditor(new JTextField(), hms, employee.getID()));
 	}
 }
