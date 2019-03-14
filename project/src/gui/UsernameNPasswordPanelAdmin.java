@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import system.Hospital_Management_System;
@@ -22,7 +23,7 @@ public class UsernameNPasswordPanelAdmin
 	 */
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTextField tfUsername;
-	private JTextField tfPassword;
+	private JPasswordField passwordField;
 	
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
@@ -64,10 +65,10 @@ public class UsernameNPasswordPanelAdmin
 		/*
 		 * PASSWORD TEXTFIELD
 		 */
-		tfPassword = new JTextField();
-		tfPassword.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		tfPassword.setColumns(10);
-		tfPassword.setBounds(711, 577, 518, 38);
+		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		passwordField.setColumns(10);
+		passwordField.setBounds(711, 577, 518, 38);
 		/*
 		 * RETURN BUTTON
 		 */
@@ -86,7 +87,7 @@ public class UsernameNPasswordPanelAdmin
 		uNPPanel.add(btnReturn);
 		uNPPanel.add(btnLogin);
 		uNPPanel.add(tfUsername);
-		uNPPanel.add(tfPassword);
+		uNPPanel.add(passwordField);
 		uNPPanel.add(lblBackground);
 		
 		return uNPPanel;
