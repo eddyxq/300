@@ -176,7 +176,7 @@ public class AddStaffPanel
 			public void actionPerformed(ActionEvent e) 
 			{
 				clearTextField();
-				hms.displayStaffManagementPage();
+				hms.displayPatientManagementPage();
 			}
 		});
 		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));
