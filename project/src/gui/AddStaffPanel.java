@@ -48,7 +48,7 @@ public class AddStaffPanel
 		addPatients.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(AddPatientPanel.class.getResource("/graphics/AddPatientBackground.png")));
+		lblBackground.setIcon(new ImageIcon(AddPatientPanel.class.getResource("/graphics/AddStaffbackground.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
@@ -176,7 +176,7 @@ public class AddStaffPanel
 			public void actionPerformed(ActionEvent e) 
 			{
 				clearTextField();
-				hms.displayPatientManagementPage();
+				hms.displayStaffManagementPage();
 			}
 		});
 		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));

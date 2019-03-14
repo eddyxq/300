@@ -47,6 +47,12 @@ public class UsernameNPasswordPanel
 		 * LOGIN BUTTON
 		 */
 		JButton btnLogin = new JButton("Login as staff");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				hms.displayStaffAppointmentListPage();
+			}
+		});
 		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 22));
 		btnLogin.setBounds(854, 675, 225, 71);
 		/*
