@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import database.TextReader;
 import database.TextWriter;
+import user.Employee;
 import user.Patient;
 import gui.AddAppointmentPanel;
 import gui.AddPatientPanel;
@@ -27,6 +28,8 @@ public class Hospital_Management_System
 {
 	//list of all the patients in the system
 	ArrayList<Patient> patientRecord = new ArrayList<Patient>();
+	//list of all the patients in the system
+	ArrayList<Employee> employeeRecord = new ArrayList<Employee>();
 	//initialize GUI
 	private	JPanel loginPage = new LoginPanel().createPanel(this);
 	private	JPanel addPatientPage = new AddPatientPanel().createPanel(this);
@@ -217,6 +220,18 @@ public class Hospital_Management_System
 		//add to records
 		patientRecord.add(patient);
 		plp.addPatientToTable(patient, this);
+	}
+	/**
+	 * This method will add a new patient to the patient records.
+	 * @param patient The patient to be added.
+	 */
+	public void addEmployee(Employee employee)
+	{
+		//assign the next available id number to patient
+		employee.setId(employeeRecord.size() + 1);
+		//add to records
+		employeeRecord.add(employee);
+		slp.addEmployeeToTable(employee, this);
 	}
 	/**
 	 * This method will add an appointment for a patient
