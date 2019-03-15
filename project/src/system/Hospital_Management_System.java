@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import database.TextReader;
 import database.TextWriter;
-import database.PasswordReader;
+import user.Employee;
 import user.Patient;
 import gui.AddAppointmentPanel;
 import gui.AddPatientPanel;
@@ -16,9 +16,12 @@ import gui.PatientInfoPanel;
 import gui.PatientListPanel;
 import gui.PatientManagePanel;
 import gui.PatientViewAppointmentPanel;
+import gui.StaffAppointmentListPanel;
 import gui.StaffListPanel;
 import gui.StaffManagePanel;
-import gui.AdminLogIn;
+import gui.UsernameNPasswordPanel;
+import gui.UsernameNPasswordPanelAdmin;
+
 /*
  * This class contains the logic for the hospital manage system.
  */
@@ -26,6 +29,8 @@ public class Hospital_Management_System
 {
 	//list of all the patients in the system
 	ArrayList<Patient> patientRecord = new ArrayList<Patient>();
+	//list of all the patients in the system
+	ArrayList<Employee> employeeRecord = new ArrayList<Employee>();
 	//initialize GUI
 	private	JPanel loginPage = new LoginPanel().createPanel(this);
 	private	JPanel addPatientPage = new AddPatientPanel().createPanel(this);
@@ -40,8 +45,9 @@ public class Hospital_Management_System
 	private StaffListPanel slp = new StaffListPanel();
 	private JPanel staffListPage = slp.createPanel(this);
 	private JPanel addStaffPage = new AddStaffPanel().createPanel(this);
-	private JPanel adminLogin = new AdminLogIn().createPanel(this);
-	
+	private JPanel usernameNPasswordPage = new UsernameNPasswordPanel().createPanel(this);
+	private JPanel usernameNPasswordPageAdmin = new UsernameNPasswordPanelAdmin().createPanel(this);
+	private JPanel staffAppointmentListPage = new StaffAppointmentListPanel().createPanel(this);
 	
 	public Integer id;
 	/**
@@ -53,7 +59,8 @@ public class Hospital_Management_System
 		loadData();
 		new GUI(loginPage, addPatientPage, patientManagementPage, adminMainPage, 
 		patientViewAppointmentPage, patientInfoPage, addAppointmentPage, patientListPage,
-		addStaffPage, staffManagementPage, staffListPage);
+		addStaffPage, staffManagementPage, staffListPage, usernameNPasswordPage, 
+		usernameNPasswordPageAdmin, staffAppointmentListPage);
 		Runtime.getRuntime().addShutdownHook(onExit());
 	}
 	/**
@@ -84,7 +91,7 @@ public class Hospital_Management_System
 	public void startHMS() 
 	{
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {public void run() {}});
-		displayLoginPage();
+		displayViewAppointmentPage();
 	}
 	/**
 	 * This method will change the gui to display the login page.
@@ -94,9 +101,35 @@ public class Hospital_Management_System
 		loginPage.setVisible(true);
 		adminMainPage.setVisible(false);
 		patientViewAppointmentPage.setVisible(false);
-	}	
+		usernameNPasswordPage.setVisible(false);
+		usernameNPasswordPageAdmin.setVisible(false);
+	}
+
+	/**
+	 * This method will change the gui to display the username and password prompt for admin
+	 */
+	public void displayUsernameNPasswordPageAdmin()
+	{
+		usernameNPasswordPageAdmin.setVisible(true);
+		loginPage.setVisible(false);
+		adminMainPage.setVisible(false);
+
+	}
+	
+	/**
+	 * This method will change the gui to display the username and password prompt for staffs
+	 */
+	public void displayUsernameNPasswordPageStaff()
+	{
+		usernameNPasswordPage.setVisible(true);
+		loginPage.setVisible(false);
+		staffAppointmentListPage.setVisible(false);
+
+	}
 	/**
 	 * This method will change the gui to display the admin main page.
+	 * @param input_username input username from the user to be checked in the database=======================================
+	 * @param input_password input password from the user to check in the database
 	 */
 	public void displayAdminMainPage() 
 	{
@@ -104,6 +137,7 @@ public class Hospital_Management_System
 		loginPage.setVisible(false);
 		patientManagementPage.setVisible(false);
 		staffManagementPage.setVisible(false);
+		usernameNPasswordPageAdmin.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the patient management page.
@@ -126,6 +160,16 @@ public class Hospital_Management_System
 		addStaffPage.setVisible(false);
 		adminMainPage.setVisible(false);
 		staffListPage.setVisible(false);
+	}
+	/**
+	 *  This method will change the gui to display the appointment list for staffs
+	 * @param input_username input username from the user to be checked in the database
+	 * @param input_password input password from the user to check in the database====================================
+	 */
+	public void displayStaffAppointmentListPage() 
+	{
+		staffAppointmentListPage.setVisible(true);
+		usernameNPasswordPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the add patient page.
@@ -197,6 +241,18 @@ public class Hospital_Management_System
 		plp.addPatientToTable(patient, this);
 	}
 	/**
+	 * This method will add a new patient to the patient records.
+	 * @param patient The patient to be added.
+	 */
+	public void addEmployee(Employee employee)
+	{
+		//assign the next available id number to patient
+		employee.setId(employeeRecord.size() + 1);
+		//add to records
+		employeeRecord.add(employee);
+		slp.addEmployeeToTable(employee, this);
+	}
+	/**
 	 * This method will add an appointment for a patient
 	 * @param date The date of the appointment
 	 * @param time The time of the appointment
@@ -246,12 +302,5 @@ public class Hospital_Management_System
 			}
 		}
 		return noDigits;
-	}
-	
-	//This method is to check for the credentials that are passed into the system when the user enters the information 
-	//in the log in window
-	public boolean checkCredentials(String user, String pass) {
-		boolean isUser = new PasswordReader().validUser(user, pass);
-		return isUser;
 	}
 }

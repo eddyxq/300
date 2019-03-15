@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import system.Hospital_Management_System;
+import testing.TestPanel;
 
 public class LoginPanel
 {
@@ -28,6 +29,13 @@ public class LoginPanel
 		JLabel lblBackground = new JLabel();
 		lblBackground.setIcon(new ImageIcon(LoginPanel.class.getResource("/graphics/login_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
+		JLabel lblAdminIcon = new JLabel(" ");
+		lblAdminIcon.setIcon(new ImageIcon(TestPanel.class.getResource("/graphics/admin_icon.png")));
+		lblAdminIcon.setBounds(398, 466, 380, 380);
+		
+		JLabel lbStaffIcon = new JLabel(" ");
+		lbStaffIcon.setIcon(new ImageIcon(TestPanel.class.getResource("/graphics/staff_icon.png")));
+		lbStaffIcon.setBounds(1131, 466, 380, 380);
 		/*
 		 * ADMIN BUTTON
 		 */
@@ -36,34 +44,42 @@ public class LoginPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				hms.displayAdminMainPage();
+				hms.displayUsernameNPasswordPageAdmin();
 			}
 		});
 		btnAdmin.setFont(bArial);
-		btnAdmin.setBounds(240, 847, 211, 111);
-		/*
-		 * PATIENT BUTTON
-		 */
-		JButton btnPatient = new JButton("Patient");
-		btnPatient.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
-				hms.displayViewAppointmentPage();
-			}
-		});
-		btnPatient.setFont(bArial);
-		btnPatient.setBounds(1480, 847, 211, 111);
+		btnAdmin.setBounds(485, 885, 211, 111);
 		/*
 		 * EMPLOYEE BUTTON 
 		 */
 		JButton btnEmployee = new JButton("Employee");
+		btnEmployee.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				hms.displayUsernameNPasswordPageStaff();
+			}
+		});
 		btnEmployee.setFont(bArial);
-		btnEmployee.setBounds(870, 847, 211, 111);
+		btnEmployee.setBounds(1230, 885, 211, 111);
+		/*
+		 * RETURN BUTTON
+		 */
+		JButton btnReturn = new JButton("");
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				hms.displayViewAppointmentPage();
+			}
+		});
+		btnReturn.setIcon(new ImageIcon(TestPanel.class.getResource("/graphics/return_icon.png")));
+		btnReturn.setBounds(50, 900, 107, 99);
 		//add all the components to panel
+		loginPanel.add(btnReturn);
+		loginPanel.add(lbStaffIcon);
+		loginPanel.add(lblAdminIcon);
 		loginPanel.add(btnEmployee);
 		loginPanel.add(btnAdmin);
-		loginPanel.add(btnPatient);
 		loginPanel.add(lblBackground);
 		
 		return loginPanel;
