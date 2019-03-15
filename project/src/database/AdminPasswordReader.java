@@ -23,7 +23,7 @@ public class AdminPasswordReader
 		boolean userfound = false;
 		try 
 		{
-			Scanner reader = new Scanner(new File("/database/adminPasswords.txt"));
+			Scanner reader = new Scanner(new File("/src/database/adminPasswords.txt"));
 			while (reader.hasNext()) 
 			{
 				String line = reader.nextLine();
@@ -31,7 +31,7 @@ public class AdminPasswordReader
 				String username = credentials[0];
 				String password = credentials[1];
 				
-				if((username == user) && (password == pass)){
+				if((username.equals(user)) && (password.equals(pass))){
 					userfound = true;
 					return userfound;
 				}
