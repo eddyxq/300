@@ -9,10 +9,12 @@ import java.awt.event.FocusEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import database.EmployeePasswordReader;
 import system.Hospital_Management_System;
 import testing.TestPanel;
 
@@ -61,13 +63,20 @@ public class UsernameNPasswordPanel
 		/*
 		 * LOGIN BUTTON
 		 */
-		JButton btnLogin = new JButton("Login as staff");
+		JButton btnLogin = new JButton("Login as Staff");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
 				String input_username = tfUsername.getText();
-				String input_password = passwordField.getPassword().toString();
-				hms.displayStaffAppointmentListPage();
+				String input_password = new String(passwordField.getPassword());
+				System.out.println("USERNAME : " + input_username + " PASSWORD : "+ input_password);
+				if(new EmployeePasswordReader().validUser(input_username, input_password)) {
+					hms.displayStaffAppointmentListPage();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Please Check the Username/Password are correct",
+							"Incorrect Username/Password", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 22));

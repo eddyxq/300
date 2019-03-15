@@ -62,13 +62,12 @@ public class UsernameNPasswordPanelAdmin
 		/*
 		 * LOGIN BUTTON
 		 */
-		JButton btnLogin = new JButton("Login as admin");
+		JButton btnLogin = new JButton("Login as Admin");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
 				String input_username = tfUsername.getText();
 				String input_password = new String(passwordField.getPassword());
-				System.out.println("USERNAME : " + input_username + " PASSWORD : "+ input_password);
 				if(new AdminPasswordReader().validUser(input_username, input_password)) {
 					hms.displayAdminMainPage();
 				}

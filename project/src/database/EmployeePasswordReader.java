@@ -7,9 +7,9 @@ import java.util.Scanner;
 import user.Patient;
 
 /*
- * This class is used to read password file of the admin in order to authorize them to log into the system
+ * This class is used to read password file of the employees (Doctors) in order to authorize them to log into the system
  */
-public class AdminPasswordReader 
+public class EmployeePasswordReader 
 {
 
 	
@@ -23,7 +23,7 @@ public class AdminPasswordReader
 		boolean userfound = false;
 		try 
 		{
-			Scanner reader = new Scanner(new File("adminPasswords.txt"));
+			Scanner reader = new Scanner(new File("employeePasswords.txt"));
 			while (reader.hasNext()) 
 			{
 				String line = reader.nextLine();
