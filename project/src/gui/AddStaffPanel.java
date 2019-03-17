@@ -20,7 +20,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import system.Hospital_Management_System;
 import user.Employee;
-import user.Patient;
 
 /*
  * This class displays the add staff panel.

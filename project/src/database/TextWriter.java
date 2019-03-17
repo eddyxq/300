@@ -5,25 +5,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+
+import user.Employee;
 import user.Patient;
 
 /* 
- * This class is used to write patient date to a text file.
+ * This class is used to write date to a text file.
  */
 public class TextWriter 
 {
-	ArrayList<Patient> patientRecord;
-	/**
-	 * This constructor will initialize the record.
+	/*
+	 * This method will save the patient data.
 	 */
-	public TextWriter(ArrayList<Patient> patientRecord)
-	{
-		this.patientRecord = patientRecord;
-	}
-	/**
-	 * This method saves the patient data to text file.
-	 */
-	public void save() 
+	public void savePatientData(ArrayList<Patient> patientRecord) 
 	{
 		PrintWriter writer;
 		try 
@@ -42,6 +36,35 @@ public class TextWriter
 							+ p.email + " " 
 							+ p.getAppointmentDate() + " " 
 							+ p.getAppointmentTime();
+				writer.println(data);
+				count++;
+			}
+			writer.close();
+		} 
+		catch (IOException e) {}
+	}
+	/*
+	 * This method will save the employee data.
+	 */
+	public void saveEmployeeData(ArrayList<Employee> employeeRecord) 
+	{
+		PrintWriter writer;
+		try 
+		{
+			writer = new PrintWriter(new BufferedWriter(new FileWriter("EmployeeRecords.txt", false)));
+			int count = 1;
+			String data = "";
+			for (Employee e : employeeRecord)
+			{
+				data = count + " " 
+							+ e.firstName + " " 
+							+ e.lastName + " " 
+							+ e.sex + " " 
+							+ e.dob + " " 
+							+ e.phoneNumber + " " 
+							+ e.email + " " 
+							+ e.getAppointmentDate() + " " 
+							+ e.getAppointmentTime();
 				writer.println(data);
 				count++;
 			}

@@ -24,15 +24,15 @@ import user.Employee;
 /*
  * This class displays the add patient panel.
  */
-public class StaffAppointmentListPanel 
+public class EmployeeListPanel 
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
-	"Date", "Time", "Patient First Name", "Patient Last Name"}, 0))
+	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail", "Option"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
 		public boolean isCellEditable(int row, int column) {  
-			return false;            
+			return column == 7;            
     };
 	};
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -50,19 +50,19 @@ public class StaffAppointmentListPanel
 		tableContainer.setLocation(86, 244);
 		tableContainer.setSize(1746, 700);
 		//initialize the panel layout and size
-		JPanel staffAppointmentListPanel = new JPanel();
-		staffAppointmentListPanel.setLayout(null);
-		staffAppointmentListPanel.setBounds(0, 0, 1920, 1080);
+		JPanel employeeListPanel = new JPanel();
+		employeeListPanel.setLayout(null);
+		employeeListPanel.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(StaffAppointmentListPanel.class.getResource("/graphics/PatientList_background.png")));
+		lblBackground.setIcon(new ImageIcon(EmployeeListPanel.class.getResource("/graphics/PatientList_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
 		 */
-		JLabel lblWelcomeBack = new JLabel("Welcome Back!");
-		lblWelcomeBack.setFont(bArial);
-		lblWelcomeBack.setBounds(166, 29, 510, 26);
+		JLabel lblWelcomeBackAdministrator = new JLabel("Welcome Back Administrator!");
+		lblWelcomeBackAdministrator.setFont(bArial);
+		lblWelcomeBackAdministrator.setBounds(166, 29, 510, 26);
 		/*
 		 * DATE DISPLAYED BELOW HEADER
 		 */
@@ -74,24 +74,24 @@ public class StaffAppointmentListPanel
 		/*
 		 * RETURN BUTTON
 		 */
-		JButton btnReturn = new JButton("Logout");
+		JButton btnReturn = new JButton("Return");
 		btnReturn.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				hms.displayLoginPage();
+				hms.displayStaffManagementPage();
 			}
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(725, 955, 500, 59);
 		//add all the components to panel
-		staffAppointmentListPanel.add(btnReturn);
-		staffAppointmentListPanel.add(tableContainer, BorderLayout.CENTER);
-		staffAppointmentListPanel.add(lblWelcomeBack);
-		staffAppointmentListPanel.add(date);
-		staffAppointmentListPanel.add(lblBackground);
+		employeeListPanel.add(btnReturn);
+		employeeListPanel.add(tableContainer, BorderLayout.CENTER);
+		employeeListPanel.add(lblWelcomeBackAdministrator);
+		employeeListPanel.add(date);
+		employeeListPanel.add(lblBackground);
 		
-		return staffAppointmentListPanel;
+		return employeeListPanel;
 	}
 	/**
 	 * This method adds a patient to a row in the table.
@@ -100,11 +100,10 @@ public class StaffAppointmentListPanel
 	public void addEmployeeToTable(Employee employee, Hospital_Management_System hms) 
 	{
 		model.addRow(new Object[]{employee.getID(), employee.getFirstName(), employee.getLastName(),
-		employee.getSex(), employee.getDOB(), employee.getPhoneNum(), employee.getEmail(), "Add/Edit Appointment"});
-		
-		//SET CUSTOM RENDERER TO TEAMS COLUMN
-		table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());;
-		//SET CUSTOM EDITOR TO TEAMS COLUMN
-		table.getColumnModel().getColumn(7).setCellEditor(new ButtonEditor(new JTextField(), hms, employee.getID()));
+				employee.getSex(), employee.getDOB(), employee.getPhoneNum(), employee.getEmail(), "DISABLED"});
+				
+				//set custom renderer and editor to column
+				//table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());;
+				//table.getColumnModel().getColumn(7).setCellEditor(new ButtonEditor(new JTextField(), hms, employee.getID()));
 	}
 }

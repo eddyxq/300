@@ -102,9 +102,8 @@ public class PatientListPanel
 		model.addRow(new Object[]{patient.getID(), patient.getFirstName(), patient.getLastName(),
 		patient.getSex(), patient.getDOB(), patient.getPhoneNum(), patient.getEmail(), "Add/Edit Appointment"});
 		
-		//SET CUSTOM RENDERER TO TEAMS COLUMN
+		//set custom renderer and editor to column
 		table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());;
-		//SET CUSTOM EDITOR TO TEAMS COLUMN
 		table.getColumnModel().getColumn(7).setCellEditor(new ButtonEditor(new JTextField(), hms, patient.getID()));
 	}
 }
