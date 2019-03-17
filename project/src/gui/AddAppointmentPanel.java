@@ -1,10 +1,12 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +24,10 @@ public class AddAppointmentPanel
 	private JTextField tfDate;
 	private JTextField tfTime;
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
+	private Color Red = new Color(255, 150, 135);
+	private Color Default = new Color(255,255,255);
+	private ValidateInput val = new ValidateInput();
+	
 	/**
 	 * This method creates and returns a JPanel
 	 */
@@ -52,9 +58,9 @@ public class AddAppointmentPanel
 		/*
 		 * DATE
 		 */
-		JLabel lblDate = new JLabel("Date:");
+		JLabel lblDate = new JLabel("Date: (DD/MM/YYYY)");
 		lblDate.setFont(new Font("Arial", Font.BOLD, 16));
-		lblDate.setBounds(959, 339, 46, 14);
+		lblDate.setBounds(900, 339, 300, 14);
 		/*
 		 * Text Field for Appointment Date
 		 */
@@ -64,9 +70,9 @@ public class AddAppointmentPanel
 		/*
 		 * TIME
 		 */
-		JLabel lbTime = new JLabel("Time:");
+		JLabel lbTime = new JLabel("Time: (HH:MM)");
 		lbTime.setFont(new Font("Arial", Font.BOLD, 16));
-		lbTime.setBounds(959, 453, 46, 14);
+		lbTime.setBounds(915, 453, 300, 14);
 		/*
 		 * Text Field for Appointment Time
 		 */
@@ -97,15 +103,56 @@ public class AddAppointmentPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				hms.addAppointment(tfDate.getText(), tfTime.getText());
-				//display confirmation message
-				Object[] options = {"Ok"};
-				JOptionPane.showOptionDialog(null, "Appointment added.", "Success",
-				JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-				null, options, options[0]);
-				//go back to previous menu
-				clearTextField();
-				hms.displayPatientListPage();
+				if(formComplete())
+				{
+					//Initially clearing all field colors
+					clearRedField();
+					
+					//If all input is correct, add this appointment
+					if(val.validateAppointment(tfDate.getText(), tfTime.getText()))
+					{
+						hms.addAppointment(tfDate.getText(), tfTime.getText());
+						//display confirmation message
+						Object[] options = {"Ok"};
+						JOptionPane.showOptionDialog(null, "Appointment added.", "Success",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+						null, options, options[0]);
+						//go back to previous menu
+						clearTextField();
+						clearRedField();
+						
+						hms.displayPatientListPage();
+					}
+					
+					//Otherwise, find out which field(s) are incorrect
+					else 
+					{
+						//Checking if date input isn't valid
+						if(!val.validateDate(tfDate.getText()))
+						{
+							tfDate.setBackground(Red);
+						}
+						
+						//Checking if time input isn't valid
+						if(!val.validateTime(tfTime.getText()))
+						{
+							tfTime.setBackground(Red);
+						}
+						
+						Object[] options = {"Close"};
+						JOptionPane.showOptionDialog(null, "Please ensure all highlighted entries are correct", "Warning",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+						null, options, options[0]);
+					}
+				}
+				
+				else
+				{
+					//display warning message if any fields are empty 
+					Object[] options = {"Close"};
+					JOptionPane.showOptionDialog(null, "Please fill in all information.", "Warning",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+				}
 			}
 		});
 		
@@ -122,6 +169,28 @@ public class AddAppointmentPanel
 		
 		return addAppointmentPanel;
 	}
+	
+	/**
+	 * This method returns true if form is completely filled out
+	 */
+	private boolean formComplete() 
+	{
+		//add all the text fields to an array
+		ArrayList<JTextField> allTextFields = new ArrayList<JTextField>();
+		allTextFields.add(tfDate);
+		allTextFields.add(tfTime);
+		
+		//loop through array checking if they are not empty
+		for(JTextField t : allTextFields)
+		{
+			if(!(t.getText().length() > 0))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	/**
 	 * This method resets all the text fields
 	 */
@@ -129,5 +198,14 @@ public class AddAppointmentPanel
 	{
 		tfDate.setText("");
 		tfTime.setText("");
+	}
+	
+	/**
+	 * This method resets all the text field colors
+	 */
+	private void clearRedField()
+	{
+		tfDate.setBackground(Default);
+		tfTime.setBackground(Default);	
 	}
 }
