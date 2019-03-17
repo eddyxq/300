@@ -1,361 +1,287 @@
 package system;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import javax.swing.JPanel;
-
+import database.TextReader;
+import database.TextWriter;
+import user.Employee;
 import user.Patient;
-import user.Personnel;
-import display.ConfirmationMessages;
-import display.ErrorMessages;
-import display.MenuDisplay;
-import gui.TestPanel;
-import gui.AddPatientPanel;
-import gui.Gui;
+import gui.*;
 
+/*
+ * This class contains the logic for the hospital manage system.
+ */
 public class Hospital_Management_System 
 {
-	Scanner sc;
-	ArrayList<Patient> patientRecord;
-	ArrayList<Personnel> employeeRecord;
-	String currentPage;
-	boolean systemOn;
-	String selection;
-	MenuDisplay menu = new MenuDisplay();
-	ErrorMessages error = new ErrorMessages();
-	ConfirmationMessages confirm = new ConfirmationMessages();
+	//list of all the patients in the system
+	ArrayList<Patient> patientRecord = new ArrayList<Patient>();
+	//list of all the patients in the system
+	ArrayList<Employee> employeeRecord = new ArrayList<Employee>();
+	//initialize GUI
+	private	JPanel addPatientPage = new AddPatientPanel().createPanel(this);
+	private JPanel patientManagementPage = new PatientManagePanel().createPanel(this);
+	private JPanel staffManagementPage = new StaffManagePanel().createPanel(this);
+	private JPanel adminMainPage = new AdminMainPanel().createPanel(this);
+	private JPanel employeeMainPage = new EmployeeMainPanel().createPanel(this);
+	private JPanel homePage = new HomePanel().createPanel(this);
+	private JPanel patientInfoPage = new PatientInfoPanel().createPanel(this);
+	private JPanel addAppointmentPage = new AddAppointmentPanel().createPanel(this);
+	private PatientListPanel plp = new PatientListPanel();
+	private JPanel patientListPage = plp.createPanel(this);
+	private EmployeeListPanel slp = new EmployeeListPanel();
+	private JPanel staffListPage = slp.createPanel(this);
+	private JPanel addStaffPage = new AddStaffPanel().createPanel(this);
+	private JPanel loginPage = new LoginPanel().createPanel(this);
+	private JPanel calendarPage = new CalendarPanel().createPanel(this);
 	
+	public Integer id;
+	/**
+	 * This constructor starts the system.
+	 */
 	public Hospital_Management_System()
 	{
-		//initialize GUI
-		AddPatientPanel addPatientPanel = new AddPatientPanel();
-		JPanel addPP = addPatientPanel.createPanel();
-		Gui gui = new Gui(addPP);
-		
-		TestPanel tPanel = new TestPanel();
-		JPanel a = tPanel.createPanel();
-		Gui gui1 = new Gui(a);
-		
-		//start the system
-		systemOn = true;
-		//initialize scanner for input
-		sc = new Scanner(System.in);
-		//this list stores all the patient data
-		patientRecord = new ArrayList<Patient>();
-		//this list stores all the employee data
-		employeeRecord = new ArrayList<Personnel>();
-		//set system to start on main page
-		currentPage = "Main Menu";
+		//retrieve saved data
+		loadData();
+		//start user interface
+		new GUI(addPatientPage, patientManagementPage, adminMainPage, 
+		homePage, patientInfoPage, addAppointmentPage, patientListPage,
+		addStaffPage, staffManagementPage, staffListPage, loginPage, 
+		employeeMainPage, calendarPage);
+		//saves date on exit
+		Runtime.getRuntime().addShutdownHook(onExit());
 	}
-	
-	public void start()
+	/**
+	 * This method will restore the data saved from text file
+	 */
+	private void loadData() 
 	{
-		//main loop that keeps the system on
-		while (systemOn)
-		{
-			//main menu 
-			if (currentPage == "Main Menu")
-			{
-				menu.displayMainMenu();
-				//let user select options
-				switch(askForInput())
-				{
-					case "1":
-						currentPage = "Admin Portal";
-						break;
-					case "2":
-						currentPage = "Patient Portal";
-						break;
-					case "3":
-						currentPage = "Employee Portal";
-						break;
-					case "0":
-						returnToMainMenu();
-						break;
-				}
-			}
-			//admin portal
-			else if (currentPage == "Admin Portal")
-			{
-				menu.displayAdminPortal();
-				
-				switch(askForInput())
-				{
-					case "1":
-						currentPage = "Patient Records";
-						break;
-					case "2":
-						currentPage = "Employee Records";
-						break;
-					case "0":
-						returnToMainMenu();
-						break;
-				}
-			}
-			//patient portal
-			else if (currentPage == "Patient Portal")
-			{
-				System.out.println("Enter your ID to view your appointment(s): ");
-				int id = Integer.parseInt(askForInput());
-				
-				try {
-					if(patientRecord.get(id-1).hasAppointment() == true) {
-						System.out.println("\nYour next appointment is on " + patientRecord.get(id-1).getAppointment());
-					}else {
-						error.displayNoAppointment();
-					}
-					
-				}catch(IndexOutOfBoundsException e){
-					error.displayInvalidID();
-				}	
-				returnToMainMenu();
-			}
-			
-			else if (currentPage == "Employee Portal")
-			{
-				menu.displayEmployeePortal();
-				
-				switch(askForInput())
-				{
-					case "1":
-						System.out.println("Enter employee ID: ");
-						break;
-					case "2":
-						currentPage = "Employee Records";
-						break;
-					case "0":
-						returnToMainMenu();
-						break;
-				}
-			}
-			else if (currentPage == "Patient Records")
-			{
-				menu.displayPatientManagementMenu();
-				
-				switch(askForInput())
-				{
-					case "1":
-						addPatient();
-						break;
-					case "2":
-						viewPatient();
-						break;
-					case "3":
-						editPatient();
-						break;
-					case "0":
-						returnToAdminPortal();
-						break;
-				}
+		patientRecord = new TextReader().loadPatientData();
+		employeeRecord = new TextReader().loadEmployeeData();
 		
-			}
-			else if (currentPage == "Employee Records")
-			{
-				menu.displayEmployeeManagementMenu();
-				
-				switch(askForInput())
-				{
-					case "1":
-						addEmployee();
-						break;
-					case "2":
-						viewPatient();
-						break;
-					case "3":
-						editPatient();
-						break;
-					case "0":
-						returnToAdminPortal();
-						break;
-				}
-				
-			}
-			else if (currentPage == "View Appointment")
-			{
-				
-			}
-			else if (currentPage == "Cancel Appointment")
-			{
-				
-			}
-			
+		for(Patient p : patientRecord)
+		{
+			plp.addPatientToTable(p, this);
 		}
-		
-	}
-/*
- * Cancellation Options
- */
-	
-	private void returnToMainMenu() 
-	{
-		currentPage = "Main Menu";
-	}
-	
-	private void returnToAdminPortal() {
-		currentPage = "Admin Portal";
-	}
-	
-	private void returnToPatientPortal() {
-		currentPage = "Patient Portal";
-	}
-
-	private String askForInput() 
-	{
-		return sc.nextLine();
-	}
-
-	private void goToEmployeePortal() 
-	{
-		
-	}
-
-	private void goToPatientPortal() 
-	{
-		
-	}
-
-	private void goToAdminPortal() 
-	{
-		menu.displayDetailSelections();
-
-		selection = sc.nextLine();
-		
-		switch(selection)
+		for(Employee e : employeeRecord)
 		{
-		case "1":
-			accessPatientRecords();
-			break;
-		case "2":
-			accessEmployeeRecords();
-			break;		
+			slp.addEmployeeToTable(e, this);
 		}
 	}
-
-	private void accessEmployeeRecords() 
+	/**
+	 * This method creates and returns a thread that is executed
+	 * when the program is closed allowing the system to save
+	 * the patient records to a text file on exit
+	 */
+	private Thread onExit()
 	{
-		menu.displayEmployeeManagementMenu();
-		
-		selection = sc.nextLine();
-		
-		switch(selection)
+		return new Thread() {public void run() 
+		{	
+			new TextWriter().savePatientData(patientRecord);
+			new TextWriter().saveEmployeeData(employeeRecord);
+		}};
+	}
+	/**
+	 * This method will run the HMS.
+	 */
+	public void startHMS() 
+	{
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {public void run() {}});
+		displayHomePage();
+		//displayCalendarPage();
+	}
+	/**
+	 * This method will change the gui to display the username and password prompt for staffs
+	 */
+	public void displayLoginPage()
+	{
+		hideAll();
+		loginPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the admin main page.
+	 */
+	public void displayAdminMainPage() 
+	{
+		hideAll();
+		adminMainPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the employee main page.
+	 */
+	public void displayEmployeeMainPage() 
+	{
+		hideAll();
+		employeeMainPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the employee calendar page.
+	 */
+	public void displayCalendarPage() 
+	{
+		hideAll();
+		calendarPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the patient management page.
+	 */
+	public void displayPatientManagementPage() 
+	{
+		hideAll();
+		patientManagementPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the staff management page.
+	 */
+	public void displayStaffManagementPage() 
+	{
+		hideAll();
+		staffManagementPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the add patient page.
+	 */
+	public void displayAddPatientPage() 
+	{
+		hideAll();
+		addPatientPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the patient main page.
+	 */
+	public void displayHomePage() 
+	{
+		hideAll();
+		homePage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the patient info page.
+	 */
+	public void displayPatientInfoPage()
+	{
+		hideAll();
+		patientInfoPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the patient list page.
+	 */
+	public void displayPatientListPage() 
+	{
+		hideAll();
+		patientListPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the staff list page.
+	 */
+	public void displayStaffListPage()
+	{
+		hideAll();
+		staffListPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the add appointment page.
+	 */
+	public void displayAddAppointmnetPage()
+	{
+		hideAll();
+		addAppointmentPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the add staff page.
+	 */
+	public void displayAddStaffPage()
+	{
+		hideAll();
+		addStaffPage.setVisible(true);
+	}
+	/**
+	 * This method will add a new patient to the patient records.
+	 * @param patient The patient to be added.
+	 */
+	public void addPatient(Patient patient)
+	{
+		//assign the next available id number to patient
+		patient.setId(patientRecord.size() + 1);
+		//add to records
+		patientRecord.add(patient);
+		plp.addPatientToTable(patient, this);
+	}
+	/**
+	 * This method will add a new patient to the patient records.
+	 * @param patient The patient to be added.
+	 */
+	public void addEmployee(Employee employee)
+	{
+		//assign the next available id number to patient
+		employee.setId(employeeRecord.size() + 1);
+		//add to records
+		employeeRecord.add(employee);
+		slp.addEmployeeToTable(employee, this);
+	}
+	/**
+	 * This method will add an appointment for a patient
+	 * @param date The date of the appointment
+	 * @param time The time of the appointment
+	 */
+	public void addAppointment(String date, String time)
+	{
+		patientRecord.get(id-1).setAppointment(date, time);
+	}
+	/**
+	 * This method returns the appointment date.
+	 * @param id The patient id
+	 */
+	public String getAppointmentDate(String id)
+	{
+		return patientRecord.get(Integer.parseInt(id)-1).getAppointmentDate();
+	}
+	/**
+	 * This method returns the appointment time.
+	 * @param id The patient id
+	 */
+	public String getAppointmentTime(String id)
+	{
+		return patientRecord.get(Integer.parseInt(id)-1).getAppointmentTime();
+	}
+	/**
+	 * This method returns true when patient id is valid
+	 * @param id The patient id
+	 */
+	public boolean patientIdValid(String id)
+	{
+		return allDigits(id) && (Integer.parseInt(id)) <= patientRecord.size() ? true : false;
+	}
+	/**
+	 * This method checks the inputed string and determines whether it contains only digits
+	 * Returns true when string contains all digits, false otherwise
+	 * @param s This is the string being checked
+	 */
+	public boolean allDigits(String s) 
+	{
+		boolean noDigits = true;
+		for (int index = 0; index < s.length(); index++)
 		{
-		case "1":
-			addEmployee();
-			break;
-		case "2":
-			viewEmployee();
-			break;		
-		case "3":
-			editEmployee();
-			break;		
-		}
-	}
-/*
- * Record Settings
- */
-	private void addEmployee() 
-	{
-		
-	}
-
-	private void viewEmployee() 
-	{
-		
-	}
-
-	private void editEmployee() 
-	{
-		
-	}
-
-	private void accessPatientRecords() 
-	{
-		menu.displayPatientManagementMenu();
-		
-		selection = sc.nextLine();
-		
-		switch(selection)
-		{
-		case "1":
-			addPatient();
-			break;
-		case "2":
-			viewPatient();
-			break;		
-		case "3":
-			editPatient();
-			break;		
-		}
-	}
-
-	private void editPatient() 
-	{
-		menu.displayPatientAppointmentSetting();
-		
-		switch(askForInput())
-		{
-			case "1":
-				System.out.println("Enter Patient ID: ");
-				int id = Integer.parseInt(askForInput()) - 1;
-				
-				System.out.println("Enter Appointment Date (Format: MM/dd/yyyy)");
-				String date = askForInput();
-				
-				
-				
-				System.out.println("Enter Appointment Time (Format[24hour]: HH:mm)");
-				String time = askForInput();
-				
-			
-			//Displays an error message if ID entered was invalid.
-			try {
-				patientRecord.get(id).setAppointment(date, time);
-				confirm.addedPatientAppointments();
-			}catch(IndexOutOfBoundsException e){
-					error.displayInvalidID();
-			}
-			
-				currentPage = "Patient Records";
-				break;
-				
-			case "2":
-				System.out.println("Enter Patient ID: ");
-				id = Integer.parseInt(askForInput()) - 1;
-				
-				currentPage = "Employee Records";
-		}	
-		
-	}
-
-	private void viewPatient() 
-	{
-		System.out.println("ID#\tFirst Name\tLast Name");
-		System.out.println("==================================");
-		
-		if (patientRecord.size() == 0) {
-			//Displays an error message for when there's no patient record.
-			error.displayNoPatient();
-		}else {
-			for (Patient p : patientRecord)
+			char aChar = s.charAt(index);
+			if (!Character.isDigit(aChar))
 			{
-				System.out.println(p.getID() + "\t" + p.firstName + "\t" + p.lastName);
+				noDigits = false;
 			}
 		}
-		
-		
+		return noDigits;
 	}
-
-	private void addPatient()
+	private void hideAll()
 	{
-		System.out.println("Enter Patient's First Name: ");
-		String firstName = sc.nextLine(); 
-		System.out.println("Enter Patient's Last Name: ");
-		String lastName = sc.nextLine();
-		int id = patientRecord.size() + 1;
-		
-		Patient newPatient = new Patient(firstName, lastName, id);
-		patientRecord.add(newPatient);
-		confirm.addedPatient();
+		addPatientPage.setVisible(false);
+		patientManagementPage.setVisible(false);
+		staffManagementPage.setVisible(false);
+		adminMainPage.setVisible(false);
+		employeeMainPage.setVisible(false);
+		homePage.setVisible(false);
+		patientInfoPage.setVisible(false);
+		addAppointmentPage.setVisible(false);
+		patientListPage.setVisible(false);
+		staffListPage.setVisible(false);
+		addStaffPage.setVisible(false);
+		loginPage.setVisible(false);
+		calendarPage.setVisible(false);
 	}
 }
