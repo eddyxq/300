@@ -28,11 +28,10 @@ public class Hospital_Management_System
 	private JPanel addAppointmentPage = new AddAppointmentPanel().createPanel(this);
 	private PatientListPanel plp = new PatientListPanel();
 	private JPanel patientListPage = plp.createPanel(this);
-	private StaffListPanel slp = new StaffListPanel();
+	private EmployeeListPanel slp = new EmployeeListPanel();
 	private JPanel staffListPage = slp.createPanel(this);
 	private JPanel addStaffPage = new AddStaffPanel().createPanel(this);
 	private JPanel loginPage = new LoginPanel().createPanel(this);
-	private JPanel staffAppointmentListPage = new StaffAppointmentListPanel().createPanel(this);
 	private JPanel calendarPage = new CalendarPanel().createPanel(this);
 	
 	public Integer id;
@@ -41,25 +40,31 @@ public class Hospital_Management_System
 	 */
 	public Hospital_Management_System()
 	{
-		//retrieve patient data
-		patientRecord = new TextReader().load();
+		//retrieve saved data
 		loadData();
 		//start user interface
 		new GUI(addPatientPage, patientManagementPage, adminMainPage, 
 		homePage, patientInfoPage, addAppointmentPage, patientListPage,
 		addStaffPage, staffManagementPage, staffListPage, loginPage, 
-		staffAppointmentListPage, employeeMainPage, calendarPage);
+		employeeMainPage, calendarPage);
 		//saves date on exit
 		Runtime.getRuntime().addShutdownHook(onExit());
 	}
 	/**
-	 * This method will restore the patient data saved from text file
+	 * This method will restore the data saved from text file
 	 */
 	private void loadData() 
 	{
+		patientRecord = new TextReader().loadPatientData();
+		employeeRecord = new TextReader().loadEmployeeData();
+		
 		for(Patient p : patientRecord)
 		{
 			plp.addPatientToTable(p, this);
+		}
+		for(Employee e : employeeRecord)
+		{
+			slp.addEmployeeToTable(e, this);
 		}
 	}
 	/**
@@ -71,7 +76,8 @@ public class Hospital_Management_System
 	{
 		return new Thread() {public void run() 
 		{	
-			new TextWriter(patientRecord).save();
+			new TextWriter().savePatientData(patientRecord);
+			new TextWriter().saveEmployeeData(employeeRecord);
 		}};
 	}
 	/**
@@ -132,14 +138,6 @@ public class Hospital_Management_System
 		staffManagementPage.setVisible(true);
 	}
 	/**
-	 *  This method will change the gui to display the appointment list for staffs
-	 */
-	public void displayStaffAppointmentListPage() 
-	{
-		hideAll();
-		staffAppointmentListPage.setVisible(true);
-	}
-	/**
 	 * This method will change the gui to display the add patient page.
 	 */
 	public void displayAddPatientPage() 
@@ -182,7 +180,7 @@ public class Hospital_Management_System
 	/**
 	 * This method will change the gui to display the add appointment page.
 	 */
-	public void displayAddAppointmnetPage()
+	public void displayAddAppointmentPage()
 	{
 		hideAll();
 		addAppointmentPage.setVisible(true);
@@ -284,7 +282,6 @@ public class Hospital_Management_System
 		staffListPage.setVisible(false);
 		addStaffPage.setVisible(false);
 		loginPage.setVisible(false);
-		staffAppointmentListPage.setVisible(false);
 		calendarPage.setVisible(false);
 	}
 }

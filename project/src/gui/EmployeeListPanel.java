@@ -13,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import system.Hospital_Management_System;
 import user.Employee;
@@ -21,7 +20,7 @@ import user.Employee;
 /*
  * This class displays the add patient panel.
  */
-public class StaffListPanel 
+public class EmployeeListPanel 
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
@@ -47,12 +46,12 @@ public class StaffListPanel
 		tableContainer.setLocation(86, 244);
 		tableContainer.setSize(1746, 700);
 		//initialize the panel layout and size
-		JPanel patientListPanel = new JPanel();
-		patientListPanel.setLayout(null);
-		patientListPanel.setBounds(0, 0, 1920, 1080);
+		JPanel employeeListPanel = new JPanel();
+		employeeListPanel.setLayout(null);
+		employeeListPanel.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(StaffListPanel.class.getResource("/graphics/list_background.png")));
+		lblBackground.setIcon(new ImageIcon(EmployeeListPanel.class.getResource("/graphics/list_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
@@ -82,13 +81,13 @@ public class StaffListPanel
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(725, 955, 500, 59);
 		//add all the components to panel
-		patientListPanel.add(btnReturn);
-		patientListPanel.add(tableContainer, BorderLayout.CENTER);
-		patientListPanel.add(lblWelcomeBackAdministrator);
-		patientListPanel.add(date);
-		patientListPanel.add(lblBackground);
+		employeeListPanel.add(btnReturn);
+		employeeListPanel.add(tableContainer, BorderLayout.CENTER);
+		employeeListPanel.add(lblWelcomeBackAdministrator);
+		employeeListPanel.add(date);
+		employeeListPanel.add(lblBackground);
 		
-		return patientListPanel;
+		return employeeListPanel;
 	}
 	/**
 	 * This method adds a patient to a row in the table.
@@ -97,11 +96,10 @@ public class StaffListPanel
 	public void addEmployeeToTable(Employee employee, Hospital_Management_System hms) 
 	{
 		model.addRow(new Object[]{employee.getID(), employee.getFirstName(), employee.getLastName(),
-		employee.getSex(), employee.getDOB(), employee.getPhoneNum(), employee.getEmail(), "Add/Edit Appointment"});
-		
-		//SET CUSTOM RENDERER TO TEAMS COLUMN
-		table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());;
-		//SET CUSTOM EDITOR TO TEAMS COLUMN
-		table.getColumnModel().getColumn(7).setCellEditor(new ButtonEditor(new JTextField(), hms, employee.getID()));
+				employee.getSex(), employee.getDOB(), employee.getPhoneNum(), employee.getEmail(), "DISABLED"});
+				
+				//set custom renderer and editor to column
+				//table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());;
+				//table.getColumnModel().getColumn(7).setCellEditor(new ButtonEditor(new JTextField(), hms, employee.getID()));
 	}
 }

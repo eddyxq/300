@@ -64,7 +64,7 @@ public class HomePanel
 					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 					null, options, options[0]);
 				}
-				tfClearing();
+				tfClear();
 			}
 		});
 		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
@@ -78,7 +78,7 @@ public class HomePanel
 			public void actionPerformed(ActionEvent e) 
 			{
 				hms.displayLoginPage();
-				tfClearing();
+				tfClear();
 			}
 		});
 		btnAdminStaffLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -91,7 +91,10 @@ public class HomePanel
 		
 		return patientViewAppointment;
 	}
-	private void tfClearing() 
+	/*
+	 * This method clears the textfields
+	 */
+	private void tfClear() 
 	{
 		tfpatientId.setText("");
 	}

@@ -79,7 +79,7 @@ public class LoginPanel
 					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 					null, options, options[0]);
 				}
-				tfClearing();
+				tfClear();
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 22));
@@ -94,7 +94,7 @@ public class LoginPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				hms.displayHomePage();
-				tfClearing();
+				tfClear();
 			}
 		});
 		btnReturn.setBounds(854, 928, 225, 71);
@@ -109,11 +109,12 @@ public class LoginPanel
 		
 		return uNPAPanel;
 	}
-	
-	private void tfClearing() 
+	/*
+	 * This method clears the textfields
+	 */
+	private void tfClear() 
 	{
 		tfUsername.setText("");
 		passwordField.setText("");
 	}
-	
 }

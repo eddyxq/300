@@ -32,7 +32,7 @@ public class EmployeeMainPanel
 		adminMain.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(EmployeeMainPanel.class.getResource("/graphics/staffMain_background.png")));
+		lblBackground.setIcon(new ImageIcon(EmployeeMainPanel.class.getResource("/graphics/Admin_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
@@ -60,7 +60,7 @@ public class EmployeeMainPanel
 			}
 		});
 		btnViewSchedule.setFont(new Font("Arial", Font.BOLD, 16));
-		btnViewSchedule.setBounds(725, 450, 500, 59);
+		btnViewSchedule.setBounds(725, 360, 500, 59);
 		/*
 		 * VIEW CALENDAR BUTTON
 		 */
@@ -73,7 +73,7 @@ public class EmployeeMainPanel
 			}
 		});
 		btnViewCalendar.setFont(new Font("Arial", Font.BOLD, 16));
-		btnViewCalendar.setBounds(725, 650, 500, 59);
+		btnViewCalendar.setBounds(725, 560, 500, 59);
 		/*
 		 * RETURN BUTTON
 		 */
@@ -86,7 +86,7 @@ public class EmployeeMainPanel
 			}
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
-		btnReturn.setBounds(725, 850, 500, 59);
+		btnReturn.setBounds(725, 760, 500, 59);
 		//add all the components to panel
 		adminMain.add(btnViewSchedule);
 		adminMain.add(btnViewCalendar);

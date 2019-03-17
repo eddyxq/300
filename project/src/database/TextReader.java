@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import user.Employee;
 import user.Patient;
 
 /*
@@ -11,12 +13,12 @@ import user.Patient;
  */
 public class TextReader 
 {
-	ArrayList<Patient> patientRecord = new ArrayList<Patient>();
 	/**
 	 * This methods reads and restores patient data.
 	 */
-	public ArrayList<Patient> load() 
+	public ArrayList<Patient> loadPatientData() 
 	{
+		ArrayList<Patient> patientRecord = new ArrayList<Patient>();
 		try 
 		{
 			Scanner reader = new Scanner(new File("PatientRecords.txt"));
@@ -34,6 +36,30 @@ public class TextReader
 		} 
 		catch (FileNotFoundException fnfe) {}
 		return patientRecord;
+	}
+	/**
+	 * This methods reads and restores employee data.
+	 */
+	public ArrayList<Employee> loadEmployeeData() 
+	{
+		ArrayList<Employee> employeeRecord = new ArrayList<Employee>();
+		try 
+		{
+			Scanner reader = new Scanner(new File("EmployeeRecords.txt"));
+			while (reader.hasNext()) 
+			{
+				String line = reader.nextLine();
+				String[] employeeInfo = line.split(" ");
+				Employee e = new Employee(employeeInfo[1], employeeInfo[2], employeeInfo[3], employeeInfo[4], employeeInfo[5], employeeInfo[6]);
+				e.setId(Integer.parseInt(employeeInfo[0]));
+				employeeRecord.add(e);
+				e.setAppointmentDate(employeeInfo[7]);
+				e.setAppointmentTime(employeeInfo[8]);
+			}
+			reader.close();
+		} 
+		catch (FileNotFoundException fnfe) {}
+		return employeeRecord;
 	}
 	
 	/**

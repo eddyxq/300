@@ -17,8 +17,7 @@ public class GUI extends JFrame
     public GUI(JPanel addPatientPanel, JPanel patientManagementPage, JPanel adminMainPanel, 
     		   JPanel homePagePanel, JPanel patientInfoPanel, JPanel addAppointmentPanel, 
     		   JPanel patientListPanel, JPanel addStaffPanel, JPanel staffManagementPanel, 
-    		   JPanel staffListPanel, JPanel loginPanel, JPanel staffAppointmentListPanel,
-    		   JPanel employeeMainPanel, JPanel calendarPanel)
+    		   JPanel staffListPanel, JPanel loginPanel, JPanel employeeMainPanel, JPanel calendarPanel)
     {
     	JFrame window = new JFrame();
         window.setTitle("HMS");
@@ -38,7 +37,6 @@ public class GUI extends JFrame
         window.getContentPane().add(staffManagementPanel);
         window.getContentPane().add(staffListPanel);
         window.getContentPane().add(loginPanel);
-        window.getContentPane().add(staffAppointmentListPanel);
         window.getContentPane().add(employeeMainPanel);
         window.getContentPane().add(calendarPanel);
         //set visibility
@@ -53,7 +51,6 @@ public class GUI extends JFrame
         staffManagementPanel.setVisible(false);
         staffListPanel.setVisible(false);
         loginPanel.setVisible(false);
-        staffAppointmentListPanel.setVisible(false);
         employeeMainPanel.setVisible(false);
         calendarPanel.setVisible(false);
         //if want to start Full-Screen uncomment below
