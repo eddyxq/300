@@ -54,8 +54,8 @@ public class GUI extends JFrame
         employeeMainPanel.setVisible(false);
         calendarPanel.setVisible(false);
         //if want to start Full-Screen uncomment below
-		//window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-		//window.setUndecorated(true);    
+//		window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+//		window.setUndecorated(true);    
         
         window.setVisible(true);
     }
