@@ -5,6 +5,8 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,6 +29,7 @@ import user.Patient;
 public class CalendarPanel 
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
+	private JLabel lbSchedule = new JLabel("");
 	private JTable table = new JTable(new DefaultTableModel(new Object[]
 	{	
 		"SUN","MON","TUE","WED","THU","FRI","SAT"
@@ -36,7 +39,7 @@ public class CalendarPanel
 		private static final long serialVersionUID = 1L;
 		public boolean isCellEditable(int row, int column) 
 		{  
-			return column == 7;            
+			return false;          
 		};
 	};
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -45,11 +48,26 @@ public class CalendarPanel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
+		lbSchedule.setBounds(1317, 500, 48, 30);
+		lbSchedule.setFont(bArial);
 		//set table settings
 		table.setColumnSelectionAllowed(false);
-		table.setRowSelectionAllowed(true);
+		table.setRowSelectionAllowed(false);
+		table.setCellSelectionEnabled(true);
+		table.setSelectionMode(0);
 		table.setRowHeight(113);
 		table.setEnabled(true);
+		/*
+		 * Displays the date based off mouse click
+		 */
+		table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int row= table.rowAtPoint(e.getPoint());
+				int col= table.columnAtPoint(e.getPoint());
+				System.out.println(table.getValueAt(row, col).toString());
+				lbSchedule.setText(table.getValueAt(row, col).toString());
+			}
+		});
 		JScrollPane tableContainer = new JScrollPane(table);
 		tableContainer.setLocation(48, 319);
 		tableContainer.setSize(1046, 701);
@@ -95,6 +113,7 @@ public class CalendarPanel
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(1125, 955, 500, 59);
 		//add all the components to panel
+		calendarPanel.add(lbSchedule);
 		calendarPanel.add(btnReturn);
 		calendarPanel.add(tableContainer, BorderLayout.CENTER);
 		calendarPanel.add(lblWelcomeBackAdministrator);
