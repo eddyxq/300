@@ -18,7 +18,7 @@ import system.Hospital_Management_System;
 /*
  * This class is a panel which allows the patient to view their appointment(s).
  */
-public class PatientViewAppointmentPanel
+public class HomePanel
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTextField tfpatientId;
@@ -34,7 +34,7 @@ public class PatientViewAppointmentPanel
 		patientViewAppointment.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(PatientViewAppointmentPanel.class.getResource("/graphics/patientID_background.png")));
+		lblBackground.setIcon(new ImageIcon(HomePanel.class.getResource("/graphics/patientID_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * PATIENT ID
@@ -73,7 +73,7 @@ public class PatientViewAppointmentPanel
 		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
 		btnSubmit.setBounds(830, 660, 250, 59);
 		/*
-		 * BUTTON TO DIRECT ADMIN/ STAFF TO LOGIN PAGE
+		 * BUTTON - EMPLOYEE LOGIN
 		 */
 		JButton btnAdminStaffLogin = new JButton("Click here to login");
 		btnAdminStaffLogin.addActionListener(new ActionListener() 

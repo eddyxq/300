@@ -6,21 +6,7 @@ import database.TextReader;
 import database.TextWriter;
 import user.Employee;
 import user.Patient;
-import gui.AddAppointmentPanel;
-import gui.AddPatientPanel;
-import gui.AddStaffPanel;
-import gui.AdminMainPanel;
-import gui.GUI;
-import gui.LoginPanel;
-import gui.PatientInfoPanel;
-import gui.PatientListPanel;
-import gui.PatientManagePanel;
-import gui.PatientViewAppointmentPanel;
-import gui.StaffAppointmentListPanel;
-import gui.StaffListPanel;
-import gui.StaffManagePanel;
-import gui.UsernameNPasswordPanel;
-import gui.UsernameNPasswordPanelAdmin;
+import gui.*;
 
 /*
  * This class contains the logic for the hospital manage system.
@@ -32,12 +18,13 @@ public class Hospital_Management_System
 	//list of all the patients in the system
 	ArrayList<Employee> employeeRecord = new ArrayList<Employee>();
 	//initialize GUI
-	private	JPanel loginPage = new LoginPanel().createPanel(this);
+	//private	JPanel loginPage = new LoginPanel().createPanel(this);
 	private	JPanel addPatientPage = new AddPatientPanel().createPanel(this);
 	private JPanel patientManagementPage = new PatientManagePanel().createPanel(this);
 	private JPanel staffManagementPage = new StaffManagePanel().createPanel(this);
 	private JPanel adminMainPage = new AdminMainPanel().createPanel(this);
-	private JPanel patientViewAppointmentPage = new PatientViewAppointmentPanel().createPanel(this);
+	private JPanel employeeMainPage = new EmployeeMainPanel().createPanel(this);
+	private JPanel homePage = new HomePanel().createPanel(this);
 	private JPanel patientInfoPage = new PatientInfoPanel().createPanel(this);
 	private JPanel addAppointmentPage = new AddAppointmentPanel().createPanel(this);
 	private PatientListPanel plp = new PatientListPanel();
@@ -45,8 +32,7 @@ public class Hospital_Management_System
 	private StaffListPanel slp = new StaffListPanel();
 	private JPanel staffListPage = slp.createPanel(this);
 	private JPanel addStaffPage = new AddStaffPanel().createPanel(this);
-	private JPanel usernameNPasswordPage = new UsernameNPasswordPanel().createPanel(this);
-	private JPanel usernameNPasswordPageAdmin = new UsernameNPasswordPanelAdmin().createPanel(this);
+	private JPanel loginPage = new LoginPanel().createPanel(this);
 	private JPanel staffAppointmentListPage = new StaffAppointmentListPanel().createPanel(this);
 	
 	public Integer id;
@@ -57,10 +43,10 @@ public class Hospital_Management_System
 	{
 		patientRecord = new TextReader().load();
 		loadData();
-		new GUI(loginPage, addPatientPage, patientManagementPage, adminMainPage, 
-		patientViewAppointmentPage, patientInfoPage, addAppointmentPage, patientListPage,
-		addStaffPage, staffManagementPage, staffListPage, usernameNPasswordPage, 
-		usernameNPasswordPageAdmin, staffAppointmentListPage);
+		new GUI(addPatientPage, patientManagementPage, adminMainPage, 
+		homePage, patientInfoPage, addAppointmentPage, patientListPage,
+		addStaffPage, staffManagementPage, staffListPage, loginPage, 
+		staffAppointmentListPage, employeeMainPage);
 		Runtime.getRuntime().addShutdownHook(onExit());
 	}
 	/**
@@ -91,37 +77,15 @@ public class Hospital_Management_System
 	public void startHMS() 
 	{
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {public void run() {}});
-		displayViewAppointmentPage();
-	}
-	/**
-	 * This method will change the gui to display the login page.
-	 */
-	public void displayLoginPage() 
-	{
-		loginPage.setVisible(true);
-		adminMainPage.setVisible(false);
-		patientViewAppointmentPage.setVisible(false);
-		usernameNPasswordPage.setVisible(false);
-		usernameNPasswordPageAdmin.setVisible(false);
-	}
-	/**
-	 * This method will change the gui to display the username and password prompt for admin
-	 */
-	public void displayUsernameNPasswordPageAdmin()
-	{
-		usernameNPasswordPageAdmin.setVisible(true);
-		loginPage.setVisible(false);
-		adminMainPage.setVisible(false);
+		displayHomePage();
 	}
 	/**
 	 * This method will change the gui to display the username and password prompt for staffs
 	 */
-	public void displayUsernameNPasswordPageStaff()
+	public void displayLoginPage()
 	{
-		usernameNPasswordPage.setVisible(true);
-		loginPage.setVisible(false);
-		staffAppointmentListPage.setVisible(false);
-
+		loginPage.setVisible(true);
+		homePage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the admin main page.
@@ -131,8 +95,15 @@ public class Hospital_Management_System
 		adminMainPage.setVisible(true);
 		loginPage.setVisible(false);
 		patientManagementPage.setVisible(false);
-		staffManagementPage.setVisible(false);
-		usernameNPasswordPageAdmin.setVisible(false);
+	}
+	/**
+	 * This method will change the gui to display the employee main page.
+	 */
+	public void displayEmployeeMainPage() 
+	{
+		employeeMainPage.setVisible(true);
+		loginPage.setVisible(false);
+		patientManagementPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the patient management page.
@@ -162,7 +133,7 @@ public class Hospital_Management_System
 	public void displayStaffAppointmentListPage() 
 	{
 		staffAppointmentListPage.setVisible(true);
-		usernameNPasswordPage.setVisible(false);
+		loginPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the add patient page.
@@ -175,10 +146,12 @@ public class Hospital_Management_System
 	/**
 	 * This method will change the gui to display the patient main page.
 	 */
-	public void displayViewAppointmentPage() 
+	public void displayHomePage() 
 	{
-		patientViewAppointmentPage.setVisible(true);
+		homePage.setVisible(true);
 		loginPage.setVisible(false);
+		adminMainPage.setVisible(false);
+		employeeMainPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the patient info page.
@@ -195,7 +168,6 @@ public class Hospital_Management_System
 	{
 		patientListPage.setVisible(true);
 		patientManagementPage.setVisible(false);
-		addAppointmentPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the staff list page.

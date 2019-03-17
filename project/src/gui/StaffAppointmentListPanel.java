@@ -79,7 +79,7 @@ public class StaffAppointmentListPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				hms.displayUsernameNPasswordPageStaff();
+				hms.displayLoginPage();
 			}
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));

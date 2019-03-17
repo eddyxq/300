@@ -16,7 +16,7 @@ import system.Hospital_Management_System;
  * This class is a panel which allows administrator to select how to interact with patient/
  * employee records.
  */
-public class AdminMainPanel
+public class EmployeeMainPanel
 {
 	/**
 	 * This method creates and returns a JPanel
@@ -32,12 +32,12 @@ public class AdminMainPanel
 		adminMain.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(AdminMainPanel.class.getResource("/graphics/Admin_background.png")));
+		lblBackground.setIcon(new ImageIcon(EmployeeMainPanel.class.getResource("/graphics/Admin_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
 		 */
-		JLabel lblWelcomeBackAdministrator = new JLabel("Welcome Back Administrator!");
+		JLabel lblWelcomeBackAdministrator = new JLabel("Welcome Back Doc!");
 		lblWelcomeBackAdministrator.setFont(bArial);
 		lblWelcomeBackAdministrator.setBounds(166, 29, 510, 26);
 		/*
@@ -49,31 +49,31 @@ public class AdminMainPanel
 		date.setFont(new Font("Calibri Light", Font.PLAIN, 26));
 		date.setBounds(166, 87, 560, 26);
 		/*
-		 * MANAGE PATIENT RECORDS BUTTON
+		 * VIEW SCHEDULE BUTTON
 		 */
-		JButton btnManagePatient = new JButton("Manage Patient Records");
-		btnManagePatient.addActionListener(new ActionListener() 
+		JButton btnViewSchedule = new JButton("View Today's Schedule");
+		btnViewSchedule.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				hms.displayPatientManagementPage();
+				//logic for viewing schedule
 			}
 		});
-		btnManagePatient.setFont(new Font("Arial", Font.BOLD, 16));
-		btnManagePatient.setBounds(725, 360, 500, 59);
+		btnViewSchedule.setFont(new Font("Arial", Font.BOLD, 16));
+		btnViewSchedule.setBounds(725, 360, 500, 59);
 		/*
-		 * MANAGE EMPLOYEE RECORDS BUTTON
+		 * VIEW CALENDAR BUTTON
 		 */
-		JButton btnManageEmployee = new JButton("Manage Employee Records");
-		btnManageEmployee.addActionListener(new ActionListener() 
+		JButton btnViewCalendar = new JButton("View Calendar");
+		btnViewCalendar.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				hms.displayStaffManagementPage();
+				//logic for viewing calendar
 			}
 		});
-		btnManageEmployee.setFont(new Font("Arial", Font.BOLD, 16));
-		btnManageEmployee.setBounds(725, 560, 500, 59);
+		btnViewCalendar.setFont(new Font("Arial", Font.BOLD, 16));
+		btnViewCalendar.setBounds(725, 560, 500, 59);
 		/*
 		 * RETURN BUTTON
 		 */
@@ -88,8 +88,8 @@ public class AdminMainPanel
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(725, 760, 500, 59);
 		//add all the components to panel
-		adminMain.add(btnManagePatient);
-		adminMain.add(btnManageEmployee);
+		adminMain.add(btnViewSchedule);
+		adminMain.add(btnViewCalendar);
 		adminMain.add(btnReturn);
 		adminMain.add(lblWelcomeBackAdministrator);
 		adminMain.add(date);

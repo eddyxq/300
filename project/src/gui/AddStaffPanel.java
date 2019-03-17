@@ -23,7 +23,7 @@ import user.Employee;
 import user.Patient;
 
 /*
- * This class displays the add patient panel.
+ * This class displays the add staff panel.
  */
 public class AddStaffPanel 
 {
@@ -43,9 +43,9 @@ public class AddStaffPanel
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
 		//initialize the panel layout and size
-		JPanel addPatients = new JPanel();
-		addPatients.setLayout(null);
-		addPatients.setBounds(0, 0, 1920, 1080);
+		JPanel addStaff = new JPanel();
+		addStaff.setLayout(null);
+		addStaff.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
 		lblBackground.setIcon(new ImageIcon(AddPatientPanel.class.getResource("/graphics/AddStaffbackground.png")));
@@ -176,7 +176,7 @@ public class AddStaffPanel
 			public void actionPerformed(ActionEvent e) 
 			{
 				clearTextField();
-				hms.displayPatientManagementPage();
+				hms.displayStaffManagementPage();
 			}
 		});
 		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));
@@ -219,30 +219,30 @@ public class AddStaffPanel
 			}
 		});
 		//add all the components to panel
-		addPatients.add(lblPhoneNumber);
-		addPatients.add(tfPhoneNum);
-		addPatients.add(lbEmail);
-		addPatients.add(tfEmail);
-		addPatients.add(slash);
-		addPatients.add(label);
-		addPatients.add(lbDOB);
-		addPatients.add(tfDay);
-		addPatients.add(tfMonth);
-		addPatients.add(tfYear);
-		addPatients.add(lbSex);
-		addPatients.add(rdbtnMale);
-		addPatients.add(rdbtnFemale);
-		addPatients.add(lbFirstName);
-		addPatients.add(tfFirstName);
-		addPatients.add(tfLastName);
-		addPatients.add(lbLastName);
-		addPatients.add(btnSubmit);
-		addPatients.add(btnCancel);
-		addPatients.add(lblWelcomeBackAdministrator);
-		addPatients.add(date);
-		addPatients.add(lblBackground);
+		addStaff.add(lblPhoneNumber);
+		addStaff.add(tfPhoneNum);
+		addStaff.add(lbEmail);
+		addStaff.add(tfEmail);
+		addStaff.add(slash);
+		addStaff.add(label);
+		addStaff.add(lbDOB);
+		addStaff.add(tfDay);
+		addStaff.add(tfMonth);
+		addStaff.add(tfYear);
+		addStaff.add(lbSex);
+		addStaff.add(rdbtnMale);
+		addStaff.add(rdbtnFemale);
+		addStaff.add(lbFirstName);
+		addStaff.add(tfFirstName);
+		addStaff.add(tfLastName);
+		addStaff.add(lbLastName);
+		addStaff.add(btnSubmit);
+		addStaff.add(btnCancel);
+		addStaff.add(lblWelcomeBackAdministrator);
+		addStaff.add(date);
+		addStaff.add(lblBackground);
 		
-		return addPatients;
+		return addStaff;
 	}
 	/**
 	 * This method returns true if form is completely filled out
