@@ -51,7 +51,7 @@ public class CalendarPanel
 		table.setRowHeight(113);
 		table.setEnabled(true);
 		JScrollPane tableContainer = new JScrollPane(table);
-		tableContainer.setLocation(48, 319);
+		tableContainer.setLocation(45, 319);
 		tableContainer.setSize(1046, 701);
 		//initialize the panel layout and size
 		JPanel calendarPanel = new JPanel();
@@ -59,7 +59,7 @@ public class CalendarPanel
 		calendarPanel.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(PatientListPanel.class.getResource("/graphics/PatientList_background.png")));
+		lblBackground.setIcon(new ImageIcon(PatientListPanel.class.getResource("/graphics/staffCalendar_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
@@ -93,7 +93,7 @@ public class CalendarPanel
 			}
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
-		btnReturn.setBounds(1125, 955, 500, 59);
+		btnReturn.setBounds(1255, 955, 500, 59);
 		//add all the components to panel
 		calendarPanel.add(btnReturn);
 		calendarPanel.add(tableContainer, BorderLayout.CENTER);

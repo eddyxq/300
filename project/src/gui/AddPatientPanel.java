@@ -91,10 +91,12 @@ public class AddPatientPanel
 		JRadioButton rdbtnMale = new JRadioButton("Male");
 		rdbtnMale.setBackground(bgColor);
 		rdbtnMale.setBounds(640, 387, 100, 23);
+		rdbtnMale.setOpaque(false);
 		//female button
 		JRadioButton rdbtnFemale = new JRadioButton("Female");
 		rdbtnFemale.setBackground(bgColor);
 		rdbtnFemale.setBounds(748, 387, 100, 23);
+		rdbtnFemale.setOpaque(false);
 		//ensures at most one button can be selected
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnMale);

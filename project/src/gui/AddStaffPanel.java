@@ -20,7 +20,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import system.Hospital_Management_System;
 import user.Employee;
-import user.Patient;
 
 /*
  * This class displays the add staff panel.
@@ -92,10 +91,12 @@ public class AddStaffPanel
 		JRadioButton rdbtnMale = new JRadioButton("Male");
 		rdbtnMale.setBackground(bgColor);
 		rdbtnMale.setBounds(640, 387, 100, 23);
+		rdbtnMale.setOpaque(false);
 		//female button
 		JRadioButton rdbtnFemale = new JRadioButton("Female");
 		rdbtnFemale.setBackground(bgColor);
 		rdbtnFemale.setBounds(748, 387, 100, 23);
+		rdbtnFemale.setOpaque(false);
 		//ensures at most one button can be selected
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnMale);
