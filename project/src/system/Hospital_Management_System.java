@@ -18,7 +18,6 @@ public class Hospital_Management_System
 	//list of all the patients in the system
 	ArrayList<Employee> employeeRecord = new ArrayList<Employee>();
 	//initialize GUI
-	//private	JPanel loginPage = new LoginPanel().createPanel(this);
 	private	JPanel addPatientPage = new AddPatientPanel().createPanel(this);
 	private JPanel patientManagementPage = new PatientManagePanel().createPanel(this);
 	private JPanel staffManagementPage = new StaffManagePanel().createPanel(this);
@@ -34,6 +33,7 @@ public class Hospital_Management_System
 	private JPanel addStaffPage = new AddStaffPanel().createPanel(this);
 	private JPanel loginPage = new LoginPanel().createPanel(this);
 	private JPanel staffAppointmentListPage = new StaffAppointmentListPanel().createPanel(this);
+	private JPanel calendarPage = new CalendarPanel().createPanel(this);
 	
 	public Integer id;
 	/**
@@ -41,12 +41,15 @@ public class Hospital_Management_System
 	 */
 	public Hospital_Management_System()
 	{
+		//retrieve patient data
 		patientRecord = new TextReader().load();
 		loadData();
+		//start user interface
 		new GUI(addPatientPage, patientManagementPage, adminMainPage, 
 		homePage, patientInfoPage, addAppointmentPage, patientListPage,
 		addStaffPage, staffManagementPage, staffListPage, loginPage, 
-		staffAppointmentListPage, employeeMainPage);
+		staffAppointmentListPage, employeeMainPage, calendarPage);
+		//saves date on exit
 		Runtime.getRuntime().addShutdownHook(onExit());
 	}
 	/**
@@ -78,119 +81,118 @@ public class Hospital_Management_System
 	{
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {public void run() {}});
 		displayHomePage();
+		//displayCalendarPage();
 	}
 	/**
 	 * This method will change the gui to display the username and password prompt for staffs
 	 */
 	public void displayLoginPage()
 	{
+		hideAll();
 		loginPage.setVisible(true);
-		homePage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the admin main page.
 	 */
 	public void displayAdminMainPage() 
 	{
+		hideAll();
 		adminMainPage.setVisible(true);
-		loginPage.setVisible(false);
-		patientManagementPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the employee main page.
 	 */
 	public void displayEmployeeMainPage() 
 	{
+		hideAll();
 		employeeMainPage.setVisible(true);
-		loginPage.setVisible(false);
-		patientManagementPage.setVisible(false);
+	}
+	/**
+	 * This method will change the gui to display the employee calendar page.
+	 */
+	public void displayCalendarPage() 
+	{
+		hideAll();
+		calendarPage.setVisible(true);
 	}
 	/**
 	 * This method will change the gui to display the patient management page.
 	 */
 	public void displayPatientManagementPage() 
 	{
+		hideAll();
 		patientManagementPage.setVisible(true);
-		adminMainPage.setVisible(false);
-		addPatientPage.setVisible(false);
-		patientInfoPage.setVisible(false);
-		patientListPage.setVisible(false);
-		addAppointmentPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the staff management page.
 	 */
 	public void displayStaffManagementPage() 
 	{
+		hideAll();
 		staffManagementPage.setVisible(true);
-		addStaffPage.setVisible(false);
-		adminMainPage.setVisible(false);
-		staffListPage.setVisible(false);
 	}
 	/**
 	 *  This method will change the gui to display the appointment list for staffs
 	 */
 	public void displayStaffAppointmentListPage() 
 	{
+		hideAll();
 		staffAppointmentListPage.setVisible(true);
-		loginPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the add patient page.
 	 */
 	public void displayAddPatientPage() 
 	{
+		hideAll();
 		addPatientPage.setVisible(true);
-		patientManagementPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the patient main page.
 	 */
 	public void displayHomePage() 
 	{
+		hideAll();
 		homePage.setVisible(true);
-		loginPage.setVisible(false);
-		adminMainPage.setVisible(false);
-		employeeMainPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the patient info page.
 	 */
 	public void displayPatientInfoPage()
 	{
+		hideAll();
 		patientInfoPage.setVisible(true);
-		patientManagementPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the patient list page.
 	 */
 	public void displayPatientListPage() 
 	{
+		hideAll();
 		patientListPage.setVisible(true);
-		patientManagementPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the staff list page.
 	 */
 	public void displayStaffListPage()
 	{
+		hideAll();
 		staffListPage.setVisible(true);
-		staffManagementPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the add appointment page.
 	 */
 	public void displayAddAppointmnetPage()
 	{
+		hideAll();
 		addAppointmentPage.setVisible(true);
-		patientListPage.setVisible(false);
 	}
 	/**
 	 * This method will change the gui to display the add staff page.
 	 */
 	public void displayAddStaffPage()
 	{
-		staffManagementPage.setVisible(false);
+		hideAll();
 		addStaffPage.setVisible(true);
 	}
 	/**
@@ -267,5 +269,22 @@ public class Hospital_Management_System
 			}
 		}
 		return noDigits;
+	}
+	private void hideAll()
+	{
+		addPatientPage.setVisible(false);
+		patientManagementPage.setVisible(false);
+		staffManagementPage.setVisible(false);
+		adminMainPage.setVisible(false);
+		employeeMainPage.setVisible(false);
+		homePage.setVisible(false);
+		patientInfoPage.setVisible(false);
+		addAppointmentPage.setVisible(false);
+		patientListPage.setVisible(false);
+		staffListPage.setVisible(false);
+		addStaffPage.setVisible(false);
+		loginPage.setVisible(false);
+		staffAppointmentListPage.setVisible(false);
+		calendarPage.setVisible(false);
 	}
 }

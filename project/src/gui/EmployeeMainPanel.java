@@ -69,7 +69,7 @@ public class EmployeeMainPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				//logic for viewing calendar
+				hms.displayCalendarPage();
 			}
 		});
 		btnViewCalendar.setFont(new Font("Arial", Font.BOLD, 16));

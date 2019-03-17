@@ -82,7 +82,7 @@ public class AddAppointmentPanel
 			public void actionPerformed(ActionEvent e) 
 			{
 				clearTextField();
-				hms.displayPatientListPage();
+				hms.displayPatientManagementPage();
 			}
 		});
 		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));
