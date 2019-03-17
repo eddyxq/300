@@ -35,7 +35,7 @@ public class AddStaffPanel
 	private JTextField tfYear;
 	private JTextField tfPhoneNum;
 	private JTextField tfEmail;
-
+	private JRadioButton rdbtnClear;
 	/**
 	 * This method creates and returns a JPanel
 	 */
@@ -97,10 +97,13 @@ public class AddStaffPanel
 		rdbtnFemale.setBackground(bgColor);
 		rdbtnFemale.setBounds(748, 387, 100, 23);
 		rdbtnFemale.setOpaque(false);
+		//"clear radio button"
+		rdbtnClear = new JRadioButton("");
 		//ensures at most one button can be selected
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnMale);
 		group.add(rdbtnFemale);
+		group.add(rdbtnClear);
 		/*
 		 * DOB
 		 */
@@ -274,6 +277,7 @@ public class AddStaffPanel
 	 */
 	private void clearTextField() 
 	{
+		rdbtnClear.setSelected(true);
 		tfFirstName.setText("");
 		tfLastName.setText("");
 		tfDay.setText("");
