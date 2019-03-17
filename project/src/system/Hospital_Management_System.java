@@ -180,7 +180,7 @@ public class Hospital_Management_System
 	/**
 	 * This method will change the gui to display the add appointment page.
 	 */
-	public void displayAddAppointmnetPage()
+	public void displayAddAppointmentPage()
 	{
 		hideAll();
 		addAppointmentPage.setVisible(true);

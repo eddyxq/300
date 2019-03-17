@@ -3,9 +3,6 @@ package gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,7 +17,6 @@ import system.Hospital_Management_System;
  */
 public class HomePanel
 {
-	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTextField tfpatientId;
 	
 	/**
@@ -68,6 +64,7 @@ public class HomePanel
 					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 					null, options, options[0]);
 				}
+				tfClear();
 			}
 		});
 		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
@@ -81,6 +78,7 @@ public class HomePanel
 			public void actionPerformed(ActionEvent e) 
 			{
 				hms.displayLoginPage();
+				tfClear();
 			}
 		});
 		btnAdminStaffLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -92,5 +90,12 @@ public class HomePanel
 		patientViewAppointment.add(lblBackground);
 		
 		return patientViewAppointment;
+	}
+	/*
+	 * This method clears the textfields
+	 */
+	private void tfClear() 
+	{
+		tfpatientId.setText("");
 	}
 }

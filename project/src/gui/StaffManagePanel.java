@@ -30,7 +30,7 @@ public class StaffManagePanel
 		staffManagement.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(StaffManagePanel.class.getResource("/graphics/PatientManagement_background.png")));
+		lblBackground.setIcon(new ImageIcon(StaffManagePanel.class.getResource("/graphics/pNsManagement_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
@@ -58,13 +58,13 @@ public class StaffManagePanel
 			}
 		});
 		btnAddS.setFont(new Font("Arial", Font.BOLD, 16));
-		btnAddS.setBounds(725, 360, 500, 59);
+		btnAddS.setBounds(725, 450, 500, 59);
 		/*
 		 * VIEW PATIENT BUTTON
 		 */
 		JButton btnView = new JButton("View Staff List");
 		btnView.setFont(new Font("Arial", Font.BOLD, 16));
-		btnView.setBounds(725, 560, 500, 59);
+		btnView.setBounds(725, 650, 500, 59);
 		btnView.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 

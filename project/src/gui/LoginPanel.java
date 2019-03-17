@@ -19,7 +19,6 @@ public class LoginPanel
 	/*
 	 * This class is a panel which allows the user to login to the system.
 	 */
-	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTextField tfUsername;
 	private JPasswordField passwordField;
 	
@@ -80,6 +79,7 @@ public class LoginPanel
 					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 					null, options, options[0]);
 				}
+				tfClear();
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 22));
@@ -94,6 +94,7 @@ public class LoginPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				hms.displayHomePage();
+				tfClear();
 			}
 		});
 		btnReturn.setBounds(854, 928, 225, 71);
@@ -107,5 +108,13 @@ public class LoginPanel
 		uNPAPanel.add(lblBackground);
 		
 		return uNPAPanel;
+	}
+	/*
+	 * This method clears the textfields
+	 */
+	private void tfClear() 
+	{
+		tfUsername.setText("");
+		passwordField.setText("");
 	}
 }

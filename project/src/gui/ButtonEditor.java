@@ -53,7 +53,7 @@ public class ButtonEditor extends DefaultCellEditor
 	{
 		if(clicked)
 		{
-			hms.displayAddAppointmnetPage();
+			hms.displayAddAppointmentPage();
 			hms.id = this.id;
 		}
 		clicked = false;

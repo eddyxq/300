@@ -59,7 +59,7 @@ public class CalendarPanel
 		calendarPanel.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(PatientListPanel.class.getResource("/graphics/PatientList_background.png")));
+		lblBackground.setIcon(new ImageIcon(PatientListPanel.class.getResource("/graphics/staffCalendar_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE

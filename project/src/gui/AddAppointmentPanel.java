@@ -33,7 +33,7 @@ public class AddAppointmentPanel
 		addAppointmentPanel.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(AddAppointmentPanel.class.getResource("/graphics/PatientList_background.png")));
+		lblBackground.setIcon(new ImageIcon(AddAppointmentPanel.class.getResource("/graphics/list_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
