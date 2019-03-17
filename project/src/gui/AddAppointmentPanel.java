@@ -58,9 +58,9 @@ public class AddAppointmentPanel
 		/*
 		 * DATE
 		 */
-		JLabel lblDate = new JLabel("Date:");
+		JLabel lblDate = new JLabel("Date: (DD/MM/YYYY)");
 		lblDate.setFont(new Font("Arial", Font.BOLD, 16));
-		lblDate.setBounds(959, 339, 46, 14);
+		lblDate.setBounds(900, 339, 300, 14);
 		/*
 		 * Text Field for Appointment Date
 		 */
@@ -70,9 +70,9 @@ public class AddAppointmentPanel
 		/*
 		 * TIME
 		 */
-		JLabel lbTime = new JLabel("Time:");
+		JLabel lbTime = new JLabel("Time: (HH:MM)");
 		lbTime.setFont(new Font("Arial", Font.BOLD, 16));
-		lbTime.setBounds(959, 453, 46, 14);
+		lbTime.setBounds(915, 453, 300, 14);
 		/*
 		 * Text Field for Appointment Time
 		 */
