@@ -36,6 +36,10 @@ public class AddPatientPanel
 	private JTextField tfPhoneNum;
 	private JTextField tfEmail;
 	private JRadioButton rdbtnClear;
+	private Color Red = new Color(255, 150, 135);
+	private Color Default = new Color(255,255,255);
+	private ValidateInput val = new ValidateInput();
+
 	/**
 	 * This method creates and returns a JPanel
 	 */
@@ -198,19 +202,74 @@ public class AddPatientPanel
 				//ensure all fields are filled out
 				if(formComplete() && (rdbtnMale.isSelected() || rdbtnFemale.isSelected()))
 				{
-					hms.addPatient(new Patient(tfFirstName.getText(), tfLastName.getText(), 
-					(rdbtnMale.isSelected() ? "Male" : "Female"), 
-					tfDay.getText()+ "/" + tfMonth.getText() + "/" + tfYear.getText(),
-					tfPhoneNum.getText(), tfEmail.getText()));
+					//Initially clearing all field colors
+					clearRedField();
+					
+					//If all input is correct, add this patient
+					if(val.validatePatient(tfFirstName.getText(), tfLastName.getText(), tfDay.getText(),
+							tfMonth.getText(), tfYear.getText(), tfPhoneNum.getText(), tfEmail.getText()))
+					{
+						
+						hms.addPatient(new Patient(tfFirstName.getText(), tfLastName.getText(), 
+						(rdbtnMale.isSelected() ? "Male" : "Female"), 
+						tfDay.getText()+ "/" + tfMonth.getText() + "/" + tfYear.getText(),
+						tfPhoneNum.getText(), tfEmail.getText()));
+	
+						//display confirmation message
+						Object[] options = {"Ok"};
+						JOptionPane.showOptionDialog(null, "Patient has been added.", "Success",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+						null, options, options[0]);
+						//go back to previous menu
+						clearTextField();
+						clearRedField();
+						hms.displayPatientManagementPage();
+					}
+					
+					//Otherwise, find out which field(s) are incorrect and highlight them 
+					else
+					{
+						//Checking if first name isn't valid
+						if(!val.validateName(tfFirstName.getText()))
+						{
+							tfFirstName.setBackground(Red);
+						}
+						
+						if(!val.validateName(tfLastName.getText()))
+						{
+							tfLastName.setBackground(Red);
+						}
+						
+						if(!val.validateDay(tfDay.getText()))
+						{
+							tfDay.setBackground(Red);
+						}
+						
+						if(!val.validateMonth(tfMonth.getText()))
+						{
+							tfMonth.setBackground(Red);
+						}
+						
+						if(!val.validateYear(tfYear.getText()))
+						{
+							tfYear.setBackground(Red);
+						}
+						
+						if(!val.validatePhone(tfPhoneNum.getText()))
+						{
+							tfPhoneNum.setBackground(Red);
+						}
+						
+						if(!val.validateEmail(tfEmail.getText()))
+						{
+							tfEmail.setBackground(Red);
+						}
 
-					//display confirmation message
-					Object[] options = {"Ok"};
-					JOptionPane.showOptionDialog(null, "Patient has been added.", "Success",
-					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-					null, options, options[0]);
-					//go back to previous menu
-					clearTextField();
-					hms.displayPatientManagementPage();
+						Object[] options = {"Close"};
+						JOptionPane.showOptionDialog(null, "Please ensure all highlighted entries are correct", "Warning",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+						null, options, options[0]);
+					}
 				}
 				//display warning message if any fields are empty 
 				else
@@ -285,5 +344,19 @@ public class AddPatientPanel
 		tfYear.setText("");
 		tfPhoneNum.setText("");
 		tfEmail.setText("");
+	}
+	
+	/**
+	 * This method resets all the text fields color
+	 */
+	private void clearRedField()
+	{
+		tfFirstName.setBackground(Default);
+		tfLastName.setBackground(Default);
+		tfDay.setBackground(Default);
+		tfMonth.setBackground(Default);
+		tfYear.setBackground(Default);
+		tfPhoneNum.setBackground(Default);
+		tfEmail.setBackground(Default);	
 	}
 }
