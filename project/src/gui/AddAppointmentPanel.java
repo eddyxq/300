@@ -88,7 +88,14 @@ public class AddAppointmentPanel
 			public void actionPerformed(ActionEvent e) 
 			{
 				clearTextField();
-				hms.displayPatientManagementPage();
+				if(hms.getAccessFrom() == "Admin")
+				{
+					hms.displayPatientManagementPage();
+				}
+				else if(hms.getAccessFrom() == "Employee")
+				{
+					hms.displayEmployeeMainPage();
+				}
 			}
 		});
 		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));
