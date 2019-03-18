@@ -72,7 +72,7 @@ public class TextReader
 		Scanner reader = null;
 		try 
 		{
-			reader = new Scanner(new File("adminPasswords.txt"));
+			reader = new Scanner(new File("EmployeeAccounts.txt"));
 			while (reader.hasNext()) 
 			{
 				String line = reader.nextLine();
