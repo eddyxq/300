@@ -1,4 +1,4 @@
-package gui;
+package system;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -60,8 +60,8 @@ public class ValidateInput {
 	 */
 	public boolean validateDay(String day, String month, String year)
 	{
-		//Day cannot be validated without valid month and year
-		if(!this.validateMonth(month) || !this.validateBirthYear(year))
+		//Day cannot be validated without valid month
+		if(!this.validateMonth(month))
 		{
 			return false;
 		}
@@ -185,6 +185,11 @@ public class ValidateInput {
 			return false;
 		}
 		
+		int count = email.length() - email.replace("@", "").length();
+		if(count != 1)
+		{
+			return false;
+		}
 		return true;
 	}
 	
@@ -220,9 +225,10 @@ public class ValidateInput {
 			return false;
 		}
 		
+		
 		//Getting value of current year to compare entry 
 		int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-		int thisMonth = Calendar.getInstance().get(Calendar.MONTH) +1; //Months start at 0
+		int thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1; //Months start at 0
 		int thisDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 		
 		//Prevent setting appointments in the past
@@ -232,8 +238,8 @@ public class ValidateInput {
 		//Current year and month, day less than current day
 		if(Integer.parseInt(parts[2]) < thisYear || 
 		(Integer.parseInt(parts[2]) == thisYear && Integer.parseInt(parts[1]) < thisMonth) ||
-		(Integer.parseInt(parts[2]) == thisYear && Integer.parseInt(parts[1]) == thisMonth)
-		&& Integer.parseInt(parts[0]) < thisDay)
+		(Integer.parseInt(parts[2]) == thisYear && Integer.parseInt(parts[1]) == thisMonth
+		&& Integer.parseInt(parts[0]) < thisDay))
 		{
 			return false;
 		}
@@ -277,3 +283,4 @@ public class ValidateInput {
 	
 	
 }
+

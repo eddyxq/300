@@ -66,13 +66,26 @@ public class HomePanel
 						//If the patient is found, display their appointment
 						if (hms.patientIdValid(tfpatientId.getText()))
 						{
-							//display appointment time
-							Object[] options = {"Ok"};
-							JOptionPane.showOptionDialog(null, "You have an appointment on " + 
-							hms.getAppointmentDate(tfpatientId.getText()) + " at " +
-							hms.getAppointmentTime(tfpatientId.getText()) + ".", "Notice",
-							JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-							null, options, options[0]);
+							//Ensuring an appointment is set for this patient
+							if(!hms.getAppointmentDate(tfpatientId.getText()).contains("UNKNOWN"))
+							{
+								//display appointment time
+								Object[] options = {"Ok"};
+								JOptionPane.showOptionDialog(null, "You have an appointment on " + 
+								hms.getAppointmentDate(tfpatientId.getText()) + " at " +
+								hms.getAppointmentTime(tfpatientId.getText()) + ".", "Notice",
+								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+								null, options, options[0]);
+							}
+							
+							//No appointment found, message
+							else
+							{
+								Object[] options = {"Close"};
+								JOptionPane.showOptionDialog(null, "You do not currently have a booked appointment.", "Warning",
+								JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+								null, options, options[0]);	
+							}
 						}
 						
 						//In case ID wasn't found in file
