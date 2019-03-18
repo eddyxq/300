@@ -69,10 +69,10 @@ public class TextReader
 	 */
 	public String checkCredentials(String user, String pass) 
 	{
-		boolean userfound = false;
+		Scanner reader = null;
 		try 
 		{
-			Scanner reader = new Scanner(new File("adminPasswords.txt"));
+			reader = new Scanner(new File("EmployeeAccounts.txt"));
 			while (reader.hasNext()) 
 			{
 				String line = reader.nextLine();
@@ -87,10 +87,16 @@ public class TextReader
 					return employeeType.equals("a") ? "valid_a" : "valid_e";					
 				}
 			}
-			reader.close();
+			
 		} 
-		catch (FileNotFoundException fnfe) {}
-		
+		catch (FileNotFoundException fnfe) 
+		{
+			System.out.println("File not found");
+		}
+		finally
+		{
+			reader.close();
+		}
 		return "invalid";
 	}
 }

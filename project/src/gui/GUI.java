@@ -15,7 +15,7 @@ public class GUI extends JFrame
      * initializes the frame
      */
     public GUI(JPanel addPatientPanel, JPanel patientManagementPage, JPanel adminMainPanel, 
-    		   JPanel homePagePanel, JPanel patientInfoPanel, JPanel addAppointmentPanel, 
+    		   JPanel homePagePanel, JPanel addAppointmentPanel, 
     		   JPanel patientListPanel, JPanel addStaffPanel, JPanel staffManagementPanel, 
     		   JPanel staffListPanel, JPanel loginPanel, JPanel employeeMainPanel, JPanel calendarPanel)
     {
@@ -30,7 +30,6 @@ public class GUI extends JFrame
         window.getContentPane().add(patientManagementPage);
         window.getContentPane().add(adminMainPanel);
         window.getContentPane().add(homePagePanel);
-        window.getContentPane().add(patientInfoPanel);
         window.getContentPane().add(addAppointmentPanel);
         window.getContentPane().add(patientListPanel);
         window.getContentPane().add(addStaffPanel);
@@ -44,7 +43,6 @@ public class GUI extends JFrame
         patientManagementPage.setVisible(false);
         adminMainPanel.setVisible(false);
         homePagePanel.setVisible(false);
-        patientInfoPanel.setVisible(false);
         addAppointmentPanel.setVisible(false);
         patientListPanel.setVisible(false);
         addStaffPanel.setVisible(false);
@@ -54,8 +52,8 @@ public class GUI extends JFrame
         employeeMainPanel.setVisible(false);
         calendarPanel.setVisible(false);
         //if want to start Full-Screen uncomment below
-//		window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-//		window.setUndecorated(true);    
+		//window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		//window.setUndecorated(true);    
         
         window.setVisible(true);
     }

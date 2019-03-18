@@ -110,7 +110,7 @@ public class LoginPanel
 		return uNPAPanel;
 	}
 	/*
-	 * This method clears the textfields
+	 * This method clears the text fields
 	 */
 	private void tfClear() 
 	{

@@ -24,7 +24,6 @@ public class Hospital_Management_System
 	private JPanel adminMainPage = new AdminMainPanel().createPanel(this);
 	private JPanel employeeMainPage = new EmployeeMainPanel().createPanel(this);
 	private JPanel homePage = new HomePanel().createPanel(this);
-	private JPanel patientInfoPage = new PatientInfoPanel().createPanel(this);
 	private JPanel addAppointmentPage = new AddAppointmentPanel().createPanel(this);
 	private PatientListPanel plp = new PatientListPanel();
 	private JPanel patientListPage = plp.createPanel(this);
@@ -34,7 +33,8 @@ public class Hospital_Management_System
 	private JPanel loginPage = new LoginPanel().createPanel(this);
 	private JPanel calendarPage = new CalendarPanel().createPanel(this);
 	
-	public Integer id;
+	private String accessFrom;
+	private Integer id;
 	/**
 	 * This constructor starts the system.
 	 */
@@ -44,7 +44,7 @@ public class Hospital_Management_System
 		loadData();
 		//start user interface
 		new GUI(addPatientPage, patientManagementPage, adminMainPage, 
-		homePage, patientInfoPage, addAppointmentPage, patientListPage,
+		homePage, addAppointmentPage, patientListPage,
 		addStaffPage, staffManagementPage, staffListPage, loginPage, 
 		employeeMainPage, calendarPage);
 		//saves date on exit
@@ -154,14 +154,6 @@ public class Hospital_Management_System
 		homePage.setVisible(true);
 	}
 	/**
-	 * This method will change the gui to display the patient info page.
-	 */
-	public void displayPatientInfoPage()
-	{
-		hideAll();
-		patientInfoPage.setVisible(true);
-	}
-	/**
 	 * This method will change the gui to display the patient list page.
 	 */
 	public void displayPatientListPage() 
@@ -224,7 +216,7 @@ public class Hospital_Management_System
 	 */
 	public void addAppointment(String date, String time)
 	{
-		patientRecord.get(id-1).setAppointment(date, time);
+		patientRecord.get(getId()-1).setAppointment(date, time);
 	}
 	/**
 	 * This method returns the appointment date.
@@ -268,6 +260,44 @@ public class Hospital_Management_System
 		}
 		return noDigits;
 	}
+	/**
+	 * This method will return the dates and times of patient appointments.
+	 * @param currentDay The current day
+	 * @param currentMonth The current month
+	 * @param currentYear The current year
+	 */
+	public ArrayList<String> generateDaySchedule(String currentDay, String currentMonth, String currentYear)
+	{
+		ArrayList<String> appointmentData = new ArrayList<String>();
+		String names = "";
+		String times = "";
+		
+		for(Patient p : patientRecord)
+		{
+			if(!p.getAppointmentDate().contains("UNKNOWN"))
+			{
+				String[] date = p.getAppointmentDate().split("/");
+				String day = date[0];
+				String month = date[1];
+				String year = date[2];
+
+				if ((day.equals(currentDay)) && (month.equals(currentMonth)) && (year.equals(currentYear)))
+				{
+					names += p.getFirstName() + " " + p.getLastName() + "<br/>";
+					times += p.getAppointmentTime() + "<br/>";
+				}
+			}
+		}
+		names = "<html>" + names + "</html>"; 
+		times = "<html>" + times + "</html>"; 
+		appointmentData.add(names);
+		appointmentData.add(times);
+		
+		return appointmentData;
+	}
+	/**
+	 * This method will hide all the visible panels.
+	 */
 	private void hideAll()
 	{
 		addPatientPage.setVisible(false);
@@ -276,12 +306,41 @@ public class Hospital_Management_System
 		adminMainPage.setVisible(false);
 		employeeMainPage.setVisible(false);
 		homePage.setVisible(false);
-		patientInfoPage.setVisible(false);
 		addAppointmentPage.setVisible(false);
 		patientListPage.setVisible(false);
 		staffListPage.setVisible(false);
 		addStaffPage.setVisible(false);
 		loginPage.setVisible(false);
 		calendarPage.setVisible(false);
+	}
+	/**
+	 * This method will return the id.
+	 */
+	public Integer getId() 
+	{
+		return id;
+	}
+	/**
+	 * This method set the id.
+	 * @param id The ID.
+	 */
+	public void setId(Integer id) 
+	{
+		this.id = id;
+	}
+	/**
+	 * This method will return accessFrom.
+	 */
+	public String getAccessFrom() 
+	{
+		return accessFrom;
+	}
+	/**
+	 * This method set the id.
+	 * @param accessFrom The type of employee that last accessed.
+	 */
+	public void setAccessFrom(String accessFrom) 
+	{
+		this.accessFrom = accessFrom;
 	}
 }

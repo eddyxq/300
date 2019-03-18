@@ -92,7 +92,7 @@ public class HomePanel
 		return patientViewAppointment;
 	}
 	/*
-	 * This method clears the textfields
+	 * This method clears the text fields
 	 */
 	private void tfClear() 
 	{

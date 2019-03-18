@@ -32,7 +32,7 @@ public class EmployeeMainPanel
 		adminMain.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(EmployeeMainPanel.class.getResource("/graphics/Admin_background.png")));
+		lblBackground.setIcon(new ImageIcon(EmployeeMainPanel.class.getResource("/graphics/staffMain_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
@@ -49,18 +49,21 @@ public class EmployeeMainPanel
 		date.setFont(new Font("Calibri Light", Font.PLAIN, 26));
 		date.setBounds(166, 87, 560, 26);
 		/*
-		 * VIEW SCHEDULE BUTTON
+		 * VIEW PATIENT BUTTON
 		 */
-		JButton btnViewSchedule = new JButton("View Today's Schedule");
-		btnViewSchedule.addActionListener(new ActionListener() 
+		JButton btnView = new JButton("View Patient List");
+		btnView.setFont(new Font("Arial", Font.BOLD, 16));
+		btnView.setBounds(725, 650, 500, 59);
+		btnView.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				//logic for viewing schedule
+				hms.setAccessFrom("Employee");
+				hms.displayPatientListPage();
 			}
 		});
-		btnViewSchedule.setFont(new Font("Arial", Font.BOLD, 16));
-		btnViewSchedule.setBounds(725, 450, 500, 59);
+		btnView.setFont(new Font("Arial", Font.BOLD, 16));
+		btnView.setBounds(725, 450, 500, 59);
 		/*
 		 * VIEW CALENDAR BUTTON
 		 */
@@ -88,7 +91,7 @@ public class EmployeeMainPanel
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(725, 850, 500, 59);
 		//add all the components to panel
-		adminMain.add(btnViewSchedule);
+		adminMain.add(btnView);
 		adminMain.add(btnViewCalendar);
 		adminMain.add(btnReturn);
 		adminMain.add(lblWelcomeBackAdministrator);

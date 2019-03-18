@@ -96,10 +96,11 @@ public class EmployeeListPanel
 	public void addEmployeeToTable(Employee employee, Hospital_Management_System hms) 
 	{
 		model.addRow(new Object[]{employee.getID(), employee.getFirstName(), employee.getLastName(),
-				employee.getSex(), employee.getDOB(), employee.getPhoneNum(), employee.getEmail(), "DISABLED"});
-				
-				//set custom renderer and editor to column
-				//table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());;
-				//table.getColumnModel().getColumn(7).setCellEditor(new ButtonEditor(new JTextField(), hms, employee.getID()));
+		employee.getSex(), employee.getDOB(), employee.getPhoneNum(), employee.getEmail(), "DISABLED"});
+		
+		//buttons are currently disabled
+		//set custom renderer and editor to column
+		//table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());;
+		//table.getColumnModel().getColumn(7).setCellEditor(new ButtonEditor(new JTextField(), hms, employee.getID()));
 	}
 }

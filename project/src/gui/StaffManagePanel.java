@@ -47,7 +47,7 @@ public class StaffManagePanel
 		date.setFont(new Font("Calibri Light", Font.PLAIN, 26));
 		date.setBounds(166, 87, 560, 26);
 		/*
-		 * ADD PATIENT BUTTON
+		 * ADD STAFF BUTTON
 		 */
 		JButton btnAddS = new JButton("Add a Staff");
 		btnAddS.addActionListener(new ActionListener() 

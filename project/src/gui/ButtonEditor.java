@@ -54,7 +54,7 @@ public class ButtonEditor extends DefaultCellEditor
 		if(clicked)
 		{
 			hms.displayAddAppointmentPage();
-			hms.id = this.id;
+			hms.setId(this.id);
 		}
 		clicked = false;
 		return new String(lbl);

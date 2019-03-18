@@ -76,7 +76,14 @@ public class PatientListPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				hms.displayPatientManagementPage();
+				if(hms.getAccessFrom() == "Admin")
+				{
+					hms.displayPatientManagementPage();
+				}
+				else if(hms.getAccessFrom() == "Employee")
+				{
+					hms.displayEmployeeMainPage();
+				}
 			}
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));

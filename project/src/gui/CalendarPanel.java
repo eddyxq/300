@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,27 +8,25 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import system.Hospital_Management_System;
-import user.Patient;
 
 /*
- * This class displays the add patient panel.
+ * This class displays calendar panel.
  */
 public class CalendarPanel 
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
-	private JLabel lbSchedule = new JLabel("");
+	private JLabel patientName = new JLabel("");
+	private JLabel appointmentTime = new JLabel("");
 	private JTable table = new JTable(new DefaultTableModel(new Object[]
 	{	
 		"SUN","MON","TUE","WED","THU","FRI","SAT"
@@ -48,8 +45,12 @@ public class CalendarPanel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
-		lbSchedule.setBounds(1317, 500, 48, 30);
-		lbSchedule.setFont(bArial);
+		//label for patient names
+		patientName.setBounds(1120, 220, 382, 765);
+		patientName.setFont(bArial);
+		//label for appointment times
+		appointmentTime.setBounds(1502, 220, 382, 765);
+		appointmentTime.setFont(bArial);
 		//set table settings
 		table.setColumnSelectionAllowed(false);
 		table.setRowSelectionAllowed(false);
@@ -60,12 +61,17 @@ public class CalendarPanel
 		/*
 		 * Displays the date based off mouse click
 		 */
-		table.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
+		table.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseClicked(MouseEvent e) 
+			{
 				int row= table.rowAtPoint(e.getPoint());
 				int col= table.columnAtPoint(e.getPoint());
-				System.out.println(table.getValueAt(row, col).toString());
-				lbSchedule.setText(table.getValueAt(row, col).toString());
+				//temporary hard coded month and year values passed
+				//will be fixed once we implement the full calendar
+				ArrayList<String> appointmentData = hms.generateDaySchedule(table.getValueAt(row, col).toString(), "03", "2019");
+				patientName.setText(appointmentData.get(0));
+				appointmentTime.setText(appointmentData.get(1));
 			}
 		});
 		JScrollPane tableContainer = new JScrollPane(table);
@@ -77,7 +83,7 @@ public class CalendarPanel
 		calendarPanel.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(PatientListPanel.class.getResource("/graphics/staffCalendar_background.png")));
+		lblBackground.setIcon(new ImageIcon(CalendarPanel.class.getResource("/graphics/staffCalendar_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
@@ -111,9 +117,10 @@ public class CalendarPanel
 			}
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
-		btnReturn.setBounds(1125, 955, 500, 59);
+		btnReturn.setBounds(1310, 990, 400, 40);
 		//add all the components to panel
-		calendarPanel.add(lbSchedule);
+		calendarPanel.add(patientName);
+		calendarPanel.add(appointmentTime);
 		calendarPanel.add(btnReturn);
 		calendarPanel.add(tableContainer, BorderLayout.CENTER);
 		calendarPanel.add(lblWelcomeBackAdministrator);
