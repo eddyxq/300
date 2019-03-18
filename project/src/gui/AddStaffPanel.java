@@ -223,7 +223,7 @@ public class AddStaffPanel
 						//go back to previous menu
 						clearTextField();
 						clearRedField();
-						hms.displayPatientManagementPage();
+						hms.displayStaffManagementPage();
 					}
 					
 					//Otherwise, find out which field(s) are incorrect and highlight them 

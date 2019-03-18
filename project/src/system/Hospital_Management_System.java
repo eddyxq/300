@@ -24,7 +24,6 @@ public class Hospital_Management_System
 	private JPanel adminMainPage = new AdminMainPanel().createPanel(this);
 	private JPanel employeeMainPage = new EmployeeMainPanel().createPanel(this);
 	private JPanel homePage = new HomePanel().createPanel(this);
-	private JPanel patientInfoPage = new PatientInfoPanel().createPanel(this);
 	private JPanel addAppointmentPage = new AddAppointmentPanel().createPanel(this);
 	private PatientListPanel plp = new PatientListPanel();
 	private JPanel patientListPage = plp.createPanel(this);
@@ -45,7 +44,7 @@ public class Hospital_Management_System
 		loadData();
 		//start user interface
 		new GUI(addPatientPage, patientManagementPage, adminMainPage, 
-		homePage, patientInfoPage, addAppointmentPage, patientListPage,
+		homePage, addAppointmentPage, patientListPage,
 		addStaffPage, staffManagementPage, staffListPage, loginPage, 
 		employeeMainPage, calendarPage);
 		//saves date on exit
@@ -153,14 +152,6 @@ public class Hospital_Management_System
 	{
 		hideAll();
 		homePage.setVisible(true);
-	}
-	/**
-	 * This method will change the gui to display the patient info page.
-	 */
-	public void displayPatientInfoPage()
-	{
-		hideAll();
-		patientInfoPage.setVisible(true);
 	}
 	/**
 	 * This method will change the gui to display the patient list page.
@@ -315,7 +306,6 @@ public class Hospital_Management_System
 		adminMainPage.setVisible(false);
 		employeeMainPage.setVisible(false);
 		homePage.setVisible(false);
-		patientInfoPage.setVisible(false);
 		addAppointmentPage.setVisible(false);
 		patientListPage.setVisible(false);
 		staffListPage.setVisible(false);
