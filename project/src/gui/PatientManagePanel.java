@@ -69,6 +69,7 @@ public class PatientManagePanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				hms.setAccessFrom("Admin");
 				hms.displayPatientListPage();
 			}
 		});

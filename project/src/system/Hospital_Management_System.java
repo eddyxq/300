@@ -34,7 +34,8 @@ public class Hospital_Management_System
 	private JPanel loginPage = new LoginPanel().createPanel(this);
 	private JPanel calendarPage = new CalendarPanel().createPanel(this);
 	
-	public Integer id;
+	private String accessFrom;
+	private Integer id;
 	/**
 	 * This constructor starts the system.
 	 */
@@ -86,8 +87,8 @@ public class Hospital_Management_System
 	public void startHMS() 
 	{
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {public void run() {}});
-		displayHomePage();
-		//displayCalendarPage();
+		//displayHomePage();
+		displayCalendarPage();
 	}
 	/**
 	 * This method will change the gui to display the username and password prompt for staffs
@@ -224,7 +225,7 @@ public class Hospital_Management_System
 	 */
 	public void addAppointment(String date, String time)
 	{
-		patientRecord.get(id-1).setAppointment(date, time);
+		patientRecord.get(getId()-1).setAppointment(date, time);
 	}
 	/**
 	 * This method returns the appointment date.
@@ -321,5 +322,35 @@ public class Hospital_Management_System
 		addStaffPage.setVisible(false);
 		loginPage.setVisible(false);
 		calendarPage.setVisible(false);
+	}
+	/**
+	 * This method will return the id.
+	 */
+	public Integer getId() 
+	{
+		return id;
+	}
+	/**
+	 * This method set the id.
+	 * @param id The ID.
+	 */
+	public void setId(Integer id) 
+	{
+		this.id = id;
+	}
+	/**
+	 * This method will return accessFrom.
+	 */
+	public String getAccessFrom() 
+	{
+		return accessFrom;
+	}
+	/**
+	 * This method set the id.
+	 * @param accessFrom The type of employee that last accessed.
+	 */
+	public void setAccessFrom(String accessFrom) 
+	{
+		this.accessFrom = accessFrom;
 	}
 }
