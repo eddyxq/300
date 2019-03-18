@@ -163,7 +163,6 @@ public class AddAppointmentPanel
 			}
 		});
 		
-		
 		addAppointmentPanel.add(lblDate);
 		addAppointmentPanel.add(tfDate);
 		addAppointmentPanel.add(lbTime);

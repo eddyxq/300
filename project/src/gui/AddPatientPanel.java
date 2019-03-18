@@ -235,31 +235,37 @@ public class AddPatientPanel
 							tfFirstName.setBackground(Red);
 						}
 						
+						//Checking if last name isn't valid
 						if(!val.validateName(tfLastName.getText()))
 						{
 							tfLastName.setBackground(Red);
 						}
 						
-						if(!val.validateDay(tfDay.getText()))
+						//Checking if the day the appointment shall be set isn't valid
+						if(!val.validateDay(tfDay.getText(), tfMonth.getText(), tfYear.getText()))
 						{
 							tfDay.setBackground(Red);
 						}
 						
+						//Checking if the month of the appointment isn't valid
 						if(!val.validateMonth(tfMonth.getText()))
 						{
 							tfMonth.setBackground(Red);
 						}
 						
-						if(!val.validateYear(tfYear.getText()))
+						//Checking if the birth year entered isn't valid
+						if(!val.validateBirthYear(tfYear.getText()))
 						{
 							tfYear.setBackground(Red);
 						}
 						
+						//Checking if the phone number entered isn't valid
 						if(!val.validatePhone(tfPhoneNum.getText()))
 						{
 							tfPhoneNum.setBackground(Red);
 						}
 						
+						//Checking if the email entered isn't valid
 						if(!val.validateEmail(tfEmail.getText()))
 						{
 							tfEmail.setBackground(Red);

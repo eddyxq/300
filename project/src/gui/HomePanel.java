@@ -47,24 +47,61 @@ public class HomePanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (hms.patientIdValid(tfpatientId.getText()))
+				//Ensuring form is completed
+				if(formComplete())
 				{
-					//display appointment time
-					Object[] options = {"Ok"};
-					JOptionPane.showOptionDialog(null, "You have an appointment on " + 
-					hms.getAppointmentDate(tfpatientId.getText()) + " at " +
-					hms.getAppointmentTime(tfpatientId.getText()) + ".", "Notice",
-					JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-					null, options, options[0]);
+			        int inputId = 0; // A default result.
+			        try 
+			        {
+			            // This throws an exception because the string is invalid.
+			            inputId = Integer.parseInt(tfpatientId.getText());
+			        } catch (NumberFormatException n) 
+			        {
+			            //Do nothing as the default inputId will cause warning message
+			        }
+			 
+					//Ensuring that ID # is valid (Patient IDs start at 1)
+					if(inputId > 0)
+					{
+						//If the patient is found, display their appointment
+						if (hms.patientIdValid(tfpatientId.getText()))
+						{
+							//display appointment time
+							Object[] options = {"Ok"};
+							JOptionPane.showOptionDialog(null, "You have an appointment on " + 
+							hms.getAppointmentDate(tfpatientId.getText()) + " at " +
+							hms.getAppointmentTime(tfpatientId.getText()) + ".", "Notice",
+							JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+							null, options, options[0]);
+						}
+						
+						//In case ID wasn't found in file
+						else
+						{
+							Object[] options = {"Close"};
+							JOptionPane.showOptionDialog(null, "Invalid ID.", "Warning",
+							JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+							null, options, options[0]);	
+						}
+					}
+					//If ID was not valid
+					else
+					{
+						Object[] options = {"Close"};
+						JOptionPane.showOptionDialog(null, "Invalid ID.", "Warning",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+						null, options, options[0]);
+					}
+					tfClear();
 				}
+				
+				//display warning message if the field is empty 
 				else
 				{
 					Object[] options = {"Close"};
-					JOptionPane.showOptionDialog(null, "Invalid ID.", "Warning",
-					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-					null, options, options[0]);
+					JOptionPane.showOptionDialog(null, "Please fill in all information.", "Warning",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
 				}
-				tfClear();
 			}
 		});
 		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
@@ -97,5 +134,17 @@ public class HomePanel
 	private void tfClear() 
 	{
 		tfpatientId.setText("");
+	}
+	
+	/**
+	 * This method returns true if form is completely filled out
+	 */
+	private boolean formComplete() 
+	{
+		if(!(tfpatientId.getText().length() > 0))
+		{
+			return false;
+		}
+		return true;
 	}
 }
