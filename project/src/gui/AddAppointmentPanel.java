@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import system.Hospital_Management_System;
+import system.ValidateInput;
 
 /*
  * This class displays the add patient panel.
@@ -87,7 +88,10 @@ public class AddAppointmentPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				//Initially clearing all field colors and content
+				clearRedField();
 				clearTextField();
+				
 				if(hms.getAccessFrom() == "Admin")
 				{
 					hms.displayPatientManagementPage();
@@ -110,10 +114,11 @@ public class AddAppointmentPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				//Initially clearing all field colors
+				clearRedField();
+				
 				if(formComplete())
 				{
-					//Initially clearing all field colors
-					clearRedField();
 					
 					//If all input is correct, add this appointment
 					if(val.validateAppointment(tfDate.getText(), tfTime.getText()))

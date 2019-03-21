@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import system.Hospital_Management_System;
+import system.ValidateInput;
 import user.Patient;
 
 /*
