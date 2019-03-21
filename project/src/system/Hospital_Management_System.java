@@ -32,6 +32,10 @@ public class Hospital_Management_System
 	private JPanel addStaffPage = new AddStaffPanel().createPanel(this);
 	private JPanel loginPage = new LoginPanel().createPanel(this);
 	private JPanel calendarPage = new CalendarPanel().createPanel(this);
+	private AppointmentListPanel alp = new AppointmentListPanel();
+	private JPanel appointmentListPage = alp.createPanel(this);
+	private AppointmentListPanelAdmin alap = new AppointmentListPanelAdmin();
+	private JPanel appointmentListPageAdmin = alap.createPanel(this);
 	
 	private String accessFrom;
 	private Integer id;
@@ -46,7 +50,7 @@ public class Hospital_Management_System
 		new GUI(addPatientPage, patientManagementPage, adminMainPage, 
 		homePage, addAppointmentPage, patientListPage,
 		addStaffPage, staffManagementPage, staffListPage, loginPage, 
-		employeeMainPage, calendarPage);
+		employeeMainPage, calendarPage, appointmentListPage, appointmentListPageAdmin);
 		//saves date on exit
 		Runtime.getRuntime().addShutdownHook(onExit());
 	}
@@ -154,6 +158,22 @@ public class Hospital_Management_System
 		homePage.setVisible(true);
 	}
 	/**
+	 * This method will change the gui to display the appointment list page.
+	 */
+	public void displayAppointmentListPage() 
+	{
+		hideAll();
+		appointmentListPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the appointment list page for admin.
+	 */
+	public void displayAppointmentListPageAdmin() 
+	{
+		hideAll();
+		appointmentListPageAdmin.setVisible(true);
+	}
+	/**
 	 * This method will change the gui to display the patient list page.
 	 */
 	public void displayPatientListPage() 
@@ -217,6 +237,8 @@ public class Hospital_Management_System
 	public void addAppointment(String date, String time)
 	{
 		patientRecord.get(getId()-1).setAppointment(date, time);
+		alp.addAppointmentToTable(patientRecord.get(getId()-1), this);
+		alap.addAppointmentToTable(patientRecord.get(getId()-1), this);
 	}
 	/**
 	 * This method returns the appointment date.
@@ -312,6 +334,8 @@ public class Hospital_Management_System
 		addStaffPage.setVisible(false);
 		loginPage.setVisible(false);
 		calendarPage.setVisible(false);
+		appointmentListPage.setVisible(false);
+		appointmentListPageAdmin.setVisible(false);
 	}
 	/**
 	 * This method will return the id.

@@ -13,6 +13,7 @@ import java.util.Date;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -40,7 +41,7 @@ public class AddStaffPanel
 	private Color Red = new Color(255, 150, 135);
 	private Color Default = new Color(255,255,255);
 	private ValidateInput val = new ValidateInput();
-	
+	private String[] departmentList = {"General Pracitioner", "Operation Staff", "Physician", "Surgeon"};
 	/**
 	 * This method creates and returns a JPanel
 	 */
@@ -177,6 +178,18 @@ public class AddStaffPanel
 		tfEmail.setColumns(10);
 		tfEmail.setBounds(640, 565, 300, 20);
 		/*
+		 * DEPARTMENT
+		 */
+		JLabel lbDepartment = new JLabel("Department: ");
+		lbDepartment.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lbDepartment.setBounds(78, 608, 250, 50);
+		/*
+		 * DEPARMENT LIST DROP-DOWN MENU
+		 */
+		JComboBox jcDepartment = new JComboBox(departmentList);
+		jcDepartment.setSelectedIndex(0);
+		jcDepartment.setBounds(640, 625, 200, 20);
+		/*
 		 * CANCEL BUTTON
 		 */
 		JButton btnCancel = new JButton("Cancel");
@@ -289,6 +302,8 @@ public class AddStaffPanel
 			}
 		});
 		//add all the components to panel
+		addStaff.add(lbDepartment);
+		addStaff.add(jcDepartment);
 		addStaff.add(lblPhoneNumber);
 		addStaff.add(tfPhoneNum);
 		addStaff.add(lbEmail);

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -23,11 +24,16 @@ import system.ValidateInput;
 public class AddAppointmentPanel 
 {
 	private JTextField tfDate;
-	private JTextField tfTime;
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private Color Red = new Color(255, 150, 135);
 	private Color Default = new Color(255,255,255);
 	private ValidateInput val = new ValidateInput();
+	private String[] timeSlots = {"06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00"
+			+ "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
+			"16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30"};
+	private String[] departmentList = {"General Pracitioner", "Operation Staff", "Physician", "Surgeon"};
+	//PLACE HOLDER DOCTORS
+	private String[] doctorList = {"Doctor Strange", "Doctor Who"};
 	
 	/**
 	 * This method creates and returns a JPanel
@@ -61,25 +67,61 @@ public class AddAppointmentPanel
 		 */
 		JLabel lblDate = new JLabel("Date: (DD/MM/YYYY)");
 		lblDate.setFont(new Font("Arial", Font.BOLD, 16));
-		lblDate.setBounds(900, 339, 300, 14);
+		lblDate.setBounds(925, 339, 300, 14);
 		/*
 		 * Text Field for Appointment Date
 		 */
 		tfDate = new JTextField();
-		tfDate.setBounds(879, 364, 200, 20);
+		tfDate.setBounds(900, 364, 200, 20);
 		tfDate.setColumns(10);
 		/*
-		 * TIME
+		 * START TIME
 		 */
-		JLabel lbTime = new JLabel("Time: (HH:MM)");
-		lbTime.setFont(new Font("Arial", Font.BOLD, 16));
-		lbTime.setBounds(915, 453, 300, 14);
+		JLabel lbStartTime = new JLabel("Start Time: (HH:MM)");
+		lbStartTime.setFont(new Font("Arial", Font.BOLD, 16));
+		lbStartTime.setBounds(760, 575, 300, 14);
 		/*
-		 * Text Field for Appointment Time
+		 * Drop-down menu for Appointment Start Time
 		 */
-		tfTime = new JTextField();
-		tfTime.setColumns(10);
-		tfTime.setBounds(879, 478, 200, 20);
+		JComboBox jcStartTime = new JComboBox(timeSlots);
+		jcStartTime.setSelectedIndex(0);
+		jcStartTime.setBounds(788, 600, 100, 20);
+		/*
+		 * END TIME
+		 */
+		JLabel lbEndTime = new JLabel("End Time: (HH:MM)");
+		lbEndTime.setFont(new Font("Arial", Font.BOLD, 16));
+		lbEndTime.setBounds(1050, 575, 300, 14);
+		/*
+		 * Drop-down for Appointment End Time
+		 */
+		JComboBox jcEndTime = new JComboBox(timeSlots);
+		jcEndTime.setSelectedIndex(0);
+		jcEndTime.setBounds(1078, 600, 100, 20);
+		/*
+		 * DEPARTMENT
+		 */
+		JLabel lbDepartment = new JLabel("Department: ");
+		lbDepartment.setFont(new Font("Arial", Font.BOLD, 16));
+		lbDepartment.setBounds(795, 450, 250, 50);
+		/*
+		 * DEPARMENT LIST DROP-DOWN MENU
+		 */
+		JComboBox jcDepartment = new JComboBox(departmentList);
+		jcDepartment.setSelectedIndex(0);
+		jcDepartment.setBounds(750, 500, 200, 20);
+		/*
+		 * DOCTORS
+		 */
+		JLabel lbDoctors = new JLabel("Doctor: ");
+		lbDoctors.setFont(new Font("Arial", Font.BOLD, 16));
+		lbDoctors.setBounds(1090, 450, 250, 50);
+		/*
+		 * DOCTORS LIST DROP-DOWN MENU
+		 */
+		JComboBox jcDoctors = new JComboBox(doctorList);
+		jcDoctors.setSelectedIndex(0);
+		jcDoctors.setBounds(1045, 500, 200, 20);
 		/*
 		 * CANCEL BUTTON
 		 */
@@ -94,7 +136,7 @@ public class AddAppointmentPanel
 				
 				if(hms.getAccessFrom() == "Admin")
 				{
-					hms.displayPatientManagementPage();
+					hms.displayPatientListPage();
 				}
 				else if(hms.getAccessFrom() == "Employee")
 				{
@@ -119,11 +161,10 @@ public class AddAppointmentPanel
 				
 				if(formComplete())
 				{
-					
 					//If all input is correct, add this appointment
-					if(val.validateAppointment(tfDate.getText(), tfTime.getText()))
+					if(val.validateAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString())) 
 					{
-						hms.addAppointment(tfDate.getText(), tfTime.getText());
+						hms.addAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString());
 						//display confirmation message
 						Object[] options = {"Ok"};
 						JOptionPane.showOptionDialog(null, "Appointment added.", "Success",
@@ -146,9 +187,9 @@ public class AddAppointmentPanel
 						}
 						
 						//Checking if time input isn't valid
-						if(!val.validateTime(tfTime.getText()))
+						if(!val.validateTime(lbStartTime.getText()))
 						{
-							tfTime.setBackground(Red);
+							jcStartTime.setBackground(Red);
 						}
 						
 						Object[] options = {"Close"};
@@ -167,11 +208,16 @@ public class AddAppointmentPanel
 				}
 			}
 		});
-		
+		addAppointmentPanel.add(lbDoctors);
+		addAppointmentPanel.add(jcDoctors);
+		addAppointmentPanel.add(lbDepartment);
+		addAppointmentPanel.add(jcDepartment);
 		addAppointmentPanel.add(lblDate);
 		addAppointmentPanel.add(tfDate);
-		addAppointmentPanel.add(lbTime);
-		addAppointmentPanel.add(tfTime);
+		addAppointmentPanel.add(lbStartTime);
+		addAppointmentPanel.add(jcStartTime);
+		addAppointmentPanel.add(lbEndTime);
+		addAppointmentPanel.add(jcEndTime);
 		addAppointmentPanel.add(btnSubmit);
 		addAppointmentPanel.add(btnCancel);
 		addAppointmentPanel.add(lblWelcomeBackAdministrator);
@@ -183,13 +229,13 @@ public class AddAppointmentPanel
 	
 	/**
 	 * This method returns true if form is completely filled out
+	 * (Need to redo due to changes from textfield to JComboBox)
 	 */
 	private boolean formComplete() 
 	{
 		//add all the text fields to an array
 		ArrayList<JTextField> allTextFields = new ArrayList<JTextField>();
 		allTextFields.add(tfDate);
-		allTextFields.add(tfTime);
 		
 		//loop through array checking if they are not empty
 		for(JTextField t : allTextFields)
@@ -208,7 +254,6 @@ public class AddAppointmentPanel
 	private void clearTextField() 
 	{
 		tfDate.setText("");
-		tfTime.setText("");
 	}
 	
 	/**
@@ -217,6 +262,5 @@ public class AddAppointmentPanel
 	private void clearRedField()
 	{
 		tfDate.setBackground(Default);
-		tfTime.setBackground(Default);	
 	}
 }

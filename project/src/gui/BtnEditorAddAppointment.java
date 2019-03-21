@@ -13,7 +13,7 @@ import system.Hospital_Management_System;
  * This class edits the Jbutton.
  * @reference ProgrammingWizards TV's Youtube java tutorials.
  */
-public class ButtonEditor extends DefaultCellEditor
+public class BtnEditorAddAppointment extends DefaultCellEditor
 {
 	private static final long serialVersionUID = 1L;
 	Integer id;
@@ -22,7 +22,7 @@ public class ButtonEditor extends DefaultCellEditor
 	private String lbl;
 	private Boolean clicked;
 
-	public ButtonEditor(JTextField txt, Hospital_Management_System hms, Integer id) 
+	public BtnEditorAddAppointment(JTextField txt, Hospital_Management_System hms, Integer id) 
 	{
 		super(txt);
 		this.hms = hms;
