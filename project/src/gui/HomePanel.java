@@ -69,13 +69,8 @@ public class HomePanel
 							//Ensuring an appointment is set for this patient
 							if(!hms.getAppointmentDate(tfpatientId.getText()).contains("UNKNOWN"))
 							{
-								//display appointment time
-								Object[] options = {"Ok"};
-								JOptionPane.showOptionDialog(null, "You have an appointment on " + 
-								hms.getAppointmentDate(tfpatientId.getText()) + " at " +
-								hms.getAppointmentTime(tfpatientId.getText()) + ".", "Notice",
-								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-								null, options, options[0]);
+								//Switches to appointment list page
+								hms.displayAppointmentListPage();
 							}
 							
 							//No appointment found, message

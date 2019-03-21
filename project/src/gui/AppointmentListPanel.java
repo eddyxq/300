@@ -21,22 +21,15 @@ import user.Patient;
 /*
  * This class displays the add patient panel.
  */
-public class PatientListPanel 
+public class AppointmentListPanel 
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
-	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail", "View", "Add/Edit"}, 0))
+	 "Appointment Date", "Appointment Time"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
 		public boolean isCellEditable(int row, int column) {  
-			switch(column) {
-				case 7:
-					return true;
-				case 8:
-					return true;
-				default:
-					return false;
-			}
+			return false;            
     };
 	};
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -54,19 +47,19 @@ public class PatientListPanel
 		tableContainer.setLocation(86, 244);
 		tableContainer.setSize(1746, 700);
 		//initialize the panel layout and size
-		JPanel patientListPanel = new JPanel();
-		patientListPanel.setLayout(null);
-		patientListPanel.setBounds(0, 0, 1920, 1080);
+		JPanel appointmentListPanel = new JPanel();
+		appointmentListPanel.setLayout(null);
+		appointmentListPanel.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(PatientListPanel.class.getResource("/graphics/list_background.png")));
+		lblBackground.setIcon(new ImageIcon(AppointmentListPanel.class.getResource("/graphics/patientList_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
 		 */
-		JLabel lblWelcomeBackAdministrator = new JLabel("Welcome Back!");
-		lblWelcomeBackAdministrator.setFont(bArial);
-		lblWelcomeBackAdministrator.setBounds(166, 29, 510, 26);
+		JLabel lblWelcomeBack = new JLabel("Welcome Back!");
+		lblWelcomeBack.setFont(bArial);
+		lblWelcomeBack.setBounds(166, 29, 510, 26);
 		/*
 		 * DATE DISPLAYED BELOW HEADER
 		 */
@@ -83,41 +76,26 @@ public class PatientListPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				if(hms.getAccessFrom() == "Admin")
-				{
-					hms.displayPatientManagementPage();
-				}
-				else if(hms.getAccessFrom() == "Employee")
-				{
-					hms.displayEmployeeMainPage();
-				}
+				hms.displayHomePage();
 			}
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(725, 955, 500, 59);
 		//add all the components to panel
-		patientListPanel.add(btnReturn);
-		patientListPanel.add(tableContainer, BorderLayout.CENTER);
-		patientListPanel.add(lblWelcomeBackAdministrator);
-		patientListPanel.add(date);
-		patientListPanel.add(lblBackground);
+		appointmentListPanel.add(btnReturn);
+		appointmentListPanel.add(tableContainer, BorderLayout.CENTER);
+		appointmentListPanel.add(lblWelcomeBack);
+		appointmentListPanel.add(date);
+		appointmentListPanel.add(lblBackground);
 		
-		return patientListPanel;
+		return appointmentListPanel;
 	}
-	/**
-	 * This method adds a patient to a row in the table.
-	 * @param patient The patient to be added
+	/*
+	 * Adds appointment to the list
 	 */
-	public void addPatientToTable(Patient patient, Hospital_Management_System hms) 
+	public void addAppointmentToTable(Patient patient, Hospital_Management_System hms) 
 	{
-		model.addRow(new Object[]{patient.getID(), patient.getFirstName(), patient.getLastName(),
-		patient.getSex(), patient.getDOB(), patient.getPhoneNum(), patient.getEmail(), "View Appointment(s)",
-		"Add/Edit Appointment(s)"});
-		
-		//set custom renderer and editor to column
-		table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());;
-		table.getColumnModel().getColumn(7).setCellEditor(new BtnEditorAdminViewAppointment(new JTextField(), hms, patient.getID()));
-		table.getColumnModel().getColumn(8).setCellRenderer(new ButtonRenderer());;
-		table.getColumnModel().getColumn(8).setCellEditor(new BtnEditorAddAppointment(new JTextField(), hms, patient.getID()));
+		model.addRow(new Object[]{patient.getAppointmentDate(), patient.getAppointmentTime()
+				});
 	}
 }
