@@ -38,6 +38,8 @@ public class Hospital_Management_System
 	private JPanel appointmentListPage = alp.createPanel(this);
 	private AppointmentListPanelAdmin alap = new AppointmentListPanelAdmin();
 	private JPanel appointmentListPageAdmin = alap.createPanel(this);
+	private JPanel manageAppointmentPage = new ManageDepartmentPanel().createPanel(this);
+	private JPanel addDepartmentPage = new AddDepartmentPanel().createPanel(this);
 	
 	private String accessFrom;
 	private Integer id;
@@ -56,7 +58,8 @@ public class Hospital_Management_System
 		new GUI(addPatientPage, patientManagementPage, adminMainPage, 
 		homePage, addAppointmentPage, patientListPage,
 		addStaffPage, staffManagementPage, staffListPage, loginPage, 
-		employeeMainPage, calendarPage, appointmentListPage, appointmentListPageAdmin);
+		employeeMainPage, calendarPage, appointmentListPage, appointmentListPageAdmin,
+		manageAppointmentPage, addDepartmentPage);
 		//saves date on exit
 		Runtime.getRuntime().addShutdownHook(onExit());
 	}
@@ -106,6 +109,22 @@ public class Hospital_Management_System
 	{
 		hideAll();
 		loginPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the admin main page.
+	 */
+	public void displayAddDepartmentPage() 
+	{
+		hideAll();
+		addDepartmentPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the add department page.
+	 */
+	public void displayManageDepartmentPage() 
+	{
+		hideAll();
+		manageAppointmentPage.setVisible(true);
 	}
 	/**
 	 * This method will change the gui to display the admin main page.
@@ -342,6 +361,8 @@ public class Hospital_Management_System
 		calendarPage.setVisible(false);
 		appointmentListPage.setVisible(false);
 		appointmentListPageAdmin.setVisible(false);
+		manageAppointmentPage.setVisible(false);
+		addDepartmentPage.setVisible(false);
 	}
 	/**
 	 * This method will return the id.

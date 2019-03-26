@@ -109,6 +109,15 @@ public class AddAppointmentPanel
 		 */
 		JComboBox<String> jcDepartment = new JComboBox<String>(hms.getStringArray(hms.getDepartmentRecord()));
 		jcDepartment.setSelectedIndex(0);
+		jcDepartment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+			
+			
+			
+		});
 		jcDepartment.setBounds(750, 500, 200, 20);
 		/*
 		 * DOCTORS

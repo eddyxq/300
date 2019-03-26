@@ -16,7 +16,7 @@ import system.Hospital_Management_System;
  * This class is a panel which allows administrator to select how to interact with patient/
  * employee records.
  */
-public class AdminMainPanel
+public class ManageDepartmentPanel
 {
 	/**
 	 * This method creates and returns a JPanel
@@ -32,7 +32,7 @@ public class AdminMainPanel
 		adminMain.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(AdminMainPanel.class.getResource("/graphics/Admin_background.png")));
+		lblBackground.setIcon(new ImageIcon(ManageDepartmentPanel.class.getResource("/graphics/drtManagement_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
@@ -49,61 +49,34 @@ public class AdminMainPanel
 		date.setFont(new Font("Calibri Light", Font.PLAIN, 26));
 		date.setBounds(166, 87, 560, 26);
 		/*
-		 * MANAGE PATIENT RECORDS BUTTON
+		 * ADD DEPARTMENT BUTTON
 		 */
-		JButton btnManagePatient = new JButton("Manage Patient Records");
+		JButton btnManagePatient = new JButton("Add Department");
 		btnManagePatient.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				hms.displayPatientManagementPage();
+				hms.displayAddDepartmentPage();
 			}
 		});
 		btnManagePatient.setFont(new Font("Arial", Font.BOLD, 16));
-		btnManagePatient.setBounds(785, 380, 400, 59);
-		/*
-		 * MANAGE EMPLOYEE RECORDS BUTTON
-		 */
-		JButton btnManageEmployee = new JButton("Manage Employee Records");
-		btnManageEmployee.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
-				hms.displayStaffManagementPage();
-			}
-		});
-		btnManageEmployee.setFont(new Font("Arial", Font.BOLD, 16));
-		btnManageEmployee.setBounds(785, 575, 400, 59);
-		/*
-		 * MANAGE DEPARTMENT BUTTON
-		 */
-		JButton btnManageDepart = new JButton("Manage Departments");
-		btnManageDepart.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				hms.displayManageDepartmentPage();
-			}
-		});
-		btnManageDepart.setFont(new Font("Arial", Font.BOLD, 16));
-		btnManageDepart.setBounds(785, 745, 400, 59);
+		btnManagePatient.setBounds(769, 514, 400, 59);
+		
 		/*
 		 * RETURN BUTTON
 		 */
-		JButton btnReturn = new JButton("Logout");
+		JButton btnReturn = new JButton("Return");
 		btnReturn.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				hms.displayHomePage();
+				hms.displayAdminMainPage();
 			}
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
-		btnReturn.setBounds(785, 930, 400, 59);
+		btnReturn.setBounds(769, 842, 400, 59);
 		//add all the components to panel
-		adminMain.add(btnManageDepart);
 		adminMain.add(btnManagePatient);
-		adminMain.add(btnManageEmployee);
 		adminMain.add(btnReturn);
 		adminMain.add(lblWelcomeBackAdministrator);
 		adminMain.add(date);
