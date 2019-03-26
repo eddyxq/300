@@ -62,11 +62,27 @@ public class TextWriter
 							+ e.sex + " " 
 							+ e.dob + " " 
 							+ e.phoneNumber + " " 
-							+ e.email + " " 
-							+ e.getAppointmentDate() + " " 
-							+ e.getAppointmentTime();
+							+ e.email + " "
+							+ e.department;
 				writer.println(data);
 				count++;
+			}
+			writer.close();
+		} 
+		catch (IOException e) {}
+	}
+	/*
+	 * This method will save the department data.
+	 */
+	public void saveDepartmentData(ArrayList<String> departmentRecord) 
+	{
+		PrintWriter writer;
+		try 
+		{
+			writer = new PrintWriter(new BufferedWriter(new FileWriter("DepartmentRecords.txt", false)));
+			for (int i = 0; i < departmentRecord.size(); i++)
+			{
+				writer.println(departmentRecord.get(i));
 			}
 			writer.close();
 		} 

@@ -12,7 +12,9 @@ import gui.*;
  * This class contains the logic for the hospital manage system.
  */
 public class Hospital_Management_System 
-{
+{	
+	//list of all the departments in the system
+	ArrayList<String> departmentRecord = new ArrayList<String>();
 	//list of all the patients in the system
 	ArrayList<Patient> patientRecord = new ArrayList<Patient>();
 	//list of all the patients in the system
@@ -24,12 +26,12 @@ public class Hospital_Management_System
 	private JPanel adminMainPage = new AdminMainPanel().createPanel(this);
 	private JPanel employeeMainPage = new EmployeeMainPanel().createPanel(this);
 	private JPanel homePage = new HomePanel().createPanel(this);
-	private JPanel addAppointmentPage = new AddAppointmentPanel().createPanel(this);
+	private JPanel addAppointmentPage;
 	private PatientListPanel plp = new PatientListPanel();
 	private JPanel patientListPage = plp.createPanel(this);
 	private EmployeeListPanel slp = new EmployeeListPanel();
 	private JPanel staffListPage = slp.createPanel(this);
-	private JPanel addStaffPage = new AddStaffPanel().createPanel(this);
+	private JPanel addStaffPage;
 	private JPanel loginPage = new LoginPanel().createPanel(this);
 	private JPanel calendarPage = new CalendarPanel().createPanel(this);
 	private AppointmentListPanel alp = new AppointmentListPanel();
@@ -46,6 +48,10 @@ public class Hospital_Management_System
 	{
 		//retrieve saved data
 		loadData();
+		
+		addStaffPage = new AddStaffPanel().createPanel(this);
+		addAppointmentPage = new AddAppointmentPanel().createPanel(this);
+		
 		//start user interface
 		new GUI(addPatientPage, patientManagementPage, adminMainPage, 
 		homePage, addAppointmentPage, patientListPage,
@@ -59,9 +65,9 @@ public class Hospital_Management_System
 	 */
 	private void loadData() 
 	{
+		departmentRecord = new TextReader().loadDepartmentData();
 		patientRecord = new TextReader().loadPatientData();
 		employeeRecord = new TextReader().loadEmployeeData();
-		
 		for(Patient p : patientRecord)
 		{
 			plp.addPatientToTable(p, this);
@@ -80,6 +86,7 @@ public class Hospital_Management_System
 	{
 		return new Thread() {public void run() 
 		{	
+			new TextWriter().saveDepartmentData(departmentRecord);
 			new TextWriter().savePatientData(patientRecord);
 			new TextWriter().saveEmployeeData(employeeRecord);
 		}};
@@ -91,7 +98,6 @@ public class Hospital_Management_System
 	{
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {public void run() {}});
 		displayHomePage();
-		//displayCalendarPage();
 	}
 	/**
 	 * This method will change the gui to display the username and password prompt for staffs
@@ -367,4 +373,49 @@ public class Hospital_Management_System
 	{
 		this.accessFrom = accessFrom;
 	}
+	/**
+	 * This method will add a new department.
+	 * @param name The name of the department being added.
+	 */
+	public void addDepartment(String name) 
+	{
+		departmentRecord.add(name);
+	}
+	/**
+	 * This method will return departmentRecord.
+	 */
+	public ArrayList<String> getDepartmentRecord() 
+	{
+		return departmentRecord;
+	}
+	/**
+	 * This method will return employeeRecord.
+	 */
+	public String[] getDoctorsInDepartment(String department) 
+	{
+		
+		ArrayList<String> doctorsInThisDepartment = new ArrayList<String>();
+		
+		for(Employee e : employeeRecord)
+		{
+			if (e.department.equals(department))
+			{
+				doctorsInThisDepartment.add(e.firstName + " " + e.lastName);
+			}
+		}
+		return getStringArray(doctorsInThisDepartment);
+	}
+	/**
+	 * This method will convert a array list of strings to array.
+	 * @param arraylist The array list to be converted.
+	 */
+    public String[] getStringArray(ArrayList<String> arraylist) 
+    { 
+        String arr[] = new String[arraylist.size()]; 
+        for (int i = 0; i < arraylist.size(); i++) 
+        { 
+            arr[i] = arraylist.get(i); 
+        } 
+        return arr; 
+    } 
 }

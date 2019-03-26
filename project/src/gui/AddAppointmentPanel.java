@@ -107,7 +107,7 @@ public class AddAppointmentPanel
 		/*
 		 * DEPARMENT LIST DROP-DOWN MENU
 		 */
-		JComboBox jcDepartment = new JComboBox(departmentList);
+		JComboBox<String> jcDepartment = new JComboBox<String>(hms.getStringArray(hms.getDepartmentRecord()));
 		jcDepartment.setSelectedIndex(0);
 		jcDepartment.setBounds(750, 500, 200, 20);
 		/*
@@ -119,7 +119,19 @@ public class AddAppointmentPanel
 		/*
 		 * DOCTORS LIST DROP-DOWN MENU
 		 */
-		JComboBox jcDoctors = new JComboBox(doctorList);
+		
+		//hms.getDoctorsInDepartment((String) jcDepartment.getSelectedItem())
+		
+		//String[] a = {};
+		
+		String[] list = {"N/A"};
+		
+		if (hms.getDoctorsInDepartment((String) jcDepartment.getSelectedItem()).length > 0)
+		{
+			list = hms.getDoctorsInDepartment((String) jcDepartment.getSelectedItem());
+		}
+
+		JComboBox<String> jcDoctors = new JComboBox<String>(list);
 		jcDoctors.setSelectedIndex(0);
 		jcDoctors.setBounds(1045, 500, 200, 20);
 		/*

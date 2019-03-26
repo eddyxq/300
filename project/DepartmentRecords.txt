@@ -1,0 +1,9 @@
+Cardiology
+Gastroenterology
+Gynecology
+Haematology
+Nephrology
+Ophthalmology
+Otolaryngology
+Rheumatology
+Urology

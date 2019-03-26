@@ -50,18 +50,34 @@ public class TextReader
 			{
 				String line = reader.nextLine();
 				String[] employeeInfo = line.split(" ");
-				Employee e = new Employee(employeeInfo[1], employeeInfo[2], employeeInfo[3], employeeInfo[4], employeeInfo[5], employeeInfo[6]);
+				Employee e = new Employee(employeeInfo[1], employeeInfo[2], employeeInfo[3], employeeInfo[4], employeeInfo[5], employeeInfo[6], employeeInfo[7]);
 				e.setId(Integer.parseInt(employeeInfo[0]));
 				employeeRecord.add(e);
-				e.setAppointmentDate(employeeInfo[7]);
-				e.setAppointmentTime(employeeInfo[8]);
 			}
 			reader.close();
 		} 
 		catch (FileNotFoundException fnfe) {}
 		return employeeRecord;
 	}
-	
+	/**
+	 * This methods reads and restores department data.
+	 */
+	public ArrayList<String> loadDepartmentData() 
+	{
+		ArrayList<String> departmentRecord = new ArrayList<String>();
+		try 
+		{
+			Scanner reader = new Scanner(new File("DepartmentRecords.txt"));
+			while (reader.hasNext()) 
+			{
+				String line = reader.nextLine();
+				departmentRecord.add(line);
+			}
+			reader.close();
+		} 
+		catch (FileNotFoundException fnfe) {}
+		return departmentRecord;
+	}
 	/**
 	 * @param user A string for the username that is entered by the user
 	 * @param pass A string for the password that is entered by the user to check

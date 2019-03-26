@@ -41,7 +41,6 @@ public class AddStaffPanel
 	private Color Red = new Color(255, 150, 135);
 	private Color Default = new Color(255,255,255);
 	private ValidateInput val = new ValidateInput();
-	private String[] departmentList = {"General Pracitioner", "Operation Staff", "Physician", "Surgeon"};
 	/**
 	 * This method creates and returns a JPanel
 	 */
@@ -186,7 +185,7 @@ public class AddStaffPanel
 		/*
 		 * DEPARMENT LIST DROP-DOWN MENU
 		 */
-		JComboBox jcDepartment = new JComboBox(departmentList);
+		JComboBox<String> jcDepartment = new JComboBox<String>(hms.getStringArray(hms.getDepartmentRecord()));
 		jcDepartment.setSelectedIndex(0);
 		jcDepartment.setBounds(640, 625, 200, 20);
 		/*
@@ -223,12 +222,10 @@ public class AddStaffPanel
 					if(val.validatePatient(tfFirstName.getText(), tfLastName.getText(), tfDay.getText(),
 							tfMonth.getText(), tfYear.getText(), tfPhoneNum.getText(), tfEmail.getText()))
 					{
-						
 						hms.addEmployee(new Employee(tfFirstName.getText(), tfLastName.getText(), 
 						(rdbtnMale.isSelected() ? "Male" : "Female"), 
 						tfDay.getText()+ "/" + tfMonth.getText() + "/" + tfYear.getText(),
-						tfPhoneNum.getText(), tfEmail.getText()));
-
+						tfPhoneNum.getText(), tfEmail.getText(), (String) jcDepartment.getSelectedItem()));
 						//display confirmation message
 						Object[] options = {"Ok"};
 						JOptionPane.showOptionDialog(null, "Employee has been added.", "Success",
