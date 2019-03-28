@@ -22,7 +22,7 @@ import system.Hospital_Management_System;
 /*
  * This class displays calendar panel.
  */
-public class CalendarPanel 
+public class MarchCalendarPanel 
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JLabel patientName = new JLabel("");
@@ -83,7 +83,7 @@ public class CalendarPanel
 		calendarPanel.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(CalendarPanel.class.getResource("/graphics/staffCalendar_background.png")));
+		lblBackground.setIcon(new ImageIcon(MarchCalendarPanel.class.getResource("/graphics/staffCalendar_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
@@ -106,6 +106,33 @@ public class CalendarPanel
 		lblMonthYear.setFont(new Font("Arial", Font.BOLD, 90));
 		lblMonthYear.setBounds(250, 220, 700, 100);
 		/*
+		 * NEXT MONTH BUTTON
+		 */
+		JButton btnNext = new JButton(">>>");
+		btnNext.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				hms.displayAprilCalendarPage();
+			}
+		});
+		btnNext.setFont(new Font("Arial", Font.BOLD, 16));
+		btnNext.setBounds(980, 240, 100, 50);
+		/*
+		 * PREV MONTH BUTTON
+		 */
+		JButton btnPrev = new JButton("<<<");
+		btnPrev.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				//not availiable right now
+				//to be implemented
+			}
+		});
+		btnPrev.setFont(new Font("Arial", Font.BOLD, 16));
+		btnPrev.setBounds(55, 240, 100, 50);
+		/*
 		 * RETURN BUTTON
 		 */
 		JButton btnReturn = new JButton("Return");
@@ -121,6 +148,8 @@ public class CalendarPanel
 		//add all the components to panel
 		calendarPanel.add(patientName);
 		calendarPanel.add(appointmentTime);
+		calendarPanel.add(btnNext);
+		calendarPanel.add(btnPrev);
 		calendarPanel.add(btnReturn);
 		calendarPanel.add(tableContainer, BorderLayout.CENTER);
 		calendarPanel.add(lblWelcomeBackAdministrator);

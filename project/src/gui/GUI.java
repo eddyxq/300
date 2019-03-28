@@ -17,9 +17,9 @@ public class GUI extends JFrame
     public GUI(JPanel addPatientPanel, JPanel patientManagementPage, JPanel adminMainPanel, 
     		   JPanel homePagePanel, JPanel addAppointmentPanel, 
     		   JPanel patientListPanel, JPanel addStaffPanel, JPanel staffManagementPanel, 
-    		   JPanel staffListPanel, JPanel loginPanel, JPanel employeeMainPanel, JPanel calendarPanel,
-    		   JPanel appointmentListPanel, JPanel appointmentListAdminPanel, JPanel manageDepartmentPanel,
-    		   JPanel addDepartmentPanel)
+    		   JPanel staffListPanel, JPanel loginPanel, JPanel employeeMainPanel, JPanel marchCalendarPanel, 
+    		   JPanel aprilCalendarPanel, JPanel appointmentListPanel, JPanel appointmentListAdminPanel, 
+    		   JPanel manageDepartmentPanel, JPanel addDepartmentPanel)
     {
     	JFrame window = new JFrame();
         window.setTitle("HMS");
@@ -39,7 +39,8 @@ public class GUI extends JFrame
         window.getContentPane().add(staffListPanel);
         window.getContentPane().add(loginPanel);
         window.getContentPane().add(employeeMainPanel);
-        window.getContentPane().add(calendarPanel);
+        window.getContentPane().add(marchCalendarPanel);
+        window.getContentPane().add(aprilCalendarPanel);
         window.getContentPane().add(appointmentListPanel);
         window.getContentPane().add(appointmentListAdminPanel);
         window.getContentPane().add(manageDepartmentPanel);
@@ -56,7 +57,8 @@ public class GUI extends JFrame
         staffListPanel.setVisible(false);
         loginPanel.setVisible(false);
         employeeMainPanel.setVisible(false);
-        calendarPanel.setVisible(false);
+        marchCalendarPanel.setVisible(false);
+        aprilCalendarPanel.setVisible(false);
         appointmentListPanel.setVisible(false);
         appointmentListAdminPanel.setVisible(false);
         manageDepartmentPanel.setVisible(false);

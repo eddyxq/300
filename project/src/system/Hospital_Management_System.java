@@ -34,7 +34,8 @@ public class Hospital_Management_System
 	private JPanel staffListPage = slp.createPanel(this);
 	private JPanel addStaffPage;
 	private JPanel loginPage = new LoginPanel().createPanel(this);
-	private JPanel calendarPage = new CalendarPanel().createPanel(this);
+	private JPanel marchCalendarPage = new MarchCalendarPanel().createPanel(this);
+	private JPanel aprilCalendarPage = new AprilCalendarPanel().createPanel(this);
 	private AppointmentListPanel alp = new AppointmentListPanel();
 	private JPanel appointmentListPage = alp.createPanel(this);
 	private AppointmentListPanelAdmin alap = new AppointmentListPanelAdmin();
@@ -60,7 +61,7 @@ public class Hospital_Management_System
 		new GUI(addPatientPage, patientManagementPage, adminMainPage, 
 		homePage, addAppointmentPage, patientListPage,
 		addStaffPage, staffManagementPage, staffListPage, loginPage, 
-		employeeMainPage, calendarPage, appointmentListPage, appointmentListPageAdmin,
+		employeeMainPage, marchCalendarPage, aprilCalendarPage, appointmentListPage, appointmentListPageAdmin,
 		manageAppointmentPage, addDepartmentPage);
 		//saves date on exit
 		Runtime.getRuntime().addShutdownHook(onExit());
@@ -148,10 +149,15 @@ public class Hospital_Management_System
 	/**
 	 * This method will change the gui to display the employee calendar page.
 	 */
-	public void displayCalendarPage() 
+	public void displayMarchCalendarPage() 
 	{
 		hideAll();
-		calendarPage.setVisible(true);
+		marchCalendarPage.setVisible(true);
+	}
+	public void displayAprilCalendarPage() 
+	{
+		hideAll();
+		aprilCalendarPage.setVisible(true);
 	}
 	/**
 	 * This method will change the gui to display the patient management page.
@@ -361,7 +367,8 @@ public class Hospital_Management_System
 		staffListPage.setVisible(false);
 		addStaffPage.setVisible(false);
 		loginPage.setVisible(false);
-		calendarPage.setVisible(false);
+		marchCalendarPage.setVisible(false);
+		aprilCalendarPage.setVisible(false);
 		appointmentListPage.setVisible(false);
 		appointmentListPageAdmin.setVisible(false);
 		manageAppointmentPage.setVisible(false);
@@ -455,6 +462,7 @@ public class Hospital_Management_System
 	public void setLoggedInUser(String loggedInUser) {
 		this.loggedInUser = loggedInUser;
 	}
+	
     
 
 }
