@@ -31,10 +31,6 @@ public class AddAppointmentPanel
 	private String[] timeSlots = {"06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00"
 			+ "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
 			"16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30"};
-	private String[] departmentList = {"General Pracitioner", "Operation Staff", "Physician", "Surgeon"};
-	//PLACE HOLDER DOCTORS
-	private String[] doctorList = {"Doctor Strange", "Doctor Who"};
-	
 	/**
 	 * This method creates and returns a JPanel
 	 */
@@ -83,7 +79,7 @@ public class AddAppointmentPanel
 		/*
 		 * Drop-down menu for Appointment Start Time
 		 */
-		JComboBox jcStartTime = new JComboBox(timeSlots);
+		JComboBox<String> jcStartTime = new JComboBox<String>(timeSlots);
 		jcStartTime.setSelectedIndex(0);
 		jcStartTime.setBounds(788, 600, 100, 20);
 		/*
@@ -95,7 +91,7 @@ public class AddAppointmentPanel
 		/*
 		 * Drop-down for Appointment End Time
 		 */
-		JComboBox jcEndTime = new JComboBox(timeSlots);
+		JComboBox<String> jcEndTime = new JComboBox<String>(timeSlots);
 		jcEndTime.setSelectedIndex(0);
 		jcEndTime.setBounds(1078, 600, 100, 20);
 		/*
@@ -109,14 +105,13 @@ public class AddAppointmentPanel
 		 */
 		JComboBox<String> jcDepartment = new JComboBox<String>(hms.getStringArray(hms.getDepartmentRecord()));
 		jcDepartment.setSelectedIndex(0);
-		jcDepartment.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		jcDepartment.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				
 				
 			}
-			
-			
-			
 		});
 		jcDepartment.setBounds(750, 500, 200, 20);
 		/*
@@ -185,7 +180,7 @@ public class AddAppointmentPanel
 					//If all input is correct, add this appointment
 					if(val.validateAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString())) 
 					{
-						hms.addAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString());
+						hms.addAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString(), jcDoctors.getSelectedItem().toString());
 						//display confirmation message
 						Object[] options = {"Ok"};
 						JOptionPane.showOptionDialog(null, "Appointment added.", "Success",

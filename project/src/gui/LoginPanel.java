@@ -71,6 +71,8 @@ public class LoginPanel
 				else if (response == "valid_e")
 				{
 					hms.displayEmployeeMainPage();
+					hms.setLoggedInUser(tfUsername.getText());
+					System.out.println("logged in as " + tfUsername.getText());
 				}
 				else
 				{

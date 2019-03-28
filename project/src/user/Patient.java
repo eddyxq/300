@@ -19,6 +19,7 @@ public class Patient extends Person
 	private String appointmentTime = "UNKNOWN";
 	private boolean hasAppointment;
 	Date dateNTime = new Date();
+	private String doctor = "UNKNOWN";
 	
 	public Patient(String firstName, String lastName, String sex, String dob, String phoneNumber, String email) 
 	{
@@ -34,11 +35,14 @@ public class Patient extends Person
 	 * @param date The date of the appointment
 	 * @param date The time of the appointment
 	 */
-	public void setAppointment(String date, String time)
+	public void setAppointment(String date, String time, String doctor)
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm", Locale.ENGLISH);
 		setAppointmentDate(date);
 		setAppointmentTime(time);
+		//remove the spaces so it becomes one word string
+		doctor = doctor.replaceAll(" ", "");
+		setDoctor(doctor);
 		String dateTime = date + " " + time;
 		try 
 		{
@@ -153,5 +157,11 @@ public class Patient extends Person
 	public void setAppointmentTime(String appointmentTime) 
 	{
 		this.appointmentTime = appointmentTime;
+	}
+	public String getDoctor() {
+		return doctor;
+	}
+	public void setDoctor(String doctor) {
+		this.doctor = doctor;
 	}
 }

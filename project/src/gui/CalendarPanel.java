@@ -103,7 +103,7 @@ public class CalendarPanel
 		 * HEADER MESSAGE
 		 */
 		JLabel lblMonthYear = new JLabel("MARCH 2019");
-		lblMonthYear.setFont(new Font("Arial", Font.BOLD, 100));
+		lblMonthYear.setFont(new Font("Arial", Font.BOLD, 90));
 		lblMonthYear.setBounds(250, 220, 700, 100);
 		/*
 		 * RETURN BUTTON

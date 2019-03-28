@@ -19,6 +19,7 @@ public class Hospital_Management_System
 	ArrayList<Patient> patientRecord = new ArrayList<Patient>();
 	//list of all the patients in the system
 	ArrayList<Employee> employeeRecord = new ArrayList<Employee>();
+	
 	//initialize GUI
 	private	JPanel addPatientPage = new AddPatientPanel().createPanel(this);
 	private JPanel patientManagementPage = new PatientManagePanel().createPanel(this);
@@ -43,6 +44,7 @@ public class Hospital_Management_System
 	
 	private String accessFrom;
 	private Integer id;
+	private String loggedInUser;
 	/**
 	 * This constructor starts the system.
 	 */
@@ -92,6 +94,7 @@ public class Hospital_Management_System
 			new TextWriter().saveDepartmentData(departmentRecord);
 			new TextWriter().savePatientData(patientRecord);
 			new TextWriter().saveEmployeeData(employeeRecord);
+			new TextWriter().saveLoginInfo(employeeRecord);
 		}};
 	}
 	/**
@@ -259,9 +262,9 @@ public class Hospital_Management_System
 	 * @param date The date of the appointment
 	 * @param time The time of the appointment
 	 */
-	public void addAppointment(String date, String time)
+	public void addAppointment(String date, String time, String doctor)
 	{
-		patientRecord.get(getId()-1).setAppointment(date, time);
+		patientRecord.get(getId()-1).setAppointment(date, time, doctor);
 		alp.addAppointmentToTable(patientRecord.get(getId()-1), this);
 		alap.addAppointmentToTable(patientRecord.get(getId()-1), this);
 	}
@@ -328,7 +331,7 @@ public class Hospital_Management_System
 				String month = date[1];
 				String year = date[2];
 
-				if ((day.equals(currentDay)) && (month.equals(currentMonth)) && (year.equals(currentYear)))
+				if ((day.equals(currentDay)) && (month.equals(currentMonth)) && (year.equals(currentYear)) && p.getDoctor().equals(loggedInUser))
 				{
 					names += p.getFirstName() + " " + p.getLastName() + "<br/>";
 					times += p.getAppointmentTime() + "<br/>";
@@ -439,4 +442,19 @@ public class Hospital_Management_System
         } 
         return arr; 
     } 
+    /*
+     * This method will return the list of employees.
+     */
+    public ArrayList<Employee> getEmployeeRecord() 
+    {
+		return employeeRecord;
+	}
+	public String getLoggedInUser() {
+		return loggedInUser;
+	}
+	public void setLoggedInUser(String loggedInUser) {
+		this.loggedInUser = loggedInUser;
+	}
+    
+
 }

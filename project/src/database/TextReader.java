@@ -31,6 +31,7 @@ public class TextReader
 				patientRecord.add(p);
 				p.setAppointmentDate(patientInfo[7]);
 				p.setAppointmentTime(patientInfo[8]);
+				p.setDoctor(patientInfo[9]);
 			}
 			reader.close();
 		} 

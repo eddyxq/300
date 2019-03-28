@@ -19,6 +19,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import database.TextWriter;
 import system.Hospital_Management_System;
 import system.ValidateInput;
 import user.Employee;
@@ -235,6 +237,7 @@ public class AddStaffPanel
 						clearTextField();
 						clearRedField();
 						hms.displayStaffManagementPage();
+						new TextWriter().saveLoginInfo(hms.getEmployeeRecord());
 					}
 					
 					//Otherwise, find out which field(s) are incorrect and highlight them 

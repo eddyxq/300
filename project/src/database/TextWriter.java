@@ -35,7 +35,8 @@ public class TextWriter
 							+ p.phoneNumber + " " 
 							+ p.email + " " 
 							+ p.getAppointmentDate() + " " 
-							+ p.getAppointmentTime();
+							+ p.getAppointmentTime() + " "
+							+ p.getDoctor();
 				writer.println(data);
 				count++;
 			}
@@ -86,6 +87,31 @@ public class TextWriter
 			}
 			writer.close();
 		} 
+		catch (IOException e) {}
+	}
+	/*
+	 * This method will save the login credentials.
+	 */
+	public void saveLoginInfo(ArrayList<Employee> employeeRecord) 
+	{
+		PrintWriter writer;
+		try 
+		{
+			writer = new PrintWriter(new BufferedWriter(new FileWriter("EmployeeAccounts.txt", false)));
+			
+			//default passwords for quick access and testing
+			writer.println("a a a");
+			writer.println("e e e");
+			
+			//set the employees user name to firstnamelastname and password to 123 by default
+			String data = "";
+			for (Employee e : employeeRecord)
+			{
+				data = e.firstName + e.lastName + " " + "123" + " " + "e";
+				writer.println(data);
+			}
+			writer.close();
+		}
 		catch (IOException e) {}
 	}
 }
