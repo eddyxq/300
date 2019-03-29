@@ -11,24 +11,16 @@ import java.util.Locale;
 public class Patient extends Person
 {
 	private int id;
-	public String sex;
-	public String dob;
-	public String phoneNumber;
-	public String email;
 	private String appointmentDate = "UNKNOWN";
 	private String appointmentTime = "UNKNOWN";
-	private boolean hasAppointment;
-	Date dateNTime = new Date();
 	private String doctor = "UNKNOWN";
-	
+	Date dateNTime = new Date();
+	/*
+	 * This Constructor will initialize the Patient fields.
+	 */
 	public Patient(String firstName, String lastName, String sex, String dob, String phoneNumber, String email) 
 	{
-		super(firstName, lastName);
-		this.sex = sex;
-		this.dob = dob;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-		hasAppointment = false;
+		super(firstName, lastName, sex, dob, phoneNumber, email);
 	}
 	/*
 	 * This method will set the appointment date and time.
@@ -49,7 +41,6 @@ public class Patient extends Person
 			dateNTime = sdf.parse(dateTime);
 		} 
 		catch (ParseException e) {}
-		hasAppointment = true;
 	}
 	public String getAppointment()
 	{
@@ -92,41 +83,6 @@ public class Patient extends Person
 	public String getLastName()
 	{
 		return lastName;
-	}
-	/*
-	 * This method returns the patient's phone number.
-	 */
-	public String getPhoneNum()
-	{
-		return phoneNumber;
-	}
-	/*
-	 * This method returns the patient's email.
-	 */
-	public String getEmail() 
-	{
-		return email;
-	}
-	/*
-	 * This method returns the patient's date of birth.
-	 */
-	public String getDOB() 
-	{
-		return dob;
-	}
-	/*
-	 * This method returns the patient's sex.
-	 */
-	public String getSex() 
-	{
-		return sex;
-	}
-	/*
-	 * This method returns true if the patient has a appointment booked
-	 */
-	public boolean hasAppointment() 
-	{
-		return hasAppointment;
 	}
 	/*
 	 * This method returns the appointment date.
