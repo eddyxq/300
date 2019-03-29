@@ -18,6 +18,7 @@ import system.Hospital_Management_System;
 public class HomePanel
 {
 	private JTextField tfpatientId;
+	private JTextField tfLastName;
 	
 	/**
 	 * This method creates and returns a JPanel
@@ -37,8 +38,16 @@ public class HomePanel
 		 */
 		tfpatientId = new JTextField();
 		tfpatientId.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		tfpatientId.setBounds(711, 466, 500, 50);
+		tfpatientId.setBounds(841, 454, 438, 50);
 		tfpatientId.setColumns(10);
+		/*
+		 * LAST NAME
+		 */
+		tfLastName = new JTextField();
+		tfLastName.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		tfLastName.setColumns(10);
+		tfLastName.setBounds(841, 578, 438, 50);
+		
 		/*
 		 * SUBMIT BUTTON
 		 */
@@ -64,7 +73,7 @@ public class HomePanel
 					if(inputId > 0)
 					{
 						//If the patient is found, display their appointment
-						if (hms.patientIdValid(tfpatientId.getText()))
+						if (hms.patientIdValid(tfpatientId.getText(), tfLastName.getText()))
 						{
 							//Ensuring an appointment is set for this patient
 							if(!hms.getAppointmentDate(tfpatientId.getText()).contains("UNKNOWN"))
@@ -113,7 +122,7 @@ public class HomePanel
 			}
 		});
 		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
-		btnSubmit.setBounds(830, 660, 250, 59);
+		btnSubmit.setBounds(830, 750, 250, 59);
 		/*
 		 * BUTTON - EMPLOYEE LOGIN
 		 */
@@ -129,6 +138,7 @@ public class HomePanel
 		btnAdminStaffLogin.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnAdminStaffLogin.setBounds(1010, 927, 225, 71);
 		//add all the components to panel
+		patientViewAppointment.add(tfLastName);
 		patientViewAppointment.add(btnAdminStaffLogin);
 		patientViewAppointment.add(btnSubmit);
 		patientViewAppointment.add(tfpatientId);
@@ -142,6 +152,7 @@ public class HomePanel
 	private void tfClear() 
 	{
 		tfpatientId.setText("");
+		tfLastName.setText("");
 	}
 	
 	/**
@@ -149,7 +160,7 @@ public class HomePanel
 	 */
 	private boolean formComplete() 
 	{
-		if(!(tfpatientId.getText().length() > 0))
+		if(!(tfpatientId.getText().length() > 0) && !(tfLastName.getText().length() > 0))
 		{
 			return false;
 		}

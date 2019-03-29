@@ -18,8 +18,8 @@ public class TestPanel extends JPanel {
 	private String[] departmentList = {"General Pracitioner", "Operation Staff", "Physician", "Surgeon"};
 	private String[] practioners = {"Doctor Strange", "Doctor Who"};
 	private String[] surgeons = {"surgeon1, surgeon2"};
-	private JComboBox comboBox_doc = new JComboBox(practioners);
-	JLabel label_1 = new JLabel("1");
+	private JTextField textField;
+	private JTextField textField_1;
 	/**
 	 * Create the panel.
 	 */
@@ -27,58 +27,20 @@ public class TestPanel extends JPanel {
 		setLayout(null);
 		setBounds(0, 0, 1920, 1080);
 		
-		JButton btnNewButton = new JButton("Submit");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Submit");
-				label_1.setText("Submit");
-				updateComponent();
-			}
-		});
-		btnNewButton.setBounds(383, 942, 400, 59);
-		add(btnNewButton);
+		textField = new JTextField();
+		textField.setBounds(841, 454, 438, 50);
+		add(textField);
+		textField.setColumns(10);
 		
-		JButton btnNewButton_1 = new JButton("Cancel");
-		btnNewButton_1.setBounds(1133, 942, 400, 59);
-		add(btnNewButton_1);
-		
-		JComboBox comboBox_dep = new JComboBox(departmentList);
-		comboBox_dep.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String selected = (String)comboBox_dep.getSelectedItem();
-				if (selected.equals("Surgeon")) {
-					System.out.println("Surgeon Selected");
-					updateComponent();
-				}
-			}
-		});
-		comboBox_dep.setBounds(581, 540, 202, 20);
-		add(comboBox_dep);
-		comboBox_doc.setBounds(1060, 540, 172, 20);
-		add(comboBox_doc);
-		
-		
-		label_1.setBounds(920, 410, 46, 80);
-		add(label_1);
-		
-		JLabel lblDoctors = new JLabel("Doctors");
-		lblDoctors.setBounds(1060, 505, 152, 21);
-		add(lblDoctors);
-		
-		JLabel lbDepartment = new JLabel("Department");
-		lbDepartment.setBounds(581, 505, 306, 24);
-		lbDepartment.setFont(new Font("Arial", Font.BOLD, 16));
-		add(lbDepartment);
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(841, 578, 438, 50);
+		add(textField_1);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(TestPanel.class.getResource("/graphics/addDepartment_background.png")));
+		label.setIcon(new ImageIcon(TestPanel.class.getResource("/graphics/patientID_background.png")));
 		label.setBounds(0, 0, 1920, 1080);
 		add(label);
 
-	}
-	
-	public void updateComponent(){
-		add(comboBox_doc);
-		add(label_1);
 	}
 }

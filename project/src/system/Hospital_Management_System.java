@@ -294,9 +294,16 @@ public class Hospital_Management_System
 	 * This method returns true when patient id is valid
 	 * @param id The patient id
 	 */
-	public boolean patientIdValid(String id)
+	public boolean patientIdValid(String id, String lastName)
 	{
-		return allDigits(id) && (Integer.parseInt(id)) <= patientRecord.size() ? true : false;
+		if(allDigits(id) && (Integer.parseInt(id)) <= patientRecord.size())
+		{
+			if(patientRecord.get((Integer.parseInt(id))-1).getLastName().equals(lastName))
+			{
+				return true;
+			}
+		}
+			return false;
 	}
 	/**
 	 * This method checks the inputed string and determines whether it contains only digits
