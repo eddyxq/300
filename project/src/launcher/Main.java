@@ -5,8 +5,8 @@ import system.Hospital_Management_System;
 /**
  * This class is the starting execution point of the system.
  * @author Team 3 - SENG 300 - L02
- * @version 1.0
- * @since February 16, 2019
+ * @version 3.0
+ * @since March 29, 2019
  */
 public class Main 
 {

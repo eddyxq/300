@@ -89,6 +89,15 @@ public class AddDepartmentPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				//add department to list
+				hms.getDepartmentRecord().add(tfDepartment.getText());
+				//display confirmation message
+				Object[] options = {"Ok"};
+				JOptionPane.showOptionDialog(null, "Department added.", "Success",
+				JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+				null, options, options[0]);
+				//clear the text field
+				tfDepartment.setText("");
 				
 			}
 		});
@@ -102,12 +111,4 @@ public class AddDepartmentPanel
 		
 		return addDepartmentPanel;
 	}
-	/**
-	 * This method resets all the text fields
-	 */
-	private void clearTextField() 
-	{
-		tfDepartment.setText("");
-	}
-	
 }

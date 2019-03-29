@@ -9,7 +9,7 @@ import user.Patient;
 import gui.*;
 
 /*
- * This class contains the logic for the hospital manage system.
+ * This class contains the logic for the hospital management system. 
  */
 public class Hospital_Management_System 
 {	
@@ -43,6 +43,7 @@ public class Hospital_Management_System
 	private JPanel manageAppointmentPage = new ManageDepartmentPanel().createPanel(this);
 	private JPanel addDepartmentPage = new AddDepartmentPanel().createPanel(this);
 	
+	//variablies for identifying users
 	private String accessFrom;
 	private Integer id;
 	private String loggedInUser;
