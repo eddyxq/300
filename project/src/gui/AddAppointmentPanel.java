@@ -116,7 +116,7 @@ public class AddAppointmentPanel
 				String[] docList = hms.getDoctorsInDepartment((String)jcDepartment.getSelectedItem());
 				for (int i=0; i< docList.length; i++) {
 					//Add the list of doctors into the combo box
-					jcDoctors.addItem("1");
+					jcDoctors.addItem(docList[i]);
 				}
 				
 				
