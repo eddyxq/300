@@ -31,6 +31,7 @@ public class AddAppointmentPanel
 	private String[] timeSlots = {"06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00"
 			+ "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
 			"16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30"};
+	private JComboBox<String> jcDoctors;
 	/**
 	 * This method creates and returns a JPanel
 	 */
@@ -109,6 +110,14 @@ public class AddAppointmentPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				//Clears the combo box
+				jcDoctors.removeAllItems();
+				
+				String[] docList = hms.getDoctorsInDepartment((String)jcDepartment.getSelectedItem());
+				for (int i=0; i< docList.length; i++) {
+					//Add the list of doctors into the combo box
+					jcDoctors.addItem(docList[i]);
+				}
 				
 				
 			}
@@ -135,7 +144,7 @@ public class AddAppointmentPanel
 			list = hms.getDoctorsInDepartment((String) jcDepartment.getSelectedItem());
 		}
 
-		JComboBox<String> jcDoctors = new JComboBox<String>(list);
+		jcDoctors = new JComboBox<String>(list);
 		jcDoctors.setSelectedIndex(0);
 		jcDoctors.setBounds(1045, 500, 200, 20);
 		/*
