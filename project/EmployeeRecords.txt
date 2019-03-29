@@ -1,3 +1,4 @@
 1 Kim Abell Male 12/12/1980 5855988505 doctor@gmail.com Cardiology
 2 Mathew Devine Male 02/09/1970 5852794800 doctor@gmail.com Cardiology
 3 Laurie Donohue Female 25/12/1968 5852546480 doctor@gmail.com Gastroenterology
+4 Jean Doe Female 29/03/1980 4031111111 doctor2@gmail.com Gastroenterology
