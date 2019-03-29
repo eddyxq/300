@@ -5,28 +5,33 @@ import java.util.GregorianCalendar;
 
 /**
  * This class is used to ensure all input is valid 
- * @author Team 3 - SENG 300 - L02
- * @version 1.0
- * @since March 17, 2019
  */
-public class ValidateInput {
-	
+public class ValidateInput 
+{	
 	/*
 	 * This method returns true if all entries of a patient form are valid
+	 * @param firstName The first name.
+	 * @param lastName The last name.
+	 * @param day The day.
+	 * @param month The month.
+	 * @param year The year.
+	 * @param phoneNumber The phone number.
+	 * @param email The email.
+	 * @return
 	 */
-	public boolean validatePatient(String name1, String name2, String day, String month, String year, String phone, String email)
+	public boolean validatePatient(String firstName, String lastName, String day, String month, String year, String phoneNumber, String email)
 	{
-		if(!this.validateName(name1) || !this.validateName(name2) || !this.validateDay(day, month, year) || !this.validateMonth(month) 
-				|| !this.validateBirthYear(year) || !this.validatePhone(phone) || !this.validateEmail(email))
+		if(!this.validateName(firstName) || !this.validateName(lastName) || !this.validateDay(day, month, year) || 
+		!this.validateMonth(month) || !this.isPastYear(year) || !this.validatePhone(phoneNumber) || !this.validateEmail(email))
 		{
 			return false;
 		}
-		
 		return true;
 	}
-	
 	/*
-	 * This method returns true all elements of an appointment form are valid
+	 * This method returns true all elements of an appointment form are valid.
+	 * @param date The date.
+	 * @param time The time.
 	 */
 	public boolean validateAppointment(String date, String time)
 	{
@@ -34,50 +39,56 @@ public class ValidateInput {
 		{
 			return false;
 		}
-		
 		return true;
 	}
-	
 	/*
-	 * This method returns true if a name entry is valid
+	 * This method returns true if a name entry is valid.
+	 * @param name The name of person.
 	 */
-	public boolean validateName(String name1)
+	public boolean validateName(String name)
 	{
 		//Ensuring a name entry is all letters
-		char[] check = name1.toCharArray();
-		for(char f: check)
+		char[] check = name.toCharArray();
+		for(char f : check)
 		{
 			if (!Character.isLetter(f))
-			return false;
-		}
-		
+			{
+				return false;
+			}
+		}	
 		return true;
 	}
 	
 
 	/*
-	 * This method returns true if the day entry is valid
+	 * This method returns true if the day entry is valid.
+	 * @param day The day.
+	 * @param month The month.
+	 * @param year The year.
 	 */
 	public boolean validateDay(String day, String month, String year)
 	{
-		//Day cannot be validated without valid month
+		//check if month is valid
 		if(!this.validateMonth(month))
 		{
 			return false;
 		}
-		
+		//check if day is valid
 		if(day.length() != 2 || !day.matches("[0-9]+") || Integer.parseInt(day) < 1 || Integer.parseInt(day) > 31)
 		{
 			return false;
 		}
-	
+		
 		int theDay = 0, theMonth = 0, theYear = 0;
 		
-		try {
+		try 
+		{
 			theDay = Integer.parseInt(day);
 			theMonth = Integer.parseInt(month);
 			theYear = Integer.parseInt(year);
-		} catch (NumberFormatException nfe) {
+		} 
+		catch (NumberFormatException nfe) 
+		{
 			//If the current date (despite passing other validations cannot be parsed as an int
 		}
 		
@@ -91,26 +102,22 @@ public class ValidateInput {
 		
 		//Ensures the calendar does not accept invalid dates
 		cal.setLenient(false);
-	
 		cal.set(theYear, theMonth-1, theDay);
 		
 		try 
 		{
 			cal.getTime();
 		}
-		
 		catch(IllegalArgumentException iae)
 		{
 			//Invalid date, determined by calendar method; return false
 			return false;
 		}
-		
-		
 		return true;
 	}
-	
 	/*
-	 * This method returns true if the month entry is valid
+	 * This method returns true if the month entry is valid.
+	 * @param month The month.
 	 */
 	public boolean validateMonth(String month)
 	{
@@ -119,63 +126,62 @@ public class ValidateInput {
 		{
 			return false;
 		}
-		
 		return true;
 	}
-	
 	/*
-	 * This method returns true if the year entry is valid
+	 * This method returns true if the year entry is valid.
+	 * @param year The year.
 	 */
-	public boolean validateYear(String year)
+	public boolean isFutureYear(String year)
 	{
 		//Getting value of current year to compare entry 
 		int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-		
 		//Ensuring year entry is a number and meets length constraint
 		// also comparison to avoid registering patients with future birth date
 		if(year.length() > 4 || !year.matches("[0-9]+") || Integer.parseInt(year) < 1 || Integer.parseInt(year) < thisYear)
 		{
 			return false;
 		}
-		
+		//if no problems are found, then the year is valid
 		return true;
 	}
-	
 	/*
-	 * This method returns true if the year of a patient's birth is valid
+	 * This method returns true if the year of a patient's birth is valid.
+	 * @param year The year.
 	 */
-	public boolean validateBirthYear(String year)
+	public boolean isPastYear(String year)
 	{
 		//Getting value of current year to compare entry 
 		int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-		
 		//Ensuring year entry is a number and meets length constraint
 		// also comparison to avoid registering patients with future birth date
 		if(year.length() > 4 || !year.matches("[0-9]+") || Integer.parseInt(year) < 1 || Integer.parseInt(year) > thisYear)
 		{
 			return false;
 		}
-		
+		//if no problems are found, then the year is valid
 		return true;
 	}
 	
 	/*
 	 * This method returns true if the phone number entry is valid
+	 * @param phoneNumber The phone number.
+	 * @return
 	 */
-	public boolean validatePhone(String phone)
+	public boolean validatePhone(String phoneNumber)
 	{
 		//Ensuring phone number entry is a number and meets length/content constraint
-		String phCheck = phone.replaceAll("-", "");
-		if(phCheck.length() != 10 || !phCheck.matches("[0-9]+"))
+		String phoneCheck = phoneNumber.replaceAll("-", "");
+		if(phoneCheck.length() != 10 || !phoneCheck.matches("[0-9]+"))
 		{
 			return false;
 		}
-		
+		//if no problems are found, then email is valid
 		return true;
 	}
-	
 	/*
-	 * This method returns true if the email entry is valid
+	 * This method returns true if the email entry is valid.
+	 * @param email The email from the form.
 	 */
 	public boolean validateEmail(String email)
 	{
@@ -184,17 +190,23 @@ public class ValidateInput {
 		{
 			return false;
 		}
-		
+		//ensures there's no space
+		if(email.contains(" "))
+		{
+			return false;
+		}
+		//ensures there's at most one @ sign
 		int count = email.length() - email.replace("@", "").length();
 		if(count != 1)
 		{
 			return false;
 		}
+		//if no problems are found, then email is valid
 		return true;
 	}
-	
 	/*
-	 * This method returns true if the overall date entry is valid
+	 * This method returns true if the overall date entry is valid.
+	 * @param date The string input from the form.
 	 */
 	public boolean validateDate(String date)
 	{
@@ -203,29 +215,23 @@ public class ValidateInput {
 		{
 			return false;
 		}
-		
 		//Splitting string by / signs
-		String parts[] = date.split("/");
-		
+		String parts[] = date.split("/");		
 		//If there aren't 3 parts to the date input, it isn't valid
 		if(parts.length != 3)
 		{
 			return false;
 		}
-		
 		//If the day or month are more than 2 digits, or the year is more than 4, it is invalid
 		if(parts[0].length() != 2 || parts[1].length() != 2 | parts[2].length() != 4)
 		{
 			return false;
 		}	
-		
 		//Finally, checking the input values for appropriate day, month, and year range
 		if(!this.validateDay(parts[0], parts[1], parts[2]) || !this.validateMonth(parts[1]))
 		{
 			return false;
-		}
-		
-		
+		}	
 		//Getting value of current year to compare entry 
 		int thisYear = Calendar.getInstance().get(Calendar.YEAR);
 		int thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1; //Months start at 0
@@ -243,12 +249,12 @@ public class ValidateInput {
 		{
 			return false;
 		}
-		
+		//if no problems are found, then date is valid
 		return true;
 	}
-	
 	/*
 	 * This method returns true if the time entry is valid
+	 * @param time The string input from the form.
 	 */
 	public boolean validateTime(String time)
 	{
@@ -257,30 +263,27 @@ public class ValidateInput {
 		{
 			return false;
 		}
-		
-		//Splitting string by :
+		//first part is hour
+		//second part is minute
 		String parts[] = time.split(":");
 		
-		//Valid date should have exactly 2 parts
+		//ensures only 2 arguments are given
 		if(parts.length != 2)
 		{
 			return false;
 		}
 		
-		//Length of the strings should be 2
+		//check that the string's length is 2
 		if(parts[0].length() != 2 || parts[1].length() != 2)
 		{
 			return false;
 		}
-		
-		if(Integer.parseInt(parts[0]) > 23 || Integer.parseInt(parts[1]) > 60)
+		//check for valid hours
+		if(Integer.parseInt(parts[0]) > 23 || Integer.parseInt(parts[1]) > 59)
 		{
 			return false;
 		}
-		
+		//if no problems are found, then time is valid
 		return true;
 	}
-	
-	
 }
-

@@ -268,7 +268,7 @@ public class AddStaffPanel
 						}
 						
 						//Checking if the birth year entered isn't valid
-						if(!val.validateBirthYear(tfYear.getText()))
+						if(!val.isPastYear(tfYear.getText()))
 						{
 							tfYear.setBackground(Red);
 						}
