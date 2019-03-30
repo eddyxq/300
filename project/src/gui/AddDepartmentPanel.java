@@ -29,6 +29,8 @@ public class AddDepartmentPanel
 	private Color Default = new Color(255,255,255);
 	/**
 	 * This method creates and returns a JPanel
+	 * @param hms
+	 * @return this panel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
@@ -101,6 +103,7 @@ public class AddDepartmentPanel
 				
 			}
 		});
+		// Adds all the components to the panel.
 		addDepartmentPanel.add(tfDepartment);
 		addDepartmentPanel.add(lbDepartment);
 		addDepartmentPanel.add(btnSubmit);

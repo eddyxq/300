@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import system.Hospital_Management_System;
 
 /*
- * This class displays calendar panel.
+ * This class displays calendar panel for March.
  */
 public class MarchCalendarPanel 
 {
@@ -42,6 +42,8 @@ public class MarchCalendarPanel
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
 	/**
 	 * This method creates and returns a JPanel
+	 * @param hms
+	 * @return this panel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{

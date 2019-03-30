@@ -43,6 +43,8 @@ public class AddPatientPanel
 
 	/**
 	 * This method creates and returns a JPanel
+	 * @param hms
+	 * @return this panel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
@@ -121,6 +123,7 @@ public class AddPatientPanel
 		lbDOB.setBounds(78, 428, 300, 50);
 		//day
 		tfDay = new JTextField();
+		// FocusListner that clears the text in the text field.
 		tfDay.addFocusListener(new FocusAdapter() 
 		{
 			@Override
@@ -137,6 +140,7 @@ public class AddPatientPanel
 		tfMonth.setText("Month");
 		tfMonth.setColumns(10);
 		tfMonth.setBounds(754, 445, 70, 20);
+		// FocusListner that clears the text in the text field.
 		tfMonth.addFocusListener(new FocusAdapter() 
 		{
 			@Override

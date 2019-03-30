@@ -45,6 +45,8 @@ public class AddStaffPanel
 	private ValidateInput val = new ValidateInput();
 	/**
 	 * This method creates and returns a JPanel
+	 * @param hms
+	 * @return this panel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
@@ -139,6 +141,7 @@ public class AddStaffPanel
 		tfMonth.setText("Month");
 		tfMonth.setColumns(10);
 		tfMonth.setBounds(754, 445, 70, 20);
+		// FocusListner that clears the text in the text field.
 		tfMonth.addFocusListener(new FocusAdapter() 
 		{
 			@Override
@@ -152,6 +155,7 @@ public class AddStaffPanel
 		tfYear.setText("Year");
 		tfYear.setColumns(10);
 		tfYear.setBounds(856, 445, 70, 20);
+		// FocusListner that clears the text in the text field.
 		tfYear.addFocusListener(new FocusAdapter() 
 		{
 			@Override
@@ -330,7 +334,8 @@ public class AddStaffPanel
 		return addStaff;
 	}
 	/**
-	 * This method returns true if form is completely filled out
+	 * This method returns true if form is completely filled out 
+	 * @return 	true if form completed, false other wise
 	 */
 	private boolean formComplete() 
 	{
