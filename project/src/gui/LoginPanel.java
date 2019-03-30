@@ -76,7 +76,6 @@ public class LoginPanel
 				{
 					hms.displayEmployeeMainPage();
 					hms.setLoggedInUser(tfUsername.getText());
-					System.out.println("logged in as " + tfUsername.getText());
 				}
 				else
 				{
