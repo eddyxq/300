@@ -33,9 +33,9 @@ public class ValidateInput
 	 * @param date The date.
 	 * @param time The time.
 	 */
-	public boolean validateAppointment(String date, String time)
+	public boolean validateAppointment(String date, String timeStart, String timeEnd)
 	{
-		if(!this.validateDate(date) || !this.validateTime(time))
+		if(!this.validateDate(date) || !this.validateTime(timeStart, timeEnd))
 		{
 			return false;
 		}
@@ -256,30 +256,45 @@ public class ValidateInput
 	 * This method returns true if the time entry is valid
 	 * @param time The string input from the form.
 	 */
-	public boolean validateTime(String time)
+	public boolean validateTime(String timeStart, String timeEnd)
 	{
 		//Ensuring time entry contains : and fulfills length and value constraints (HH:MM)
-		if(!time.contains(":"))
+		if(!timeStart.contains(":") || !timeEnd.contains(":"))
 		{
 			return false;
 		}
-		//first part is hour
-		//second part is minute
-		String parts[] = time.split(":");
-		
+		//first index of time array is hour
+		//second index of time array is minute
+		String startT[] = timeStart.split(":");
+		String endT[] = timeEnd.split(":");
 		//ensures only 2 arguments are given
-		if(parts.length != 2)
+		if(startT.length != 2 || endT.length != 2)
 		{
 			return false;
 		}
-		
-		//check that the string's length is 2
-		if(parts[0].length() != 2 || parts[1].length() != 2)
+		//check that the string's lengths are 2
+		if(startT[0].length() != 2 || startT[1].length() != 2)
 		{
 			return false;
 		}
 		//check for valid hours
-		if(Integer.parseInt(parts[0]) > 23 || Integer.parseInt(parts[1]) > 59)
+		if(Integer.parseInt(startT[0]) > 23 || Integer.parseInt(endT[0]) > 23 ||
+			Integer.parseInt(startT[1]) > 59 || Integer.parseInt(endT[1]) > 59)
+		{
+			return false;
+		}
+		//If the start hour is greater than the end hour: appointment time is invalid
+		if(Integer.parseInt(startT[0]) > Integer.parseInt(endT[0]))
+		{
+			return false;
+		}
+		//If the appointment starts and ends in same hour and start minute is greater than the end minute: appointment time is invalid
+		if(Integer.parseInt(startT[0]) == Integer.parseInt(endT[0]) && (Integer.parseInt(startT[1]) > Integer.parseInt(endT[1])))
+		{
+			return false;
+		}
+		//If the appointment starts and ends at exactly the same time; the appointment time is invalid
+		if(Integer.parseInt(startT[0]) == Integer.parseInt(endT[0]) && (Integer.parseInt(startT[1]) == Integer.parseInt(endT[1])))
 		{
 			return false;
 		}

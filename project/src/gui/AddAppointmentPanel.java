@@ -180,110 +180,118 @@ public class AddAppointmentPanel
 			{
 				//Initially clearing all field colors
 				clearRedField();
-				
-				if(formComplete())
-				{
-					//If all input is correct, add this appointment
-					if(val.validateAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString())) 
-					{
-						hms.addAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString(), jcDoctors.getSelectedItem().toString());
-						//display confirmation message
-						Object[] options = {"Ok"};
-						JOptionPane.showOptionDialog(null, "Appointment added.", "Success",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-						null, options, options[0]);
-						//go back to previous menu
-						clearTextField();
-						clearRedField();
-						
-						hms.displayPatientListPage();
-					}
-					
-					//Otherwise, find out which field(s) are incorrect
-					else 
-					{
-						//Checking if date input isn't valid
-						if(!val.validateDate(tfDate.getText()))
-						{
-							tfDate.setBackground(Red);
-						}
-						
-						//Checking if time input isn't valid
-						if(!val.validateTime(lbStartTime.getText()))
-						{
-							jcStartTime.setBackground(Red);
-						}
-						
-						Object[] options = {"Close"};
-						JOptionPane.showOptionDialog(null, "Please ensure all highlighted entries are correct", "Warning",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-						null, options, options[0]);
-					}
-				}
-				
-				else
-				{
-					//display warning message if any fields are empty 
-					Object[] options = {"Close"};
-					JOptionPane.showOptionDialog(null, "Please fill in all information.", "Warning",
-					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
-				}
-			}
-		});
-		// Adds all the components to the panel.
-		addAppointmentPanel.add(lbDoctors);
-		addAppointmentPanel.add(jcDoctors);
-		addAppointmentPanel.add(lbDepartment);
-		addAppointmentPanel.add(jcDepartment);
-		addAppointmentPanel.add(lblDate);
-		addAppointmentPanel.add(tfDate);
-		addAppointmentPanel.add(lbStartTime);
-		addAppointmentPanel.add(jcStartTime);
-		addAppointmentPanel.add(lbEndTime);
-		addAppointmentPanel.add(jcEndTime);
-		addAppointmentPanel.add(btnSubmit);
-		addAppointmentPanel.add(btnCancel);
-		addAppointmentPanel.add(lblWelcomeBackAdministrator);
-		addAppointmentPanel.add(date);
-		addAppointmentPanel.add(lblBackground);
-		
-		return addAppointmentPanel;
-	}
 	
-	/**
-	 * This method returns true if form is completely filled out
-	 * (Need to redo due to changes from textfield to JComboBox)
-	 */
-	private boolean formComplete() 
-	{
-		//add all the text fields to an array
-		ArrayList<JTextField> allTextFields = new ArrayList<JTextField>();
-		allTextFields.add(tfDate);
-		
-		//loop through array checking if they are not empty
-		for(JTextField t : allTextFields)
-		{
-			if(!(t.getText().length() > 0))
+		    	if(formComplete())
+						{
+							//If all input is correct, add this appointment
+							if(val.validateAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString(), jcEndTime.getSelectedItem().toString())) 
+							{
+								hms.addAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString(), jcEndTime.getSelectedItem().toString());
+								//display confirmation message
+								Object[] options = {"Ok"};
+								JOptionPane.showOptionDialog(null, "Appointment added.", "Success",
+								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+								null, options, options[0]);
+								//go back to previous menu
+								clearTextField();
+								//Resetting dropdown selection fields to default
+								jcStartTime.setSelectedIndex(0);
+								jcEndTime.setSelectedIndex(0);
+								clearRedField();
+								//Resetting dropdown selection fields' colour
+								jcStartTime.setBackground(Default);
+								jcEndTime.setBackground(Default);
+								
+								
+								hms.displayPatientListPage();
+							}
+							
+							//Otherwise, find out which field(s) are incorrect
+							else 
+							{
+								//Checking if date input isn't valid
+								if(!val.validateDate(tfDate.getText()))
+								{
+									tfDate.setBackground(Red);
+								}
+								
+								//Checking if time input isn't valid
+								if(!val.validateTime(jcStartTime.getSelectedItem().toString(), jcEndTime.getSelectedItem().toString()))
+								{
+									jcStartTime.setBackground(Red);
+									jcEndTime.setBackground(Red);
+								}
+								
+								Object[] options = {"Close"};
+								JOptionPane.showOptionDialog(null, "Please ensure all highlighted entries are correct", "Warning",
+								JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+								null, options, options[0]);
+							}
+						}
+						
+						else
+						{
+							//display warning message if any fields are empty 
+							Object[] options = {"Close"};
+							JOptionPane.showOptionDialog(null, "Please fill in all information.", "Warning",
+							JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+						}
+					}
+				});
+				// Adds all the components to the panel.
+				addAppointmentPanel.add(lbDoctors);
+				addAppointmentPanel.add(jcDoctors);
+				addAppointmentPanel.add(lbDepartment);
+				addAppointmentPanel.add(jcDepartment);
+				addAppointmentPanel.add(lblDate);
+				addAppointmentPanel.add(tfDate);
+				addAppointmentPanel.add(lbStartTime);
+				addAppointmentPanel.add(jcStartTime);
+				addAppointmentPanel.add(lbEndTime);
+				addAppointmentPanel.add(jcEndTime);
+				addAppointmentPanel.add(btnSubmit);
+				addAppointmentPanel.add(btnCancel);
+				addAppointmentPanel.add(lblWelcomeBackAdministrator);
+				addAppointmentPanel.add(date);
+				addAppointmentPanel.add(lblBackground);
+				
+				return addAppointmentPanel;
+			}
+			
+			/**
+			 * This method returns true if form is completely filled out
+			 * (Need to redo due to changes from textfield to JComboBox)
+			 */
+			private boolean formComplete() 
 			{
-				return false;
+				//add all the text fields to an array
+				ArrayList<JTextField> allTextFields = new ArrayList<JTextField>();
+				allTextFields.add(tfDate);
+				
+				//loop through array checking if they are not empty
+				for(JTextField t : allTextFields)
+				{
+					if(!(t.getText().length() > 0))
+					{
+						return false;
+					}
+				}
+				return true;
 			}
-		}
-		return true;
-	}
-	
-	/**
-	 * This method resets all the text fields
-	 */
-	private void clearTextField() 
-	{
-		tfDate.setText("");
-	}
-	
-	/**
-	 * This method resets all the text field colors
-	 */
-	private void clearRedField()
-	{
-		tfDate.setBackground(Default);
-	}
+			
+			/**
+			 * This method resets all the text fields
+			 */
+			private void clearTextField() 
+			{
+				tfDate.setText("");
+			}
+			
+			/**
+			 * This method resets all the text field colors
+			 */
+			private void clearRedField()
+			{
+				tfDate.setBackground(Default);
+			}
 }
