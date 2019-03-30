@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import system.Hospital_Management_System;
 
 /*
- * This class displays calendar panel.
+ * This class displays calendar panel for April.
  */
 public class AprilCalendarPanel 
 {
@@ -42,6 +42,8 @@ public class AprilCalendarPanel
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
 	/**
 	 * This method creates and returns a JPanel
+	 * @param hms
+	 * @return this panel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
@@ -145,6 +147,7 @@ public class AprilCalendarPanel
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(1310, 990, 400, 40);
+		
 		//add all the components to panel
 		calendarPanel.add(patientName);
 		calendarPanel.add(appointmentTime);
@@ -157,6 +160,7 @@ public class AprilCalendarPanel
 		calendarPanel.add(lblMonthYear);
 		calendarPanel.add(lblBackground);
 		
+		// Adds the dates
 		model.addRow(new Object[]{" "," "," "," "," "," "," "});
 		model.addRow(new Object[]{" ","1","2","3","4","5","6"});
 		model.addRow(new Object[]{"7","8","9","10","11","12","13"});

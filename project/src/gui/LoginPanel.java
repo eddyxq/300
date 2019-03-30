@@ -21,7 +21,11 @@ public class LoginPanel
 	 */
 	private JTextField tfUsername;
 	private JPasswordField passwordField;
-	
+	/**
+	 * This method creates and returns a JPanel
+	 * @param hms
+	 * @return this panel
+	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
 		//initialize the panel layout and size

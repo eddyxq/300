@@ -35,6 +35,8 @@ public class AppointmentListPanel
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
 	/**
 	 * This method creates and returns a JPanel
+	 * @param hms
+	 * @return this panel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
@@ -90,8 +92,10 @@ public class AppointmentListPanel
 		
 		return appointmentListPanel;
 	}
-	/*
+	/**
 	 * Adds appointment to the list
+	 * @param patient
+	 * @param hms
 	 */
 	public void addAppointmentToTable(Patient patient, Hospital_Management_System hms) 
 	{

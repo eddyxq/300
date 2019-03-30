@@ -18,12 +18,13 @@ import system.Hospital_Management_System;
  */
 public class AdminMainPanel
 {
+	
+	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	/**
 	 * This method creates and returns a JPanel
-	 * @wbp.parser.entryPoint
+	 * @param hms
+	 * @return this panel
 	 */
-	private Font bArial = new Font("Arial", Font.BOLD, 30);
-	
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
 		//initialize the panel layout and size
@@ -100,6 +101,7 @@ public class AdminMainPanel
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(785, 930, 400, 59);
+		
 		//add all the components to panel
 		adminMain.add(btnManageDepart);
 		adminMain.add(btnManagePatient);

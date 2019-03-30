@@ -42,6 +42,8 @@ public class PatientListPanel
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
 	/**
 	 * This method creates and returns a JPanel
+	 * @param hms
+	 * @return this panel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
