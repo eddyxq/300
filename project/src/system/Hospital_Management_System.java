@@ -429,6 +429,7 @@ public class Hospital_Management_System
 	}
 	/**
 	 * This method will return employeeRecord.
+	 * @param department The department the doctors belong to.
 	 */
 	public String[] getDoctorsInDepartment(String department) 
 	{
@@ -464,13 +465,19 @@ public class Hospital_Management_System
     {
 		return employeeRecord;
 	}
-	public String getLoggedInUser() {
+	/**
+	 * This method will return the user currently logged in.
+	 */
+	public String getLoggedInUser() 
+	{
 		return loggedInUser;
 	}
-	public void setLoggedInUser(String loggedInUser) {
+	/**
+	 * This method will set the logged in user.
+	 * @param loggedInUser The user currently using the system.
+	 */
+	public void setLoggedInUser(String loggedInUser) 
+	{
 		this.loggedInUser = loggedInUser;
 	}
-	
-    
-
 }
