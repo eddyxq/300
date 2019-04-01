@@ -20,9 +20,9 @@ import javax.swing.table.DefaultTableModel;
 import system.Hospital_Management_System;
 
 /*
- * This class displays calendar panel for March.
+ * This class displays calendar panel for May.
  */
-public class MarchCalendarPanel 
+public class MayCalendarPanel 
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JLabel patientName = new JLabel("");
@@ -71,7 +71,7 @@ public class MarchCalendarPanel
 				int col= table.columnAtPoint(e.getPoint());
 				//temporary hard coded month and year values passed
 				//will be fixed once we implement the full calendar
-				ArrayList<String> appointmentData = hms.generateDaySchedule(table.getValueAt(row, col).toString(), "03", "2019");
+				ArrayList<String> appointmentData = hms.generateDaySchedule(table.getValueAt(row, col).toString(), "05", "2019");
 				patientName.setText(appointmentData.get(0));
 				appointmentTime.setText(appointmentData.get(1));
 			}
@@ -85,7 +85,7 @@ public class MarchCalendarPanel
 		calendarPanel.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(MarchCalendarPanel.class.getResource("/graphics/staffCalendar_background.png")));
+		lblBackground.setIcon(new ImageIcon(MayCalendarPanel.class.getResource("/graphics/staffCalendar_background.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
@@ -104,7 +104,7 @@ public class MarchCalendarPanel
 		/*
 		 * HEADER MESSAGE
 		 */
-		JLabel lblMonthYear = new JLabel("MARCH 2019");
+		JLabel lblMonthYear = new JLabel("MAY 2019");
 		lblMonthYear.setFont(new Font("Arial", Font.BOLD, 90));
 		lblMonthYear.setBounds(250, 220, 700, 100);
 		/*
@@ -115,7 +115,9 @@ public class MarchCalendarPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				hms.displayAprilCalendarPage();
+				//not availiable right now
+				//to be implemented
+				
 			}
 		});
 		btnNext.setFont(new Font("Arial", Font.BOLD, 16));
@@ -128,8 +130,7 @@ public class MarchCalendarPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				//not availiable right now
-				//to be implemented
+				hms.displayAprilCalendarPage();
 			}
 		});
 		btnPrev.setFont(new Font("Arial", Font.BOLD, 16));
@@ -159,12 +160,12 @@ public class MarchCalendarPanel
 		calendarPanel.add(lblMonthYear);
 		calendarPanel.add(lblBackground);
 		
-		model.addRow(new Object[]{" "," "," "," "," ","1","2"});
-		model.addRow(new Object[]{"3","4","5","6","7","8","9"});
-		model.addRow(new Object[]{"10","11","12","13","14","15","16"});
-		model.addRow(new Object[]{"17","18","19","20","21","22","23"});
-		model.addRow(new Object[]{"24","25","26","27","28","29","30"});
-		model.addRow(new Object[]{"31"," "," "," "," "," "," "});
+		model.addRow(new Object[]{" "," "," ","1","2","3","4"});
+		model.addRow(new Object[]{"5","6","7","8","9","10","11"});
+		model.addRow(new Object[]{"12","13","14","15","16","17","18"});
+		model.addRow(new Object[]{"19","20","21","22","23","24","25"});
+		model.addRow(new Object[]{"26","27","28","29","30","31"," "});
+		model.addRow(new Object[]{" "," "," "," "," "," "," "});
 		
 		return calendarPanel;
 	}

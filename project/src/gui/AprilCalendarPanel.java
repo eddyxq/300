@@ -115,6 +115,7 @@ public class AprilCalendarPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				hms.displayMayCalendarPage();
 				//not availiable right now
 				//to be implemented
 			}
@@ -129,7 +130,8 @@ public class AprilCalendarPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				hms.displayMarchCalendarPage();
+				//not availiable right now
+				//to be implemented
 			}
 		});
 		btnPrev.setFont(new Font("Arial", Font.BOLD, 16));

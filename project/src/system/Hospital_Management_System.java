@@ -34,7 +34,7 @@ public class Hospital_Management_System
 	private JPanel staffListPage = slp.createPanel(this);
 	private JPanel addStaffPage;
 	private JPanel loginPage = new LoginPanel().createPanel(this);
-	private JPanel marchCalendarPage = new MarchCalendarPanel().createPanel(this);
+	private JPanel marchCalendarPage = new MayCalendarPanel().createPanel(this);
 	private JPanel aprilCalendarPage = new AprilCalendarPanel().createPanel(this);
 	private AppointmentListPanel alp = new AppointmentListPanel();
 	private JPanel appointmentListPage = alp.createPanel(this);
@@ -150,7 +150,7 @@ public class Hospital_Management_System
 	/**
 	 * This method will change the gui to display the employee calendar page.
 	 */
-	public void displayMarchCalendarPage() 
+	public void displayMayCalendarPage() 
 	{
 		hideAll();
 		marchCalendarPage.setVisible(true);
@@ -332,32 +332,45 @@ public class Hospital_Management_System
 	 */
 	public ArrayList<String> generateDaySchedule(String currentDay, String currentMonth, String currentYear)
 	{
-		ArrayList<String> appointmentData = new ArrayList<String>();
-		String names = "";
-		String times = "";
-		
-		for(Patient p : patientRecord)
+		try 
 		{
-			if(!p.getAppointmentDate().contains("UNKNOWN"))
+			ArrayList<String> appointmentData = new ArrayList<String>();
+			String names = "";
+			String times = "";
+			
+			for(Patient p : patientRecord)
 			{
-				String[] date = p.getAppointmentDate().split("/");
-				String day = date[0];
-				String month = date[1];
-				String year = date[2];
-
-				if ((day.equals(currentDay)) && (month.equals(currentMonth)) && (year.equals(currentYear)) && p.getDoctor().equals(loggedInUser))
+				if(!p.getAppointmentDate().contains("UNKNOWN"))
 				{
-					names += p.getFirstName() + " " + p.getLastName() + "<br/>";
-					times += p.getAppointmentTime() + "<br/>";
+					String[] date = p.getAppointmentDate().split("/");
+					String day = date[0];
+					String month = date[1];
+					String year = date[2];
+
+					if ((Integer.parseInt(day) == Integer.parseInt(currentDay)) && 
+						(Integer.parseInt(month) == Integer.parseInt(currentMonth)) && 
+						(Integer.parseInt(year) == Integer.parseInt(currentYear)) && 
+						(p.getDoctor().equals(loggedInUser)))
+					{
+						names += p.getFirstName() + " " + p.getLastName() + "<br/>";
+						times += p.getAppointmentTime() + "<br/>";
+					}
 				}
 			}
+			names = "<html>" + names + "</html>"; 
+			times = "<html>" + times + "</html>"; 
+			appointmentData.add(names);
+			appointmentData.add(times);
+			
+			return appointmentData;
 		}
-		names = "<html>" + names + "</html>"; 
-		times = "<html>" + times + "</html>"; 
-		appointmentData.add(names);
-		appointmentData.add(times);
 		
-		return appointmentData;
+		catch(Exception e)
+		{
+			ArrayList<String> empty = null;
+			empty.add("");
+			return empty;
+		}
 	}
 	/**
 	 * This method will hide all the visible panels.
