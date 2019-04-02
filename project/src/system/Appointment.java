@@ -5,30 +5,27 @@ import user.Patient;
 
 public class Appointment {
 	private String id;
-	private Patient patient;
 	private String patientName;
-	private String doctor;
+	private String docFName;
+	private String docLName;
 	private String time;
 	private String date;
 	
-	public Appointment(String id, String patientName, String doctor, String date, String time) {
+	public Appointment(String id, String patientName, String doc, String date, String time) {
 		this.id = id;
 		this.patientName = patientName;
-		this.doctor = doctor;
+		String[] docName = doc.split(" ");
+		this.docFName = docName[0];
+		this.docLName = docName[1];
 		this.date = date;
 		this.time = time;
 	}
-	
-	public Appointment(Patient patient) {
-		this.patient = patient;
-	}
-	
-	public Patient getPatient() {
-		return patient;
+	public String getPName() {
+		return patientName;
 	}
 	
 	public String getDocName() {
-		return doctor;
+		return docFName+" "+docLName;
 	}
 	
 	public String getTime() {
@@ -37,5 +34,9 @@ public class Appointment {
 	
 	public String getDate() {
 		return date;
+	}
+	
+	public String getID() {
+		return id;
 	}
 }

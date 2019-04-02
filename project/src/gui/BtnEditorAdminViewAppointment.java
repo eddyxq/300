@@ -53,8 +53,9 @@ public class BtnEditorAdminViewAppointment extends DefaultCellEditor
 	{
 		if(clicked)
 		{
-			hms.displayAppointmentListPageAdmin();
 			hms.setId(this.id);
+			hms.displayAppointmentListPageAdmin();
+			
 		}
 		clicked = false;
 		return new String(lbl);

@@ -53,7 +53,6 @@ public class BtnEditorAddAppointment extends DefaultCellEditor
 	{
 		if(clicked)
 		{
-			System.out.println(id);
 			hms.displayAddAppointmentPage();
 			hms.setId(this.id);
 		}

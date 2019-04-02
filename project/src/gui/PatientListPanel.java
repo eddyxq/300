@@ -123,7 +123,6 @@ public class PatientListPanel
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				id = (int)table.getValueAt(table.getSelectedRow(), 0);
-				System.out.println("Selected: "+id);
 				table.getColumnModel().getColumn(7).setCellEditor(new BtnEditorAdminViewAppointment(new JTextField(), hms, id));
 				table.getColumnModel().getColumn(8).setCellEditor(new BtnEditorAddAppointment(new JTextField(), hms, id));
 				

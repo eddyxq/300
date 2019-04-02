@@ -186,7 +186,7 @@ public class AddAppointmentPanel
 							//If all input is correct, add this appointment
 							if(val.validateAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString(), jcEndTime.getSelectedItem().toString())) 
 							{
-								String appointmentTime = jcStartTime.getSelectedItem().toString() + " - " + jcEndTime.getSelectedItem().toString();
+								String appointmentTime = jcStartTime.getSelectedItem().toString() + "-" + jcEndTime.getSelectedItem().toString();
 								hms.addAppointment(tfDate.getText(), appointmentTime, jcDoctors.getSelectedItem().toString());
 								//display confirmation message
 								Object[] options = {"Ok"};

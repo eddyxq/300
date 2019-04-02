@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import system.Appointment;
+import system.Hospital_Management_System;
 import user.Employee;
 import user.Patient;
 
@@ -73,11 +74,8 @@ public class TextReader
 			while (reader.hasNext()) 
 			{
 				String line = reader.nextLine();
-				String[] appointmentInfo = line.split(" ");
-				String id = appointmentInfo[0];
-				String doc = appointmentInfo[3]+appointmentInfo[4];
-				String time = appointmentInfo[5]+appointmentInfo[6]+appointmentInfo[7];
-				Appointment app = new Appointment(id, appointmentInfo[2], doc, appointmentInfo[8], time);
+				String[] appointmentInfo = line.split("_");
+				Appointment app = new Appointment(appointmentInfo[0], appointmentInfo[1], appointmentInfo[2], appointmentInfo[3], appointmentInfo[4]);
 				appointmentRecord.add(app);
 			}
 			reader.close();

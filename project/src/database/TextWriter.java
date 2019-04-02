@@ -102,11 +102,11 @@ public class TextWriter
 			String data = "";
 			for (Appointment app : appointmentRecord)
 			{
-				data = app.getPatient().getID() + " " 
-							+ app.getPatient().getName() + " " 
-							+ app.getDocName() + " " 
-							+ app.getTime() + " " 
-							+ app.getDate();
+				data = app.getID() + "_" 
+							+ app.getPName() + "_" 
+							+ app.getDocName() + "_" 
+							+ app.getDate() + "_" 
+							+ app.getTime();
 				writer.println(data);
 			}
 			writer.close();
