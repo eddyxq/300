@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import system.Appointment;
+import system.Hospital_Management_System;
 import user.Employee;
 import user.Patient;
 
@@ -29,9 +31,9 @@ public class TextReader
 				Patient p = new Patient(patientInfo[1], patientInfo[2], patientInfo[3], patientInfo[4], patientInfo[5], patientInfo[6]);
 				p.setId(Integer.parseInt(patientInfo[0]));
 				patientRecord.add(p);
-				p.setAppointmentDate(patientInfo[7]);
-				p.setAppointmentTime(patientInfo[8]);
-				p.setDoctor(patientInfo[9]);
+//				p.setAppointmentDate(patientInfo[7]);
+//				p.setAppointmentTime(patientInfo[8]);
+//				p.setDoctor(patientInfo[9]);
 			}
 			reader.close();
 		} 
@@ -59,6 +61,27 @@ public class TextReader
 		} 
 		catch (FileNotFoundException fnfe) {}
 		return employeeRecord;
+	}
+	/**
+	 * This methods reads and restores employee data.
+	 */
+	public ArrayList<Appointment> loadAppointmentData() 
+	{
+		ArrayList<Appointment> appointmentRecord = new ArrayList<Appointment>();
+		try 
+		{
+			Scanner reader = new Scanner(new File("AppointmentRecords.txt"));
+			while (reader.hasNext()) 
+			{
+				String line = reader.nextLine();
+				String[] appointmentInfo = line.split("_");
+				Appointment app = new Appointment(appointmentInfo[0], appointmentInfo[1], appointmentInfo[2], appointmentInfo[3], appointmentInfo[4]);
+				appointmentRecord.add(app);
+			}
+			reader.close();
+		} 
+		catch (FileNotFoundException fnfe) {}
+		return appointmentRecord;
 	}
 	/**
 	 * This methods reads and restores department data.

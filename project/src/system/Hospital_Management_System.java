@@ -19,6 +19,8 @@ public class Hospital_Management_System
 	ArrayList<Patient> patientRecord = new ArrayList<Patient>();
 	//list of all the patients in the system
 	ArrayList<Employee> employeeRecord = new ArrayList<Employee>();
+	//lists of all the appointments in the system
+	ArrayList<Appointment> appointmentRecord = new ArrayList<Appointment>();
 	
 	//initialize GUI
 	private	JPanel addPatientPage = new AddPatientPanel().createPanel(this);
@@ -75,6 +77,7 @@ public class Hospital_Management_System
 		departmentRecord = new TextReader().loadDepartmentData();
 		patientRecord = new TextReader().loadPatientData();
 		employeeRecord = new TextReader().loadEmployeeData();
+		appointmentRecord = new TextReader().loadAppointmentData();
 		for(Patient p : patientRecord)
 		{
 			plp.addPatientToTable(p, this);
@@ -83,7 +86,22 @@ public class Hospital_Management_System
 		{
 			slp.addEmployeeToTable(e, this);
 		}
+		
 	}
+	
+	private void loadAppointmentToList() {
+		alap.clearAllRow();
+		alp.clearAllRow();
+		for(Appointment app : appointmentRecord) 
+		{
+			if(app.getID().equals(getId().toString()) 
+				&& app.getPName().equals(patientRecord.get(getId()-1).getName())) {
+				alap.addAppointmentToTable(app, this);
+				alp.addAppointmentToTable(app, this);
+			}
+		}
+	}
+	
 	/**
 	 * This method creates and returns a thread that is executed
 	 * when the program is closed allowing the system to save
@@ -97,6 +115,7 @@ public class Hospital_Management_System
 			new TextWriter().savePatientData(patientRecord);
 			new TextWriter().saveEmployeeData(employeeRecord);
 			new TextWriter().saveLoginInfo(employeeRecord);
+			new TextWriter().saveAppointmentData(appointmentRecord);
 		}};
 	}
 	/**
@@ -198,6 +217,7 @@ public class Hospital_Management_System
 	public void displayAppointmentListPage() 
 	{
 		hideAll();
+		loadAppointmentToList();
 		appointmentListPage.setVisible(true);
 	}
 	/**
@@ -206,6 +226,7 @@ public class Hospital_Management_System
 	public void displayAppointmentListPageAdmin() 
 	{
 		hideAll();
+		loadAppointmentToList();
 		appointmentListPageAdmin.setVisible(true);
 	}
 	/**
@@ -271,17 +292,23 @@ public class Hospital_Management_System
 	 */
 	public void addAppointment(String date, String time, String doctor)
 	{
-		patientRecord.get(getId()-1).setAppointment(date, time, doctor);
-		alp.addAppointmentToTable(patientRecord.get(getId()-1), this);
-		alap.addAppointmentToTable(patientRecord.get(getId()-1), this);
+		appointmentRecord.add(new Appointment(getId()+"", patientRecord.get(getId()-1).getName(), 
+								doctor, date, time));
 	}
 	/**
 	 * This method returns the appointment date.
 	 * @param id The patient id
 	 */
-	public String getAppointmentDate(String id)
+	public boolean hasAppointment(String patientId)
 	{
-		return patientRecord.get(Integer.parseInt(id)-1).getAppointmentDate();
+		boolean flag = false;
+		for(Appointment app : appointmentRecord) 
+		{
+			if(app.getID().equals(patientId)) {
+				flag = true;
+			}
+		}
+		return flag;
 	}
 	/**
 	 * This method returns the appointment time.
