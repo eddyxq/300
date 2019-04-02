@@ -61,7 +61,7 @@ public class AdminMainPanel
 			}
 		});
 		btnManagePatient.setFont(new Font("Arial", Font.BOLD, 16));
-		btnManagePatient.setBounds(785, 380, 400, 59);
+		btnManagePatient.setBounds(785, 394, 400, 59);
 		/*
 		 * MANAGE EMPLOYEE RECORDS BUTTON
 		 */
@@ -74,7 +74,7 @@ public class AdminMainPanel
 			}
 		});
 		btnManageEmployee.setFont(new Font("Arial", Font.BOLD, 16));
-		btnManageEmployee.setBounds(785, 575, 400, 59);
+		btnManageEmployee.setBounds(785, 588, 400, 59);
 		/*
 		 * MANAGE DEPARTMENT BUTTON
 		 */
@@ -87,7 +87,7 @@ public class AdminMainPanel
 			}
 		});
 		btnManageDepart.setFont(new Font("Arial", Font.BOLD, 16));
-		btnManageDepart.setBounds(785, 745, 400, 59);
+		btnManageDepart.setBounds(785, 770, 400, 59);
 		/*
 		 * RETURN BUTTON
 		 */
@@ -100,7 +100,7 @@ public class AdminMainPanel
 			}
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
-		btnReturn.setBounds(785, 930, 400, 59);
+		btnReturn.setBounds(785, 944, 400, 59);
 		
 		//add all the components to panel
 		adminMain.add(btnManageDepart);
