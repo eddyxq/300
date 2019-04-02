@@ -63,7 +63,7 @@ public class TextReader
 		return employeeRecord;
 	}
 	/**
-	 * This methods reads and restores appointment data.
+	 * This methods reads and restores employee data.
 	 */
 	public ArrayList<Appointment> loadAppointmentData() 
 	{

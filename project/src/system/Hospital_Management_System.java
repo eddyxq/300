@@ -88,13 +88,8 @@ public class Hospital_Management_System
 		}
 		
 	}
-	/*
-	 * This method loops through the appointment record and adds the appointment to
-	 * the appointment list panels if the current patient id being viewed 
-	 * matches with the patient id in the record.
-	 */
+	
 	private void loadAppointmentToList() {
-		//Refreshes the list by removing all rows in the table
 		alap.clearAllRow();
 		alp.clearAllRow();
 		for(Appointment app : appointmentRecord) 
@@ -301,10 +296,8 @@ public class Hospital_Management_System
 								doctor, date, time));
 	}
 	/**
-	 * This method checks if there's an appointment with the given
-	 * patient id.
+	 * This method returns the appointment date.
 	 * @param id The patient id
-	 * @return true if there is an appointment, false otherwise.
 	 */
 	public boolean hasAppointment(String patientId)
 	{
@@ -316,6 +309,14 @@ public class Hospital_Management_System
 			}
 		}
 		return flag;
+	}
+	/**
+	 * This method returns the appointment time.
+	 * @param id The patient id
+	 */
+	public String getAppointmentTime(String id)
+	{
+		return patientRecord.get(Integer.parseInt(id)-1).getAppointmentTime();
 	}
 	/**
 	 * This method returns true when patient id is valid

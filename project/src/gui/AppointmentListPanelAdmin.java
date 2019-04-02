@@ -105,9 +105,7 @@ public class AppointmentListPanelAdmin
 				table.getColumnModel().getColumn(3).setCellRenderer(new ButtonRenderer());;
 				table.getColumnModel().getColumn(3).setCellEditor(new BtnEditorAdminViewAppointment(new JTextField(), hms, 1));
 	}
-	/*
-	 * This method clears all the rows from the table.
-	 */
+	
 	public void clearAllRow() {
 		int rowCount = model.getRowCount();
 		//Remove rows one by one from the end of the table

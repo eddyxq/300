@@ -104,9 +104,7 @@ public class AppointmentListPanel
 		model.addRow(new Object[]{app.getDate(), app.getTime(), app.getDocName()
 				});
 	}
-	/*
-	 * This method clears all the rows from the table.
-	 */
+	
 	public void clearAllRow() {
 		int rowCount = model.getRowCount();
 		//Remove rows one by one from the end of the table
