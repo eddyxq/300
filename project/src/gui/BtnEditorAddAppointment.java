@@ -16,13 +16,13 @@ import system.Hospital_Management_System;
 public class BtnEditorAddAppointment extends DefaultCellEditor
 {
 	private static final long serialVersionUID = 1L;
-	Integer id;
+	int id;
 	Hospital_Management_System hms;
 	protected JButton btn;
 	private String lbl;
 	private Boolean clicked;
 
-	public BtnEditorAddAppointment(JTextField txt, Hospital_Management_System hms, Integer id) 
+	public BtnEditorAddAppointment(JTextField txt, Hospital_Management_System hms, int id) 
 	{
 		super(txt);
 		this.hms = hms;
@@ -53,6 +53,7 @@ public class BtnEditorAddAppointment extends DefaultCellEditor
 	{
 		if(clicked)
 		{
+			System.out.println(id);
 			hms.displayAddAppointmentPage();
 			hms.setId(this.id);
 		}

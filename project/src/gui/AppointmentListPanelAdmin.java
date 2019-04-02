@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import system.Appointment;
 import system.Hospital_Management_System;
 import user.Patient;
 
@@ -95,12 +97,12 @@ public class AppointmentListPanelAdmin
 	/*
 	 * Adds appointment to the list
 	 */
-	public void addAppointmentToTable(Patient patient, Hospital_Management_System hms) 
+	public void addAppointmentToTable(Appointment appointment, Hospital_Management_System hms) 
 	{
-		model.addRow(new Object[]{patient.getAppointmentDate(), patient.getAppointmentTime(), 
+		model.addRow(new Object[]{appointment.getDate(), appointment.getTime(), 
 				"Edit/Remove Appointment"});
 		//set custom renderer and editor to column
 				table.getColumnModel().getColumn(2).setCellRenderer(new ButtonRenderer());;
-				table.getColumnModel().getColumn(2).setCellEditor(new BtnEditorAdminViewAppointment(new JTextField(), hms, patient.getID()));
+				table.getColumnModel().getColumn(2).setCellEditor(new BtnEditorAdminViewAppointment(new JTextField(), hms, 1));
 	}
 }

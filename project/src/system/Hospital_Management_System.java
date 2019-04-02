@@ -19,6 +19,8 @@ public class Hospital_Management_System
 	ArrayList<Patient> patientRecord = new ArrayList<Patient>();
 	//list of all the patients in the system
 	ArrayList<Employee> employeeRecord = new ArrayList<Employee>();
+	//lists of all the appointments in the system
+	ArrayList<Appointment> appointmentRecord = new ArrayList<Appointment>();
 	
 	//initialize GUI
 	private	JPanel addPatientPage = new AddPatientPanel().createPanel(this);
@@ -75,6 +77,7 @@ public class Hospital_Management_System
 		departmentRecord = new TextReader().loadDepartmentData();
 		patientRecord = new TextReader().loadPatientData();
 		employeeRecord = new TextReader().loadEmployeeData();
+		appointmentRecord = new TextReader().loadAppointmentData();
 		for(Patient p : patientRecord)
 		{
 			plp.addPatientToTable(p, this);
@@ -83,6 +86,12 @@ public class Hospital_Management_System
 		{
 			slp.addEmployeeToTable(e, this);
 		}
+		
+		for(Appointment app : appointmentRecord) 
+		{
+			alap.addAppointmentToTable(app, this);
+		}
+		
 	}
 	/**
 	 * This method creates and returns a thread that is executed
@@ -97,6 +106,8 @@ public class Hospital_Management_System
 			new TextWriter().savePatientData(patientRecord);
 			new TextWriter().saveEmployeeData(employeeRecord);
 			new TextWriter().saveLoginInfo(employeeRecord);
+			new TextWriter().saveAppointmentData(appointmentRecord);
+			
 		}};
 	}
 	/**
@@ -271,9 +282,7 @@ public class Hospital_Management_System
 	 */
 	public void addAppointment(String date, String time, String doctor)
 	{
-		patientRecord.get(getId()-1).setAppointment(date, time, doctor);
-		alp.addAppointmentToTable(patientRecord.get(getId()-1), this);
-		alap.addAppointmentToTable(patientRecord.get(getId()-1), this);
+		appointmentRecord.add(new Appointment(getId()-1+"" ,patientRecord.get(getId()-1).getName(), doctor, date, time));
 	}
 	/**
 	 * This method returns the appointment date.

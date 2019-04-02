@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +25,7 @@ import user.Patient;
  */
 public class PatientListPanel 
 {
+	private int id = 0;
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
 	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail", "View", "Add/Edit"}, 0))
@@ -116,10 +119,20 @@ public class PatientListPanel
 		patient.getSex(), patient.getDOB(), patient.getPhoneNum(), patient.getEmail(), "View Appointment(s)",
 		"Add/Edit Appointment(s)"});
 		
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				id = (int)table.getValueAt(table.getSelectedRow(), 0);
+				System.out.println("Selected: "+id);
+				table.getColumnModel().getColumn(7).setCellEditor(new BtnEditorAdminViewAppointment(new JTextField(), hms, id));
+				table.getColumnModel().getColumn(8).setCellEditor(new BtnEditorAddAppointment(new JTextField(), hms, id));
+				
+			}
+		});
+		
 		//set custom renderer and editor to column
-		table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());;
-		table.getColumnModel().getColumn(7).setCellEditor(new BtnEditorAdminViewAppointment(new JTextField(), hms, patient.getID()));
-		table.getColumnModel().getColumn(8).setCellRenderer(new ButtonRenderer());;
-		table.getColumnModel().getColumn(8).setCellEditor(new BtnEditorAddAppointment(new JTextField(), hms, patient.getID()));
+		table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());
+		table.getColumnModel().getColumn(8).setCellRenderer(new ButtonRenderer());
+		
 	}
 }

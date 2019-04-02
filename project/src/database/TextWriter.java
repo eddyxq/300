@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import system.Appointment;
 import user.Employee;
 import user.Patient;
 
@@ -84,6 +85,29 @@ public class TextWriter
 			for (int i = 0; i < departmentRecord.size(); i++)
 			{
 				writer.println(departmentRecord.get(i));
+			}
+			writer.close();
+		} 
+		catch (IOException e) {}
+	}
+	/*
+	 * This method will save the appointment data.
+	 */
+	public void saveAppointmentData(ArrayList<Appointment> appointmentRecord) 
+	{
+		PrintWriter writer;
+		try 
+		{
+			writer = new PrintWriter(new BufferedWriter(new FileWriter("AppointmentRecords.txt", false)));
+			String data = "";
+			for (Appointment app : appointmentRecord)
+			{
+				data = app.getPatient().getID() + " " 
+							+ app.getPatient().getName() + " " 
+							+ app.getDocName() + " " 
+							+ app.getTime() + " " 
+							+ app.getDate();
+				writer.println(data);
 			}
 			writer.close();
 		} 

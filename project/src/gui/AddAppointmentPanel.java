@@ -96,7 +96,7 @@ public class AddAppointmentPanel
 		 * Drop-down for Appointment End Time
 		 */
 		JComboBox<String> jcEndTime = new JComboBox<String>(timeSlots);
-		jcEndTime.setSelectedIndex(0);
+		jcEndTime.setSelectedIndex(1);
 		jcEndTime.setBounds(1078, 600, 100, 20);
 		/*
 		 * DEPARTMENT
@@ -186,7 +186,8 @@ public class AddAppointmentPanel
 							//If all input is correct, add this appointment
 							if(val.validateAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString(), jcEndTime.getSelectedItem().toString())) 
 							{
-								hms.addAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString(), jcDoctors.getSelectedItem().toString());
+								String appointmentTime = jcStartTime.getSelectedItem().toString() + " - " + jcEndTime.getSelectedItem().toString();
+								hms.addAppointment(tfDate.getText(), appointmentTime, jcDoctors.getSelectedItem().toString());
 								//display confirmation message
 								Object[] options = {"Ok"};
 								JOptionPane.showOptionDialog(null, "Appointment added.", "Success",
