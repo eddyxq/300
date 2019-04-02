@@ -15,8 +15,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
-import system.Appointment;
 import system.Hospital_Management_System;
 import user.Patient;
 
@@ -27,7 +25,7 @@ public class AppointmentListPanel
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
-	 "Appointment Date", "Appointment Time", "Doctor"}, 0))
+	 "Appointment Date", "Appointment Time"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
 		public boolean isCellEditable(int row, int column) {  
@@ -96,20 +94,12 @@ public class AppointmentListPanel
 	}
 	/**
 	 * Adds appointment to the list
-	 * @param app
+	 * @param patient
 	 * @param hms
 	 */
-	public void addAppointmentToTable(Appointment app, Hospital_Management_System hms) 
+	public void addAppointmentToTable(Patient patient, Hospital_Management_System hms) 
 	{
-		model.addRow(new Object[]{app.getDate(), app.getTime(), app.getDocName()
+		model.addRow(new Object[]{patient.getAppointmentDate(), patient.getAppointmentTime()
 				});
-	}
-	
-	public void clearAllRow() {
-		int rowCount = model.getRowCount();
-		//Remove rows one by one from the end of the table
-		for (int i = rowCount - 1; i >= 0; i--) {
-			model.removeRow(i);
-		}
 	}
 }

@@ -15,8 +15,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
-import system.Appointment;
 import system.Hospital_Management_System;
 import user.Patient;
 
@@ -27,11 +25,11 @@ public class AppointmentListPanelAdmin
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
-	 "Appointment Date", "Appointment Time", "Doctor", "Option"}, 0))
+	 "Appointment Date", "Appointment Time", "Option"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
 		public boolean isCellEditable(int row, int column) {  
-			return column == 3;            
+			return column == 2;            
     };
 	};
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -97,20 +95,12 @@ public class AppointmentListPanelAdmin
 	/*
 	 * Adds appointment to the list
 	 */
-	public void addAppointmentToTable(Appointment appointment, Hospital_Management_System hms) 
+	public void addAppointmentToTable(Patient patient, Hospital_Management_System hms) 
 	{
-		model.addRow(new Object[]{appointment.getDate(), appointment.getTime(), appointment.getDocName(),
+		model.addRow(new Object[]{patient.getAppointmentDate(), patient.getAppointmentTime(), 
 				"Edit/Remove Appointment"});
 		//set custom renderer and editor to column
-				table.getColumnModel().getColumn(3).setCellRenderer(new ButtonRenderer());;
-				table.getColumnModel().getColumn(3).setCellEditor(new BtnEditorAdminViewAppointment(new JTextField(), hms, 1));
-	}
-	
-	public void clearAllRow() {
-		int rowCount = model.getRowCount();
-		//Remove rows one by one from the end of the table
-		for (int i = rowCount - 1; i >= 0; i--) {
-			model.removeRow(i);
-		}
+				table.getColumnModel().getColumn(2).setCellRenderer(new ButtonRenderer());;
+				table.getColumnModel().getColumn(2).setCellEditor(new BtnEditorAdminViewAppointment(new JTextField(), hms, patient.getID()));
 	}
 }

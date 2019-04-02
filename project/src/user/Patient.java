@@ -42,8 +42,6 @@ public class Patient extends Person
 		} 
 		catch (ParseException e) {}
 	}
-	
-	
 	public String getAppointment()
 	{
 		SimpleDateFormat format = new SimpleDateFormat("EEE, MMM, dd, yyyy HH:mm", Locale.ENGLISH);

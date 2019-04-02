@@ -77,10 +77,8 @@ public class HomePanel
 						//If the patient is found, display their appointment
 						if (hms.patientIdValid(tfpatientId.getText(), tfLastName.getText()))
 						{
-							int id = Integer.parseInt(tfpatientId.getText());
-							hms.setId(id);
 							//Ensuring an appointment is set for this patient
-							if(hms.hasAppointment(tfpatientId.getText()))
+							if(!hms.getAppointmentDate(tfpatientId.getText()).contains("UNKNOWN"))
 							{
 								//Switches to appointment list page
 								hms.displayAppointmentListPage();

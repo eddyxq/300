@@ -24,7 +24,7 @@ public class EmployeeListPanel
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
-	"ID", "First Name", "Last Name",  "Department", "Sex", "Date of Birth", "Phone Number", "E-mail", "Option"}, 0))
+	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail", "Option"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
 		public boolean isCellEditable(int row, int column) {  
@@ -97,7 +97,7 @@ public class EmployeeListPanel
 	 */
 	public void addEmployeeToTable(Employee employee, Hospital_Management_System hms) 
 	{
-		model.addRow(new Object[]{employee.getID(), employee.getFirstName(), employee.getLastName(), employee.getDepartment(),
+		model.addRow(new Object[]{employee.getID(), employee.getFirstName(), employee.getLastName(),
 		employee.getSex(), employee.getDOB(), employee.getPhoneNum(), employee.getEmail(), "DISABLED"});
 		
 		//buttons are currently disabled
