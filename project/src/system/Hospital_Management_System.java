@@ -359,39 +359,41 @@ public class Hospital_Management_System
 	 */
 	public ArrayList<String> generateDaySchedule(String currentDay, String currentMonth, String currentYear)
 	{
+		ArrayList<Appointment> appointments = appointmentRecord;
+		ArrayList<String> appointmentData = new ArrayList<String>();
+		String names = "";
+		String times = "";
+		
 		try 
 		{
-			ArrayList<String> appointmentData = new ArrayList<String>();
-			String names = "";
-			String times = "";
-			
-			for(Patient p : patientRecord)
+			for(Appointment a : appointments)
 			{
-				if(!p.getAppointmentDate().contains("UNKNOWN"))
+				if(!a.getDate().contains("UNKNOWN"))
 				{
-					String[] date = p.getAppointmentDate().split("/");
+					String[] date = a.getDate().split("/");
 					String day = date[0];
 					String month = date[1];
 					String year = date[2];
-
+	
 					if ((Integer.parseInt(day) == Integer.parseInt(currentDay)) && 
 						(Integer.parseInt(month) == Integer.parseInt(currentMonth)) && 
 						(Integer.parseInt(year) == Integer.parseInt(currentYear)) && 
-						(p.getDoctor().equals(loggedInUser)))
+						(a.getDocNameNoSpace().equals(loggedInUser)))
 					{
-						names += p.getFirstName() + " " + p.getLastName() + "<br/>";
-						times += p.getAppointmentTime() + "<br/>";
+						names += a.getPName() + "<br/>";
+						times += a.getTime() + "<br/>";
 					}
 				}
 			}
+			
 			names = "<html>" + names + "</html>"; 
 			times = "<html>" + times + "</html>"; 
+			
 			appointmentData.add(names);
 			appointmentData.add(times);
-			
+		
 			return appointmentData;
 		}
-		
 		catch(Exception e)
 		{
 			ArrayList<String> empty = null;

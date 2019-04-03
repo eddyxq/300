@@ -1,8 +1,5 @@
 package system;
 
-import user.Employee;
-import user.Patient;
-
 public class Appointment {
 	private String id;
 	private String patientName;
@@ -26,6 +23,10 @@ public class Appointment {
 	
 	public String getDocName() {
 		return docFName+" "+docLName;
+	}
+	
+	public String getDocNameNoSpace() {
+		return docFName+docLName;
 	}
 	
 	public String getTime() {
