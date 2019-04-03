@@ -17,7 +17,6 @@ public class ValidateInput
 	 * @param year The year.
 	 * @param phoneNumber The phone number.
 	 * @param email The email.
-	 * @return
 	 */
 	public boolean validatePatient(String firstName, String lastName, String day, String month, String year, String phoneNumber, String email)
 	{
@@ -166,7 +165,6 @@ public class ValidateInput
 	/*
 	 * This method returns true if the phone number entry is valid
 	 * @param phoneNumber The phone number.
-	 * @return
 	 */
 	public boolean validatePhone(String phoneNumber)
 	{

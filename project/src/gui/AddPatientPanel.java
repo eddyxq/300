@@ -189,6 +189,7 @@ public class AddPatientPanel
 			public void actionPerformed(ActionEvent e) 
 			{
 				clearTextField();
+				clearRedField();
 				hms.displayPatientManagementPage();
 			}
 		});
@@ -209,6 +210,8 @@ public class AddPatientPanel
 				{
 					//Initially clearing all field colors
 					clearRedField();
+					//Initializing the error message string (Additional explanation is added for the entries that fail validation)
+					String errorMessage = "";
 					
 					//If all input is correct, add this patient
 					if(val.validatePatient(tfFirstName.getText(), tfLastName.getText(), tfDay.getText(),
@@ -238,47 +241,54 @@ public class AddPatientPanel
 						if(!val.validateName(tfFirstName.getText()))
 						{
 							tfFirstName.setBackground(Red);
+							errorMessage += "Please ensure the first name consists of only letters; no illegal character e.g: *!@#$/.\n";
 						}
 						
 						//Checking if last name isn't valid
 						if(!val.validateName(tfLastName.getText()))
 						{
 							tfLastName.setBackground(Red);
+							errorMessage += "Please ensure the last name consists of only letters; no illegal characters e.g: *!@#$/.\n";
 						}
 						
 						//Checking if the day the appointment shall be set isn't valid
 						if(!val.validateDay(tfDay.getText(), tfMonth.getText(), tfYear.getText()))
 						{
 							tfDay.setBackground(Red);
+							errorMessage += "Please ensure the day entry contains no more than 2 digits, and exists in the entered month.\n";
 						}
 						
 						//Checking if the month of the appointment isn't valid
 						if(!val.validateMonth(tfMonth.getText()))
 						{
 							tfMonth.setBackground(Red);
+							errorMessage += "Please ensure the month entry consists of no more than 2 digits between 1 and 12.\n";
 						}
 						
 						//Checking if the birth year entered isn't valid
 						if(!val.isPastYear(tfYear.getText()))
 						{
 							tfYear.setBackground(Red);
+							errorMessage += "Please ensure the year entry combined with day and month; forms a valid date in the past.\n";
 						}
 						
 						//Checking if the phone number entered isn't valid
 						if(!val.validatePhone(tfPhoneNum.getText()))
 						{
 							tfPhoneNum.setBackground(Red);
+							errorMessage += "Please ensure the phone number entry consists of exactly 10 numbers; no illegal characters e.g: *!@#$/. \n";
 						}
 						
 						//Checking if the email entered isn't valid
 						if(!val.validateEmail(tfEmail.getText()))
 						{
 							tfEmail.setBackground(Red);
+							errorMessage += "Please ensure the email entry contains exactly one @ symbol as well as a . (period). \n";
 						}
 
 						Object[] options = {"Close"};
-						JOptionPane.showOptionDialog(null, "Please ensure all highlighted entries are correct", "Warning",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+						JOptionPane.showOptionDialog(null, errorMessage, "Error",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE,
 						null, options, options[0]);
 					}
 				}

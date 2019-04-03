@@ -28,7 +28,7 @@ public class PatientListPanel
 	private int id = 0;
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
-	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail", "View", "Add/Edit"}, 0))
+	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail", "Display", "Modify"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
 		public boolean isCellEditable(int row, int column) {  
@@ -117,7 +117,7 @@ public class PatientListPanel
 	{
 		model.addRow(new Object[]{patient.getID(), patient.getFirstName(), patient.getLastName(),
 		patient.getSex(), patient.getDOB(), patient.getPhoneNum(), patient.getEmail(), "View Appointment(s)",
-		"Add/Edit Appointment(s)"});
+		"Add/Edit"});
 		
 		table.addMouseListener(new MouseAdapter() {
 			@Override

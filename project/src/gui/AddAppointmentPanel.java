@@ -180,6 +180,8 @@ public class AddAppointmentPanel
 			{
 				//Initially clearing all field colors
 				clearRedField();
+				//Initializing the error message string (Additional explanation is added for the entries that fail validation)
+				String errorMessage = "";
 	
 		    	if(formComplete())
 						{
@@ -207,6 +209,7 @@ public class AddAppointmentPanel
 								hms.displayPatientListPage();
 							}
 							
+							
 							//Otherwise, find out which field(s) are incorrect
 							else 
 							{
@@ -214,6 +217,7 @@ public class AddAppointmentPanel
 								if(!val.validateDate(tfDate.getText()))
 								{
 									tfDate.setBackground(Red);
+									errorMessage += "Please ensure the entered date is correctly formatted: (DD/MM/YYYY) and does not form a past date.\n";
 								}
 								
 								//Checking if time input isn't valid
@@ -221,11 +225,14 @@ public class AddAppointmentPanel
 								{
 									jcStartTime.setBackground(Red);
 									jcEndTime.setBackground(Red);
+									errorMessage += "Please ensure selected times are valid; the end time takes place after the start time";
 								}
 								
 								Object[] options = {"Close"};
-								JOptionPane.showOptionDialog(null, "Please ensure all highlighted entries are correct", "Warning",
-								JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+								
+								
+								JOptionPane.showOptionDialog(null, errorMessage, "Error",
+								JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE,
 								null, options, options[0]);
 							}
 						}
