@@ -4,7 +4,7 @@ package user;
  * name and last name of an individual. Classes representing 
  * a person should inherit from this class.
  */
-public abstract class Person 
+abstract class Person 
 {
 	public String firstName;
 	public String lastName;
@@ -13,7 +13,7 @@ public abstract class Person
 	public String phoneNumber;
 	public String email;
 	
-	public Person(String firstName, String lastName, String sex, String dob, String phoneNumber, String email)
+	Person(String firstName, String lastName, String sex, String dob, String phoneNumber, String email)
 	{
 		this.firstName = firstName;
 		this.lastName = lastName;

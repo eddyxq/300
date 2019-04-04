@@ -14,13 +14,13 @@ import gui.*;
 public class Hospital_Management_System 
 {	
 	//list of all the departments in the system
-	ArrayList<String> departmentRecord = new ArrayList<String>();
+	private ArrayList<String> departmentRecord = new ArrayList<String>();
 	//list of all the patients in the system
-	ArrayList<Patient> patientRecord = new ArrayList<Patient>();
+	private ArrayList<Patient> patientRecord = new ArrayList<Patient>();
 	//list of all the patients in the system
-	ArrayList<Employee> employeeRecord = new ArrayList<Employee>();
+	private ArrayList<Employee> employeeRecord = new ArrayList<Employee>();
 	//lists of all the appointments in the system
-	ArrayList<Appointment> appointmentRecord = new ArrayList<Appointment>();
+	private ArrayList<Appointment> appointmentRecord = new ArrayList<Appointment>();
 	
 	//initialize GUI
 	private	JPanel addPatientPage = new AddPatientPanel().createPanel(this);
@@ -323,20 +323,12 @@ public class Hospital_Management_System
 		return flag;
 	}
 	/**
-	 * This method returns the appointment time.
-	 * @param id The patient id
-	 */
-	public String getAppointmentTime(String id)
-	{
-		return patientRecord.get(Integer.parseInt(id)-1).getAppointmentTime();
-	}
-	/**
 	 * This method returns true when patient id is valid
 	 * @param id The patient id
 	 */
 	public boolean patientIdValid(String id, String lastName)
 	{
-		if(allDigits(id) && (Integer.parseInt(id)) <= patientRecord.size())
+		if(new ValidateInput().allDigits(id) && (Integer.parseInt(id)) <= patientRecord.size())
 		{
 			if(patientRecord.get((Integer.parseInt(id))-1).getLastName().equals(lastName))
 			{
@@ -344,24 +336,6 @@ public class Hospital_Management_System
 			}
 		}
 			return false;
-	}
-	/**
-	 * This method checks the inputed string and determines whether it contains only digits
-	 * Returns true when string contains all digits, false otherwise
-	 * @param s This is the string being checked
-	 */
-	public boolean allDigits(String s) 
-	{
-		boolean noDigits = true;
-		for (int index = 0; index < s.length(); index++)
-		{
-			char aChar = s.charAt(index);
-			if (!Character.isDigit(aChar))
-			{
-				noDigits = false;
-			}
-		}
-		return noDigits;
 	}
 	/**
 	 * This method will return the dates and times of patient appointments.
@@ -467,14 +441,6 @@ public class Hospital_Management_System
 	public void setAccessFrom(String accessFrom) 
 	{
 		this.accessFrom = accessFrom;
-	}
-	/**
-	 * This method will add a new department.
-	 * @param name The name of the department being added.
-	 */
-	public void addDepartment(String name) 
-	{
-		departmentRecord.add(name);
 	}
 	/**
 	 * This method will return departmentRecord.

@@ -14,7 +14,7 @@ public class Patient extends Person
 	private String appointmentDate = "UNKNOWN";
 	private String appointmentTime = "UNKNOWN";
 	private String doctor = "UNKNOWN";
-	Date dateNTime = new Date();
+	private Date dateNTime = new Date();
 	/*
 	 * This Constructor will initialize the Patient fields.
 	 */

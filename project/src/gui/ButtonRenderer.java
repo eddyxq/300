@@ -9,7 +9,7 @@ import javax.swing.table.TableCellRenderer;
  * This class renders the Jbutton.
  * @reference ProgrammingWizards TV's Youtube java tutorials.
  */
-public class ButtonRenderer extends JButton implements  TableCellRenderer
+class ButtonRenderer extends JButton implements  TableCellRenderer
 {
 	private static final long serialVersionUID = 1L;
 

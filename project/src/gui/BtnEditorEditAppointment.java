@@ -15,17 +15,16 @@ import system.Hospital_Management_System;
  * This class edits the Jbutton.
  * @reference ProgrammingWizards TV's Youtube java tutorials.
  */
-public class BtnEditorEditAppointment extends DefaultCellEditor
+class BtnEditorEditAppointment extends DefaultCellEditor
 {
 	private static final long serialVersionUID = 1L;
-	Integer id;
-	Appointment app;
-	Hospital_Management_System hms;
-	protected JButton btn;
+	private Appointment app;
+	private Hospital_Management_System hms;
+	private JButton btn;
 	private String lbl;
 	private Boolean clicked;
 
-	public BtnEditorEditAppointment(JTextField txt, Hospital_Management_System hms, Appointment app) 
+	BtnEditorEditAppointment(JTextField txt, Hospital_Management_System hms, Appointment app) 
 	{
 		super(txt);
 		this.hms = hms;

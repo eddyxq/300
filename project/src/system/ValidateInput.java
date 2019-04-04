@@ -299,4 +299,22 @@ public class ValidateInput
 		//if no problems are found, then time is valid
 		return true;
 	}
+	/**
+	 * This method checks the inputed string and determines whether it contains only digits
+	 * Returns true when string contains all digits, false otherwise
+	 * @param s This is the string being checked
+	 */
+	public boolean allDigits(String s) 
+	{
+		boolean noDigits = true;
+		for (int index = 0; index < s.length(); index++)
+		{
+			char aChar = s.charAt(index);
+			if (!Character.isDigit(aChar))
+			{
+				noDigits = false;
+			}
+		}
+		return noDigits;
+	}
 }
