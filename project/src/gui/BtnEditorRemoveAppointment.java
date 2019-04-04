@@ -30,7 +30,6 @@ public class BtnEditorRemoveAppointment extends DefaultCellEditor
 	{
 		super(txt);
 		this.hms = hms;
-		this.id = id;
 		this.app = app;
 		btn = new JButton();
 		btn.setOpaque(true);

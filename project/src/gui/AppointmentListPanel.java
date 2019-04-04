@@ -13,12 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
 import system.Appointment;
 import system.Hospital_Management_System;
-import user.Patient;
 
 /*
  * This class displays the add patient panel.
@@ -47,6 +44,7 @@ public class AppointmentListPanel
 		table.setRowSelectionAllowed(true);
 		table.setRowHeight(50);
 		table.setEnabled(true);
+		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane tableContainer = new JScrollPane(table);
 		tableContainer.setLocation(86, 244);
 		tableContainer.setSize(1746, 700);

@@ -24,7 +24,7 @@ import system.Hospital_Management_System;
  */
 public class AprilCalendarPanel 
 {
-	private Font bArial = new Font("Arial", Font.BOLD, 30);
+	private Font bArial = new Font("Arial", Font.BOLD, 28);
 	private JLabel patientName = new JLabel("");
 	private JLabel appointmentTime = new JLabel("");
 	private JTable table = new JTable(new DefaultTableModel(new Object[]
@@ -60,6 +60,7 @@ public class AprilCalendarPanel
 		table.setSelectionMode(0);
 		table.setRowHeight(113);
 		table.setEnabled(true);
+		table.getTableHeader().setReorderingAllowed(false);
 		/*
 		 * Displays the date based off mouse click
 		 */

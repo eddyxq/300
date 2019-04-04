@@ -34,10 +34,7 @@ public class TextWriter
 							+ p.sex + " " 
 							+ p.dob + " " 
 							+ p.phoneNumber + " " 
-							+ p.email + " " 
-							+ p.getAppointmentDate() + " " 
-							+ p.getAppointmentTime() + " "
-							+ p.getDoctor();
+							+ p.email;
 				writer.println(data);
 				count++;
 			}

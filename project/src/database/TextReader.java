@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import system.Appointment;
-import system.Hospital_Management_System;
 import user.Employee;
 import user.Patient;
 
@@ -31,9 +29,6 @@ public class TextReader
 				Patient p = new Patient(patientInfo[1], patientInfo[2], patientInfo[3], patientInfo[4], patientInfo[5], patientInfo[6]);
 				p.setId(Integer.parseInt(patientInfo[0]));
 				patientRecord.add(p);
-//				p.setAppointmentDate(patientInfo[7]);
-//				p.setAppointmentTime(patientInfo[8]);
-//				p.setDoctor(patientInfo[9]);
 			}
 			reader.close();
 		} 

@@ -408,7 +408,8 @@ public class Hospital_Management_System
 		}
 		catch(Exception e)
 		{
-			ArrayList<String> empty = null;
+			ArrayList<String> empty = new ArrayList<String>();
+			empty.add("");
 			empty.add("");
 			return empty;
 		}

@@ -17,10 +17,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
 import system.Appointment;
 import system.Hospital_Management_System;
-import user.Patient;
 
 /*
  * This class displays the add patient panel.
@@ -29,7 +27,7 @@ public class AppointmentListPanelAdmin
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
-	 "Appointment Date", "Appointment Time", "Doctor", "Edit", "Remove"}, 0))
+	 "Appointment Date", "Appointment Time", "Doctor", "Modify", "Booking"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
 		public boolean isCellEditable(int row, int column) {  
@@ -56,6 +54,7 @@ public class AppointmentListPanelAdmin
 		table.setRowSelectionAllowed(true);
 		table.setRowHeight(50);
 		table.setEnabled(true);
+		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane tableContainer = new JScrollPane(table);
 		tableContainer.setLocation(86, 244);
 		tableContainer.setSize(1746, 700);
@@ -109,7 +108,7 @@ public class AppointmentListPanelAdmin
 	public void addAppointmentToTable(Appointment appointment, Hospital_Management_System hms) 
 	{
 		model.addRow(new Object[]{appointment.getDate(), appointment.getTime(), appointment.getDocName(),
-				"Edit Appointment", "Remove Appointment"});
+				"Edit", "Remove"});
 		
 		table.addMouseListener(new MouseAdapter() {
 			@Override

@@ -60,6 +60,7 @@ public class MayCalendarPanel
 		table.setSelectionMode(0);
 		table.setRowHeight(113);
 		table.setEnabled(true);
+		table.getTableHeader().setReorderingAllowed(false);
 		/*
 		 * Displays the date based off mouse click
 		 */

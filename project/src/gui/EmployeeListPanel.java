@@ -44,6 +44,7 @@ public class EmployeeListPanel
 		table.setRowSelectionAllowed(true);
 		table.setRowHeight(50);
 		table.setEnabled(true);
+		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane tableContainer = new JScrollPane(table);
 		tableContainer.setLocation(86, 244);
 		tableContainer.setSize(1746, 700);

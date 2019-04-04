@@ -28,7 +28,7 @@ public class PatientListPanel
 	private int id = 0;
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
-	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail", "Display", "Modify"}, 0))
+	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail", "Modify", "Appointment"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
 		public boolean isCellEditable(int row, int column) {  
@@ -55,6 +55,7 @@ public class PatientListPanel
 		table.setRowSelectionAllowed(true);
 		table.setRowHeight(50);
 		table.setEnabled(true);
+		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane tableContainer = new JScrollPane(table);
 		tableContainer.setLocation(86, 244);
 		tableContainer.setSize(1746, 700);
@@ -116,8 +117,8 @@ public class PatientListPanel
 	public void addPatientToTable(Patient patient, Hospital_Management_System hms) 
 	{
 		model.addRow(new Object[]{patient.getID(), patient.getFirstName(), patient.getLastName(),
-		patient.getSex(), patient.getDOB(), patient.getPhoneNum(), patient.getEmail(), "View Appointment(s)",
-		"Add/Edit"});
+		patient.getSex(), patient.getDOB(), patient.getPhoneNum(), patient.getEmail(), "Edit",
+		"Add"});
 		
 		table.addMouseListener(new MouseAdapter() {
 			@Override

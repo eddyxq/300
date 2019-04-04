@@ -1,22 +1,18 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import system.Hospital_Management_System;
-import system.ValidateInput;
 
 /*
  * This class displays the add patient panel.
@@ -25,8 +21,6 @@ public class AddDepartmentPanel
 {
 	private JTextField tfDepartment;
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
-	private Color Red = new Color(255, 150, 135);
-	private Color Default = new Color(255,255,255);
 	/**
 	 * This method creates and returns a JPanel
 	 * @param hms
