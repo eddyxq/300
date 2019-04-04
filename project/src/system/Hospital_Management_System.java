@@ -97,8 +97,8 @@ public class Hospital_Management_System
 		alp.clearAllRow();
 		for(Appointment app : appointmentRecord) 
 		{
-			if(app.getID().equals(getId().toString()) 
-				&& app.getPName().equals(patientRecord.get(getId()-1).getName())) {
+			if(app.getID().equals(getId().toString()) && app.getPName().equals(patientRecord.get(getId()-1).getName())) 
+			{
 				alap.addAppointmentToTable(app, this);
 				alp.addAppointmentToTable(app, this);
 			}
@@ -270,7 +270,8 @@ public class Hospital_Management_System
 		addStaffPage.setVisible(true);
 	}
 	
-	public ArrayList<Appointment> getAppointmentRec(){
+	public ArrayList<Appointment> getAppointmentRec()
+	{
 		return appointmentRecord;
 	}
 	/**
@@ -316,7 +317,8 @@ public class Hospital_Management_System
 		boolean flag = false;
 		for(Appointment app : appointmentRecord) 
 		{
-			if(app.getID().equals(patientId)) {
+			if(app.getID().equals(patientId)) 
+			{
 				flag = true;
 			}
 		}
@@ -483,8 +485,8 @@ public class Hospital_Management_System
     /*
      * This method will return the list of employees.
      */
-    public ArrayList<Employee> getEmployeeRecord() 
-    {
+	public ArrayList<Employee> getEmployeeRecord() 
+	{
 		return employeeRecord;
 	}
     /*
@@ -513,9 +515,8 @@ public class Hospital_Management_System
 	 * This method will set the current in appointment.
 	 * @param app The appointment currently being edited in the system.
 	 */
-	public void setCurrentAppointment(Appointment currentAppointment) {
+	public void setCurrentAppointment(Appointment currentAppointment) 
+	{
 		this.currentAppointment = currentAppointment;
 	}
-	
-	
 }

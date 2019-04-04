@@ -32,7 +32,10 @@ public class TextReader
 			}
 			reader.close();
 		} 
-		catch (FileNotFoundException fnfe) {}
+		catch (FileNotFoundException fnfe) 
+		{
+			System.out.println("File not found");
+		}
 		return patientRecord;
 	}
 	/**
@@ -54,7 +57,10 @@ public class TextReader
 			}
 			reader.close();
 		} 
-		catch (FileNotFoundException fnfe) {}
+		catch (FileNotFoundException fnfe) 
+		{
+			System.out.println("File not found");
+		}
 		return employeeRecord;
 	}
 	/**
@@ -75,7 +81,10 @@ public class TextReader
 			}
 			reader.close();
 		} 
-		catch (FileNotFoundException fnfe) {}
+		catch (FileNotFoundException fnfe) 
+		{
+			System.out.println("File not found");
+		}
 		return appointmentRecord;
 	}
 	/**
@@ -94,7 +103,10 @@ public class TextReader
 			}
 			reader.close();
 		} 
-		catch (FileNotFoundException fnfe) {}
+		catch (FileNotFoundException fnfe) 
+		{
+			System.out.println("File not found");
+		}
 		return departmentRecord;
 	}
 	/**

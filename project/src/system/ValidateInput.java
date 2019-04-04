@@ -57,8 +57,6 @@ public class ValidateInput
 		}	
 		return true;
 	}
-	
-
 	/*
 	 * This method returns true if the day entry is valid.
 	 * @param day The day.
@@ -161,7 +159,6 @@ public class ValidateInput
 		//if no problems are found, then the year is valid
 		return true;
 	}
-	
 	/*
 	 * This method returns true if the phone number entry is valid
 	 * @param phoneNumber The phone number.

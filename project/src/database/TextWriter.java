@@ -28,19 +28,16 @@ public class TextWriter
 			String data = "";
 			for (Patient p : patientRecord)
 			{
-				data = count + " " 
-							+ p.firstName + " " 
-							+ p.lastName + " " 
-							+ p.sex + " " 
-							+ p.dob + " " 
-							+ p.phoneNumber + " " 
-							+ p.email;
+				data = count + " " + p.firstName + " " + p.lastName + " " + p.sex + " " + p.dob + " " + p.phoneNumber + " " + p.email;
 				writer.println(data);
 				count++;
 			}
 			writer.close();
 		} 
-		catch (IOException e) {}
+		catch (IOException e)
+		{
+			System.out.println("File Write Error");
+		}
 	}
 	/*
 	 * This method will save the employee data.
@@ -55,20 +52,17 @@ public class TextWriter
 			String data = "";
 			for (Employee e : employeeRecord)
 			{
-				data = count + " " 
-							+ e.firstName + " " 
-							+ e.lastName + " " 
-							+ e.sex + " " 
-							+ e.dob + " " 
-							+ e.phoneNumber + " " 
-							+ e.email + " "
-							+ e.department;
+				data = count + " " + e.firstName + " " + e.lastName + " " + e.sex + " " + e.dob + " " + e.phoneNumber 
+							 + " " + e.email + " " + e.department;
 				writer.println(data);
 				count++;
 			}
 			writer.close();
 		} 
-		catch (IOException e) {}
+		catch (IOException e)
+		{
+			System.out.println("File Write Error");
+		}
 	}
 	/*
 	 * This method will save the department data.
@@ -85,7 +79,10 @@ public class TextWriter
 			}
 			writer.close();
 		} 
-		catch (IOException e) {}
+		catch (IOException e) 
+		{
+			System.out.println("File Write Error");
+		}
 	}
 	/*
 	 * This method will save the appointment data.
@@ -108,7 +105,10 @@ public class TextWriter
 			}
 			writer.close();
 		} 
-		catch (IOException e) {}
+		catch (IOException e)
+		{
+			System.out.println("File Write Error");
+		}
 	}
 	/*
 	 * This method will save the login credentials.
@@ -124,7 +124,7 @@ public class TextWriter
 			writer.println("a a a");
 			writer.println("e e e");
 			
-			//set the employees user name to firstnamelastname and password to 123 by default
+			//sets the employees user name to first name last name and password to 123 by default
 			String data = "";
 			for (Employee e : employeeRecord)
 			{
@@ -133,6 +133,9 @@ public class TextWriter
 			}
 			writer.close();
 		}
-		catch (IOException e) {}
+		catch (IOException e) 
+		{
+			System.out.println("File Write Error");
+		}
 	}
 }
