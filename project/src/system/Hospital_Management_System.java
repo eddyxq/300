@@ -30,6 +30,7 @@ public class Hospital_Management_System
 	private JPanel employeeMainPage = new EmployeeMainPanel().createPanel(this);
 	private JPanel homePage = new HomePanel().createPanel(this);
 	private JPanel addAppointmentPage;
+	private JPanel editAppointmentPage;
 	private PatientListPanel plp = new PatientListPanel();
 	private JPanel patientListPage = plp.createPanel(this);
 	private EmployeeListPanel slp = new EmployeeListPanel();
@@ -49,6 +50,7 @@ public class Hospital_Management_System
 	private String accessFrom;
 	private Integer id;
 	private String loggedInUser;
+	private Appointment currentAppointment;
 	/**
 	 * This constructor starts the system.
 	 */
@@ -59,13 +61,14 @@ public class Hospital_Management_System
 		
 		addStaffPage = new AddStaffPanel().createPanel(this);
 		addAppointmentPage = new AddAppointmentPanel().createPanel(this);
+		editAppointmentPage = new EditAppointmentPanel().createPanel(this);
 		
 		//start user interface
 		new GUI(addPatientPage, patientManagementPage, adminMainPage, 
 		homePage, addAppointmentPage, patientListPage,
 		addStaffPage, staffManagementPage, staffListPage, loginPage, 
 		employeeMainPage, marchCalendarPage, aprilCalendarPage, appointmentListPage, appointmentListPageAdmin,
-		manageAppointmentPage, addDepartmentPage);
+		manageAppointmentPage, addDepartmentPage, editAppointmentPage);
 		//saves date on exit
 		Runtime.getRuntime().addShutdownHook(onExit());
 	}
@@ -149,6 +152,11 @@ public class Hospital_Management_System
 	{
 		hideAll();
 		manageAppointmentPage.setVisible(true);
+	}
+	public void displayEditAppointmentPage()
+	{
+		hideAll();
+		editAppointmentPage.setVisible(true);
 	}
 	/**
 	 * This method will change the gui to display the admin main page.
@@ -260,6 +268,10 @@ public class Hospital_Management_System
 	{
 		hideAll();
 		addStaffPage.setVisible(true);
+	}
+	
+	public ArrayList<Appointment> getAppointmentRec(){
+		return appointmentRecord;
 	}
 	/**
 	 * This method will add a new patient to the patient records.
@@ -423,6 +435,7 @@ public class Hospital_Management_System
 		appointmentListPageAdmin.setVisible(false);
 		manageAppointmentPage.setVisible(false);
 		addDepartmentPage.setVisible(false);
+		editAppointmentPage.setVisible(false);
 	}
 	/**
 	 * This method will return the id.
@@ -507,6 +520,13 @@ public class Hospital_Management_System
     {
 		return employeeRecord;
 	}
+    /*
+     * This method will return the current appointment.
+     */
+    public Appointment getCurrentAppointment() 
+    {
+		return currentAppointment;
+	}
 	/**
 	 * This method will return the user currently logged in.
 	 */
@@ -522,4 +542,13 @@ public class Hospital_Management_System
 	{
 		this.loggedInUser = loggedInUser;
 	}
+	/**
+	 * This method will set the current in appointment.
+	 * @param app The appointment currently being edited in the system.
+	 */
+	public void setCurrentAppointment(Appointment currentAppointment) {
+		this.currentAppointment = currentAppointment;
+	}
+	
+	
 }

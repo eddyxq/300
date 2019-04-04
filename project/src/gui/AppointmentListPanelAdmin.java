@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,11 +29,18 @@ public class AppointmentListPanelAdmin
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
-	 "Appointment Date", "Appointment Time", "Doctor", "Option"}, 0))
+	 "Appointment Date", "Appointment Time", "Doctor", "Edit", "Remove"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
 		public boolean isCellEditable(int row, int column) {  
-			return column == 3;            
+			switch(column) {
+			case 3:
+				return true;
+			case 4:
+				return true;
+			default:
+				return false;
+		}           
     };
 	};
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -100,10 +109,19 @@ public class AppointmentListPanelAdmin
 	public void addAppointmentToTable(Appointment appointment, Hospital_Management_System hms) 
 	{
 		model.addRow(new Object[]{appointment.getDate(), appointment.getTime(), appointment.getDocName(),
-				"Edit/Remove Appointment"});
+				"Edit Appointment", "Remove Appointment"});
+		
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				table.getColumnModel().getColumn(3).setCellEditor(new BtnEditorEditAppointment(new JTextField(), hms, appointment));
+				table.getColumnModel().getColumn(4).setCellEditor(new BtnEditorRemoveAppointment(new JTextField(), hms, appointment));
+				
+			}
+		});
 		//set custom renderer and editor to column
 				table.getColumnModel().getColumn(3).setCellRenderer(new ButtonRenderer());;
-				table.getColumnModel().getColumn(3).setCellEditor(new BtnEditorAdminViewAppointment(new JTextField(), hms, 1));
+				table.getColumnModel().getColumn(4).setCellRenderer(new ButtonRenderer());;
 	}
 	
 	public void clearAllRow() {
