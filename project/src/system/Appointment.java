@@ -1,17 +1,20 @@
 package system;
-
-import user.Employee;
-import user.Patient;
-
-public class Appointment {
+/*
+ * This class defines the the appointments a patient can schedule.
+ */
+public class Appointment 
+{
 	private String id;
 	private String patientName;
 	private String docFName;
 	private String docLName;
 	private String time;
 	private String date;
-	
-	public Appointment(String id, String patientName, String doc, String date, String time) {
+	/*
+	 * This Constructor will initialize the Appointment fields.
+	 */
+	public Appointment(String id, String patientName, String doc, String date, String time) 
+	{
 		this.id = id;
 		this.patientName = patientName;
 		String[] docName = doc.split(" ");
@@ -20,23 +23,46 @@ public class Appointment {
 		this.date = date;
 		this.time = time;
 	}
-	public String getPName() {
+	/**
+	 * This method returns the patient's name.
+	 */
+	public String getPName() 
+	{
 		return patientName;
 	}
-	
-	public String getDocName() {
+	/**
+	 * This method returns the doctor's name.
+	 */
+	public String getDocName() 
+	{
 		return docFName+" "+docLName;
 	}
-	
-	public String getTime() {
+	/**
+	 * This method returns the doctor's name concatenated without a space.
+	 */
+	public String getDocNameNoSpace() 
+	{
+		return docFName+docLName;
+	}
+	/**
+	 * This method returns the time of the appointment.
+	 */
+	public String getTime() 
+	{
 		return time;
 	}
-	
-	public String getDate() {
+	/**
+	 * This method returns the date of the appointment.
+	 */
+	public String getDate() 
+	{
 		return date;
 	}
-	
-	public String getID() {
+	/**
+	 * This method returns the id.
+	 */
+	public String getID() 
+	{
 		return id;
 	}
 }
