@@ -22,7 +22,6 @@ abstract class Person
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 	}
-	
 	/*
 	 * This method returns the patient's phone number.
 	 */

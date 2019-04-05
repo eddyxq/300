@@ -13,7 +13,6 @@ public class Patient extends Person
 	private int id;
 	private String appointmentDate = "UNKNOWN";
 	private String appointmentTime = "UNKNOWN";
-	private String doctor = "UNKNOWN";
 	private Date dateNTime = new Date();
 	/*
 	 * This Constructor will initialize the Patient fields.
@@ -27,14 +26,11 @@ public class Patient extends Person
 	 * @param date The date of the appointment
 	 * @param date The time of the appointment
 	 */
-	public void setAppointment(String date, String time, String doctor)
+	public void setAppointment(String date, String time)
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm", Locale.ENGLISH);
 		setAppointmentDate(date);
 		setAppointmentTime(time);
-		//remove the spaces so it becomes one word string
-		doctor = doctor.replaceAll(" ", "");
-		setDoctor(doctor);
 		String dateTime = date + " " + time;
 		try 
 		{
@@ -42,8 +38,9 @@ public class Patient extends Person
 		} 
 		catch (ParseException e) {}
 	}
-	
-	
+	/*
+	 *	This method will return the appointment time.  
+	 */
 	public String getAppointment()
 	{
 		SimpleDateFormat format = new SimpleDateFormat("EEE, MMM, dd, yyyy HH:mm", Locale.ENGLISH);
@@ -66,7 +63,7 @@ public class Patient extends Person
 		return id;
 	}
 	/*
-	 * This method returns the appointment time.
+	 * This method returns the full name of the patient.
 	 */
 	public String getName() 
 	{
@@ -115,11 +112,5 @@ public class Patient extends Person
 	public void setAppointmentTime(String appointmentTime) 
 	{
 		this.appointmentTime = appointmentTime;
-	}
-	public String getDoctor() {
-		return doctor;
-	}
-	public void setDoctor(String doctor) {
-		this.doctor = doctor;
 	}
 }
