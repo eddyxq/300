@@ -1,8 +1,9 @@
 package system;
 
 import java.util.ArrayList;
-
-import javax.swing.JComboBox;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JPanel;
 import database.TextReader;
 import database.TextWriter;
@@ -357,12 +358,13 @@ public class Hospital_Management_System
 		String names = "";
 		String times = "";
 		
+		ArrayList<Appointment> currentDayAppointments = new ArrayList<Appointment>();
+		
 		try 
 		{
+			//go through and find all the current day appointments with this doctor
 			for(Appointment a : appointments)
 			{
-				if(!a.getDate().contains("UNKNOWN"))
-				{
 					String[] date = a.getDate().split("/");
 					String day = date[0];
 					String month = date[1];
@@ -373,12 +375,36 @@ public class Hospital_Management_System
 						(Integer.parseInt(year) == Integer.parseInt(currentYear)) && 
 						(a.getDocNameNoSpace().equals(loggedInUser)))
 					{
-						names += a.getPName() + "<br/>";
-						times += a.getTime() + "<br/>";
-					}
-				}
+						//add these appointments to a new list
+						currentDayAppointments.add(a);
+					}		
 			}
-			
+			//list if the starting appointment times
+			ArrayList<Integer> timeList = new ArrayList<Integer>();
+			//list containing the sorted appointments
+			ArrayList<Appointment> sortedAppointments = new ArrayList<Appointment>();
+			//maps the starting appointment time to the appointment
+			Map<Integer, Appointment> map = new HashMap<Integer, Appointment>();
+			//sort the times from early to late
+			for(Appointment a : currentDayAppointments)
+			{
+				String time = a.getTime();
+				int startTime = Integer.parseInt("" + time.charAt(0) + time.charAt(1) + time.charAt(3) + time.charAt(4)) ;
+				map.put(startTime, a);
+				timeList.add(startTime);		
+			}
+			Collections.sort(timeList);
+			//add the appointments in sorted order
+			for(int i = 0; i < timeList.size(); i++)
+			{
+				sortedAppointments.add(map.get(timeList.get(i)));
+			}
+			//create output string
+			for(Appointment a : sortedAppointments)
+			{
+				names += a.getPName() + "<br/>";
+				times += a.getTime() + "<br/>";
+			}
 			names = "<html>" + names + "</html>"; 
 			times = "<html>" + times + "</html>"; 
 			
