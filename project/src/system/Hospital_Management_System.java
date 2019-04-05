@@ -1,6 +1,8 @@
 package system;
 
 import java.util.ArrayList;
+
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import database.TextReader;
 import database.TextWriter;
@@ -29,12 +31,15 @@ public class Hospital_Management_System
 	private JPanel adminMainPage = new AdminMainPanel().createPanel(this);
 	private JPanel employeeMainPage = new EmployeeMainPanel().createPanel(this);
 	private JPanel homePage = new HomePanel().createPanel(this);
+	private AddAppointmentPanel aap = new AddAppointmentPanel();
 	private JPanel addAppointmentPage;
+	private EditAppointmentPanel eap = new EditAppointmentPanel();
 	private JPanel editAppointmentPage;
 	private PatientListPanel plp = new PatientListPanel();
 	private JPanel patientListPage = plp.createPanel(this);
 	private EmployeeListPanel slp = new EmployeeListPanel();
 	private JPanel staffListPage = slp.createPanel(this);
+	private AddStaffPanel asp = new AddStaffPanel();
 	private JPanel addStaffPage;
 	private JPanel loginPage = new LoginPanel().createPanel(this);
 	private JPanel marchCalendarPage = new MayCalendarPanel().createPanel(this);
@@ -59,9 +64,9 @@ public class Hospital_Management_System
 		//retrieve saved data
 		loadData();
 		
-		addStaffPage = new AddStaffPanel().createPanel(this);
-		addAppointmentPage = new AddAppointmentPanel().createPanel(this);
-		editAppointmentPage = new EditAppointmentPanel().createPanel(this);
+		addStaffPage = asp.createPanel(this);
+		addAppointmentPage = aap.createPanel(this);
+		editAppointmentPage = eap.createPanel(this);
 		
 		//start user interface
 		new GUI(addPatientPage, patientManagementPage, adminMainPage, 
@@ -91,7 +96,6 @@ public class Hospital_Management_System
 		}
 		
 	}
-	
 	private void loadAppointmentToList() {
 		alap.clearAllRow();
 		alp.clearAllRow();
@@ -259,6 +263,7 @@ public class Hospital_Management_System
 	public void displayAddAppointmentPage()
 	{
 		hideAll();
+		
 		addAppointmentPage.setVisible(true);
 	}
 	/**
@@ -502,6 +507,24 @@ public class Hospital_Management_System
 	public String getLoggedInUser() 
 	{
 		return loggedInUser;
+	}
+	/**
+	 * This method will return the addAppointmentPanel.
+	 */
+	public AddAppointmentPanel getAAP() {
+		return aap;
+	}
+	/**
+	 * This method will return the addStaffPanel.
+	 */
+	public AddStaffPanel getASP() {
+		return asp;
+	}
+	/**
+	 * This method will return the editAppointmentPanel.
+	 */
+	public EditAppointmentPanel getEAP() {
+		return eap;
 	}
 	/**
 	 * This method will set the logged in user.

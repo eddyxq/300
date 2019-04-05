@@ -21,6 +21,9 @@ public class AddDepartmentPanel
 {
 	private JTextField tfDepartment;
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
+	private AddAppointmentPanel aap;
+	private EditAppointmentPanel eap;
+	private AddStaffPanel asp;
 	/**
 	 * This method creates and returns a JPanel
 	 * @param hms
@@ -87,6 +90,12 @@ public class AddDepartmentPanel
 			{
 				//add department to list
 				hms.getDepartmentRecord().add(tfDepartment.getText());
+				aap = hms.getAAP();
+				aap.setDeptList();
+				eap = hms.getEAP();
+				eap.setDeptList();
+				asp = hms.getASP();
+				asp.setDeptList();
 				//display confirmation message
 				Object[] options = {"Ok"};
 				JOptionPane.showOptionDialog(null, "Department added.", "Success",

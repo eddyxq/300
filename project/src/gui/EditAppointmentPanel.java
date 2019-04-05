@@ -26,6 +26,7 @@ import system.ValidateInput;
 public class EditAppointmentPanel 
 {
 	private Appointment app;
+	private JComboBox<String> jcDepartment;
 	private JTextField tfDate;
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private Color Red = new Color(255, 150, 135);
@@ -36,6 +37,7 @@ public class EditAppointmentPanel
 			"10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
 			"16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30"};
 	private JComboBox<String> jcDoctors;
+	private Hospital_Management_System hms;
 	/**
 	 * This method creates and returns a JPanel
 	 * @param hms
@@ -43,6 +45,7 @@ public class EditAppointmentPanel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
+		this.hms = hms;
 		//initialize the panel layout and size
 		JPanel addAppointmentPanel = new JPanel();
 		addAppointmentPanel.setLayout(null);
@@ -110,7 +113,8 @@ public class EditAppointmentPanel
 		/*
 		 * DEPARMENT LIST DROP-DOWN MENU
 		 */
-		JComboBox<String> jcDepartment = new JComboBox<String>(hms.getStringArray(hms.getDepartmentRecord()));
+		String[] deptList = hms.getStringArray(hms.getDepartmentRecord());
+		jcDepartment = new JComboBox<String>(deptList);
 		jcDepartment.setSelectedIndex(0);
 		jcDepartment.addActionListener(new ActionListener() 
 		{
@@ -308,5 +312,17 @@ public class EditAppointmentPanel
 			private void clearRedField()
 			{
 				tfDate.setBackground(Default);
+			}
+			/*
+			 * This method updates the jcombobox for the department
+			 */
+			public void setDeptList() {
+				jcDepartment.removeAllItems();
+				String[] deptList = hms.getStringArray(hms.getDepartmentRecord());
+				for (int i=0; i< deptList.length; i++) 
+				{
+					//Add the list of department into the combo box
+					jcDepartment.addItem(deptList[i]);
+				}
 			}
 }
