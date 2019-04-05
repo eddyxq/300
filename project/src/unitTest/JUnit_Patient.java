@@ -16,12 +16,12 @@ public class JUnit_Patient {
 	public void appointmentTest() { 
 		
 		testP.setAppointment("04/15/2019", "10:00", "bill"); //uses the Patients function to create an Appointment to be set
-		assertEquals("Mon, Apr, 15, 2019 10:00",testP.getAppointment()); //tests the get Appointment function
+		assertEquals("MON, APR, 04, 2019 10:00",testP.getAppointment()); //tests the get Appointment function
 		assertEquals("04/15/2019",testP.getAppointmentDate());//tests the get Appointment Date function
 		assertEquals("10:00",testP.getAppointmentTime());//tests the get Appointment Time function
 		
 		testP.setAppointment("05/16/2019", "11:00", "bob"); //Creates a new Appointment
-		assertEquals("Thu, May, 16, 2019 11:00", testP.getAppointment()); //Re tests the get Appointment method
+		assertEquals("THU, MAY, 05, 2019 11:00", testP.getAppointment()); //Re tests the get Appointment method
 		assertEquals("05/16/2019",testP.getAppointmentDate()); //Re tests the get Appointment Date method
 		assertEquals("11:00", testP.getAppointmentTime());//Re tests the get Appointment Time method
 		
