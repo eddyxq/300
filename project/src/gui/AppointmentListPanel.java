@@ -27,15 +27,15 @@ public class AppointmentListPanel
 	 "Appointment Date", "Appointment Time", "Doctor"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
-		public boolean isCellEditable(int row, int column) {  
+		public boolean isCellEditable(int row, int column) 
+		{  
 			return false;            
-    };
+		};
 	};
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
 	/**
 	 * This method creates and returns a JPanel
-	 * @param hms
-	 * @return this panel
+	 * @param hms The System.
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
@@ -94,19 +94,22 @@ public class AppointmentListPanel
 	}
 	/**
 	 * Adds appointment to the list
-	 * @param app
-	 * @param hms
+	 * @param app The appointment to be added.
+	 * @param hms The system.
 	 */
 	public void addAppointmentToTable(Appointment app, Hospital_Management_System hms) 
 	{
-		model.addRow(new Object[]{app.getDate(), app.getTime(), app.getDocName()
-				});
+		model.addRow(new Object[]{app.getDate(), app.getTime(), app.getDocName()});
 	}
-	
-	public void clearAllRow() {
+	/**
+	 *	This method will clear all the rows in the table.
+	 */
+	public void clearAllRow() 
+	{
 		int rowCount = model.getRowCount();
 		//Remove rows one by one from the end of the table
-		for (int i = rowCount - 1; i >= 0; i--) {
+		for (int i = rowCount - 1; i >= 0; i--) 
+		{
 			model.removeRow(i);
 		}
 	}

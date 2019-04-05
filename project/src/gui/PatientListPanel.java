@@ -54,6 +54,7 @@ public class PatientListPanel
 		//set table settings
 		table.setColumnSelectionAllowed(false);
 		table.setRowSelectionAllowed(true);
+		table.getTableHeader().setEnabled(false);
 		table.setRowHeight(50);
 		table.setEnabled(true);
 		table.getTableHeader().setReorderingAllowed(false);
@@ -106,13 +107,14 @@ public class PatientListPanel
 		 * FILTER TEXTBOX
 		 */
 		JTextField filterField = RowFilterUtil.createRowFilter(table);
+		filterField.setFont(new Font("Arial", Font.BOLD, 24));
 		filterField.setColumns(10);
 		filterField.setBounds(265, 955, 300, 59);
 		/*
 		 * SEARCH LABEL		
 		 */
 		JLabel lbSearch = new JLabel("Search:");
-		lbSearch.setFont(bArial);
+		lbSearch.setFont(new Font("Arial", Font.BOLD, 28));
 		lbSearch.setBounds(125, 955, 300, 59);
 		//add all the components to panel
 		patientListPanel.add(btnReturn);
@@ -135,19 +137,18 @@ public class PatientListPanel
 		patient.getSex(), patient.getDOB(), patient.getPhoneNum(), patient.getEmail(), "Edit",
 		"Add"});
 		
-		table.addMouseListener(new MouseAdapter() {
+		table.addMouseListener(new MouseAdapter() 
+		{
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) 
+			{
 				id = (int)table.getValueAt(table.getSelectedRow(), 0);
 				table.getColumnModel().getColumn(7).setCellEditor(new BtnEditorAdminViewAppointment(new JTextField(), hms, id));
 				table.getColumnModel().getColumn(8).setCellEditor(new BtnEditorAddAppointment(new JTextField(), hms, id));
-				
 			}
 		});
-		
 		//set custom renderer and editor to column
 		table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());
 		table.getColumnModel().getColumn(8).setCellRenderer(new ButtonRenderer());
-		
 	}
 }

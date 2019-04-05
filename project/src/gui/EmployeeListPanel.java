@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import system.Hospital_Management_System;
 import user.Employee;
@@ -24,7 +25,7 @@ public class EmployeeListPanel
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
-	"ID", "First Name", "Last Name",  "Department", "Sex", "Date of Birth", "Phone Number", "E-mail", "Option"}, 0))
+	"ID", "First Name", "Last Name",  "Department", "Sex", "Date of Birth", "Phone Number", "E-mail"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
 		public boolean isCellEditable(int row, int column) {  
@@ -34,8 +35,7 @@ public class EmployeeListPanel
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
 	/**
 	 * This method creates and returns a JPanel
-	 * @param hms
-	 * @return this panel
+	 * @param hms The System.
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
@@ -83,11 +83,26 @@ public class EmployeeListPanel
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(725, 955, 500, 59);
+		/*
+		 * FILTER TEXTBOX
+		 */
+		JTextField filterField = RowFilterUtil.createRowFilter(table);
+		filterField.setFont(new Font("Arial", Font.BOLD, 24));
+		filterField.setColumns(10);
+		filterField.setBounds(265, 955, 300, 59);
+		/*
+		 * SEARCH LABEL		
+		 */
+		JLabel lbSearch = new JLabel("Search:");
+		lbSearch.setFont(new Font("Arial", Font.BOLD, 28));
+		lbSearch.setBounds(125, 955, 300, 59);
 		//add all the components to panel
 		employeeListPanel.add(btnReturn);
 		employeeListPanel.add(tableContainer, BorderLayout.CENTER);
 		employeeListPanel.add(lblWelcomeBackAdministrator);
 		employeeListPanel.add(date);
+		employeeListPanel.add(filterField);
+		employeeListPanel.add(lbSearch);
 		employeeListPanel.add(lblBackground);
 		
 		return employeeListPanel;
@@ -99,11 +114,6 @@ public class EmployeeListPanel
 	public void addEmployeeToTable(Employee employee, Hospital_Management_System hms) 
 	{
 		model.addRow(new Object[]{employee.getID(), employee.getFirstName(), employee.getLastName(), employee.getDepartment(),
-		employee.getSex(), employee.getDOB(), employee.getPhoneNum(), employee.getEmail(), "DISABLED"});
-		
-		//buttons are currently disabled
-		//set custom renderer and editor to column
-		//table.getColumnModel().getColumn(7).setCellRenderer(new ButtonRenderer());;
-		//table.getColumnModel().getColumn(7).setCellEditor(new ButtonEditor(new JTextField(), hms, employee.getID()));
+		employee.getSex(), employee.getDOB(), employee.getPhoneNum(), employee.getEmail()});
 	}
 }
