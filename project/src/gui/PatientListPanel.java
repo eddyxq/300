@@ -28,7 +28,8 @@ public class PatientListPanel
 	private int id = 0;
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
-	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number", "E-mail", "Modify", "Appointment"}, 0))
+	"ID", "First Name", "Last Name", "Sex", "Date of Birth", "Phone Number",
+	"E-mail", "Modify", "Appointment"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
 		public boolean isCellEditable(int row, int column) {  
@@ -101,11 +102,25 @@ public class PatientListPanel
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(725, 955, 500, 59);
+		/*
+		 * FILTER TEXTBOX
+		 */
+		JTextField filterField = RowFilterUtil.createRowFilter(table);
+		filterField.setColumns(10);
+		filterField.setBounds(265, 955, 300, 59);
+		/*
+		 * SEARCH LABEL		
+		 */
+		JLabel lbSearch = new JLabel("Search:");
+		lbSearch.setFont(bArial);
+		lbSearch.setBounds(125, 955, 300, 59);
 		//add all the components to panel
 		patientListPanel.add(btnReturn);
 		patientListPanel.add(tableContainer, BorderLayout.CENTER);
 		patientListPanel.add(lblWelcomeBackAdministrator);
 		patientListPanel.add(date);
+		patientListPanel.add(filterField);
+		patientListPanel.add(lbSearch);
 		patientListPanel.add(lblBackground);
 		
 		return patientListPanel;
