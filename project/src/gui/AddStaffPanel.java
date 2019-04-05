@@ -30,6 +30,7 @@ import user.Employee;
  */
 public class AddStaffPanel 
 {
+	private JComboBox<String> jcDepartment;
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private Color bgColor = new Color(215,215,215);
 	private JTextField tfFirstName;
@@ -43,6 +44,7 @@ public class AddStaffPanel
 	private Color Red = new Color(255, 150, 135);
 	private Color Default = new Color(255,255,255);
 	private ValidateInput val = new ValidateInput();
+	private Hospital_Management_System hms;
 	/**
 	 * This method creates and returns a JPanel
 	 * @param hms
@@ -50,6 +52,7 @@ public class AddStaffPanel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
+		this.hms = hms;
 		//initialize the panel layout and size
 		JPanel addStaff = new JPanel();
 		addStaff.setLayout(null);
@@ -191,7 +194,8 @@ public class AddStaffPanel
 		/*
 		 * DEPARMENT LIST DROP-DOWN MENU
 		 */
-		JComboBox<String> jcDepartment = new JComboBox<String>(hms.getStringArray(hms.getDepartmentRecord()));
+		String[] deptList = hms.getStringArray(hms.getDepartmentRecord());
+		jcDepartment = new JComboBox<String>(deptList);
 		jcDepartment.setSelectedIndex(0);
 		jcDepartment.setBounds(640, 625, 200, 20);
 		/*
@@ -368,7 +372,18 @@ public class AddStaffPanel
 		}
 		return true;
 	}
-	
+	/*
+	 * This method updates the jcombobox for the department
+	 */
+	public void setDeptList() {
+		jcDepartment.removeAllItems();
+		String[] deptList = hms.getStringArray(hms.getDepartmentRecord());
+		for (int i=0; i< deptList.length; i++) 
+		{
+			//Add the list of department into the combo box
+			jcDepartment.addItem(deptList[i]);
+		}
+	}
 	/**
 	 * This method resets all the text fields
 	 */
