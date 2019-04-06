@@ -51,6 +51,7 @@ public class Hospital_Management_System
 	private JPanel appointmentListPageAdmin = alap.createPanel(this);
 	private JPanel manageAppointmentPage = new ManageDepartmentPanel().createPanel(this);
 	private JPanel addDepartmentPage = new AddDepartmentPanel().createPanel(this);
+	private JPanel departmentStatisticsPage = new DepartmentStatisticsPanel().createPanel(this);
 	
 	//variablies for identifying users
 	private String accessFrom;
@@ -74,7 +75,7 @@ public class Hospital_Management_System
 		homePage, addAppointmentPage, patientListPage,
 		addStaffPage, staffManagementPage, staffListPage, loginPage, 
 		employeeMainPage, marchCalendarPage, aprilCalendarPage, appointmentListPage, appointmentListPageAdmin,
-		manageAppointmentPage, addDepartmentPage, editAppointmentPage);
+		manageAppointmentPage, addDepartmentPage, editAppointmentPage, departmentStatisticsPage);
 		//saves date on exit
 		Runtime.getRuntime().addShutdownHook(onExit());
 	}
@@ -132,7 +133,8 @@ public class Hospital_Management_System
 	public void startHMS() 
 	{
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {public void run() {}});
-		displayHomePage();
+		//displayHomePage();
+		displayDepartmentStatisticsPage();
 	}
 	/**
 	 * This method will change the gui to display the username and password prompt for staffs
@@ -149,6 +151,14 @@ public class Hospital_Management_System
 	{
 		hideAll();
 		addDepartmentPage.setVisible(true);
+	}
+	/**
+	 * This method will change the gui to display the department statistics page.
+	 */
+	public void displayDepartmentStatisticsPage() 
+	{
+		hideAll();
+		departmentStatisticsPage.setVisible(true);
 	}
 	/**
 	 * This method will change the gui to display the add department page.
@@ -444,6 +454,7 @@ public class Hospital_Management_System
 		manageAppointmentPage.setVisible(false);
 		addDepartmentPage.setVisible(false);
 		editAppointmentPage.setVisible(false);
+		departmentStatisticsPage.setVisible(false);
 	}
 	/**
 	 * This method will return the id.

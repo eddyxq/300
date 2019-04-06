@@ -14,12 +14,11 @@ public class GUI extends JFrame
      * This constructor accepts as arguments the other panels and 
      * initializes the frame
      */
-    public GUI(JPanel addPatientPanel, JPanel patientManagementPage, JPanel adminMainPanel, 
-    		   JPanel homePagePanel, JPanel addAppointmentPanel, 
-    		   JPanel patientListPanel, JPanel addStaffPanel, JPanel staffManagementPanel, 
+    public GUI(JPanel addPatientPanel, JPanel patientManagementPage, JPanel adminMainPanel, JPanel homePagePanel, 
+    		   JPanel addAppointmentPanel, JPanel patientListPanel, JPanel addStaffPanel, JPanel staffManagementPanel, 
     		   JPanel staffListPanel, JPanel loginPanel, JPanel employeeMainPanel, JPanel marchCalendarPanel, 
     		   JPanel aprilCalendarPanel, JPanel appointmentListPanel, JPanel appointmentListAdminPanel, 
-    		   JPanel manageDepartmentPanel, JPanel addDepartmentPanel, JPanel editAppointmentPanel)
+    		   JPanel manageDepartmentPanel, JPanel addDepartmentPanel, JPanel editAppointmentPanel, JPanel departmentStatisticsPanel)
     {
     	JFrame window = new JFrame();
         window.setTitle("HMS");
@@ -46,6 +45,7 @@ public class GUI extends JFrame
         window.getContentPane().add(manageDepartmentPanel);
         window.getContentPane().add(addDepartmentPanel);
         window.getContentPane().add(editAppointmentPanel);
+        window.getContentPane().add(departmentStatisticsPanel);
         //set visibility
         addPatientPanel.setVisible(false);
         patientManagementPage.setVisible(false);
@@ -65,9 +65,12 @@ public class GUI extends JFrame
         manageDepartmentPanel.setVisible(false);
         addDepartmentPanel.setVisible(false);
         editAppointmentPanel.setVisible(false);
-        //if want to start Full-Screen uncomment below
-//		window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-//		window.setUndecorated(true);    
+        departmentStatisticsPanel.setVisible(false);
+        /*
+         *	comment or uncomment lines below to enable or disable screen mode 
+         */    
+		//window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		//window.setUndecorated(true);    
         
         window.setVisible(true);
     }

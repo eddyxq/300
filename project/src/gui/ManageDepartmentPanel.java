@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import system.Hospital_Management_System;
 
 /*
- * This class is a panel which allows administrator to select how to interact with patient/
+ * This class is a panel which allows administrator to select how to interact with patient
  * employee records.
  */
 public class ManageDepartmentPanel
@@ -51,17 +51,29 @@ public class ManageDepartmentPanel
 		/*
 		 * ADD DEPARTMENT BUTTON
 		 */
-		JButton btnManagePatient = new JButton("Add Department");
-		btnManagePatient.addActionListener(new ActionListener() 
+		JButton btnAddDepartment = new JButton("Add Department");
+		btnAddDepartment.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
 				hms.displayAddDepartmentPage();
 			}
 		});
-		btnManagePatient.setFont(new Font("Arial", Font.BOLD, 16));
-		btnManagePatient.setBounds(769, 514, 400, 59);
-		
+		btnAddDepartment.setFont(new Font("Arial", Font.BOLD, 16));
+		btnAddDepartment.setBounds(769, 514, 400, 59);
+		/*
+		 * VIEW STATISTICS BUTTON
+		 */
+		JButton btnViewStatistics = new JButton("View Statistics");
+		btnViewStatistics.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				hms.displayDepartmentStatisticsPage();
+			}
+		});
+		btnViewStatistics.setFont(new Font("Arial", Font.BOLD, 16));
+		btnViewStatistics.setBounds(769, 678, 400, 59);
 		/*
 		 * RETURN BUTTON
 		 */
@@ -76,7 +88,7 @@ public class ManageDepartmentPanel
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
 		btnReturn.setBounds(769, 842, 400, 59);
 		//add all the components to panel
-		adminMain.add(btnManagePatient);
+		adminMain.add(btnAddDepartment);
 		adminMain.add(btnReturn);
 		adminMain.add(lblWelcomeBackAdministrator);
 		adminMain.add(date);
