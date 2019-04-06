@@ -28,7 +28,7 @@ public class DepartmentStatisticsPanel
 		departmentStatistics.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(DepartmentStatisticsPanel.class.getResource("/graphics/AddPatientBackground.png")));
+		lblBackground.setIcon(new ImageIcon(DepartmentStatisticsPanel.class.getResource("/graphics/departmentStats_backgrounds.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
