@@ -1,26 +1,13 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 import system.Hospital_Management_System;
-import system.ValidateInput;
-import user.Patient;
 
 /*
  * This class displays the add patient panel.
@@ -28,14 +15,13 @@ import user.Patient;
 public class DepartmentStatisticsPanel 
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
-	private Color bgColor = new Color(215,215,215);
 	/**
 	 * This method creates and returns a JPanel
 	 * @param hms
 	 * @return this panel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
-	{
+	{	
 		//initialize the panel layout and size
 		JPanel departmentStatistics = new JPanel();
 		departmentStatistics.setLayout(null);
@@ -61,15 +47,28 @@ public class DepartmentStatisticsPanel
 		/*
 		 * DEPARTMENT STATISTICS (LEFT PANEL)
 		 */
-		JLabel lbDeptStats = new JLabel("DEPARTMENT STATISTICS");
-		lbDeptStats.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		JLabel lbDeptStats = new JLabel();
+		lbDeptStats.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lbDeptStats.setBounds(59, 269, 897, 670);
+		lbDeptStats.setVerticalAlignment(JLabel.TOP);
+		//display number of physicians working at each department
+		String output = "Department" + "<br/>";
+		for(String s : hms.getDepartmentRecord())
+		{
+			//System.out.println(s);
+			
+			output += s + " " + "currently has: " +  hms.countDoctorsInDepartment(s) 
+			+ " " + "Physicians." + "<br/>";
+		}
+		output = "<html>" + output + "</html>"; 
+		lbDeptStats.setText(output);
 		/*
 		 * PATIENT ACTIVITY (RIGHT PANEL)
 		 */
-		JLabel lbPatientActivity = new JLabel("DEPARTMENT STATISTICS");
+		JLabel lbPatientActivity = new JLabel("");
 		lbPatientActivity.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lbPatientActivity.setBounds(990, 269, 855, 670);
+		lbPatientActivity.setVerticalAlignment(JLabel.TOP);
 		//add all the components to panel
 		departmentStatistics.add(lbDeptStats);
 		departmentStatistics.add(lbPatientActivity);

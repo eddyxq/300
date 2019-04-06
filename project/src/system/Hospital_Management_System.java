@@ -51,7 +51,7 @@ public class Hospital_Management_System
 	private JPanel appointmentListPageAdmin = alap.createPanel(this);
 	private JPanel manageAppointmentPage = new ManageDepartmentPanel().createPanel(this);
 	private JPanel addDepartmentPage = new AddDepartmentPanel().createPanel(this);
-	private JPanel departmentStatisticsPage = new DepartmentStatisticsPanel().createPanel(this);
+	private JPanel departmentStatisticsPage;
 	
 	//variablies for identifying users
 	private String accessFrom;
@@ -69,6 +69,7 @@ public class Hospital_Management_System
 		addStaffPage = asp.createPanel(this);
 		addAppointmentPage = aap.createPanel(this);
 		editAppointmentPage = eap.createPanel(this);
+		departmentStatisticsPage = new DepartmentStatisticsPanel().createPanel(this);
 		
 		//start user interface
 		new GUI(addPatientPage, patientManagementPage, adminMainPage, 
@@ -547,19 +548,22 @@ public class Hospital_Management_System
 	/**
 	 * This method will return the addAppointmentPanel.
 	 */
-	public AddAppointmentPanel getAAP() {
+	public AddAppointmentPanel getAAP() 
+	{
 		return aap;
 	}
 	/**
 	 * This method will return the addStaffPanel.
 	 */
-	public AddStaffPanel getASP() {
+	public AddStaffPanel getASP() 
+	{
 		return asp;
 	}
 	/**
 	 * This method will return the editAppointmentPanel.
 	 */
-	public EditAppointmentPanel getEAP() {
+	public EditAppointmentPanel getEAP() 
+	{
 		return eap;
 	}
 	/**
@@ -577,5 +581,22 @@ public class Hospital_Management_System
 	public void setCurrentAppointment(Appointment currentAppointment) 
 	{
 		this.currentAppointment = currentAppointment;
+	}
+	/**
+	 * This method will return the number of doctors in a given department.
+	 * @param department The department the doctors works for.
+	 */
+	public int countDoctorsInDepartment(String department)
+	{
+		int count = 0;
+		
+		for(Employee e : employeeRecord)
+		{
+			if(e.getDepartment().equals(department))
+			{
+				count += 1;
+			}
+		}
+		return count;
 	}
 }

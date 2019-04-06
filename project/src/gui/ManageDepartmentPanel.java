@@ -89,6 +89,7 @@ public class ManageDepartmentPanel
 		btnReturn.setBounds(769, 842, 400, 59);
 		//add all the components to panel
 		adminMain.add(btnAddDepartment);
+		adminMain.add(btnViewStatistics);
 		adminMain.add(btnReturn);
 		adminMain.add(lblWelcomeBackAdministrator);
 		adminMain.add(date);
