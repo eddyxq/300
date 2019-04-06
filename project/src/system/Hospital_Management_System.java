@@ -133,8 +133,7 @@ public class Hospital_Management_System
 	public void startHMS() 
 	{
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {public void run() {}});
-		//displayHomePage();
-		displayDepartmentStatisticsPage();
+		displayHomePage();
 	}
 	/**
 	 * This method will change the gui to display the username and password prompt for staffs
