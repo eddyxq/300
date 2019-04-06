@@ -49,7 +49,7 @@ public class AddAppointmentPanel
 		addAppointmentPanel.setBounds(0, 0, 1920, 1080);
 		//set background
 		JLabel lblBackground = new JLabel();
-		lblBackground.setIcon(new ImageIcon(AddAppointmentPanel.class.getResource("/graphics/list_background.png")));
+		lblBackground.setIcon(new ImageIcon(AddAppointmentPanel.class.getResource("/graphics/addApp_backgrounds.png")));
 		lblBackground.setBounds(0, 0, 1920, 1080);
 		/*
 		 * HEADER MESSAGE
@@ -70,43 +70,43 @@ public class AddAppointmentPanel
 		 */
 		JLabel lblDate = new JLabel("Date: (DD/MM/YYYY)");
 		lblDate.setFont(new Font("Arial", Font.BOLD, 16));
-		lblDate.setBounds(925, 339, 300, 14);
+		lblDate.setBounds(696, 410, 300, 30);
 		/*
 		 * Text Field for Appointment Date
 		 */
 		tfDate = new JTextField();
-		tfDate.setBounds(900, 364, 200, 20);
+		tfDate.setBounds(1123, 417, 200, 20);
 		tfDate.setColumns(10);
 		/*
 		 * START TIME
 		 */
 		JLabel lbStartTime = new JLabel("Start Time: (HH:MM)");
 		lbStartTime.setFont(new Font("Arial", Font.BOLD, 16));
-		lbStartTime.setBounds(760, 575, 300, 14);
+		lbStartTime.setBounds(696, 568, 250, 20);
 		/*
 		 * Drop-down menu for Appointment Start Time
 		 */
 		JComboBox<String> jcStartTime = new JComboBox<String>(timeSlots);
 		jcStartTime.setSelectedIndex(0);
-		jcStartTime.setBounds(788, 600, 100, 20);
+		jcStartTime.setBounds(1170, 570, 100, 20);
 		/*
 		 * END TIME
 		 */
 		JLabel lbEndTime = new JLabel("End Time: (HH:MM)");
 		lbEndTime.setFont(new Font("Arial", Font.BOLD, 16));
-		lbEndTime.setBounds(1050, 575, 300, 14);
+		lbEndTime.setBounds(696, 623, 300, 14);
 		/*
 		 * Drop-down for Appointment End Time
 		 */
 		JComboBox<String> jcEndTime = new JComboBox<String>(timeSlots);
 		jcEndTime.setSelectedIndex(1);
-		jcEndTime.setBounds(1078, 600, 100, 20);
+		jcEndTime.setBounds(1170, 622, 100, 20);
 		/*
 		 * DEPARTMENT
 		 */
 		JLabel lbDepartment = new JLabel("Department: ");
 		lbDepartment.setFont(new Font("Arial", Font.BOLD, 16));
-		lbDepartment.setBounds(795, 450, 250, 50);
+		lbDepartment.setBounds(696, 451, 250, 50);
 		/*
 		 * DEPARMENT LIST DROP-DOWN MENU
 		 */
@@ -128,13 +128,13 @@ public class AddAppointmentPanel
 				}
 			}
 		});
-		jcDepartment.setBounds(750, 500, 200, 20);
+		jcDepartment.setBounds(1123, 468, 200, 20);
 		/*
 		 * DOCTORS
 		 */
 		JLabel lbDoctors = new JLabel("Doctor: ");
 		lbDoctors.setFont(new Font("Arial", Font.BOLD, 16));
-		lbDoctors.setBounds(1090, 450, 250, 50);
+		lbDoctors.setBounds(696, 505, 112, 42);
 		/*
 		 * DOCTORS LIST DROP-DOWN MENU
 		 */
@@ -147,7 +147,7 @@ public class AddAppointmentPanel
 
 		jcDoctors = new JComboBox<String>(list);
 		jcDoctors.setSelectedIndex(0);
-		jcDoctors.setBounds(1045, 500, 200, 20);
+		jcDoctors.setBounds(1046, 518, 169, 20);
 		/*
 		 * CANCEL BUTTON
 		 */
@@ -171,13 +171,13 @@ public class AddAppointmentPanel
 			}
 		});
 		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));
-		btnCancel.setBounds(1400, 950, 169, 59);
+		btnCancel.setBounds(1060, 842, 169, 59);
 		/*
 		 * SUBMIT BUTTON
 		 */
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
-		btnSubmit.setBounds(370, 950, 169, 59);
+		btnSubmit.setBounds(740, 842, 169, 59);
 		btnSubmit.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -264,8 +264,8 @@ public class AddAppointmentPanel
 						hms.displayAprilCalendarPage();
 					}
 				});
-				btnViewSchedule.setFont(new Font("Arial", Font.BOLD, 16));
-				btnViewSchedule.setBounds(885, 950, 169, 59);
+				btnViewSchedule.setFont(new Font("Arial", Font.PLAIN, 13));
+				btnViewSchedule.setBounds(1225, 517, 155, 20);
 				// Adds all the components to the panel.
 				addAppointmentPanel.add(lbDoctors);
 				addAppointmentPanel.add(jcDoctors);
