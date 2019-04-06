@@ -53,7 +53,8 @@ public class Hospital_Management_System
 	private JPanel addDepartmentPage = new AddDepartmentPanel().createPanel(this);
 	private JPanel departmentStatisticsPage;
 	
-	//variablies for identifying users
+	//variables for identifying users
+	private boolean admin;
 	private String accessFrom;
 	private Integer id;
 	private String loggedInUser;
@@ -472,21 +473,6 @@ public class Hospital_Management_System
 		this.id = id;
 	}
 	/**
-	 * This method will return accessFrom.
-	 */
-	public String getAccessFrom() 
-	{
-		return accessFrom;
-	}
-	/**
-	 * This method set the id.
-	 * @param accessFrom The type of employee that last accessed.
-	 */
-	public void setAccessFrom(String accessFrom) 
-	{
-		this.accessFrom = accessFrom;
-	}
-	/**
 	 * This method will return departmentRecord.
 	 */
 	public ArrayList<String> getDepartmentRecord() 
@@ -546,6 +532,44 @@ public class Hospital_Management_System
 		return loggedInUser;
 	}
 	/**
+	 * This method will set the logged in user.
+	 * @param loggedInUser The user currently using the system.
+	 */
+	public void setLoggedInUser(String loggedInUser) 
+	{
+		this.loggedInUser = loggedInUser;
+	}
+	/**
+	 * This method will return true when is admin.
+	 */
+	public boolean isAdmin() 
+	{
+		return admin;
+	}
+	/**
+	 * This method will set status of admin.
+	 * @param admin A boolean variable.
+	 */
+	public void setAdmin(boolean admin) 
+	{
+		this.admin = admin;
+	}
+	/**
+	 * This method will return accessFrom.
+	 */
+	public String getAccessFrom() 
+	{
+		return accessFrom;
+	}
+	/**
+	 * This method set the id.
+	 * @param accessFrom The type of employee that last accessed.
+	 */
+	public void setAccessFrom(String accessFrom) 
+	{
+		this.accessFrom = accessFrom;
+	}
+	/**
 	 * This method will return the addAppointmentPanel.
 	 */
 	public AddAppointmentPanel getAAP() 
@@ -565,14 +589,6 @@ public class Hospital_Management_System
 	public EditAppointmentPanel getEAP() 
 	{
 		return eap;
-	}
-	/**
-	 * This method will set the logged in user.
-	 * @param loggedInUser The user currently using the system.
-	 */
-	public void setLoggedInUser(String loggedInUser) 
-	{
-		this.loggedInUser = loggedInUser;
 	}
 	/**
 	 * This method will set the current in appointment.

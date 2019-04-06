@@ -13,6 +13,7 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -50,9 +51,11 @@ public class MayCalendarPanel
 		//label for patient names
 		patientName.setBounds(1120, 220, 382, 765);
 		patientName.setFont(bArial);
+		patientName.setVerticalAlignment(JLabel.TOP);
 		//label for appointment times
 		appointmentTime.setBounds(1502, 220, 382, 765);
 		appointmentTime.setFont(bArial);
+		appointmentTime.setVerticalAlignment(JLabel.TOP);
 		//set table settings
 		table.setColumnSelectionAllowed(false);
 		table.setRowSelectionAllowed(false);
@@ -66,12 +69,11 @@ public class MayCalendarPanel
 		 */
 		table.addMouseListener(new MouseAdapter() 
 		{
+			//when a date is clicked display schedule in label right of calendar
 			public void mouseClicked(MouseEvent e) 
 			{
 				int row= table.rowAtPoint(e.getPoint());
 				int col= table.columnAtPoint(e.getPoint());
-				//temporary hard coded month and year values passed
-				//will be fixed once we implement the full calendar
 				ArrayList<String> appointmentData = hms.generateDaySchedule(table.getValueAt(row, col).toString(), "05", "2019");
 				patientName.setText(appointmentData.get(0));
 				appointmentTime.setText(appointmentData.get(1));
@@ -107,7 +109,7 @@ public class MayCalendarPanel
 		 */
 		JLabel lblMonthYear = new JLabel("MAY 2019");
 		lblMonthYear.setFont(new Font("Arial", Font.BOLD, 90));
-		lblMonthYear.setBounds(250, 220, 700, 100);
+		lblMonthYear.setBounds(370, 220, 700, 100);
 		/*
 		 * NEXT MONTH BUTTON
 		 */
@@ -116,9 +118,11 @@ public class MayCalendarPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				//not availiable right now
-				//to be implemented
-				
+				//display warning notifying user the program is a prototype and does not
+				//have a full calendar implemented, only April and May is avaliable
+				Object[] options = {"Ok"};
+				JOptionPane.showOptionDialog(null, "This prototype only contains April and May of 2019.", "Warning",
+				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
 			}
 		});
 		btnNext.setFont(new Font("Arial", Font.BOLD, 16));

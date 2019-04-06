@@ -71,11 +71,13 @@ public class LoginPanel
 				if(response == "valid_a")
 				{
 					hms.displayAdminMainPage();
+					hms.setAdmin(true);
 				}
 				else if (response == "valid_e")
 				{
 					hms.displayEmployeeMainPage();
 					hms.setLoggedInUser(tfUsername.getText());
+					hms.setAdmin(false);
 				}
 				else
 				{

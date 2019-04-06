@@ -250,6 +250,22 @@ public class AddAppointmentPanel
 						}
 					}
 				});
+				/*
+				 * VIEW SCHEDULE BUTTON
+				 */
+				JButton btnViewSchedule = new JButton("View Schedule");
+				btnViewSchedule.addActionListener(new ActionListener() 
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						String name = jcDoctors.getSelectedItem().toString().replaceAll("\\s", "");
+						System.out.println(name);
+						hms.setLoggedInUser(name);
+						hms.displayAprilCalendarPage();
+					}
+				});
+				btnViewSchedule.setFont(new Font("Arial", Font.BOLD, 16));
+				btnViewSchedule.setBounds(885, 950, 169, 59);
 				// Adds all the components to the panel.
 				addAppointmentPanel.add(lbDoctors);
 				addAppointmentPanel.add(jcDoctors);
@@ -263,6 +279,7 @@ public class AddAppointmentPanel
 				addAppointmentPanel.add(jcEndTime);
 				addAppointmentPanel.add(btnSubmit);
 				addAppointmentPanel.add(btnCancel);
+				addAppointmentPanel.add(btnViewSchedule);
 				addAppointmentPanel.add(lblWelcomeBackAdministrator);
 				addAppointmentPanel.add(date);
 				addAppointmentPanel.add(lblBackground);
