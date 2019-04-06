@@ -1,10 +1,13 @@
 package gui;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import system.Hospital_Management_System;
@@ -36,6 +39,18 @@ public class DepartmentStatisticsPanel
 		JLabel lblWelcomeBackAdministrator = new JLabel("Welcome Back Administrator!");
 		lblWelcomeBackAdministrator.setFont(bArial);
 		lblWelcomeBackAdministrator.setBounds(166, 29, 510, 26);
+		/*
+		 * RETURN BUTTON
+		 */
+		JButton btnReturn = new JButton("Return");
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				hms.displayManageDepartmentPage();
+			}
+		});
+		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
+		btnReturn.setBounds(70, 980, 169, 59);
 		/*
 		 * DATE DISPLAYED BELOW HEADER
 		 */
@@ -70,6 +85,7 @@ public class DepartmentStatisticsPanel
 		lbPatientActivity.setBounds(990, 269, 855, 670);
 		lbPatientActivity.setVerticalAlignment(JLabel.TOP);
 		//add all the components to panel
+		departmentStatistics.add(btnReturn);
 		departmentStatistics.add(lbDeptStats);
 		departmentStatistics.add(lbPatientActivity);
 		departmentStatistics.add(lblWelcomeBackAdministrator);

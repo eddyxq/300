@@ -10,6 +10,7 @@ public class Appointment
 	private String docLName;
 	private String time;
 	private String date;
+	private Boolean isCheckedIn;
 	/*
 	 * This Constructor will initialize the Appointment fields.
 	 */
@@ -22,6 +23,7 @@ public class Appointment
 		this.docLName = docName[1];
 		this.date = date;
 		this.time = time;
+		this.isCheckedIn = false;
 	}
 	/**
 	 * This method returns the patient's name.
@@ -64,5 +66,23 @@ public class Appointment
 	public String getID() 
 	{
 		return id;
+	}
+	/**
+	 * This method returns the check in status of the appointment.
+	 */
+	public Boolean getCheckInStatus() {
+		return isCheckedIn;
+	}
+	/**
+	 * This method sets the appointment as checked in.
+	 */
+	public void checkIn() {
+		isCheckedIn = true;
+	}
+	/**
+	 * This method sets the appointment as checked out.
+	 */
+	public void checkOut() {
+		isCheckedIn = false;
 	}
 }

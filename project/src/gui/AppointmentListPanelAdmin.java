@@ -27,7 +27,7 @@ public class AppointmentListPanelAdmin
 {
 	private Font bArial = new Font("Arial", Font.BOLD, 30);
 	private JTable table = new JTable(new DefaultTableModel(new Object[]{	
-	 "Appointment Date", "Appointment Time", "Doctor", "Modify", "Booking"}, 0))
+	 "Appointment Date", "Appointment Time", "Doctor", "Modify", "Booking", "Check In", "Check Out"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
 		public boolean isCellEditable(int row, int column) {  
@@ -36,11 +36,16 @@ public class AppointmentListPanelAdmin
 				return true;
 			case 4:
 				return true;
+			case 5:
+				return true;
+			case 6:
+				return true;
 			default:
 				return false;
 		}           
     };
 	};
+	
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
 	/**
 	 * This method creates and returns a JPanel
@@ -108,19 +113,27 @@ public class AppointmentListPanelAdmin
 	public void addAppointmentToTable(Appointment appointment, Hospital_Management_System hms) 
 	{
 		model.addRow(new Object[]{appointment.getDate(), appointment.getTime(), appointment.getDocName(),
-				"Edit", "Remove"});
+				"Edit", "Remove", "Check In", "Check Out"});
 		
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				table.getColumnModel().getColumn(3).setCellEditor(new BtnEditorEditAppointment(new JTextField(), hms, appointment));
 				table.getColumnModel().getColumn(4).setCellEditor(new BtnEditorRemoveAppointment(new JTextField(), hms, appointment));
-				
+				table.getColumnModel().getColumn(5).setCellEditor(new BtnEditorCheckInAppointment(new JTextField(), hms, appointment));
+				table.getColumnModel().getColumn(6).setCellEditor(new BtnEditorCheckOutAppointment(new JTextField(), hms, appointment));		
 			}
 		});
-		//set custom renderer and editor to column
+				// set width for columns
+				table.getColumnModel().getColumn(3).setPreferredWidth(5);
+				table.getColumnModel().getColumn(4).setPreferredWidth(5);
+				table.getColumnModel().getColumn(5).setPreferredWidth(5);
+				table.getColumnModel().getColumn(6).setPreferredWidth(5);
+				// set custom renderer and editor to column
 				table.getColumnModel().getColumn(3).setCellRenderer(new ButtonRenderer());;
 				table.getColumnModel().getColumn(4).setCellRenderer(new ButtonRenderer());;
+				table.getColumnModel().getColumn(5).setCellRenderer(new ButtonRenderer());;
+				table.getColumnModel().getColumn(6).setCellRenderer(new ButtonRenderer());;
 	}
 	
 	public void clearAllRow() {

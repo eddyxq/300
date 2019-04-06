@@ -16,7 +16,7 @@ import system.Hospital_Management_System;
  * This class edits the Jbutton.
  * @reference ProgrammingWizards TV's Youtube java tutorials.
  */
-class BtnEditorRemoveAppointment extends DefaultCellEditor
+class BtnEditorCheckOutAppointment extends DefaultCellEditor
 {
 	private static final long serialVersionUID = 1L;
 	private Hospital_Management_System hms;
@@ -25,7 +25,7 @@ class BtnEditorRemoveAppointment extends DefaultCellEditor
 	private Boolean clicked;
 	private Appointment app;
 	
-	BtnEditorRemoveAppointment(JTextField txt, Hospital_Management_System hms, Appointment app) 
+	BtnEditorCheckOutAppointment(JTextField txt, Hospital_Management_System hms, Appointment app) 
 	{
 		super(txt);
 		this.hms = hms;
@@ -57,14 +57,32 @@ class BtnEditorRemoveAppointment extends DefaultCellEditor
 		if(clicked)
 		{
 			Object[] options = {"Yes", "Cancel"};
-			int selection = JOptionPane.showOptionDialog(null, "Are you sure you want to remove the appointment?", "Warning",
+			int selection = JOptionPane.showOptionDialog(null, "Do you want to check out this patient for this appointment?", "Warning",
 			JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
 			null, options, options[0]);	
+			int index = hms.getAppointmentRec().indexOf(app);
 			if(selection == 0) {
-				int index = hms.getAppointmentRec().indexOf(app);
-				hms.getAppointmentRec().remove(index);
-				JOptionPane.showMessageDialog(null, "Appointment was removed successfully!", "Success!", JOptionPane.INFORMATION_MESSAGE);
-				hms.displayPatientListPage();
+				if(hms.getAppointmentRec().get(index).getCheckInStatus() == true) 
+				{
+					//Checks out the appointment if checked in.
+					hms.getAppointmentRec().get(index).checkOut();
+					Object[] options2 = {"Yes", "Cancel"};
+					int checkOutOptions = JOptionPane.showOptionDialog(null, "Patient has checked out successfully!\n"
+							+ "Do you want to remove the appointment now?", "Success!", 
+							JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
+							null, options, options[0]);
+					if(checkOutOptions == 0) 
+					{
+						//Removes the appointment.
+						hms.getAppointmentRec().remove(index);
+						JOptionPane.showMessageDialog(null, "Appointment was removed successfully!", "Success!", JOptionPane.INFORMATION_MESSAGE);
+					}
+					hms.displayPatientListPage();
+				}else 
+				{
+					JOptionPane.showMessageDialog(null, "Patient is not checked in!", "Error!", JOptionPane.ERROR_MESSAGE);
+				}
+				
 			}
 		}
 		clicked = false;
