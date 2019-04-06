@@ -75,34 +75,34 @@ public class AddPatientPanel
 		 */
 		JLabel lbFirstName = new JLabel("First Name: ");
 		lbFirstName.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lbFirstName.setBounds(78, 268, 100, 50);
+		lbFirstName.setBounds(660, 388, 100, 50);
 		tfFirstName = new JTextField();
-		tfFirstName.setBounds(640, 285, 300, 20);
+		tfFirstName.setBounds(1066, 405, 300, 20);
 		tfFirstName.setColumns(10);
 		/*
 		 * LAST NAME
 		 */
 		JLabel lbLastName = new JLabel("Last Name: ");
 		lbLastName.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lbLastName.setBounds(78, 320, 100, 50);
+		lbLastName.setBounds(660, 440, 100, 50);
 		tfLastName = new JTextField();
 		tfLastName.setColumns(10);
-		tfLastName.setBounds(640, 337, 300, 20);
+		tfLastName.setBounds(1066, 457, 300, 20);
 		/*
 		 * SEX
 		 */
 		JLabel lbSex = new JLabel("Sex: ");
 		lbSex.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lbSex.setBounds(78, 371, 100, 50);
+		lbSex.setBounds(660, 501, 100, 42);
 		//male button
 		JRadioButton rdbtnMale = new JRadioButton("Male");
 		rdbtnMale.setBackground(bgColor);
-		rdbtnMale.setBounds(640, 387, 100, 23);
+		rdbtnMale.setBounds(1104, 507, 100, 23);
 		rdbtnMale.setOpaque(false);
 		//female button
 		JRadioButton rdbtnFemale = new JRadioButton("Female");
 		rdbtnFemale.setBackground(bgColor);
-		rdbtnFemale.setBounds(748, 387, 100, 23);
+		rdbtnFemale.setBounds(1230, 507, 100, 23);
 		rdbtnFemale.setOpaque(false);
 		//"clear radio button"
 		rdbtnClear = new JRadioButton("");
@@ -115,12 +115,12 @@ public class AddPatientPanel
 		 * DOB
 		 */
 		JLabel slash = new JLabel("/");
-		slash.setBounds(728, 448, 24, 14);
+		slash.setBounds(1146, 572, 24, 14);
 		JLabel label = new JLabel("/");
-		label.setBounds(834, 448, 24, 14);
+		label.setBounds(1266, 572, 24, 14);
 		JLabel lbDOB = new JLabel("Date of birth (dd/mm/yyyy): ");
 		lbDOB.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lbDOB.setBounds(78, 428, 300, 50);
+		lbDOB.setBounds(660, 552, 300, 50);
 		//day
 		tfDay = new JTextField();
 		// FocusListner that clears the text in the text field.
@@ -133,13 +133,13 @@ public class AddPatientPanel
 			}
 		});
 		tfDay.setText("Day");
-		tfDay.setBounds(640, 445, 70, 20);
+		tfDay.setBounds(1066, 569, 70, 20);
 		tfDay.setColumns(10);
 		//month
 		tfMonth = new JTextField();
 		tfMonth.setText("Month");
 		tfMonth.setColumns(10);
-		tfMonth.setBounds(754, 445, 70, 20);
+		tfMonth.setBounds(1186, 569, 70, 20);
 		// FocusListner that clears the text in the text field.
 		tfMonth.addFocusListener(new FocusAdapter() 
 		{
@@ -153,7 +153,7 @@ public class AddPatientPanel
 		tfYear = new JTextField();
 		tfYear.setText("Year");
 		tfYear.setColumns(10);
-		tfYear.setBounds(856, 445, 70, 20);
+		tfYear.setBounds(1296, 569, 70, 20);
 		tfYear.addFocusListener(new FocusAdapter() 
 		{
 			@Override
@@ -167,19 +167,19 @@ public class AddPatientPanel
 		 */
 		JLabel lblPhoneNumber = new JLabel("Phone Number: ");
 		lblPhoneNumber.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPhoneNumber.setBounds(78, 489, 250, 50);
+		lblPhoneNumber.setBounds(660, 609, 250, 50);
 		tfPhoneNum = new JTextField();
 		tfPhoneNum.setColumns(10);
-		tfPhoneNum.setBounds(640, 506, 300, 20);
+		tfPhoneNum.setBounds(1066, 626, 300, 20);
 		/*
 		 * EMAIL
 		 */
 		JLabel lbEmail = new JLabel("E-mail: ");
 		lbEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lbEmail.setBounds(78, 548, 250, 50);
+		lbEmail.setBounds(660, 668, 250, 50);
 		tfEmail = new JTextField();
 		tfEmail.setColumns(10);
-		tfEmail.setBounds(640, 565, 300, 20);
+		tfEmail.setBounds(1066, 685, 300, 20);
 		/*
 		 * CANCEL BUTTON
 		 */
@@ -194,13 +194,13 @@ public class AddPatientPanel
 			}
 		});
 		btnCancel.setFont(new Font("Arial", Font.BOLD, 16));
-		btnCancel.setBounds(1400, 960, 169, 59);
+		btnCancel.setBounds(1172, 876, 169, 59);
 		/*
 		 * SUBMIT BUTTON
 		 */
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setFont(new Font("Arial", Font.BOLD, 16));
-		btnSubmit.setBounds(370, 960, 169, 59);
+		btnSubmit.setBounds(636, 876, 169, 59);
 		btnSubmit.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
