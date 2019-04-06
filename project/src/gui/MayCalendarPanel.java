@@ -149,7 +149,14 @@ public class MayCalendarPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				hms.displayEmployeeMainPage();
+				if(hms.isAdmin())
+				{
+					hms.displayAddAppointmentPage();
+				}
+				else
+				{
+					hms.displayEmployeeMainPage();
+				}
 			}
 		});
 		btnReturn.setFont(new Font("Arial", Font.BOLD, 16));
