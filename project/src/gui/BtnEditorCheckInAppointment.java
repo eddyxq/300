@@ -16,7 +16,7 @@ import system.Hospital_Management_System;
  * This class edits the Jbutton.
  * @reference ProgrammingWizards TV's Youtube java tutorials.
  */
-class BtnEditorRemoveAppointment extends DefaultCellEditor
+class BtnEditorCheckInAppointment extends DefaultCellEditor
 {
 	private static final long serialVersionUID = 1L;
 	private Hospital_Management_System hms;
@@ -25,7 +25,7 @@ class BtnEditorRemoveAppointment extends DefaultCellEditor
 	private Boolean clicked;
 	private Appointment app;
 	
-	BtnEditorRemoveAppointment(JTextField txt, Hospital_Management_System hms, Appointment app) 
+	BtnEditorCheckInAppointment(JTextField txt, Hospital_Management_System hms, Appointment app) 
 	{
 		super(txt);
 		this.hms = hms;
@@ -57,14 +57,18 @@ class BtnEditorRemoveAppointment extends DefaultCellEditor
 		if(clicked)
 		{
 			Object[] options = {"Yes", "Cancel"};
-			int selection = JOptionPane.showOptionDialog(null, "Are you sure you want to remove the appointment?", "Warning",
+			int selection = JOptionPane.showOptionDialog(null, "Do you want to check in this patient for this appointment?", "Warning",
 			JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
 			null, options, options[0]);	
+			int index = hms.getAppointmentRec().indexOf(app);
 			if(selection == 0) {
-				int index = hms.getAppointmentRec().indexOf(app);
-				hms.getAppointmentRec().remove(index);
-				JOptionPane.showMessageDialog(null, "Appointment was removed successfully!", "Success!", JOptionPane.INFORMATION_MESSAGE);
-				hms.displayPatientListPage();
+				if(hms.getAppointmentRec().get(index).getCheckInStatus() == false) {
+					hms.getAppointmentRec().get(index).checkIn();
+					JOptionPane.showMessageDialog(null, "Patient has checked in successfully!", "Success!", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "Patient is already checked in!", "Error!", JOptionPane.ERROR_MESSAGE);
+				}
+				
 			}
 		}
 		clicked = false;
