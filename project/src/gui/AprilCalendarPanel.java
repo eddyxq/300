@@ -48,6 +48,7 @@ public class AprilCalendarPanel
 	 */
 	public JPanel createPanel(Hospital_Management_System hms)
 	{
+		table.clearSelection();
 		//label for patient names
 		patientName.setBounds(1120, 220, 382, 765);
 		patientName.setFont(bArial);
