@@ -74,7 +74,7 @@ public class AppointmentListPanelAdmin
 		/*
 		 * HEADER MESSAGE
 		 */
-		JLabel lblWelcomeBackAdministrator = new JLabel("Welcome Back Administrator!");
+		JLabel lblWelcomeBackAdministrator = new JLabel("Welcome Back!");
 		lblWelcomeBackAdministrator.setFont(bArial);
 		lblWelcomeBackAdministrator.setBounds(166, 29, 510, 26);
 		/*
