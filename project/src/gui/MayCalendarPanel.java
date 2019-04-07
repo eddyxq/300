@@ -94,9 +94,9 @@ public class MayCalendarPanel
 		/*
 		 * HEADER MESSAGE
 		 */
-		JLabel lblWelcomeBackAdministrator = new JLabel("Your monthly schedule");
+		JLabel lblWelcomeBackAdministrator = new JLabel("Monthly schedule for May");
 		lblWelcomeBackAdministrator.setFont(bArial);
-		lblWelcomeBackAdministrator.setBounds(166, 29, 510, 26);
+		lblWelcomeBackAdministrator.setBounds(166, 29, 510, 35);
 		/*
 		 * DATE DISPLAYED BELOW HEADER
 		 */
