@@ -67,7 +67,8 @@ public class DepartmentStatisticsPanel
 		lbDeptStats.setBounds(59, 269, 897, 670);
 		lbDeptStats.setVerticalAlignment(JLabel.TOP);
 		//display number of physicians working at each department
-		String output = "Department" + "<br/>";
+		String output = "Departments: " + "<br/>"
+				+ "<br/>";
 		for(String s : hms.getDepartmentRecord())
 		{
 			//System.out.println(s);
