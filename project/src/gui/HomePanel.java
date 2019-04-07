@@ -100,7 +100,7 @@ public class HomePanel
 						else
 						{
 							Object[] options = {"Close"};
-							JOptionPane.showOptionDialog(null, "Invalid ID.", "Warning",
+							JOptionPane.showOptionDialog(null, "Invalid ID or username.", "Warning",
 							JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 							null, options, options[0]);	
 						}
@@ -109,7 +109,7 @@ public class HomePanel
 					else
 					{
 						Object[] options = {"Close"};
-						JOptionPane.showOptionDialog(null, "Invalid ID.", "Warning",
+						JOptionPane.showOptionDialog(null, "Invalid ID or username.", "Warning",
 						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 						null, options, options[0]);
 					}

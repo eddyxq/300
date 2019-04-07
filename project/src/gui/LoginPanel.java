@@ -82,7 +82,7 @@ public class LoginPanel
 				else
 				{
 					Object[] options = {"Close"};
-					JOptionPane.showOptionDialog(null, "You have entered incorrect username or password.", "Error",
+					JOptionPane.showOptionDialog(null, "Incorrect username or password.", "Error",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 					null, options, options[0]);
 				}

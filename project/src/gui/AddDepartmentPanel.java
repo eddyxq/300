@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import system.Hospital_Management_System;
+import system.ValidateInput;
 
 /*
  * This class displays the add patient panel.
@@ -24,6 +26,9 @@ public class AddDepartmentPanel
 	private AddAppointmentPanel aap;
 	private EditAppointmentPanel eap;
 	private AddStaffPanel asp;
+	private Color Red = new Color(255, 150, 135);
+	private Color Default = new Color(255,255,255);
+	private ValidateInput val = new ValidateInput();
 	/**
 	 * This method creates and returns a JPanel
 	 * @param hms
@@ -73,6 +78,8 @@ public class AddDepartmentPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				clearTextField();
+				clearRedField();
 				hms.displayManageDepartmentPage();
 			}
 		});
@@ -88,21 +95,56 @@ public class AddDepartmentPanel
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				//add department to list
-				hms.getDepartmentRecord().add(tfDepartment.getText());
-				aap = hms.getAAP();
-				aap.setDeptList();
-				eap = hms.getEAP();
-				eap.setDeptList();
-				asp = hms.getASP();
-				asp.setDeptList();
-				//display confirmation message
-				Object[] options = {"Ok"};
-				JOptionPane.showOptionDialog(null, "Department added.", "Success",
-				JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-				null, options, options[0]);
-				//clear the text field
-				tfDepartment.setText("");
+				if(formComplete())
+				{
+					//Initially clearing all field colors
+					clearRedField();
+					//Initializing the error message string (Additional explanation is added for the entries that fail validation)
+					String errorMessage = "";
+					
+					//If input is correct, add this department (contains "ology" suffix or has valid length
+					if(val.validateName(tfDepartment.getText()) && (tfDepartment.getText().contains("ology") || tfDepartment.getText().length() > 3))
+					{
+						//add department to list
+						hms.getDepartmentRecord().add(tfDepartment.getText());
+						aap = hms.getAAP();
+						aap.setDeptList();
+						eap = hms.getEAP();
+						eap.setDeptList();
+						asp = hms.getASP();
+						asp.setDeptList();
+						//display confirmation message
+						Object[] options = {"Ok"};
+						JOptionPane.showOptionDialog(null, "Department added.", "Success",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+						null, options, options[0]);
+						//clear the text field
+						clearTextField();
+					}
+					
+					//Highlight the input field red and add error message
+					else
+					{
+						tfDepartment.setBackground(Red);
+						errorMessage += "Please ensure the department name does not contain illegal characters e.g: *!@#$/ and consists of at least 4 letters.\n ";
+						
+						//Display message indicating error in department name
+						Object[] options = {"Close"};
+						JOptionPane.showOptionDialog(null, errorMessage, "Error",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE,
+						null, options, options[0]);
+					}
+					
+				}
+				
+				//Display warning message if any fields are empty 
+				else
+				{
+					Object[] options = {"Close"};
+					JOptionPane.showOptionDialog(null, "Please fill in all required information.", "Warning",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+					null, options, options[0]);
+				}
 				
 			}
 		});
@@ -116,5 +158,35 @@ public class AddDepartmentPanel
 		addDepartmentPanel.add(lblBackground);
 		
 		return addDepartmentPanel;
+	}
+	
+	/**
+	 * This method returns true if form is completely filled out
+	 */
+	private boolean formComplete() 
+	{
+		//checking if textfield with input is not empty
+		if(!(tfDepartment.getText().length() > 0))
+		{
+			return false;
+		}
+		
+		return true;
+	}
+	/**
+	 * This method reset the text field
+	 */
+	private void clearTextField() 
+	{
+		tfDepartment.setText("");
+	}
+	
+	/**
+	 * This method resets text field color
+	 */
+	private void clearRedField()
+	{
+		tfDepartment.setBackground(Default);
+
 	}
 }

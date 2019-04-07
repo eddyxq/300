@@ -180,8 +180,10 @@ public class ValidateInput
 	 */
 	public boolean validateEmail(String email)
 	{
-		//Ensuring email entry contains @ symbol, and has at least length 3
-		if(email.length() < 3 || !email.contains("@") || !email.contains("."))
+		//Ensuring email entry contains @ symbol, and has at least length 9
+		//(minimum length email accepted example) a@mail.ca 
+	
+		if(email.length() < 9 || !email.contains("@") || !email.contains("."))
 		{
 			return false;
 		}
