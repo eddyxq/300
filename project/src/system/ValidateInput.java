@@ -11,6 +11,9 @@ import database.TextReader;
 
 public class ValidateInput 
 {	
+	//lists of all the appointments in the system (holds appointments added during this session
+	ArrayList<Appointment> appointmentTemp = new ArrayList<Appointment>();
+			
 	/*
 	 * This method returns true if all entries of a patient form are valid
 	 * @param firstName The first name.
@@ -341,7 +344,7 @@ public class ValidateInput
 			int thisStart = Integer.parseInt("" + timeStart.charAt(0) + timeStart.charAt(1) + timeStart.charAt(3) + timeStart.charAt(4)); 
 			int thisEnd = Integer.parseInt("" + timeEnd.charAt(0) + timeEnd.charAt(1) + timeEnd.charAt(3) + timeEnd.charAt(4));
 			
-			//go through and find all the current day appointments with this doctor
+			//Go through loaded record and find all the current day appointments with this doctor
 			for(Appointment a : appointments)
 			{
 					//Splitting up the read in date
@@ -361,6 +364,26 @@ public class ValidateInput
 					}		
 			}
 			
+			//Go through temporary record and find all the current day appointments with this doctor
+			for(Appointment b : appointmentTemp)
+			{
+					//Splitting up the read in date
+					String[] dateRead = b.getDate().split("/");
+					String day = dateRead[0];
+					String month = dateRead[1];
+					String year = dateRead[2];
+					
+					//Ensuring the read in appointment is on the same date, by the same exact doctor
+					if ((Integer.parseInt(day) == Integer.parseInt(thisDay)) && 
+						(Integer.parseInt(month) == Integer.parseInt(thisMonth)) && 
+						(Integer.parseInt(year) == Integer.parseInt(thisYear)) && 
+						(b.getDocNameNoSpace().equals(doctorName.replaceAll("\\s+",""))))
+					{
+						//Add these appointments to a new list in order to parse times
+						currentDayAppointments.add(b);
+					}		
+			}
+			
 			//list of the starting appointment times
 			ArrayList<Integer> startList = new ArrayList<Integer>();
 			ArrayList<Integer> endList = new ArrayList<Integer>();
@@ -371,13 +394,7 @@ public class ValidateInput
 				//Storing the times read in from this appointment for comparison
 				int startTime = Integer.parseInt("" + time.charAt(0) + time.charAt(1) + time.charAt(3) + time.charAt(4)) ;
 				int endTime = Integer.parseInt("" + time.charAt(6) + time.charAt(7) + time.charAt(9) + time.charAt(10)) ;
-				
-				System.out.println("Start:" + thisStart);
-				System.out.println("End:" + thisEnd);
 
-				System.out.println("Start:" + startTime);
-				System.out.println("End:" + endTime);
-				
 				//Adding read in times to respective arraylists
 				startList.add(startTime);
 				endList.add(endTime);
@@ -404,13 +421,14 @@ public class ValidateInput
 		          {
 		        	  return false;
 		          }
-		          
-		          System.out.print(startList.get(counter));
-		          System.out.println(endList.get(counter));
 		     }   	
 			 
-			 //If none of the conflicting cases were satisfied, appointment is conflict free
-			 return true;
+		 	//If none of the conflicting cases were satisfied, appointment is conflict free
+			 
+		 	//adding to temporary list of appointments to ensure comparison until appointmentRecords updates
+			String appointmentTime = timeStart + "-" + timeEnd;
+			appointmentTemp.add(new Appointment(1 +"", "TempName", doctorName, date, appointmentTime));
+			return true;
 		}
 				
 		catch(Exception e)
@@ -419,9 +437,6 @@ public class ValidateInput
 			empty.add("");
 			empty.add("");
 		}
-		
-		System.out.println("end of method");
-		
 		//If the appointment file cannot be correctly parsed; shouldn't accept new appointments
 		return false;
 	}

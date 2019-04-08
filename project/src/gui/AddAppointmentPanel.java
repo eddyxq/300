@@ -159,6 +159,8 @@ public class AddAppointmentPanel
 				//Initially clearing all field colors and content
 				clearRedField();
 				clearTextField();
+				jcStartTime.setBackground(Default);
+				jcEndTime.setBackground(Default);
 				
 				if(hms.getAccessFrom() == "Admin")
 				{
@@ -184,6 +186,9 @@ public class AddAppointmentPanel
 			{
 				//Initially clearing all field colors
 				clearRedField();
+				jcStartTime.setBackground(Default);
+				jcEndTime.setBackground(Default);
+				
 				//Initializing the error message string (Additional explanation is added for the entries that fail validation)
 				String errorMessage = "";
 	
@@ -268,6 +273,10 @@ public class AddAppointmentPanel
 				{
 					public void actionPerformed(ActionEvent e) 
 					{
+						//clearing all field colors and content
+						clearRedField();
+						clearTextField();
+						//Setting selected doctor as logged in to view their schedule
 						String name = jcDoctors.getSelectedItem().toString().replaceAll("\\s", "");
 						hms.setLoggedInUser(name);
 						hms.displayAprilCalendarPage();

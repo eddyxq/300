@@ -161,6 +161,8 @@ public class EditAppointmentPanel
 				//Initially clearing all field colors and content
 				clearRedField();
 				clearTextField();
+				jcStartTime.setBackground(Default);
+				jcEndTime.setBackground(Default);
 				
 				if(hms.getAccessFrom() == "Admin")
 				{
@@ -186,6 +188,9 @@ public class EditAppointmentPanel
 			{
 				//Initially clearing all field colors
 				clearRedField();
+				jcStartTime.setBackground(Default);
+				jcEndTime.setBackground(Default);
+				
 				//Initializing the error message string (Additional explanation is added for the entries that fail validation)
 				String errorMessage = "";
 	
