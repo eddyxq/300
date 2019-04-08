@@ -192,7 +192,8 @@ public class EditAppointmentPanel
 		    	if(formComplete())
 						{
 							//If all input is correct, add this appointment
-							if(val.validateAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString(), jcEndTime.getSelectedItem().toString())) 
+							if(val.validateAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString(), jcEndTime.getSelectedItem().toString(),
+									jcDoctors.getSelectedItem().toString())) 
 							{
 								app = hms.getCurrentAppointment();
 								String appointmentTime = jcStartTime.getSelectedItem().toString() + "-" + jcEndTime.getSelectedItem().toString();
@@ -228,7 +229,7 @@ public class EditAppointmentPanel
 								if(!val.validateDate(tfDate.getText()))
 								{
 									tfDate.setBackground(Red);
-									errorMessage += "Please ensure the entered date is correctly formatted: (DD/MM/YYYY) and does not form a past date.\n";
+									errorMessage += "Please ensure the entered date is correctly formatted: (DD/MM/YYYY) and does not form date in the past.\n";
 								}
 								
 								//Checking if time input isn't valid
@@ -236,7 +237,16 @@ public class EditAppointmentPanel
 								{
 									jcStartTime.setBackground(Red);
 									jcEndTime.setBackground(Red);
-									errorMessage += "Please ensure selected times are valid; the end time takes place after the start time";
+									errorMessage += "Please ensure selected times are valid";
+								}
+								
+								//Checking if time input is conflicting
+								if(!val.ConflictFreeAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString(), jcEndTime.getSelectedItem().toString(), 
+										jcDoctors.getSelectedItem().toString()))
+								{
+									jcStartTime.setBackground(Red);
+									jcEndTime.setBackground(Red);
+									errorMessage += "Please ensure selected the times available for this doctor";
 								}
 								
 								Object[] options = {"Close"};

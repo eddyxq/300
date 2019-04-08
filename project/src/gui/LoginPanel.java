@@ -66,27 +66,37 @@ public class LoginPanel
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				String response = new TextReader().checkCredentials(tfUsername.getText(), new String(passwordField.getPassword()));
+				if(formComplete())
+				{
+					String response = new TextReader().checkCredentials(tfUsername.getText(), new String(passwordField.getPassword()));
+					
+					if(response == "valid_a")
+					{
+						hms.displayAdminMainPage();
+						hms.setAdmin(true);
+					}
+					else if (response == "valid_e")
+					{
+						hms.displayEmployeeMainPage();
+						hms.setLoggedInUser(tfUsername.getText());
+						hms.setAdmin(false);
+					}
+					else
+					{
+						Object[] options = {"Close"};
+						JOptionPane.showOptionDialog(null, "Incorrect username or password.", "Error",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+						null, options, options[0]);
+					}
+					tfClear();
+				}
 				
-				if(response == "valid_a")
-				{
-					hms.displayAdminMainPage();
-					hms.setAdmin(true);
-				}
-				else if (response == "valid_e")
-				{
-					hms.displayEmployeeMainPage();
-					hms.setLoggedInUser(tfUsername.getText());
-					hms.setAdmin(false);
-				}
 				else
 				{
 					Object[] options = {"Close"};
-					JOptionPane.showOptionDialog(null, "Incorrect username or password.", "Error",
-					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-					null, options, options[0]);
-				}
-				tfClear();
+					JOptionPane.showOptionDialog(null, "Please fill in all information.", "Warning",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+				}	
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 22));
@@ -123,5 +133,17 @@ public class LoginPanel
 	{
 		tfUsername.setText("");
 		passwordField.setText("");
+	}
+	
+	/**
+	 * This method returns true if form is completely filled out
+	 */
+	private boolean formComplete() 
+	{
+		if(!(tfUsername.getText().length() > 0) && !(passwordField.getPassword().length > 0))
+		{
+			return false;
+		}
+		return true;
 	}
 }

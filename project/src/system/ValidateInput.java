@@ -1,11 +1,14 @@
 package system;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import database.TextReader;
 
 /**
  * This class is used to ensure all input is valid 
  */
+
 public class ValidateInput 
 {	
 	/*
@@ -28,13 +31,18 @@ public class ValidateInput
 		return true;
 	}
 	/*
-	 * This method returns true all elements of an appointment form are valid.
+	 * This method returns true if all elements of an appointment form are valid.
 	 * @param date The date.
 	 * @param time The time.
 	 */
-	public boolean validateAppointment(String date, String timeStart, String timeEnd)
+	public boolean validateAppointment(String date, String timeStart, String timeEnd, String docName)
 	{
 		if(!this.validateDate(date) || !this.validateTime(timeStart, timeEnd))
+		{
+			return false;
+		}	
+		//Only checked if the date and time are otherwise valid
+		if(!this.ConflictFreeAppointment(date, timeStart, timeEnd, docName))
 		{
 			return false;
 		}
@@ -296,19 +304,139 @@ public class ValidateInput
 			return false;
 		}
 		//if no problems are found, then time is valid
+		
 		return true;
+	}
+	
+	/**
+	 * This method checks the input appointment parameters and checks them against the selected doctor's
+	 * existing appointments saved for the given day.
+	 * Returns true when the appointment is determined to not be the conflicting with any other appointment 
+	 * on the same day for that doctor, false otherwise
+	 * @param date This is the date being checked
+	 * @param timeStart The proposed start time of the appointment
+	 * @param timeEnd The proposed end time of the appointment
+	 */
+	public boolean ConflictFreeAppointment(String date, String timeStart, String timeEnd, String doctorName) 
+	{
+	
+		//Generating all the appointments in the system as a list
+		//lists of all the appointments in the system
+		ArrayList<Appointment> appointmentRecord = new ArrayList<Appointment>();
+		//Reading in data from the appointment records file
+		appointmentRecord = new TextReader().loadAppointmentData();
+		ArrayList<Appointment> appointments = appointmentRecord;
+		//ArrayList to hold only the appointments of the current day
+		ArrayList<Appointment> currentDayAppointments = new ArrayList<Appointment>();
+				
+		try 
+		{
+			//Splitting the date input by / to separate day, month and year
+			String parts[] = date.split("/");	
+			String thisDay = parts[0];
+			String thisMonth = parts[1];
+			String thisYear = parts[2];
+			
+			//Storing the input times as integers for comparison 
+			int thisStart = Integer.parseInt("" + timeStart.charAt(0) + timeStart.charAt(1) + timeStart.charAt(3) + timeStart.charAt(4)); 
+			int thisEnd = Integer.parseInt("" + timeEnd.charAt(0) + timeEnd.charAt(1) + timeEnd.charAt(3) + timeEnd.charAt(4));
+			
+			//go through and find all the current day appointments with this doctor
+			for(Appointment a : appointments)
+			{
+					//Splitting up the read in date
+					String[] dateRead = a.getDate().split("/");
+					String day = dateRead[0];
+					String month = dateRead[1];
+					String year = dateRead[2];
+					
+					//Ensuring the read in appointment is on the same date, by the same exact doctor
+					if ((Integer.parseInt(day) == Integer.parseInt(thisDay)) && 
+						(Integer.parseInt(month) == Integer.parseInt(thisMonth)) && 
+						(Integer.parseInt(year) == Integer.parseInt(thisYear)) && 
+						(a.getDocNameNoSpace().equals(doctorName.replaceAll("\\s+",""))))
+					{
+						//Add these appointments to a new list in order to parse times
+						currentDayAppointments.add(a);
+					}		
+			}
+			
+			//list of the starting appointment times
+			ArrayList<Integer> startList = new ArrayList<Integer>();
+			ArrayList<Integer> endList = new ArrayList<Integer>();
+			for(Appointment a : currentDayAppointments)
+			{
+				String time = a.getTime();
+				
+				//Storing the times read in from this appointment for comparison
+				int startTime = Integer.parseInt("" + time.charAt(0) + time.charAt(1) + time.charAt(3) + time.charAt(4)) ;
+				int endTime = Integer.parseInt("" + time.charAt(6) + time.charAt(7) + time.charAt(9) + time.charAt(10)) ;
+				
+				System.out.println("Start:" + thisStart);
+				System.out.println("End:" + thisEnd);
+
+				System.out.println("Start:" + startTime);
+				System.out.println("End:" + endTime);
+				
+				//Adding read in times to respective arraylists
+				startList.add(startTime);
+				endList.add(endTime);
+			}
+			
+			//Looping through each start and end time to compare with the intended appointment times
+			 for (int counter = 0; counter < startList.size(); counter++) 
+			 { 		   
+				  //If appointments at the exact same time
+		          if(startList.get(counter) == thisStart && endList.get(counter) == thisEnd)
+		          {
+		        	  return false;
+		          }
+		          
+		          //If appointments start or end at the exact same time
+		          if(startList.get(counter) == thisStart || endList.get(counter) == thisEnd)
+		          {
+		        	  return false;
+		          }
+		          
+		          //If the proposed appointment takes place during an existing appointment
+		          //Cases listed in order:
+		          //if appointment starts after existing start and existing has not ended by the new appointment start
+		          if(startList.get(counter) < thisStart && endList.get(counter) >= thisStart)
+		          {
+		        	  return false;
+		          }
+		          
+		          System.out.print(startList.get(counter));
+		          System.out.println(endList.get(counter));
+		     }   	
+			 
+			 //If none of the conflicting cases were satisfied, appointment is conflict free
+			 return true;
+		}
+				
+		catch(Exception e)
+		{
+			ArrayList<String> empty = new ArrayList<String>();
+			empty.add("");
+			empty.add("");
+		}
+		
+		System.out.println("end of method");
+		
+		//If the appointment file cannot be correctly parsed; shouldn't accept new appointments
+		return false;
 	}
 	/**
 	 * This method checks the inputed string and determines whether it contains only digits
 	 * Returns true when string contains all digits, false otherwise
-	 * @param s This is the string being checked
+	 * @param str This is the string being checked
 	 */
-	public boolean allDigits(String s) 
+	public boolean allDigits(String str) 
 	{
 		boolean noDigits = true;
-		for (int index = 0; index < s.length(); index++)
+		for (int index = 0; index < str.length(); index++)
 		{
-			char aChar = s.charAt(index);
+			char aChar = str.charAt(index);
 			if (!Character.isDigit(aChar))
 			{
 				noDigits = false;
