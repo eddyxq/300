@@ -39,7 +39,7 @@
 39 Daphne Trimme Female 15099 4037350055 dtrimme12@mapy.cz Gynecology
 40 Fielding Brugsma Male 12026 4035368467 fbrugsma13@mapy.cz Gastroenterology
 41 Drusie Raeside Female 37447 4037421454 draeside14@engadget.com Gastroenterology
-42 Zia O'Nolan Female 24052 4037243345 zonolan15@noaa.gov Nephrology
+42 Zia ONolan Female 24052 4037243345 zonolan15@noaa.gov Nephrology
 43 Muffin Brazer Male 21649 4034862486 mbrazer16@slashdot.org Rheumatology
 44 Nikos Iacobo Male 24179 4037148849 niacobo17@webnode.com Urology
 45 Sal Prothero Male 38882 4037699690 sprothero18@canalblog.com Gynecology
