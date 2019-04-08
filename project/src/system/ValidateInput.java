@@ -386,7 +386,7 @@ public class ValidateInput
 			//Looping through each start and end time to compare with the intended appointment times
 			 for (int counter = 0; counter < startList.size(); counter++) 
 			 { 		   
-				  //If appointments at the exact same time
+				  //If appointments start and end at the exact same time
 		          if(startList.get(counter) == thisStart && endList.get(counter) == thisEnd)
 		          {
 		        	  return false;
@@ -399,9 +399,8 @@ public class ValidateInput
 		          }
 		          
 		          //If the proposed appointment takes place during an existing appointment
-		          //Cases listed in order:
-		          //if appointment starts after existing start and existing has not ended by the new appointment start
-		          if(startList.get(counter) < thisStart && endList.get(counter) >= thisStart)
+		          //If appointment starts after existing start even though existing appointment has not ended by the new start
+		          if(startList.get(counter) < thisStart && endList.get(counter) > thisStart)
 		          {
 		        	  return false;
 		          }

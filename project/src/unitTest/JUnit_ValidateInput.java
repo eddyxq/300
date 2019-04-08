@@ -143,6 +143,18 @@ public class JUnit_ValidateInput {
 		assertFalse(validTest.validateTime("09:00","09:00"));
 	}
 	
+	@Test // Testing the validation of correct appointment times
+	public void validConflictFreeAppointment() {
+		assertTrue(validTest.ConflictFreeAppointment("31/05/2019", "20:00", "20:30", "Kim Abell"));		
+		assertTrue(validTest.ConflictFreeAppointment("31/05/2019", "19:00", "20:00", "Kim Abell"));
+	}
+	
+	@Test // Testing the detection of invalid appointment time entries
+	public void invalidConflictFreeAppointment() { 
+		assertFalse(validTest.ConflictFreeAppointment("05/05/2019", "06:00", "06:30", "Kim Abell"));		
+		assertFalse(validTest.ConflictFreeAppointment("05/05/2019", "06:00", "07:00", "Kim Abell"));
+	}
+	
 	@Test // Testing the validation entries consisting of only digits
 	public void validDigits() {
 		assertTrue(validTest.allDigits("9630"));

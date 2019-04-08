@@ -237,16 +237,16 @@ public class EditAppointmentPanel
 								{
 									jcStartTime.setBackground(Red);
 									jcEndTime.setBackground(Red);
-									errorMessage += "Please ensure selected times are valid";
+									errorMessage += "Please ensure selected times are valid. \n";
 								}
 								
 								//Checking if time input is conflicting
-								if(!val.ConflictFreeAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString(), jcEndTime.getSelectedItem().toString(), 
+								else if(!val.ConflictFreeAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString(), jcEndTime.getSelectedItem().toString(), 
 										jcDoctors.getSelectedItem().toString()))
 								{
 									jcStartTime.setBackground(Red);
 									jcEndTime.setBackground(Red);
-									errorMessage += "Please ensure selected the times available for this doctor";
+									errorMessage += "Please ensure selected the times available for this doctor. \n";
 								}
 								
 								Object[] options = {"Close"};

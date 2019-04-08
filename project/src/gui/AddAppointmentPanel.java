@@ -230,16 +230,16 @@ public class AddAppointmentPanel
 								{
 									jcStartTime.setBackground(Red);
 									jcEndTime.setBackground(Red);
-									errorMessage += "Please ensure selected times are valid.";
+									errorMessage += "Please ensure selected times are valid. \n";
 								}
 								
 								//Checking if time input is conflicting
-								if(!val.ConflictFreeAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString(), jcEndTime.getSelectedItem().toString(), 
+								else if(!val.ConflictFreeAppointment(tfDate.getText(), jcStartTime.getSelectedItem().toString(), jcEndTime.getSelectedItem().toString(), 
 										jcDoctors.getSelectedItem().toString()))
 								{
 									jcStartTime.setBackground(Red);
 									jcEndTime.setBackground(Red);
-									errorMessage += "Please ensure selected the times available for this doctor";
+									errorMessage += "Please ensure selected the times available for this doctor. \n";
 								}
 								
 								Object[] options = {"Close"};
@@ -269,7 +269,6 @@ public class AddAppointmentPanel
 					public void actionPerformed(ActionEvent e) 
 					{
 						String name = jcDoctors.getSelectedItem().toString().replaceAll("\\s", "");
-						System.out.println(name);
 						hms.setLoggedInUser(name);
 						hms.displayAprilCalendarPage();
 					}
