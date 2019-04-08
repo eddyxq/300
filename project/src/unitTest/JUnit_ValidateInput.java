@@ -25,8 +25,8 @@ public class JUnit_ValidateInput {
 	
 	@Test // Testing the validation of appointment attributes
 	public void validAppointment() {
-		assertTrue(validTest.validateAppointment("20/05/2019", "06:00", "07:00", "Kim Abell"));
-		assertTrue(validTest.validateAppointment("29/02/2024", "08:00", "09:00", "Kim Abell"));
+		assertTrue(validTest.validateAppointment("20/05/2019", "20:00", "20:30", "Kim Abell"));
+		assertTrue(validTest.validateAppointment("29/02/2024", "19:00", "20:00", "Kim Abell"));
 	}
 	
 	@Test // Testing the detection of invalid appointment attributes
