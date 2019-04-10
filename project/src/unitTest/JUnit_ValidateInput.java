@@ -4,12 +4,16 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import system.ValidateInput;
+import system.Hospital_Management_System;
 
 //JUnit Test for the validateInput class
 public class JUnit_ValidateInput {
 
 	//Create new instance of ValidateInput to use for tests
 	ValidateInput validTest = new ValidateInput();
+	
+	//New hms instance to test appointment addition
+	Hospital_Management_System hms = new Hospital_Management_System();
 	
 	@Test // Testing the validation of patient attributes
 	public void validPatient() {
@@ -151,6 +155,8 @@ public class JUnit_ValidateInput {
 	
 	@Test // Testing the detection of invalid appointment time entries
 	public void invalidConflictFreeAppointment() { 
+		//Creating an appointment from 6am to 9am (then attempting to create conflicting appointments with same doctor)
+		validTest.ConflictFreeAppointment("05/05/2019", "06:00", "09:00", "Kim Abell");
 		assertFalse(validTest.ConflictFreeAppointment("05/05/2019", "06:00", "06:30", "Kim Abell"));		
 		assertFalse(validTest.ConflictFreeAppointment("05/05/2019", "06:00", "07:00", "Kim Abell"));
 	}
