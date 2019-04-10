@@ -66,7 +66,6 @@ class BtnEditorCheckOutAppointment extends DefaultCellEditor
 				{
 					//Checks out the appointment if checked in.
 					hms.getAppointmentRec().get(index).checkOut();
-					Object[] options2 = {"Yes", "Cancel"};
 					int checkOutOptions = JOptionPane.showOptionDialog(null, "Patient has checked out successfully!\n"
 							+ "Do you want to remove the appointment now?", "Success!", 
 							JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
