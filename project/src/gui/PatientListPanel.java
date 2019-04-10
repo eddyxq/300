@@ -32,8 +32,10 @@ public class PatientListPanel
 	"E-mail", "Modify", "Appointment"}, 0))
 	{
 		private static final long serialVersionUID = 1L;
-		public boolean isCellEditable(int row, int column) {  
-			switch(column) {
+		public boolean isCellEditable(int row, int column) 
+		{  
+			switch(column) 
+			{
 				case 7:
 					return true;
 				case 8:
@@ -41,7 +43,7 @@ public class PatientListPanel
 				default:
 					return false;
 			}
-    };
+		};
 	};
 	private DefaultTableModel model = (DefaultTableModel) table.getModel();
 	/**

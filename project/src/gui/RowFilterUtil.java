@@ -13,6 +13,11 @@ import javax.swing.table.TableRowSorter;
 
 public class RowFilterUtil 
 {
+	/**
+	 * This method returns a J textfield that has been turned into a filter. When you enter a 
+	 * string into the text box it will search and filter only those rows that contain said string. 
+	 * @param table The J table.
+	 */
     public static JTextField createRowFilter(JTable table) 
     {
         RowSorter<? extends TableModel> rs = table.getRowSorter();
@@ -22,8 +27,7 @@ public class RowFilterUtil
             rs = table.getRowSorter();
         }
 
-        TableRowSorter<? extends TableModel> rowSorter =
-        (rs instanceof TableRowSorter) ? (TableRowSorter<? extends TableModel>) rs : null;
+        TableRowSorter<? extends TableModel> rowSorter = (rs instanceof TableRowSorter) ? (TableRowSorter<? extends TableModel>) rs : null;
 
         if (rowSorter == null) 
         {
