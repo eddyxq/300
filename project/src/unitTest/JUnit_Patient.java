@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import user.Employee;
 import user.Patient;
 
 public class JUnit_Patient {

@@ -4,16 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import system.ValidateInput;
-import system.Hospital_Management_System;
 
 //JUnit Test for the validateInput class
 public class JUnit_ValidateInput {
 
 	//Create new instance of ValidateInput to use for tests
 	ValidateInput validTest = new ValidateInput();
-	
-	//New hms instance to test appointment addition
-	Hospital_Management_System hms = new Hospital_Management_System();
 	
 	@Test // Testing the validation of patient attributes
 	public void validPatient() {
